@@ -5,6 +5,9 @@ tagline: Work in progress
 ---
 {% include JB/setup %}
 
+*Currently, this page is filled with [hipster ipsum](http://hipsum.co/)
+ placeholder texts and is a work in progress.*
+
 # Truffaut High Life Vice
 
 Chambray keytar Blue Bottle gastropub beard. XOXO bicycle rights gluten-free
