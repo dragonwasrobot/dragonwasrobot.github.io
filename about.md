@@ -6,6 +6,7 @@ group: navigation
 {% include JB/setup %}
 
 # The Who
+
 I am a newly graduated computer scientist with a soft spot for:
 
 - Programming languages,
@@ -24,9 +25,17 @@ My interests include but are not limited to:
 - grinding my own coffee beans, and
 - general geekery like learning Haskell, chess or writing an emulator.
 
+Oh, and the name of the blog, *dragonwasrobot*, is from the ending credit of a
+poorly translated version of
+[Wonderboy in Monsterland](http://en.wikipedia.org/wiki/Wonder_Boy_in_Monster_Land)
+which I used to play on my old Amiga 500 as a kid.
+
 # The What
-The completely novel idea of a programming blog to share the cool stuff I
-stumble upon and once in a while might even code.
+
+The completely novel idea of a programming blog to share any cool stuff I might
+stumble upon and a range of notes and tutorials on various subjects related to
+programming.
 
 # The Why
-Just because.
+
+As a tool for reflection and sharing (or "just because").
