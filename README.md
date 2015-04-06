@@ -1,3 +1,4 @@
 # dragonwasrobot.github.io
 
-My blog, made with [jekyll-bootstrap](jekyllbootstrap.com)
+The source code for my blog at [dragonwasrobot](www.dragonwasrobot.com) (made
+with [jekyll-bootstrap](www.jekyllbootstrap.com)).
