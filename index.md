@@ -9,11 +9,12 @@ tagline: Work in progress
  posts and proper layout) but this should hopefully change in the near future as
  I start to churn out content :)*
 
-### Most recent blog posts:
+### Blog posts:
 
 <ul>
-  {% for post in site.posts limit:1 %}
+  {% for post in site.posts %}
     <li>
+      {{ post.date | date: "%-d %B, %Y" }}:
       <a href="{{ post.url }}">{{ post.title }}</a>
       <p>{{ post.description }}</p>
     </li>

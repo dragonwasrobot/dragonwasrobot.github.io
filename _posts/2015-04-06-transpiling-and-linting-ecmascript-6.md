@@ -2,27 +2,23 @@
 layout: post
 title: "Transpiling and linting ECMAScript 6"
 category: javascript
-description: "In this post, I will briefly explain how to setup a development
+description: "In this post, I will briefly explain how to set up a development
 loop for a ECMAScript 6 style JavaScript project."
-tags: [Grunt, ECMAScript 6]
+tags: [JavaScript, Grunt, ECMAScript 6]
 ---
 
 {% include JB/setup %}
 
-## Or: How to learn to stop worrying and start writing JavaScript of the future.
-
 #### prerequisites: basic JavaScript and Grunt knowledge.
 
-In this post, I will very briefly explain how to setup a development loop
+In this post, I will very briefly explain how to set up a development loop
 for a ECMAScript 6 (ES6) style JavaScript project.
 
 Our example project will be a simple
 [brainfuck](http://en.wikipedia.org/wiki/Brainfuck) tokenizer, with the
 following basic project structure:
 
-<script
-  src="https://gist.github.com/dragonwasrobot/a7a17cb055b166c18754.js?file=project.txt">
-</script>
+{% gist dragonwasrobot/a7a17cb055b166c18754 project.txt %}
 
 where:
 
@@ -40,9 +36,7 @@ I will go through each of these files in turn.
 As with most JavaScript projects, we start by creating a `package.json` file,
 which describes the project:
 
-<script
-  src="https://gist.github.com/dragonwasrobot/a7a17cb055b166c18754.js?file=package.json">
-</script>
+{% gist dragonwasrobot/a7a17cb055b166c18754 package.json %}
 
 Besides giving it a name, description and a version number, we state the
 following dependencies:
@@ -73,9 +67,7 @@ meaningful.
 Having written our `package.json` file and run `npm install` to fetch all
 dependencies, we stitch everything together with the following Gruntfile:
 
-<script
-  src="https://gist.github.com/dragonwasrobot/a7a17cb055b166c18754.js?file=Gruntfile.js">
-</script>
+{% gist dragonwasrobot/a7a17cb055b166c18754 Gruntfile.js %}
 
 where we:
 
@@ -90,23 +82,19 @@ Now, we just need to configure the eslint tool before we can start writing some
 ES6 code.
 
 ### .eslintrc
-In order to get eslint to recognize ES6 source code, we setup the following
+In order to get eslint to recognize ES6 source code, we set up the following
 config file:
 
-<script
-  src="https://gist.github.com/dragonwasrobot/a7a17cb055b166c18754.js?file=.eslintrc">
-</script>
+{% gist dragonwasrobot/a7a17cb055b166c18754 .eslintrc %}
 
 Here, we tell it to use the `babel-eslint` parser, set the environment to
 browser and node.js, and add a set of arbitrary style rules to be enforced.
 
 ### tokenizer.js
-Having setup our project structure, dependencies, Gruntfile and eslint
+Having set up our project structure, dependencies, Gruntfile and eslint
 configuration, we are now ready to write our brainfuck tokenizer in ES6:
 
-<script
-  src="https://gist.github.com/dragonwasrobot/a7a17cb055b166c18754.js?file=tokenizer.js">
-</script>
+{% gist dragonwasrobot/a7a17cb055b166c18754 tokenizer.js %}
 
 In this sample program, we start by defining a map from symbols to tokens using
 the `let` syntax. Then, we define a `tokenize` function using both the `let` and
@@ -122,9 +110,7 @@ Now, in order to lint and transpile our `tokenizer.js` code we simply run `grunt
 dev` in the root of the project folder, which start the development loop, and
 then the resulting transpiled ES6 code can be found in `dist/app.js`:
 
-<script
-  src="https://gist.github.com/dragonwasrobot/a7a17cb055b166c18754.js?file=app.js">
-</script>
+{% gist dragonwasrobot/a7a17cb055b166c18754 app.js %}
 
 We note how the transpiled code is far from as aesthetically pleasing as our
 original ES6 code in the `tokenizer.js` file. Furthermore, we can now run the
