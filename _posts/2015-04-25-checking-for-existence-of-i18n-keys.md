@@ -50,10 +50,3 @@ and check that the symmetric difference set is empty. In case the set is not
 empty, which is was not in my case, Spock will print the content of the set in
 the error message, thus presenting you with the exact keys that need to be
 translated.
-
-A few departing notes:
-
-- I am still very new to the Grails framework, so there might be a simpler way to
-make this check, in which case my google-fu failed me.
-- The elegant trick of computing the symmetric difference between the key sets
-become less elegant when we add a third language.
