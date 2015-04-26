@@ -38,7 +38,9 @@ had to ensure that all ~5k i18n keys in a large Grails project existed in both
 Danish and English.
 
 Rather than try to do this manually, I came up with the following
-[Spock](https://grails.org/plugin/spock) integration test:
+[Spock](https://grails.org/plugin/spock) integration test inspired by the
+following
+[blog post](https://sergiosmind.wordpress.com/2013/07/25/getting-all-i18n-messages-in-javascript/):
 
 {% gist dragonwasrobot/7b914c06a674e399de8a I18NIntegrationTest.groovy %}
 
