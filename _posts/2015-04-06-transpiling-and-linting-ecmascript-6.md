@@ -11,6 +11,13 @@ tags: [JavaScript, Grunt, ECMAScript 6]
 
 #### prerequisites: basic JavaScript and Grunt knowledge.
 
+*"All problems in computer science can be solved by another level of
+ indirection, except of course for the problem of too many
+ indirections."*<br/>
+-- David Wheeler
+
+### Introduction
+
 In this post, I will very briefly explain how to set up a development loop
 for a ECMAScript 6 (ES6) style JavaScript project.
 

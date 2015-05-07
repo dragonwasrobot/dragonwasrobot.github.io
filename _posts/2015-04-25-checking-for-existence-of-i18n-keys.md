@@ -11,6 +11,9 @@ tags: [Groovy, Grails, Spock, i18n]
 
 #### prerequisites: basic Groovy and Grails knowledge.
 
+*"Those who know nothing of foreign languages know nothing of their own."*<br/>
+-‒ Johann Wolfgang von Goethe
+
 In this post, I demonstrate how you can set up an integration test in
 [Grails](https://grails.org/) to check that all i18n keys exist for all
 languages.
