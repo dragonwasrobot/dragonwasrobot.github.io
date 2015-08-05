@@ -108,10 +108,3 @@ JB :
   # and include your custom code. Your custom file must be defined at:
   #   ./_includes/custom/[HELPER]
   # where [HELPER] is the name of the helper you are overriding.
-
-# Enable plugins
-safe: false
-
-# KaTeX
-katex:
-  path_to_js: "./assets/scripts/katex.min.js"
