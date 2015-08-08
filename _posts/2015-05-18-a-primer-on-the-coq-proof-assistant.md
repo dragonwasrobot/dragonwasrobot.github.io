@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "A primer on the Coq Proof Assistant"
-category: coq
+category: mathematics
 description: "In this post, I will give a short primer on interactive theorem
 proving in the Coq Proof Assistant."
-tags: [Coq]
+tags: [Coq, Case analysis, Induction, Natural numbers, Arithmetic]
 ---
 
 #### prerequisites: An installation of the Coq Proof Assistant.

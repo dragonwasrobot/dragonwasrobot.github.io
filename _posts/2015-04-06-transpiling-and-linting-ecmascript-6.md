@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "Transpiling and linting ECMAScript 6"
-category: javascript
+category: programming
 description: "In this post, I will briefly explain how to set up a development
 loop for a ECMAScript 6 style JavaScript project."
-tags: [JavaScript, Grunt, ECMAScript 6]
+tags: [JavaScript, Grunt, ECMAScript 6, Babel, Brainfuck]
 ---
 
 {% include JB/setup %}
