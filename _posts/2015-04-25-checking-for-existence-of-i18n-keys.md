@@ -52,6 +52,6 @@ retrieves all i18n keys of the application for a given locale. With this new
 method I could then extract all keys for the `da` and `en` locales, compute
 their [symmetric difference](http://en.wikipedia.org/wiki/Symmetric_difference),
 and check that the symmetric difference set is empty. In case the set is not
-empty, which is was not in my case, Spock will print the content of the set in
+empty, which it was not in my case, Spock will print the content of the set in
 the error message, thus presenting you with the exact keys that need to be
 translated.

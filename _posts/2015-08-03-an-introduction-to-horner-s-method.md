@@ -14,18 +14,25 @@ tags: [Haskell, Polynomial evaluation, Polynomial division, Horner's method, Moe
 *"is that somewhere it hides a well..."*<br/>
 -- Antoine de Saint-Expuéry, The Little Prince<br/>
 
-### Introduction
+### 1. Introduction
 
-In this post, we introduce
+The goal of this blog post is to introduce
 [Horner's method](https://en.wikipedia.org/wiki/Horner%27s_method) for
-polynomial evaluation by first arguing for its application, and
-subsequently derive its definition. Following this, we argue for the
-application of Horner's method for polynomial division and derive its
-definition. Lastly, we state and prove an equivalence
-relation between the definition of polynomial evaluation and
-the definition of polynomial division using Horner's method.
+polynomial evaluation and polynomial division, and subsequently prove an
+equivalence relation between these two types of application.
 
-### Polynomial evaluation using Horner's method
+The blog post is structured as follows. In Section
+[2](#polynomial-evaluation-using-horners-method), we argue for the application
+of Horner's method for polynomial evaluation, and subsequently derive its
+definition. Having covered polynomial evaluation, we then argue for the
+application of Horner's method for polynomial division and derive its definition
+in Section [3](#polynomial-division-using-horners-method). Lastly, we state and
+prove an equivalence relation between the definition of polynomial evaluation
+and the definition of polynomial division using Horner's method in Section
+[4](#equivalence-of-the-two-horner-procedures). The blog post is concluded in
+Section [5](#conclusion).
+
+### 2. Polynomial evaluation using Horner's method
 
 In order to understand the advantages of using Horner's method for
 evaluating a polynomial, we first examine how this is usually done. If
@@ -190,7 +197,7 @@ Having formalized Horner's method for polynomial evaluation, as the
 procedures `horner_poly_eval_acc` and `horner_poly_eval`, we now define
 Horner's method for polynomial division.
 
-### Polynomial division using Horner's method
+### 3. Polynomial division using Horner's method
 
 Now that we have used Horner's method as an efficient procedure for
 evaluating a polynomial, using a recursive substitution scheme, we move on
@@ -332,7 +339,7 @@ remainder. Thus, we have now defined Horner's method for polynomial
 division as the procedures `horner_poly_div_acc` and
 `horner_poly_div`.
 
-### Equivalence of the two Horner procedures
+### 4. Equivalence of the two Horner procedures
 
 Due to the strong similarity between the procedure for polynomial
 evaluation and the procedure for polynomial division, we are
@@ -357,7 +364,7 @@ theorem[^4]. Incidentally, the theorem
 implementation-specific version of the
 [polynomial remainder theorem](https://en.wikipedia.org/wiki/Polynomial_remainder_theorem).
 
-### Conclusion
+### 5. Conclusion
 
 In this post, we have introduced Horner's method for polynomial
 evaluation and polynomial division. Furthermore, we have also stated

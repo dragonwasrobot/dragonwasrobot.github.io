@@ -17,7 +17,7 @@ I like to write code, I like to write words, so I started a blog:
   {% for post in site.posts %}
     <li>
       {{ post.date | date: "%-d %B, %Y" }}:
-      <a href="{{ post.url }}">{{ post.title }}</a>
+      <a href="{{ post.url }}">{{ post.title | replace:'<br/>',' ' }}</a>
       <p>{{ post.description }}</p>
     </li>
   {% endfor %}

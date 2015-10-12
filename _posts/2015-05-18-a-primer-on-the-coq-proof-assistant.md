@@ -2,7 +2,7 @@
 layout: post
 title: "A primer on the Coq Proof Assistant"
 category: mathematics
-description: "In this post, I will give a short primer on interactive theorem
+description: "In this post, we give a short primer on interactive theorem
 proving in the Coq Proof Assistant."
 tags: [Coq, Case analysis, Induction, Natural numbers, Arithmetic]
 ---
@@ -14,7 +14,7 @@ tags: [Coq, Case analysis, Induction, Natural numbers, Arithmetic]
 
 ### Introduction
 
-In this post, I will give a short primer on
+In this post, we give a short primer on
 [interactive theorem proving](http://en.wikipedia.org/wiki/Proof_assistant) in
 the [Coq Proof Assistant](http://en.wikipedia.org/wiki/Coq) (or simply, Coq)
 with the guiding example of natural numbers and their basic arithmetic
