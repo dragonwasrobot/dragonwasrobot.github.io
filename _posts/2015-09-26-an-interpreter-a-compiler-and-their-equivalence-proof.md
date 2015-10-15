@@ -1,0 +1,268 @@
+---
+layout: post
+title: "An interpreter, a compiler<br/> and their equivalence proof"
+category: mathematics
+description: "In this post, we implement an interpreter, a compiler and prove
+their equivalence."
+tags: [Coq, Induction, Interpreters, Compilers]
+---
+
+#### prerequisites: Basic experience with Coq
+
+*"The year was 2081, and everybody was finally equal."*<br/>
+-- Kurt Vonnegut, Harrison Bergeron
+
+### 1. Introduction
+
+In this post, we show how to implement an
+[interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) and a
+[compiler](https://en.wikipedia.org/wiki/Compiler) for a small arithmetic
+language in the [Coq Proof Assistant](http://en.wikipedia.org/wiki/Coq) and
+prove their equivalence. We first introduce the small arithmetic language in
+Section [2](#language). With our language defined, we then introduce an
+[interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) in Section
+[3](#interpreter) implementing the
+[operational semantics](https://en.wikipedia.org/wiki/Operational_semantics) of
+the language. Before we can introduce the corresponding compiler, we first build
+a [virtual machine](https://en.wikipedia.org/wiki/Virtual_machine) in Section
+[4](#virtual-machine) onto which we can execute the
+[bytecode](https://en.wikipedia.org/wiki/Bytecode) output of the compiler. We
+introduce the compiler in Section [5](#compiler) and finally prove the
+equivalence between the interpreter and executing the output of the compiler on
+the virtual machine in Section [6](#equivalence-proof). We conclude this post in
+Section [7](#conclusion).
+
+### 2. Language
+
+The first step towards implementing an interpreter is to define the language
+which we want to interpret. Thus, we define a small arithmetic language with
+which we can perform addition and multiplication. In order to define this
+language as a [formal grammar](https://en.wikipedia.org/wiki/Formal_grammar), we
+say that a program consists of an expression, `e`, which can either be:
+
+- a literal, `Lit`, that takes a natural number, `n`, or
+- an addition expression, `Plus`, that takes two arithmetic expressions, `e`, or
+- a multiplication expression, `Mult`, that takes two arithmetic expressions,
+  `e`.
+
+The above description yields the following grammar:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 grammar.txt %}
+
+which we in turn can translate into an `Inductive` type in Coq like so:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 arithmetic_expression.v %}
+
+Here, we state that any instance of the type `arithmetic_expression` is either a
+literal, an addition expression, or a multiplication expression, as described
+above. Furthermore, we can construct instances of this type by applying the
+three constructors in the definition. For example, if we want to create an
+`arithmetic_expression` corresponding to the expression $$(2 + 1) \cdot 5$$, we
+write the following:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 language_example.v %}
+
+where the keyword `Compute` is simply used to evaluate the expression.
+
+### 3. Interpreter
+
+Having defined our language as an inductive
+[algebraic data type](https://en.wikipedia.org/wiki/Algebraic_data_type), we can
+now introduce a function that, given an element of this type, recursively
+traverses the structure of such an element and returns the result of evaluating
+the arithmetic expression corresponding to the element. The semantics of our
+arithmetic language are very straight forward:
+
+- A literal expression, `Lit n`, evaluates to the natural number, `n`, and
+- an addition expression, `Plus e e`, evaluates to the sum of the two
+  sub-expressions, `e`, and
+- a multiplication expression, `Mult e e`, evaluates to the product of the two
+  sub-expressions, `e`.
+
+Once again, we can directly translate this into a Coq `Fixpoint`:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 interpret.v %}
+
+Here, the `interpret` function pattern matches on the constructor of the
+arithmetic expression, `e`, and recursively evaluates its sub-expressions. If we
+want to evaluate the expression $$(2 \cdot 2) \cdot (2 + 3)$$, we first
+translate it into the `arithmetic_expression` language and then pass it to the
+`interpret` function:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 interpret_example.v %}
+
+When evaluated, the above expression yields the result `20 : nat` as expected.
+
+### 4. Virtual machine
+
+Before we can build a compiler for our arithmetic expression language, we first
+need a machine onto which we can execute the compiled source code. Thus, we
+construct a minimal
+[stack machine](https://en.wikipedia.org/wiki/Stack_machine) with the following
+three bytecode instructions:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 bytecode_instruction.v %}
+
+From which we define a bytecode program to be a list of byte code instructions:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 bytecode_program.v %}
+
+and lastly we also define the data stack of our virtual machine to be a list of
+natural numbers:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 data_stack.v %}
+
+With these three definitions taken care of, we move on to define the semantics
+of the three byte code instructions and translate them into a corresponding
+function. As such, we define the instruction `PUSH` to take a natural number
+which it then pushes onto the stack, while the `ADD` and `MUL` instructions each
+pops the two topmost elements of the stack and adds or multiplies them. For the
+sake of simplicity, we define the effects of executing `ADD` or `MUL` on a stack
+with less than two elements to be an unchanged stack. The above semantics
+results in the following function, `execute_bytecode_instruction`, which takes a
+`bytecode_instruction` and a `data_stack` and returns a new `data_stack`
+capturing the effect of executing the given type of `bytecode_instruction`:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_instruction.v %}
+
+An example application of `execute_bytecode_instruction` multiplies the two
+elements on top of the stack `[5,3,2]`:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_example.v %}
+
+and returns the resulting stack `[15,2]`. The last step we need in order to
+finish our virtual machine, is to wrap the `execute_bytecode_instruction` in a
+function that takes a whole bytecode program and runs it on an initial data
+stack, `execute_bytecode_program`:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_program.v %}
+
+Here, we perform an initial pattern matching on the structure of the bytecode
+program to check that it is not empty. Now we can execute a whole bytecode
+program on our virtual stack machine by calling `execute_bytecode_program` with
+a `bytecode_program` and a `data_stack`:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_program_example.v %}
+
+If we step through the execution of the above program, the major steps are as
+follows:
+
+- First we push `2` and `3` onto the empty stack, giving us `(3 :: 2 :: nil)`,
+  then
+- we pop the two elements and push their result onto the stack, resulting in the
+  stack `(5 :: nil)`, again
+- we push a `5` onto the stack and multiply the two elements such that we get
+  the stack `(25 :: nil)`, lastly
+- we push `1` onto the stack, at which point we have run our whole bytecode
+  program and return the final stack, `(1 :: 25 :: nil)`.
+
+With the virtual machine defined and tested, we move on to construct our
+compiler.
+
+### 5. Compiler
+
+Having introduced our set of bytecode instructions and seen how these can be
+executed on a virtual stack machine, we are finally ready to define a compiler
+that takes our arithmetic expression language as its input and generates a
+bytecode program as its output.
+
+Returning to the constructors of our `arithmetic_expression` language, we can
+turn each of these into one or more bytecode instructions:
+
+- The literal constructor, `Lit n`, can be directly translated into the act of
+   returning the bytecode program consisting of the `PUSH n` instruction, while
+- the addition expression, `Plus e1 e2`, corresponds to the result of first
+  compiling the second expression, `e2`, followed by concatenating the result of
+  compiling the first expression, `e1`, and then concatenating the bytecode
+  program consisting of the `ADD` instruction, lastly
+- the multiplication expression, `Mult e1 e2`, is identical to the compilation
+  of the addition expression except for the use of the `MUL` instruction rather
+  than the `ADD` instruction.
+
+This brings us to the following definition of our compiler:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 compile.v %}
+
+which takes an `arithmetic_expression` as its input and produces a
+`bytecode_program` as its output. If we want to compile an
+`arithmetic_expression` corresponding to $$5 + (3 \cdot 2)$$, we pass it to
+`compile` like so:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 compile_example.v %}
+
+which results in the following `bytecode_program` output:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 compile_example_output.v %}
+
+Note that because we are working with a stack machine, the outputted program
+both flattens and reverses the compiled expression.
+
+Now that we have finally defined `interpret`, `execute_bytecode_program`, and
+`compile`, we proceed to the last part of our lesson: how to prove an
+equivalence relation between interpretation and compilation of the same program.
+
+### 6. Equivalence proof
+
+Before we can state and prove an equivalence relation between interpretation and
+compilation, we first have to capture the nature of this relation. Looking at
+the signature of `interpret`, `compile`, and `execute_bytecode_program`, we note
+that while `interpret` returns a `nat`, when given an `arithmetic_expression`,
+`compile` returns a `bytecode_program`, when given an `arithmetic_expression`,
+which can be passed to `execute_bytecode_program` along with a `data_stack` such
+that it returns a new `data_stack` (`list nat`). Given that `interpret` does not
+use a `data_stack`, or similar, a possible candidate for an equivalence relation
+would not be parameterized over such a stack. As such, we would expect that any
+`arithmetic_expression` given to `interpret` results in the same value as found
+at the top of the `data_stack` when applying `execute_bytecode_program` on the
+output of `compile` when given the same `arithmetic_expression`. Thus, if we let
+our example expression be $$5 + (3 \cdot 2)$$, we get the following Coq code:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 equivalence_example.v %}
+
+where both expressions found in the body of the `let` expression evaluate to the
+same result, `11 : nat`. Hence, our candidate theorem becomes:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 equality_of_interpret_and_compile_candidate.v %}
+
+However, if we look a bit closer at the role of the stack, we realize that
+rather than fixing it to `nil`, we can actually generalize the equivalence to
+hold for all possible stacks, as we have just previously stated that `interpret`
+cannot take advantage of any existing stack, and thus neither can
+`execute_bytecode_program`. This gives us the following theorem:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 equality_of_interpret_and_compile_statement.v %}
+
+Looking at the statement of our theorem and the body of `compile`, we might
+expect - with a bit of foresight - that at some point we hit a statement like
+`execute_bytecode_program s (compile p1 ++ compile p2 ++ ADD :: nil)` in our
+proof, at which point we do not know anything about
+
+<!-- TODO start -->
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 equality_of_interpret_and_compile.v %}
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_program_is_associative.v %}
+
+<!-- TODO end -->
+
+Having proved the equivalence relation above, for all stacks, `s`, we return to
+the specific case where `s = nil` and notice that we can formulate `interpret`
+as the function composition of `compile` and the partial function
+`execute_bytecode nil`, like so:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 interpret_alt.v %}
+
+where `compose` is defined as the following higher-order function:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 compose.v %}
+
+With this alternative view of interpretation, we can restate our initial
+equivalence relation as the following corollary:
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 equality_of_interpret_and_interpret_alt.v %}
+
+where the last hint of the different implementations is the `nil` following the
+`interpret e` expression, which would be possible to hide if `interpret_alt`
+only returned the top element of its result stack.
+
+### 7. Conclusion
