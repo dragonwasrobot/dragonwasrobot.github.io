@@ -7,10 +7,10 @@ their equivalence."
 tags: [Coq, Induction, Interpreters, Compilers]
 ---
 
-#### prerequisites: Basic experience with Coq
+#### prerequisites: Basic experience with Coq or similar
 
-*"The year was 2081, and everybody was finally equal."*<br/>
--- Kurt Vonnegut, Harrison Bergeron
+*"QUOTE."*<br/>
+-- Person, Work
 
 ### 1. Introduction
 
@@ -201,68 +201,4 @@ Now that we have finally defined `interpret`, `execute_bytecode_program`, and
 `compile`, we proceed to the last part of our lesson: how to prove an
 equivalence relation between interpretation and compilation of the same program.
 
-### 6. Equivalence proof
-
-Before we can state and prove an equivalence relation between interpretation and
-compilation, we first have to capture the nature of this relation. Looking at
-the signature of `interpret`, `compile`, and `execute_bytecode_program`, we note
-that while `interpret` returns a `nat`, when given an `arithmetic_expression`,
-`compile` returns a `bytecode_program`, when given an `arithmetic_expression`,
-which can be passed to `execute_bytecode_program` along with a `data_stack` such
-that it returns a new `data_stack` (`list nat`). Given that `interpret` does not
-use a `data_stack`, or similar, a possible candidate for an equivalence relation
-would not be parameterized over such a stack. As such, we would expect that any
-`arithmetic_expression` given to `interpret` results in the same value as found
-at the top of the `data_stack` when applying `execute_bytecode_program` on the
-output of `compile` when given the same `arithmetic_expression`. Thus, if we let
-our example expression be $$5 + (3 \cdot 2)$$, we get the following Coq code:
-
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 equivalence_example.v %}
-
-where both expressions found in the body of the `let` expression evaluate to the
-same result, `11 : nat`. Hence, our candidate theorem becomes:
-
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 equality_of_interpret_and_compile_candidate.v %}
-
-However, if we look a bit closer at the role of the stack, we realize that
-rather than fixing it to `nil`, we can actually generalize the equivalence to
-hold for all possible stacks, as we have just previously stated that `interpret`
-cannot take advantage of any existing stack, and thus neither can
-`execute_bytecode_program`. This gives us the following theorem:
-
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 equality_of_interpret_and_compile_statement.v %}
-
-Looking at the statement of our theorem and the body of `compile`, we might
-expect - with a bit of foresight - that at some point we hit a statement like
-`execute_bytecode_program s (compile p1 ++ compile p2 ++ ADD :: nil)` in our
-proof, at which point we do not know anything about
-
-<!-- TODO start -->
-
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 equality_of_interpret_and_compile.v %}
-
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_program_is_associative.v %}
-
-<!-- TODO end -->
-
-Having proved the equivalence relation above, for all stacks, `s`, we return to
-the specific case where `s = nil` and notice that we can formulate `interpret`
-as the function composition of `compile` and the partial function
-`execute_bytecode nil`, like so:
-
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 interpret_alt.v %}
-
-where `compose` is defined as the following higher-order function:
-
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 compose.v %}
-
-With this alternative view of interpretation, we can restate our initial
-equivalence relation as the following corollary:
-
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 equality_of_interpret_and_interpret_alt.v %}
-
-where the last hint of the different implementations is the `nil` following the
-`interpret e` expression, which would be possible to hide if `interpret_alt`
-only returned the top element of its result stack.
-
-### 7. Conclusion
+### 6. Conclusion
