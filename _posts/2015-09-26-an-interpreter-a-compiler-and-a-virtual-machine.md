@@ -1,16 +1,16 @@
 ---
 layout: post
-title: "An interpreter, a compiler<br/> and their equivalence proof"
-category: mathematics
-description: "In this post, we implement an interpreter, a compiler and prove
-their equivalence."
-tags: [Coq, Induction, Interpreters, Compilers]
+title: "An interpreter, a compiler<br/> and a virtual machine"
+category: programming
+description: "In this post, we implement an interpreter, a compiler and a
+virtual machine."
+tags: [Coq, Languages, Interpreters, Compilers, Virtual Machines]
 ---
 
 #### prerequisites: Basic experience with Coq or similar
 
 *"QUOTE."*<br/>
--- Person, Work
+-- Person, Book
 
 ### 1. Introduction
 
@@ -200,5 +200,7 @@ both flattens and reverses the compiled expression.
 Now that we have finally defined `interpret`, `execute_bytecode_program`, and
 `compile`, we proceed to the last part of our lesson: how to prove an
 equivalence relation between interpretation and compilation of the same program.
+
+{% gist dragonwasrobot/d46acd3d1f697c9c0030 equivalence_example.v %}
 
 ### 6. Conclusion
