@@ -9,9 +9,6 @@ tags: [Coq, Languages, Interpreters, Compilers, Virtual Machines]
 
 #### prerequisites: Basic experience with Coq or similar
 
-*"QUOTE."*<br/>
--- Person, Book
-
 ### 1. Introduction
 
 In this post, we show how to implement an
