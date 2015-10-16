@@ -17,26 +17,29 @@ tags: [Coq, Languages, Interpreters, Compilers, Virtual Machines]
 In this post, we show how to implement an
 [interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) and a
 [compiler](https://en.wikipedia.org/wiki/Compiler) for a small arithmetic
-language in the [Coq Proof Assistant](http://en.wikipedia.org/wiki/Coq) and
-prove their equivalence. We first introduce the small arithmetic language in
-Section [2](#language). With our language defined, we then introduce an
-[interpreter](https://en.wikipedia.org/wiki/Interpreter_(computing)) in Section
+language in the [Coq Proof Assistant](http://en.wikipedia.org/wiki/Coq) along
+with a [virtual machine](https://en.wikipedia.org/wiki/Virtual_machine) for
+running the output of the compiler. We implement the language in Coq such that
+we can later prove an equivalence relation between the two evaluation strategies
+in a follow-up blog post.
+
+We start by introducing the small arithmetic language in Section [2](#language),
+which will be the subject of the rest of this post. Having defined our language,
+we introduce an
+[interpreter](https://en.wikipeedia.org/wiki/Interpreter_(computing)) in Section
 [3](#interpreter) implementing the
 [operational semantics](https://en.wikipedia.org/wiki/Operational_semantics) of
-the language. Before we can introduce the corresponding compiler, we first build
-a [virtual machine](https://en.wikipedia.org/wiki/Virtual_machine) in Section
-[4](#virtual-machine) onto which we can execute the
-[bytecode](https://en.wikipedia.org/wiki/Bytecode) output of the compiler. We
-introduce the compiler in Section [5](#compiler) and finally prove the
-equivalence between the interpreter and executing the output of the compiler on
-the virtual machine in Section [6](#equivalence-proof). We conclude this post in
-Section [7](#conclusion).
+the language. Before we introduce the corresponding compiler, we first have to
+build a virtual machine in Section [4](#virtual-machine) onto which we can
+execute the [bytecode](https://en.wikipedia.org/wiki/Bytecode) output of the
+compiler. Finally, we introduce the compiler in Section [5](#compiler) and
+conclude in Section [6](#conclusion).
 
 ### 2. Language
 
 The first step towards implementing an interpreter is to define the language
 which we want to interpret. Thus, we define a small arithmetic language with
-which we can perform addition and multiplication. In order to define this
+which we can perform addition and multiplication. In order to define the
 language as a [formal grammar](https://en.wikipedia.org/wiki/Formal_grammar), we
 say that a program consists of an expression, `e`, which can either be:
 
@@ -49,20 +52,22 @@ The above description yields the following grammar:
 
 {% gist dragonwasrobot/d46acd3d1f697c9c0030 grammar.txt %}
 
-which we in turn can translate into an `Inductive` type in Coq like so:
+which we in turn can translate into an `Inductive` type in Coq:
 
 {% gist dragonwasrobot/d46acd3d1f697c9c0030 arithmetic_expression.v %}
 
 Here, we state that any instance of the type `arithmetic_expression` is either a
 literal, an addition expression, or a multiplication expression, as described
 above. Furthermore, we can construct instances of this type by applying the
-three constructors in the definition. For example, if we want to create an
+three constructors of the definition. For example, if we want to create an
 `arithmetic_expression` corresponding to the expression $$(2 + 1) \cdot 5$$, we
 write the following:
 
 {% gist dragonwasrobot/d46acd3d1f697c9c0030 language_example.v %}
 
-where the keyword `Compute` is simply used to evaluate the expression.
+where the keyword `Compute` is simply used to evaluate the expression. Note that
+we have not yet computed the result of the expression, as we have not yet
+implemented the semantics of the language.
 
 ### 3. Interpreter
 
@@ -71,7 +76,7 @@ Having defined our language as an inductive
 now introduce a function that, given an element of this type, recursively
 traverses the structure of such an element and returns the result of evaluating
 the arithmetic expression corresponding to the element. The semantics of our
-arithmetic language are very straight forward:
+arithmetic language are pretty straight forward:
 
 - A literal expression, `Lit n`, evaluates to the natural number, `n`, and
 - an addition expression, `Plus e e`, evaluates to the sum of the two
@@ -79,7 +84,7 @@ arithmetic language are very straight forward:
 - a multiplication expression, `Mult e e`, evaluates to the product of the two
   sub-expressions, `e`.
 
-Once again, we can directly translate this into a Coq `Fixpoint`:
+If we translate the above definitions, we get the following Coq `Fixpoint`:
 
 {% gist dragonwasrobot/d46acd3d1f697c9c0030 interpret.v %}
 
@@ -116,12 +121,13 @@ With these three definitions taken care of, we move on to define the semantics
 of the three byte code instructions and translate them into a corresponding
 function. As such, we define the instruction `PUSH` to take a natural number
 which it then pushes onto the stack, while the `ADD` and `MUL` instructions each
-pops the two topmost elements of the stack and adds or multiplies them. For the
+pop the two topmost elements of the stack and adds or multiplies them. For the
 sake of simplicity, we define the effects of executing `ADD` or `MUL` on a stack
-with less than two elements to be an unchanged stack. The above semantics
-results in the following function, `execute_bytecode_instruction`, which takes a
-`bytecode_instruction` and a `data_stack` and returns a new `data_stack`
-capturing the effect of executing the given type of `bytecode_instruction`:
+with less than two elements to be an unchanged stack. The above semantics result
+in the function `execute_bytecode_instruction`, which takes a
+`bytecode_instruction` and a `data_stack` and returns a new `data_stack`,
+capturing the effect of evaluation the different types of
+`bytecode_instruction`:
 
 {% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_instruction.v %}
 
@@ -138,9 +144,10 @@ stack, `execute_bytecode_program`:
 {% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_program.v %}
 
 Here, we perform an initial pattern matching on the structure of the bytecode
-program to check that it is not empty. Now we can execute a whole bytecode
-program on our virtual stack machine by calling `execute_bytecode_program` with
-a `bytecode_program` and a `data_stack`:
+program to check that it is not empty.
+
+Now we can execute a whole bytecode program on our virtual stack machine by
+calling `execute_bytecode_program` with a `bytecode_program` and a `data_stack`:
 
 {% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_program_example.v %}
 
@@ -161,10 +168,10 @@ compiler.
 
 ### 5. Compiler
 
-Having introduced our set of bytecode instructions and seen how these can be
-executed on a virtual stack machine, we are finally ready to define a compiler
-that takes our arithmetic expression language as its input and generates a
-bytecode program as its output.
+Having introduced the needed set of bytecode instructions and seen how these can
+be executed on a virtual stack machine, we are finally ready to define a
+compiler that takes our arithmetic expression language as its input and
+generates a bytecode program as its output.
 
 Returning to the constructors of our `arithmetic_expression` language, we can
 turn each of these into one or more bytecode instructions:
@@ -198,9 +205,17 @@ Note that because we are working with a stack machine, the outputted program
 both flattens and reverses the compiled expression.
 
 Now that we have finally defined `interpret`, `execute_bytecode_program`, and
-`compile`, we proceed to the last part of our lesson: how to prove an
-equivalence relation between interpretation and compilation of the same program.
+`compile`, we can demonstrate the equivalence relation between interpretation
+and compilation of the same program:
 
 {% gist dragonwasrobot/d46acd3d1f697c9c0030 equivalence_example.v %}
 
+of which the proof will be the topic of a future blog post.
+
 ### 6. Conclusion
+
+In this post, we have shown how to implement an interpreter, a compiler, and a
+virtual machine for a small arithmetic language. The language has been
+implemented in the Coq Proof Assistant such that we can later proof an
+equivalence relation between interpretation of an arithmetic expression and
+compilation followed by execution of that same expression.
