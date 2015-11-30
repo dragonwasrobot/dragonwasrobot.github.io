@@ -204,16 +204,12 @@ which results in the following `bytecode_program` output:
 Note that because we are working with a stack machine, the outputted program
 both flattens and reverses the compiled expression.
 
-Now that we have finally defined `interpret`, `execute_bytecode_program`, and
-`compile`, we can demonstrate the equivalence relation between **interpretation
-of an arithmetic expression** and **compilation of an arithmetic expression
-followed by execution of the corresponding bytecode program**:
+Now that we have finally defined our compiler, we can demonstrate the
+equivalence relation between **interpretation of an arithmetic expression** and
+**compilation of an arithmetic expression followed by execution of the
+compiled bytecode program**:
 
 {% gist dragonwasrobot/d46acd3d1f697c9c0030 equivalence_example.v %}
-
-Note that we have moved the definition of the example arithmetic expression,
-`e`, into a `let` expression in order to emphasize the more general equivalence
-relation.
 
 The proof of the above equivalence relation is the topic of a future blog post.
 
