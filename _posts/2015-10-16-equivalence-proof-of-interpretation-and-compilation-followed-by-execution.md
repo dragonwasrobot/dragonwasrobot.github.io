@@ -2,8 +2,8 @@
 layout: post
 title: "Equivalence proof of interpretation<br/>and compilation followed by execution"
 category: mathematics
-description: "In this post, we implement an interpreter, a compiler and a
-virtual machine."
+description: "In this post, we prove equivalence between interpretation and
+compilation of code."
 tags: [Coq, Languages, Interpreters, Compilers, Virtual Machines]
 ---
 

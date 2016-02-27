@@ -3,7 +3,7 @@ layout: post
 title: "An introduction to Pascal's triangle<br/> and the binomial coefficient"
 category: Mathematics
 description: "In this post, we introduce Pascal's triangle and the binomial
-coefficient"
+coefficient."
 tags: [Haskell, Pascal's triangle, Binomial coefficient]
 ---
 
