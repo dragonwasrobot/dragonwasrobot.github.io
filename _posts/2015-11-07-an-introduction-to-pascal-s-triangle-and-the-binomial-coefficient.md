@@ -20,7 +20,7 @@ The blog post is structured in the following way. In Section
 construction. Before we define the binomial coefficient in Section
 [4](#the-binomial-coefficient), we first motivate its introduction by stating
 the [Binomial Theorem](https://en.wikipedia.org/wiki/Binomial_theorem) in
-Section[3](#the-binomial-theorem). The blog is concluded in Section
+Section [3](#the-binomial-theorem). The blog is concluded in Section
 [5](#conclusion).
 
 ### 2. Pascal's triangle
@@ -300,9 +300,10 @@ show how to properly calculate and formalize it.
 
 As mentioned in the previous section, the binomial coefficient $$\binom{n}{k}$$
 is equal to the coefficient of the $$k$$th monomial in the binomial expansion of
-$$(x + y)^n$$ and can be read from Pascal's triangle. This suggests that we can
-obtain a binomial coefficient function if we can reduce the formalization we
-came up with in Section [2](#pascal-s-triangle) into something computable.
+$$(x + y)^n$$ and can be read from Pascal's triangle, as the $$k$$th entry of
+the $$n$$th row. This suggests that we can obtain a binomial coefficient
+function if we can reduce the formalization we came up with in Section
+[2](#pascal-s-triangle) into something computable.
 
 In order to come up with such a binomial coefficient function, we need to cover
 the base cases and the inductive cases for the row and column indices, `n` and
@@ -314,15 +315,16 @@ result is $$0$$, and similarly we know that the case `(n > 0, k > 0)` is the sum
 of the two entries just above it `(n-1, k)` and `(n-1, k-1)`. Combining these
 observations we get the following
 [Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language))
-definition,
+definition[^2],
 
 {% gist dragonwasrobot/6601b204351b289da1fd binomial_coefficient.hs %}
 
 where we express the rules above in terms of
 [guards](https://en.wikipedia.org/wiki/Guard_(computer_science)).
 
-Having defined both a formalization of Pascal's triangle and the
-`binomial_coefficient` function.
+Having formalized the binomial coefficient and defined a function computing it
+binomial coefficient, `binomial_coefficient`, we are ready to conclude this blog
+post.
 
 ### 5. Conclusion
 
@@ -335,5 +337,11 @@ triangle. Afterwards, we introduced the binomial coefficient function, as a
 result of describing the binomial theorem, and formalized it as the function,
 `binomial_coefficient`, in Haskell.
 
+In a coming follow-up post, we look at what happens when we rotate Pascal's
+triangle and the binomial coefficient, and their properties.
+
 [^1]: See "Cambridge University Library: The great collection" (1998) by Peter
     Fox.
+
+[^2]: We quietly ignore the cases where `n` and `k` are negative, and instead
+    treat them as natural numbers.
