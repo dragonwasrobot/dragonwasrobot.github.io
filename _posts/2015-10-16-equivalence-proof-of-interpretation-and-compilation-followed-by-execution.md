@@ -4,7 +4,7 @@ title: "Equivalence proof of interpretation<br/>and compilation followed by exec
 category: mathematics
 description: "In this post, we prove equivalence between interpretation and
 compilation of code."
-tags: [Coq, Languages, Interpreters, Compilers, Virtual Machines]
+tags: [Coq, Programming Languages, Interpreters, Compilers, Virtual Machines]
 ---
 
 #### prerequisites: The post "[An interpreter, a compiler and a virtual machine](/programming/2015/09/26/an-interpreter-a-compiler-and-a-virtual-machine)"
