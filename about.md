@@ -7,16 +7,15 @@ group: navigation
 
 # The Who
 
-I am a newly graduated computer scientist with a soft spot for:
+Computer scientist with a soft spot for:
 
 - Programming languages,
 - software architecture,
 - distributed systems, and
 - mobile/web development.
 
-Currently, I am working at [Silverbullet](http://www.silverbullet.dk/) as a
-professional bit shifter where my main focus is on developing the
-[OpenTele](http://opentele.silverbullet.dk/) telemedicine system.
+I am currently working at [OpenTeleHealth](http://www.opentelehealth.com/) as a
+professional bit shifter where I help develop the OpenTele telemedicine system.
 
 My interests include but are not limited to:
 
@@ -32,10 +31,8 @@ which I used to play on my old Amiga 500 as a kid.
 
 # The What
 
-The completely novel idea of a programming blog to share any cool stuff I might
-stumble upon and a range of notes and tutorials on various subjects related to
-programming.
+A blog about programming, math and their intersection.
 
 # The Why
 
-As a tool for reflection and sharing (or "just because").
+As a tool for reflection and sharing.

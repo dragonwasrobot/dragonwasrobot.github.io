@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
-    {% if page.description %}<meta name="description" content="{{ page.description }}">{% endif %}
+    {% if page.description %}
+    <meta name="description" content="{{ page.description }}">
+    {% endif %}
     <meta name="author" content="{{ site.author.name }}">
 
     <!-- Enable responsive viewport -->
@@ -15,8 +17,8 @@
     <![endif]-->
 
     <!-- Le styles -->
-    <link href="{{ ASSET_PATH }}/bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
-    <link href="{{ ASSET_PATH }}/css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
+    <link href="{{ASSET_PATH}}bootstrap/css/bootstrap.2.2.2.min.css" rel="stylesheet">
+    <link href="{{ASSET_PATH}}css/style.css?body=1" rel="stylesheet" type="text/css" media="all">
     <link href="http://fonts.googleapis.com/css?family=Ovo" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet" type="text/css">
 
