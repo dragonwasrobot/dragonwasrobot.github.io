@@ -9,9 +9,9 @@ tags: [Haskell, Polynomial evaluation, Polynomial division, Horner's method, Moe
 
 #### prerequisites: A basic knowledge of Haskell or similar.
 
-*"What makes the desert beautiful,"*<br/>
+*“What makes the desert beautiful,”*<br/>
 *said the little prince,*<br/>
-*"is that somewhere it hides a well..."*<br/>
+*“is that somewhere it hides a well...”*<br/>
 -- Antoine de Saint-Expuéry, The Little Prince<br/>
 
 ### 1. Introduction
@@ -246,11 +246,11 @@ $$
 \end{equation}
 $$
 
-where we can read the quotient, $$2x^2 + 8x + 27$$, from the line
-above the numerator, $$2x^3 + 4x^2 + 11x + 3$$, and we can read the
-remainder, $$57$$, from the value at the very bottom of the
-calculation. Lastly, we can verify the calculations by checking that
-the relation in Formula \ref{eq:poly-div-relation} is satisfied,
+where we can read the quotient, $$2x^2 + 8x + 27$$, from the line above the
+numerator, $$2x^3 + 4x^2 + 11x + 3$$, and we can read the remainder, $$57$$,
+from the value at the bottom of the calculation. Lastly, we can verify the
+calculations by checking that the relation in Formula \ref{eq:poly-div-relation}
+is satisfied,
 
 $$
 \begin{equation*}

@@ -55,7 +55,7 @@ we get the following candidate:
 {% gist dragonwasrobot/32e6a508235ceee7ac5f equality_of_interpret_and_compile_candidate.v %}
 
 However, since we just established earlier that the state of the `data_stack`
-was not important, we can actually generalize the equivalence relation to hold
+was irrelevant, we can actually generalize the equivalence relation to hold
 for all possible stacks, and not just the empty stack. This gives us the
 following revised version of the theorem:
 

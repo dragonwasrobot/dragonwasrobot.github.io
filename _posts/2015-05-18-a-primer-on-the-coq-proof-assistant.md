@@ -9,7 +9,7 @@ tags: [Coq, Case analysis, Induction, Natural numbers, Arithmetic]
 
 #### prerequisites: An installation of the Coq Proof Assistant.
 
-*"Beware of bugs in the above code; I have only proved it correct, not tried it."*<br/>
+*“Beware of bugs in the above code; I have only proved it correct, not tried it.”*<br/>
 -- Donald Knuth
 
 ### Introduction
@@ -101,7 +101,7 @@ notation, and a precedence level:
 {% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_notation.v %}
 
 While we will not go into that much detail about custom notation, know that it
-can be a very useful tool when we want to define our own
+can be a useful tool when we want to define our own
 [domain specific language](http://en.wikipedia.org/wiki/Domain-specific_language)
 to better describe a specific mathematical problem or space. As a further
 example, Coq provides the convenient notation of
@@ -170,7 +170,7 @@ final proof looks like this:
 
 {% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_l_proof.v %}
 
-Thus we have now proved our very first lemma. Even better: just like we could
+Thus we have now proved our first lemma. Even better: just like we could
 reuse the structure of the definition of `plus`, when defining the `mult`
 function, so can we reuse the proof structure of `plus_O_l`, when proving the
 equivalent property of mult, `mult_O_l`, which says that for all natural

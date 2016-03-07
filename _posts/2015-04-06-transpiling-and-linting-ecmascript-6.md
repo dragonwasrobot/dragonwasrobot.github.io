@@ -11,15 +11,15 @@ tags: [JavaScript, Grunt, ECMAScript 6, Babel, Brainfuck]
 
 #### prerequisites: basic JavaScript and Grunt knowledge.
 
-*"All problems in computer science can be solved by another level of
+*“All problems in computer science can be solved by another level of
  indirection, except of course for the problem of too many
- indirections."*<br/>
+ indirections.”*<br/>
 -- David Wheeler
 
 ### Introduction
 
-In this post, I will very briefly explain how to set up a development loop
-for a ECMAScript 6 (ES6) style JavaScript project.
+In this post, I briefly explain how to set up a development loop for a
+ECMAScript 6 (ES6) style JavaScript project.
 
 Our example project will be a simple
 [brainfuck](http://en.wikipedia.org/wiki/Brainfuck) tokenizer, with the
