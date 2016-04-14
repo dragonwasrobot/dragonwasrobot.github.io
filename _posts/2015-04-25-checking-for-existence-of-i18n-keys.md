@@ -2,7 +2,7 @@
 layout: post
 title: "Checking for existence of i18n keys"
 category: programming
-description: "In this post, we show how to set up a Grails test to check that all i18n keys exist for all languages."
+description: "In this post, we show how to test in Grails that all i18n keys exist for all languages."
 tags: [Groovy, Grails, Spock, i18n]
 ---
 
