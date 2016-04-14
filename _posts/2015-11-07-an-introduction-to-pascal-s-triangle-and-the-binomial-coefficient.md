@@ -154,7 +154,7 @@ Having defined Pascal's triangle, we now take a small detour in order to state
 the Binomial Theorem, which we use to motivate the introduction of the binomial
 coefficient.
 
-### 3. The Binomial Theorem
+### 3. The binomial theorem
 
 Given a [binomial](https://en.wikipedia.org/wiki/Binomial_(polynomial)) $$(x +
 y)^n$$, where $$x$$ and $$y$$ are variables, and $$n$$ is a natural number, we
@@ -246,7 +246,7 @@ $$
 
 we obtain the first four rows of Pascal's triangle. Thus, the entries of
 Pascal's triangle enumerate the coefficients of the monomials in the binomial
-expansion of $$(x + y)^n$$. As such, we also refer to $$\binom{n}{k}$$ as a
+expansion of $$(x + y)^n$$. As such, we also refer to $$\binom{n}{k}$$ as the
 [binomial coefficient](https://en.wikipedia.org/wiki/Binomial_coefficient), a
 concept we discuss further in the next section, since it gives us a way to
 calculate the coefficient of the $$k$$th monomial in the binomial expansion of
@@ -265,7 +265,7 @@ $$
 which calculates the binomial expansion of the expression $$(x + y)^n$$,
 yielding the following theorem.
 
-**Theorem 1** (Binomial Theorem). *Given two natural numbers* $$x$$ *and* $$y$$,
+**Theorem 1** (Binomial theorem). *Given two natural numbers* $$x$$ *and* $$y$$,
 *and an exponent* $$n$$*, the expression* $$(x +   y)^n$$ *can be expanded into
 the sum,*
 
@@ -322,9 +322,8 @@ definition[^2],
 where we express the rules above in terms of
 [guards](https://en.wikipedia.org/wiki/Guard_(computer_science)).
 
-Having formalized the binomial coefficient and defined a function computing it
-binomial coefficient, `binomial_coefficient`, we are ready to conclude this blog
-post.
+Having formalized the binomial coefficient and defined a function computing it,
+`binomial_coefficient`, we are ready to conclude this blog post.
 
 ### 5. Conclusion
 
@@ -334,12 +333,12 @@ binomial coefficient function.
 We obtained the above results by first describing the construction of Pascal's
 triangle in an inductive fashion, followed by formalizing Pascal's
 triangle. Afterwards, we introduced the binomial coefficient function, as a
-result of describing the binomial theorem, and formalized it as the function,
+result of describing the binomial theorem, and formalized it as the function
 `binomial_coefficient`, in Haskell.
 
 This post was a small excerpt from my
 [Master's thesis](https://github.com/dragonwasrobot/formal-moessner), in which I
-also show how we can use Pascal's triangle and the binomial coefficient to come
+also prove how we can use Pascal's triangle and the binomial coefficient to come
 up with a characteristic function for Moessner's sieve[^3].
 
 In a coming follow-up post, we look at what happens when we rotate Pascal's
