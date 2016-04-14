@@ -2,8 +2,7 @@
 layout: post
 title: "Transpiling and linting ECMAScript 6"
 category: programming
-description: "In this post, I will briefly explain how to set up a development
-loop for a ECMAScript 6 style JavaScript project."
+description: "In this post, we briefly explain how to set up an ECMAScript 6 project."
 tags: [JavaScript, Grunt, ECMAScript 6, Babel, Brainfuck]
 ---
 

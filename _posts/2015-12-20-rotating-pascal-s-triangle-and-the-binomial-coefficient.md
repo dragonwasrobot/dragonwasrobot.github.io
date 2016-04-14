@@ -2,7 +2,7 @@
 layout: post
 title: "Rotating Pascal's triangle<br/> and the binomial coefficient"
 category: mathematics
-description: "In this post, we introduce and formalize the rotated versions of Pascal's triangle and the binomial coefficient."
+description: "In this post, we introduce the rotated versions of Pascal's triangle and the binomial coefficient."
 tags: [Haskell, Pascal's triangle, Binomial coefficient]
 ---
 
