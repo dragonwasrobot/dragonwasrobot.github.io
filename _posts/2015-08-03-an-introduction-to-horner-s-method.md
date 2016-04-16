@@ -378,10 +378,10 @@ method[^6] and prove a corresponding equivalence relation.
 
 [^1]: See "On Two Problems in Abstract Algebra Connected with Horner's
     Rule" (1954) by Alexander Markowich Ostrowski and "Methods of computing
-    values of polynomials" (1966) by Victor Ya Pan
+    values of polynomials" (1966) by Victor Ya Pan.
 
 [^2]: See "A new method of solving numerical equations of all orders,
-    by continuous approximation" (1819) by William G. Horner
+    by continuous approximation" (1819) by William G. Horner.
 
 [^3]: Unfortunately, [MathJax](https://www.mathjax.org/) does not
     support partial horizontal lines (`\cline`) and thus we cannot

@@ -244,3 +244,15 @@ definition of the rotated binomial coefficient function from the
 formalization. Furthermore, we also defined the rotated binomial coefficient
 function as the rotation transformation applied to the binomial coefficient
 function.
+
+This post - [and the previous]({% post_url
+2015-11-07-an-introduction-to-pascal-s-triangle-and-the-binomial-coefficient
+%}) - was a small excerpt from my
+[Master's thesis](https://github.com/dragonwasrobot/formal-moessner), in which I
+also prove how we can use the rotated Pascal's triangle and the rotated binomial
+coefficient to come up with a characteristic function for Moessner's sieve[^1].
+
+[^1]: Moessner's sieve is the procedure described in "Eine Bemerkung über die
+    Potenzen der natürlichen Zahlen" (1951) by Alfred Moessner, and the term
+    *Moessner's sieve* was first coined by Olivier Danvy in the paper "A
+    Characterization of Moessner's sieve" (2014).

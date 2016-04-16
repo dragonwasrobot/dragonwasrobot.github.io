@@ -336,21 +336,13 @@ triangle. Afterwards, we introduced the binomial coefficient function, as a
 result of describing the binomial theorem, and formalized it as the function
 `binomial_coefficient`, in Haskell.
 
-This post was a small excerpt from my
-[Master's thesis](https://github.com/dragonwasrobot/formal-moessner), in which I
-also prove how we can use Pascal's triangle and the binomial coefficient to come
-up with a characteristic function for Moessner's sieve[^3].
-
-In a coming follow-up post, we look at what happens when we rotate Pascal's
-triangle and the binomial coefficient, and their properties.
+In a [follow-up post]({% post_url
+2015-12-20-rotating-pascal-s-triangle-and-the-binomial-coefficient %}), we look
+at what happens when we rotate Pascal's triangle and the binomial coefficient,
+and their properties.
 
 [^1]: See "Cambridge University Library: The great collection" (1998) by Peter
     Fox.
 
 [^2]: We quietly ignore the cases where `n` and `k` are negative, and instead
     treat them as natural numbers.
-
-[^3]: Moessner's sieve is the procedure described in "Eine Bemerkung über die
-    Potenzen der natürlichen Zahlen" (1951) by Alfred Moessner, and the term
-    *Moessner's sieve* was first coined by Olivier Danvy in the paper "A
-    Characterization of Moessner's sieve" (2014).
