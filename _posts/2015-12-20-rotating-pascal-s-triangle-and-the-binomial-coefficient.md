@@ -16,9 +16,9 @@ The goal of this blog post is to introduce and formalize the rotated versions of
 which were the subject of the previous blog post.
 
 The blog post has the following structure. In Section
-[2](#rotating-pascal-s-triangle), we rotate Pascal's triangle and formalize its
+[2](#rotating-pascals-triangle), we rotate Pascal's triangle and formalize its
 rotated counterpart. Afterwards, we introduce the rotated binomial coefficient
-in Section [3](#rotated-binomial-coefficient), where we show how to obtain it in
+in Section [3](#the-rotated-binomial-coefficient), where we show how to obtain it in
 two different ways. The blog is concluded in Section [4](#conclusion).
 
 ### 2. Rotating Pascal's triangle
@@ -185,7 +185,7 @@ following sections.
 #### 3.1 Lifting the rotated binomial coefficient from the rotated Pascal's triangle
 
 Just as in the previous post, we can reduce the formalization of the rotated
-Pascal's triangle into a computable function, `rotated_binomial_coefficient`, by
+Pascal's triangle into a computable function, `rotatedBinomialCoefficient`, by
 mapping the base cases and the inductive case of our formalization to the base
 cases and inductive cases of our function, i.e. the row and column indices, `r`
 and `c`. Thus, if we take a look at the two base cases, $$\binom{0}{c}_r = 1$$

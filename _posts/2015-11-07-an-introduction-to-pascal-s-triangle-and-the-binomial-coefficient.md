@@ -16,7 +16,7 @@ The goal of this blog post is to introduce
 [binomial coefficient](https://en.wikipedia.org/wiki/Binomial_coefficient).
 
 The blog post is structured in the following way. In Section
-[2](#pascal-s-triangle), we introduce Pascal's triangle and formalize its
+[2](#pascals-triangle), we introduce Pascal's triangle and formalize its
 construction. Before we define the binomial coefficient in Section
 [4](#the-binomial-coefficient), we first motivate its introduction by stating
 the [Binomial Theorem](https://en.wikipedia.org/wiki/Binomial_theorem) in
@@ -323,7 +323,7 @@ where we express the rules above in terms of
 [guards](https://en.wikipedia.org/wiki/Guard_(computer_science)).
 
 Having formalized the binomial coefficient and defined a function computing it,
-`binomial_coefficient`, we are ready to conclude this blog post.
+`binomialCoefficient`, we are ready to conclude this blog post.
 
 ### 5. Conclusion
 
@@ -334,9 +334,9 @@ We obtained the above results by first describing the construction of Pascal's
 triangle in an inductive fashion, followed by formalizing Pascal's
 triangle. Afterwards, we introduced the binomial coefficient function, as a
 result of describing the binomial theorem, and formalized it as the function
-`binomial_coefficient`, in Haskell.
+`binomialCoefficient`, in Haskell.
 
-In a [follow-up post]({% post_url
+In our [next post]({% post_url
 2015-12-20-rotating-pascal-s-triangle-and-the-binomial-coefficient %}), we look
 at what happens when we rotate Pascal's triangle and the binomial coefficient,
 and their properties.

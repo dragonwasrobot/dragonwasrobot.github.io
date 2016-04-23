@@ -173,7 +173,7 @@ by first representing a polynomial as a list of integers,
 
 for which we define the procedure,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horner_poly_eval_acc.hs %}
+{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_eval_acc.hs %}
 
 which takes a polynomial, `cs`, corresponding to $$a_i$$, an integer,
 `x`, corresponding to $$k$$, and an accumulator, `a`, corresponding to
@@ -182,20 +182,18 @@ final value of the accumulator (result), `a`, in the base case, and
 multiplies `a` by `x` for each recursive call and adds the coefficient
 `c`. Lastly, we define a wrapper procedure,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horner_poly_eval.hs %}
+{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_eval.hs %}
 
-which initializes the accumulator to `0`. As a result, we now can
-evaluate the example polynomial of
-Formula \ref{eq:polynomial-evaluation-horner-example-inductive},
-$$7x^4 + 2x^3 + 5x^2 + 4x + 6$$, for $$x = 3$$, by passing the
-coefficients of $$p$$ as the list `[7, 2, 5, 4, 6]`, along with the
-value of $$x$$, `3`, to `horner_poly_eval` like so,
-`horner_poly_eval [7, 2, 5, 4, 6] 3`, giving the expected
-result, `684`.
+which initializes the accumulator to `0`. As a result, we now can evaluate the
+example polynomial of Formula
+\ref{eq:polynomial-evaluation-horner-example-inductive}, $$7x^4 + 2x^3 + 5x^2 +
+4x + 6$$, for $$x = 3$$, by passing the coefficients of $$p$$ as the list
+`[7, 2, 5, 4, 6]`, along with the value of $$x$$, `3`, to `hornersPolyEval` like
+so, `hornersPolyEval [7, 2, 5, 4, 6] 3`, giving the expected result, `684`.
 
-Having formalized Horner's method for polynomial evaluation, as the
-procedures `horner_poly_eval_acc` and `horner_poly_eval`, we now define
-Horner's method for polynomial division.
+Having formalized Horner's method for polynomial evaluation, as the procedures
+`hornersPolyEvalAcc` and `hornersPolyEval`, we now define Horner's
+method for polynomial division.
 
 ### 3. Polynomial division using Horner's method
 
@@ -319,25 +317,24 @@ $$r$$, at the bottom row of the table.
 We formalize the tabular representation in
 Formula \ref{eq:horner-div-abstract} as the following procedure,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horner_poly_div_acc.hs %}
+{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_div_acc.hs %}
 
-which performs the exact same substitution scheme as in
-`horner_poly_eval_acc`, except that it also aggregates the
-intermediate results and adds them to the result polynomial. Likewise,
-we define a wrapper function,
+which performs the exact same substitution scheme as in `hornersPolyEvalAcc`,
+except that it also aggregates the intermediate results and adds them to the
+result polynomial. Likewise, we define a wrapper function,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horner_poly_div.hs %}
+{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_div.hs %}
 
 which sets the initial accumulator to the first coefficient and adds
 it to the result polynomial. Now, if we wanted to divide our initial
 polynomial $$p(x) = 2x^3 + 4x^2 + 11x + 3$$ with the binomial $$d(x) =
 x - 2$$, we would pass the list `[2, 4, 11, 3]` as the input
-polynomial `cs` and `2` as the input value `x` to `horner_poly_div`,
+polynomial `cs` and `2` as the input value `x` to `hornersPolyDiv`,
 from which we would get the result list `[2, 8, 27, 57]`, where
 `[2, 8, 27]` are the coefficients of the quotient and `57` is the
 remainder. Thus, we have now defined Horner's method for polynomial
-division as the procedures `horner_poly_div_acc` and
-`horner_poly_div`.
+division as the procedures `hornersPolyDivAcc` and
+`hornersPolyDiv`.
 
 ### 4. Equivalence of the two Horner procedures
 
@@ -345,23 +342,22 @@ Due to the strong similarity between the procedure for polynomial
 evaluation and the procedure for polynomial division, we are
 interested in stating an equivalence relation between the two. As
 such, we note that the last element in the result polynomial of
-`horner_poly_div` is equal to the result of `horner_poly_eval` when
+`hornersPolyDiv` is equal to the result of `hornersPolyEval` when
 given the same input,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horner_poly_eval_eq_horner_poly_div.hs %}
+{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_eval_eq_horners_poly_div.hs %}
 
 Proving the relation requires us to first prove a similar equivalence
-relation between the underlying procedures `horner_poly_eval_acc` and
-`horner_poly_div_acc`, parameterized over the accumulator, `a`,
+relation between the underlying procedures `hornersPolyEvalAcc` and
+`hornersPolyDivAcc`, parameterized over the accumulator, `a`,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horner_poly_eval_acc_eq_horner_poly_div_acc.hs %}
+{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_eval_acc_eq_horners_poly_div_acc.hs %}
 
-The equivalence can be proved by first proving the underlying theorem,
-using structural induction on the polynomial, `cs'`, followed by case
-analysis on the polynomial, `cs`, in the original
-theorem[^4]. Incidentally, the theorem
-`horner_poly_eval_eq_horner_poly_div` also proves an
-implementation-specific version of the
+The equivalence can be proved by first proving the underlying theorem, using
+structural induction on the polynomial, `cs'`, followed by case analysis on the
+polynomial, `cs`, in the original theorem.[^4] Incidentally, the theorem
+`horners_poly_eval_eq_horners_poly_div` also proves an implementation-specific
+version of the
 [polynomial remainder theorem](https://en.wikipedia.org/wiki/Polynomial_remainder_theorem).
 
 ### 5. Conclusion
