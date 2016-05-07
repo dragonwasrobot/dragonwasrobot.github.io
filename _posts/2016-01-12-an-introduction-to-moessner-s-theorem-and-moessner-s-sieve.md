@@ -215,8 +215,8 @@ our generalization of the initial sequence.[^4]
 #### 3.2 Generalizing Moessner's theorem using Pascal's triangle
 
 In 1966, Calvin T. Long picked up Moessner's theorem and observed that the
-implicit triangles - which we call Moessner triangles - that appear when laying
-out Moessner's sieve as shown below,
+implicit triangles - which we call *Moessner triangles* - that appear when
+laying out Moessner's sieve as shown below,
 
 $$
 \begin{equation}
@@ -282,8 +282,8 @@ $$
 
 suggesting an equivalence relation between the two functions generating the
 triangles. This connection is also emphasized by the first Moessner triangle in
-Formula \ref{eq:mossiv-ones-rank-4}, as it has the same entries as Pascal's
-triangle in Formula \ref{eq:pascal-triangle-rank-4}.[^6]
+Figure \ref{eq:mossiv-ones-rank-4}, as it has the same entries as Pascal's
+triangle in Figure \ref{eq:pascal-triangle-rank-4}.[^6]
 
 Long used this observation about the similar constructions to prove a new
 generalization of Moessner's theorem, which involved the introduction of a
@@ -432,8 +432,9 @@ In this post, we have introduced Moessner's theorem and Moessner's sieve, along
 with some of the generalizations of Moessner's theorem. Furthermore, we have
 formalized and implemented Moessner's sieve in Haskell.
 
-In our next post, we introduce the dual to Moessner's sieve, which generates
-Moessner triangles in a column-by-column fashion.
+In our [next post]({% post_url 2016-02-19-a-dual-to-moessner-s-sieve %}), we
+introduce the dual to Moessner's sieve, which generates Moessner triangles in a
+column-by-column fashion.
 
 [^1]: See "Eine Bemerkung über die Potenzen der natürlichen Zahlen" (1951) by
     Alfred Moessner.

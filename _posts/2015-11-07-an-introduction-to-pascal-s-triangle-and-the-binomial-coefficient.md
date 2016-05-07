@@ -315,7 +315,7 @@ result is $$0$$, and similarly we know that the case `(n > 0, k > 0)` is the sum
 of the two entries just above it `(n-1, k)` and `(n-1, k-1)`. Combining these
 observations we get the following
 [Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language))
-definition[^2],
+definition,[^2]
 
 {% gist dragonwasrobot/6601b204351b289da1fd binomial_coefficient.hs %}
 
