@@ -10,9 +10,10 @@ tags: [JavaScript, Grunt, ECMAScript 6, Babel, Brainfuck]
 
 #### prerequisites: basic JavaScript and Grunt knowledge.
 
-*“All problems in computer science can be solved by another level of
- indirection, except of course for the problem of too many
- indirections.”*<br/>
+*“All problems in computer science*<br/>
+*can be solved by another level of indirection,*<br/>
+*except of course for the problem*<br/>
+*of too many indirections.<br/>”*<br/>
 -- David Wheeler
 
 ### Introduction

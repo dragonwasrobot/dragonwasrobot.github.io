@@ -9,7 +9,8 @@ tags: [Coq, Case analysis, Induction, Natural numbers, Arithmetic]
 
 #### prerequisites: An installation of the Coq Proof Assistant.
 
-*“Beware of bugs in the above code; I have only proved it correct, not tried it.”*<br/>
+*“Beware of bugs in the above code;*<br/>
+*I have only proved it correct, not tried it.”*<br/>
 -- Donald Knuth
 
 ### Introduction
