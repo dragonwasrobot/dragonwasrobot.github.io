@@ -370,8 +370,8 @@ binomial expansion.
 
 This post was a small excerpt from my
 [Master's thesis](https://github.com/dragonwasrobot/formal-moessner), in which I
-also prove the correctness of the above characteristic functions along with
-various other properties.
+also prove the correctness of the above characteristic functions, and use the
+characteristic function in my proof of Moessner's idealized theorem.
 
 [^1]: See "Concrete Stream Calculus: An extended study" (2010) by Ralf Hinze.
 
