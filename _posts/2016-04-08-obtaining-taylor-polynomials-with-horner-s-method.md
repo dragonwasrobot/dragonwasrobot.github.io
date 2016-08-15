@@ -1,0 +1,310 @@
+---
+layout: post
+title: "Obtaining Taylor Polynomials<br/> with Horner's method"
+category: mathematics
+description: "In this post, we calculate Taylor Polynomials with Horner's method."
+tags: [Haskell, Polynomial division, Taylor polynomials, Horner's method]
+---
+
+#### prerequisites: The post [An introduction to Horner's method]({% post_url 2015-08-03-an-introduction-to-horner-s-method %})
+
+### 1. Introduction
+
+The goal of this post is to derive Taylor polynomials using Horner's method for
+polynomial division.
+
+The post is structured as follows. In Section
+[2](#taylor-polynomials-and-taylors-theorem), we introduce the concept of Taylor
+polynomials and Taylor's theorem. In Section
+[3](#generating-taylor-polynomials), we derive a procedure for obtaining Taylor
+polynomials using Horner's method for polynomial division. The post is concluded
+in Section [4](#conclusion).
+
+### 2. Taylor polynomials and Taylor's theorem
+
+In this section, we first state the
+[polynomial remainder theorem](https://en.wikipedia.org/wiki/Polynomial_remainder_theorem)
+followed by the definitions of
+[Taylor series](https://en.wikipedia.org/wiki/Taylor_series) and Taylor
+polynomials, which we use to finally state
+[Taylor's theorem](https://en.wikipedia.org/wiki/Taylor%27s_theorem).
+
+As pointed out in the [previous blog post]({% post_url
+2015-08-03-an-introduction-to-horner-s-method %}), if we divide a polynomial,
+$$p$$, with a binomial, $$x - k$$, the remainder of the division is equal to
+$$p(k)$$, which is captured by the polynomial remainder theorem.
+
+**Theorem 1** (Polynomial remainder theorem). *Given a polynomial,*
+
+$$
+\begin{equation*}
+  p(x) = a_n x^n + a_{n-1} x^{n-1} + \cdots + a_1 x + a_0,
+\end{equation*}
+$$
+
+*where $$a_0, \dots, a_n \in \mathbb{N}$$, and a binomial,*
+
+$$
+\begin{equation*}
+  d(x) = x - k,
+\end{equation*}
+$$
+
+*where $$k \in \mathbb{N}$$, the remainder of dividing $$p$$ with $$d$$,
+denoted $$r$$, is equal to $$p(k)$$. Furthermore, $$d$$ divides $$p$$ if and
+only if $$p(k) = 0$$.*
+
+Next, we define Taylor series and Taylor polynomials in order to state Taylor's
+theorem.
+
+A Taylor series is the representation of a function as an infinite sum of terms,
+calculated from the values of the function's derivatives at a specific point.
+
+**Definition 1** (Taylor series). Given a function $$p$$ and a natural number
+$$k$$, the Taylor series of $$p$$ is,
+
+$$
+\begin{equation*}
+  \frac{p(k)}{0!} {(x - k)}^0 + \frac{p'(k)}{1!} {(x - k)}^1 +
+  \frac{p''(k)}{2!} {(x - k)}^2 + \frac{p^{(3)}(k)}{3!} {(x - k)}^3 + \cdots,
+\end{equation*}
+$$
+
+which can be written as,
+
+$$
+\begin{equation*}
+  \sum_{i=0}^{\infty} \frac{p^{(i)}(k)}{i!} {(x - k)}^i.
+\end{equation*}
+$$
+
+A Taylor series with a finite number of terms, $$n \in \mathbb{N}$$, is
+called a Taylor polynomial and written,
+
+$$
+\begin{equation*}
+  \sum_{i=0}^{n} \frac{p^{(i)}(k)}{i!} {(x - k)}^i.
+\end{equation*}
+$$
+
+Since we are working solely with polynomials, and not other types of functions,
+we are able to restate any polynomial as a Taylor polynomial, calculating the
+exact same values. This brings us to the following simplified version of
+Taylor's theorem - without the error function - defined over polynomials and
+natural numbers.
+
+**Theorem 2** (Taylor's theorem) *Given a polynomial, $$p$$, and two natural
+numbers, $$n$$ and $$k$$, the $$n$$-th order Taylor polynomial of $$p$$,
+$$P_{n,k}$$, at the point $$k$$ is,*
+
+$$
+\begin{equation}
+  \tag{1}\label{eq:taylor-s-theorem}
+  P_{n,k}(x) = \sum_{i=0}^n \frac{p^{(i)}(k)}{i!} {(x - k)}^i.
+\end{equation}
+$$
+
+Having stated the above definitions and theorems, we now show how to obtain
+Taylor polynomials using Horner's method.
+
+### 3. Generating Taylor polynomials
+
+From Theorem 2, we know that given a polynomial,
+
+$$
+\begin{equation*}
+  p(x) = \sum_{i=0}^n a_i x^i,
+\end{equation*}
+$$
+
+where $$a_0, \dots, a_n \in \mathbb{N}$$, and a $$k \in \mathbb{N}$$, the
+Taylor polynomial of $$p$$ at the point $$k$$ is,
+
+$$
+\begin{equation*}
+  P_{n,k}(x) = \sum_{i=0}^n \frac{p^{(i)}(k)}{i!} {(x - k)}^i,
+\end{equation*}
+$$
+
+where every occurrence of the variable $$x$$ has been substituted with $$x - k$$
+and every coefficient $$a_i$$ has been substituted with
+$$\frac{p^{(i)}(k)}{i!}$$. Thus, we need a way to compute these new values using
+Horner's method.
+
+If we let $$p(x) = 2x^3 + 4x^2 + 11x + 3$$ and $$k = 2$$, we can calculate the
+coefficients of $$P_{3,2}$$ -- without the use of Horner's method -- by
+evaluating $$p$$ and its first three derivatives for $$x = 2$$,
+
+$$
+\begin{align}
+  \frac{p(2)}{0!} &= \frac{2 \cdot 2^3 + 4 \cdot 2^2 + 11 \cdot 2 + 3}{0!} =
+  \frac{57}{0!} = 57\tag{2}\label{eq:taylor-poly-ex-p-2}\\
+  \frac{p'(2)}{1!} &= \frac{6 \cdot 2^2 + 8 \cdot 2 + 11}{1!} = \frac{51}{1!} =
+  51\tag{3}\label{eq:taylor-poly-ex-pp-2}\\
+  \frac{p''(2)}{2!} &= \frac{12 \cdot 2 + 8}{2!} = \frac{32}{2!} =
+  16\tag{4}\label{eq:taylor-poly-ex-ppp-2}\\
+  \frac{p^{(3)}(2)}{3!} &= \frac{12}{3!} = 2\tag{5}\label{eq:taylor_poly_ex_pppp-2},
+\end{align}
+$$
+
+which yields the $$3$$-rd order Taylor polynomial of $$p$$ at point $$2$$,
+
+$$
+\begin{align}
+  \tag{6}\label{eq:taylor-poly-ex-p-2-result}
+  P_{3,2}(x) &= \frac{p(2)}{0!} {(x - 2)}^0 + \frac{p'(2)}{1!} {(x - 2)}^1\\
+  &+ \frac{p''(2)}{2!} {(x - 2)}^2 + \frac{p^{(3)}(2)}{3!} {(x - 2)}^3\\
+  P_{3,2}(x) &= 57 {(x - 2)}^0 + 51 {(x - 2)}^1 + 16{(x - 2)}^2 + 2{(x - 2)}^3\\
+  P_{3,2}(x) &= 2 {(x - 2)}^3 + 16 {(x - 2)}^2 + 51 (x - 2) + 57.
+\end{align}
+$$
+
+Looking at the calculations above, we do not only have to evaluate four
+polynomials and divide each of them with a factorial, but we also have to take
+the repeated derivative of $$p$$. It would be useful if we could calculate these
+values using our existing definitions. From Theorem 1, we know that dividing
+$$p$$ with a binomial, $$d(x) = x - 2$$,[^1]
+
+$$
+\begin{equation}
+  \tag{7}
+  \begin{array}{ c | c c c c }
+       & x^3 & x^2 & x^1 & x^0 \\
+       &   2 &   4 & 11 & 3 \\
+    2  &     &   4 & 16 & 54 \\
+    \hline
+       &   2 &   8 & 27 & 57
+  \end{array}
+\end{equation}
+$$
+
+yields the quotient $$q_0(x) = 2x^2 + 8x + 27$$ and remainder $$r_0 =
+p(2)$$, which is also equal to $$\frac{p(2)}{0!}$$, since $$0! = 1$$. This
+corresponds to the result of Formula \ref{eq:taylor-poly-ex-p-2}, which is also
+why we have subscripted the remainder with a $$0$$, since it is the value of the
+coefficient of $$P_{3,2}$$ with index $$i = 0$$,
+
+$$
+\begin{equation*}
+  r_0 = \frac{p(2)}{0!} = 57.
+\end{equation*}
+$$
+
+Furthermore, it turns out that if we keep dividing the obtained quotient, a
+pattern emerges that connects the remainders of the subsequent divisions with
+the remaining coefficients of $$P_{3,2}$$. If we divide the quotient of the
+first division, $$q_0(x) = 2x^2 + 8x + 27$$, with the same binomial as before,
+$$d(x) = x - 2$$,
+
+$$
+\begin{equation}
+  \tag{8}
+  \begin{array}{ c | c c c }
+    & x^2 & x^1 & x^0 \\
+    & 2 & 8 & 27 \\
+    2 &   & 4 & 24 \\
+    \hline
+    & 2 & 12 & 51
+  \end{array}
+\end{equation}
+$$
+
+we get the quotient $$q_1(x) = 2x + 12$$ and remainder $$r_1 = 51$$. In line
+with the previous result, we notice that the remainder, $$r_1$$, is equal to the
+result of Formula \ref{eq:taylor-poly-ex-pp-2}, i.e., the value of the
+coefficient of $$P_{3,2}$$ with index $$i = 1$$,
+
+$$
+\begin{equation*}
+  r_1 = \frac{p'(2)}{1!} = 51.
+\end{equation*}
+$$
+
+If we repeat this procedure once more with the quotient $$q_1(x) = 2x + 12$$,
+
+$$
+\begin{equation}
+  \tag{9}
+  \begin{array}{ c | c c }
+    & x^1 & x^0 \\
+    & 2 & 12 \\
+    2 &   & 4 \\
+    \hline
+    & 2 & 16
+  \end{array}
+\end{equation}
+$$
+
+we get the remainder $$r_2 = 16$$, which matches the coefficient with index $$i
+= 2$$ in Formula \ref{eq:taylor-poly-ex-ppp-2},
+
+$$
+\begin{equation*}
+  r_2 = \frac{p''(2)}{2!} = 16,
+\end{equation*}
+$$
+
+and the quotient $$q_2 = 2$$, which is also equal to the last remainder,
+$$r_3$$, since $$q_2$$ is constant, and therefore it is also equal to the
+coefficient with index $$i = 3$$ in Formula \ref{eq:taylor_poly_ex_pppp-2},
+
+$$
+\begin{equation*}
+  q_2 = r_3 = \frac{p^{(3)}(2)}{3!} = 2.
+\end{equation*}
+$$
+
+Now, with the following coefficients in hand,
+
+$$
+\begin{align*}
+  r_3 &= \frac{p'''(2)}{3!} = 2\\
+  r_2 &= \frac{p''(2)}{2!} = 16\\
+  r_1 &= \frac{p'(2)}{1!} = 51\\
+  r_0 &= \frac{p(2)}{0!} = 57,
+\end{align*}
+$$
+
+the $$3$$-rd order Taylor polynomial of $$p$$ at point $$2$$ becomes,
+
+$$
+\begin{align*}
+  P_{3,2}(x) &= \frac{p(2)}{0!} {(x - 2)}^0 + \frac{p'(2)}{1!} {(x - 2)}^1 +
+  \frac{p''(2)}{2!} {(x - 2)}^2 + \frac{p^{(3)}(2)}{3!} {(x - 2)}^3\\
+  P_{3,2}(x) &= r_0 {(x - 2)}^0 + r_1 {(x - 2)}^1 + r_2 {(x - 2)}^2 +
+               r_3 {(x - 2)}^3\\
+  P_{3,2}(x) &= 57 {(x - 2)}^0 + 51 {(x - 2)}^1 + 16 {(x - 2)}^2 +
+               2 {(x - 2)}^3\\
+  P_{3,2}(x) &= 2 {(x - 2)}^3 + 16 {(x - 2)}^2 + 51 (x - 2) + 57,
+\end{align*}
+$$
+
+which is equal to the last Taylor polynomial in Formula
+\ref{eq:taylor-poly-ex-p-2-result}. Thus, we have demonstrated how to obtain the
+Taylor polynomial of a polynomial $$p$$ at a point $$k$$, by repeatedly dividing
+the resulting quotient polynomials with a binomial, $$x - k$$, using Horner's
+method, where $$p$$ is the initial polynomial to be
+divided.[^2]
+
+### 4. Conclusion
+
+In this post, we have shown how to obtain Taylor polynomials with Horner's
+method for polynomial division.
+
+In our [next post]({% post_url
+2016-05-17-deriving-moessner-s-sieve-from-horner-s-method %}), we use what we
+have learned from this -- and the previous -- blog post to derive Moessner's
+sieve[^3] from Horner's method.
+
+[^1]: Note that we use the tabular representation for polynomial division, which
+    we introduced in Formula 7 of the [previous blog post]({% post_url
+    2015-08-03-an-introduction-to-horner-s-method %}).
+
+[^2]: See "The wonder of Horner's method" (2003) by Alex Pathan and Tony
+    Collyer.
+
+[^3]: Moessner's sieve is the procedure described in "Eine Bemerkung
+    über die Potenzen der natürlichen Zahlen" (1951) by Alfred
+    Moessner, and the term *Moessner's sieve* was first coined by
+    Olivier Danvy in the paper "A Characterization of Moessner's
+    sieve" (2014).

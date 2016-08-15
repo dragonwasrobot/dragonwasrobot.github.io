@@ -186,8 +186,15 @@ multiplies `a` by `x` for each recursive call and adds the coefficient
 
 which initializes the accumulator to `0`. As a result, we now can evaluate the
 example polynomial of Formula
-\ref{eq:polynomial-evaluation-horner-example-inductive}, $$7x^4 + 2x^3 + 5x^2 +
-4x + 6$$, for $$x = 3$$, by passing the coefficients of $$p$$ as the list
+\ref{eq:polynomial-evaluation-horner-example-inductive},
+
+$$
+\begin{equation*}
+    7x^4 + 2x^3 + 5x^2 + 4x + 6,
+\end{equation*}
+$$
+
+for $$x = 3$$, by passing the coefficients of $$p$$ as the list
 `[7, 2, 5, 4, 6]`, along with the value of $$x$$, `3`, to `hornersPolyEval` like
 so, `hornersPolyEval [7, 2, 5, 4, 6] 3`, giving the expected result, `684`.
 
@@ -223,7 +230,7 @@ $$d$$ divides $$p$$.
 One procedure for polynomial division is
 [polynomial long division](https://en.wikipedia.org/wiki/Polynomial_long_division),
 which we can use to divide the polynomial $$p(x) = 2x^3 + 4x^2 + 11x +
-3$$ with the binomial $$d(x) = x - 2$$, giving us the following result[^3],
+3$$ with the binomial $$d(x) = x - 2$$, giving us the following result,[^3]
 
 $$
 \begin{equation}
@@ -347,9 +354,9 @@ given the same input,
 
 {% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_eval_eq_horners_poly_div.hs %}
 
-Proving the relation requires us to first prove a similar equivalence
-relation between the underlying procedures `hornersPolyEvalAcc` and
-`hornersPolyDivAcc`, parameterized over the accumulator, `a`,
+Proving the relation requires us to first prove a similar equivalence relation
+between the underlying procedures `hornersPolyEvalAcc` and `hornersPolyDivAcc`,
+parameterized over the accumulator,
 
 {% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_eval_acc_eq_horners_poly_div_acc.hs %}
 
@@ -367,10 +374,11 @@ evaluation and polynomial division. Furthermore, we have also stated
 and proved an equivalence relation between the definition of Horner's
 method for polynomial evaluation and polynomial division.
 
-This post was a small excerpt from my
-[Master's thesis](https://github.com/dragonwasrobot/formal-moessner),
-in which I also show how to derive Moessner's sieve[^5] from Horner's
-method[^6] and prove a corresponding equivalence relation.
+In our [next post]({% post_url
+2016-04-08-obtaining-taylor-polynomials-with-horner-s-method %}), we show how we
+can obtain
+[Taylor polynomials](https://en.wikipedia.org/wiki/Taylor%27s_theorem) using
+Horner's method.
 
 [^1]: See "On Two Problems in Abstract Algebra Connected with Horner's
     Rule" (1954) by Alexander Markowich Ostrowski and "Methods of computing
@@ -387,14 +395,3 @@ method[^6] and prove a corresponding equivalence relation.
     implementation of Horner's method and accompanying equivalence
     proof can be found in my
     [Master's thesis](https://github.com/dragonwasrobot/formal-moessner).
-
-[^5]: Moessner's sieve is the procedure described in "Eine Bemerkung
-    über die Potenzen der natürlichen Zahlen" (1951) by Alfred
-    Moessner, and the term *Moessner's sieve* was first coined by
-    Olivier Danvy in the paper "A Characterization of Moessner's
-    sieve" (2014).
-
-[^6]: The observation that you can derive Moessner's sieve from
-    Horner's method was first observed - but not proved - by Jan van
-    Yzeren in the paper "A Note on An Additive Property of Natural
-    Numbers" (1959).
