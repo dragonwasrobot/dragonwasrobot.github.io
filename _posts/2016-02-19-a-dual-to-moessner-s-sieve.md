@@ -6,7 +6,8 @@ description: "In this post, we introduce a dual to Moessner's sieve."
 tags: [Haskell, Moessner's sieve]
 ---
 
-#### prerequisites: The post [An introduction to Moessner's theorem and Moessner's sieve](/mathematics/2016/01/12/an-introduction-to-moessner-s-theorem-and-moessner-s-sieve)
+#### prerequisites: The post [An introduction to Moessner's theorem and Moessner's sieve]({% post_url
+2016-01-12-an-introduction-to-moessner-s-theorem-and-moessner-s-sieve %})
 
 *“The poet doesn't invent.”*<br/>
 *“He listens.”*<br/>
@@ -509,7 +510,7 @@ the new initial configuration together with the procedure
 Moessner's sieve, `createTrianglesVertically`, which creates a sequence of
 Moessner triangles instead of a sequence of successive powers.
 
-This post - [and the previous]({% post_url
+This post - and [the previous]({% post_url
 2016-01-12-an-introduction-to-moessner-s-theorem-and-moessner-s-sieve %}) - was
 a small excerpt from my
 [Master's thesis](https://github.com/dragonwasrobot/formal-moessner), in which I

@@ -13,7 +13,7 @@ tags: [JavaScript, Grunt, ECMAScript 6, Babel, Brainfuck]
 *“All problems in computer science*<br/>
 *can be solved by another level of indirection,*<br/>
 *except of course for the problem*<br/>
-*of too many indirections.<br/>”*<br/>
+*of too many indirections.”*<br/>
 -- David Wheeler
 
 ### Introduction
