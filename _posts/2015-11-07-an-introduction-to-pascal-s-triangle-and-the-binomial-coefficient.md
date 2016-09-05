@@ -85,10 +85,10 @@ $$
   \begin{array}{*{9}{c}}
     & & & & 1 & & & & \\
     & & & 1 & & 1 & & & \\
-    & & 1 & & \color{gray}{2} & & 1 & & \\
-    & 1 & & \color{gray}{3} & & \color{gray}{3} & & 1 & \\
-    1 & & \color{gray}{4} & & \color{gray}{6} & &
-    \color{gray}{4} & & 1 \\
+    & & 1 & & \color{lightgray}{2} & & 1 & & \\
+    & 1 & & \color{lightgray}{3} & & \color{lightgray}{3} & & 1 & \\
+    1 & & \color{lightgray}{4} & & \color{lightgray}{6} & &
+    \color{lightgray}{4} & & 1 \\
   \end{array}
 \end{equation*}
 $$
@@ -117,11 +117,11 @@ values to the right of Pascal's triangle,
 $$
 \begin{equation*}
   \begin{array}{*{13}{c}}
-      & & & & 1 & & \color{gray}{0} & & \color{gray}{0} & & \color{gray}{0} & \dots \\
-      & & & 1 & & 1 &   & \color{gray}{0} & & \color{gray}{0} & & \dots \\
-      & & 1 & & 2 & & 1 &   & \color{gray}{0} & & \color{gray}{0} & \dots \\
-      & 1 & & 3 & & 3 & & 1 &   & \color{gray}{0} & & \dots \\
-    1 & & 4 & & 6 & & 4 &   & 1 & & \color{gray}{0} & \dots
+      & & & & 1 & & \color{lightgray}{0} & & \color{lightgray}{0} & & \color{lightgray}{0} & \dots \\
+      & & & 1 & & 1 &   & \color{lightgray}{0} & & \color{lightgray}{0} & & \dots \\
+      & & 1 & & 2 & & 1 &   & \color{lightgray}{0} & & \color{lightgray}{0} & \dots \\
+      & 1 & & 3 & & 3 & & 1 &   & \color{lightgray}{0} & & \dots \\
+    1 & & 4 & & 6 & & 4 &   & 1 & & \color{lightgray}{0} & \dots
   \end{array}
 \end{equation*}
 $$
@@ -317,7 +317,14 @@ observations we get the following
 [Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language))
 definition,[^2]
 
-{% gist dragonwasrobot/6601b204351b289da1fd binomial_coefficient.hs %}
+{% highlight haskell linenos %}
+binomialCoefficient :: Int -> Int -> Int
+binomialCoefficient n k
+  | k == 0 = 1
+  | n < k  = 0
+  | n > 0 && k > 0 = binomialCoefficient (n - 1) k +
+                     binomialCoefficient (n - 1) (k - 1)
+{% endhighlight %}
 
 where we express the rules above in terms of
 [guards](https://en.wikipedia.org/wiki/Guard_(computer_science)).

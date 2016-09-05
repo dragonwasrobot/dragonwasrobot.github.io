@@ -65,13 +65,13 @@ First, we notice that the base case of Pascal's triangle, where $$\binom{n}{0} =
 
 $$
 \begin{equation*}
-  \color{gray}
   \begin{array}{*{5}{r}}
-    \color{black}{1} & 1 & 1 & 1 & 1 \\
-    \color{black}{1} & 2 & 3 & 4 &   \\
-    \color{black}{1} & 3 & 6 &   &   \\
-    \color{black}{1} & 4 &   &   &   \\
-    \color{black}{1} &   &   &   &
+    1 & \color{lightgray}{1} & \color{lightgray}{1} &
+    \color{lightgray}{1} & \color{lightgray}{1} \\
+    1 & \color{lightgray}{2} & \color{lightgray}{3} & \color{lightgray}{4} & \\
+    1 & \color{lightgray}{3} & \color{lightgray}{6} &   & \\
+    1 & \color{lightgray}{4} &   &   &   \\
+    1 &   &   &   &
   \end{array}
 \end{equation*}
 $$
@@ -83,16 +83,15 @@ the rotated Pascal's triangle,
 
 $$
 \begin{equation*}
-  \color{gray}
   \begin{array}{*{5}{r}}
-    \color{black}{1} & \color{black}{1} & \color{black}{1} &
-        \color{black}{1} & \color{black}{1} \\
-    1 & 2 & 3 & 4 &   \\
-    1 & 3 & 6 &   &   \\
-    1 & 4 &   &   &   \\
-    1 &   &   &   &
+      1 & 1 & 1 & 1 & 1 \\
+    \color{lightgray}{1} & \color{lightgray}{2} &
+    \color{lightgray}{3} & \color{lightgray}{4} &   \\
+    \color{lightgray}{1} & \color{lightgray}{3} &
+    \color{lightgray}{6} &   &   \\
+    \color{lightgray}{1} & \color{lightgray}{4} &   &   &   \\
+    \color{lightgray}{1} &   &   &   &
   \end{array}
-  \color{black}
 \end{equation*}
 $$
 
@@ -196,7 +195,14 @@ $$\binom{r+1}{c+1}_r = \binom{r+1}{c}_r + \binom{r}{c+1}_r$$, to the inductive
 case of our function, `(r > 0, c > 0)`, which - when combined - gives us the
 following Haskell definition,
 
-{% gist dragonwasrobot/f381e5764b19f8d0dd2b62787e7020cd rotated_binomial_coefficient_function_formalization.hs %}
+{% highlight haskell linenos %}
+rotatedBinomialCoefficient :: Int -> Int -> Int
+rotatedBinomialCoefficient r c
+  | r == 0 = 1
+  | c == 0 = 1
+  | r > 0 && c > 0 = rotatedBinomialCoefficient (r - 1) c +
+                     rotatedBinomialCoefficient r (c - 1)
+{% endhighlight %}
 
 Again, we use guards to express the base cases and the inductive case in a
 straight forward manner that nicely captures the original formalization.
@@ -223,7 +229,10 @@ the previous section. Putting these relations together yields the following
 definition of the rotated binomial coefficient function, as a transformation
 applied to the binomial coefficient function,
 
-{% gist dragonwasrobot/f381e5764b19f8d0dd2b62787e7020cd rotated_binomial_coefficient_function_transformation.hs %}
+{% highlight haskell linenos %}
+rotatedBinomialCoefficient :: Int -> Int -> Int
+rotatedBinomialCoefficient r c = binomialCoefficient (r + c) c
+{% endhighlight %}
 
 Lastly, we note that we did not have to take the inductive case into account as
 the definition only required us to capture how the rotation affected the two

@@ -25,7 +25,15 @@ Our example project will be a simple
 [brainfuck](http://en.wikipedia.org/wiki/Brainfuck) tokenizer, with the
 following basic project structure:
 
-{% gist dragonwasrobot/a7a17cb055b166c18754 project.txt %}
+```
+.eslintrc
+Gruntfile.js
+package.json
+dist/
+  |-- app.js
+src/
+  |-- tokenizer.js
+```
 
 where:
 
@@ -43,7 +51,23 @@ I will go through each of these files in turn.
 As with most JavaScript projects, we start by creating a `package.json` file,
 which describes the project:
 
-{% gist dragonwasrobot/a7a17cb055b166c18754 package.json %}
+{% highlight javascript linenos %}
+{
+  "name": "brainfuck-tokenizer",
+  "description": "A brainfuck tokenizer written in ECMAScript 6",
+  "version": "1.0.0",
+  "devDependencies": {
+    "babel": "^5.0.8",
+    "babel-eslint": "^2.0.2",
+    "eslint": "^0.18.0",
+    "grunt": "^0.4.5",
+    "grunt-babel": "^5.0.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-eslint": "^10.0.0",
+  }
+}
+{% endhighlight %}
 
 Besides giving it a name, description and a version number, we state the
 following dependencies:
@@ -74,7 +98,58 @@ meaningful.
 Having written our `package.json` file and run `npm install` to fetch all
 dependencies, we stitch everything together with the following Gruntfile:
 
-{% gist dragonwasrobot/a7a17cb055b166c18754 Gruntfile.js %}
+{% highlight javascript linenos %}
+(function() {
+    "use strict";
+
+    module.exports = function(grunt) {
+
+        var gruntConfig = {};
+
+        gruntConfig.babel = {
+            options: {
+                sourceMap: true
+            },
+            dist: {
+                files: {
+                    "dist/app.js": "src/*.js"
+                }
+            }
+        };
+
+        gruntConfig.eslint = {
+            target: ["src/*.js"]
+        };
+
+        gruntConfig.clean = {
+            dist: {
+                src: ["dist/"]
+            }
+        };
+
+        gruntConfig.watch = {
+            dev: {
+                files: "src/*.js",
+                tasks: ["eslint", "clean:dist", "babel"],
+                options: {
+                    atBegin: true
+                }
+            }
+        };
+
+        grunt.initConfig(gruntConfig);
+
+        // Load and register tasks
+        grunt.loadNpmTasks('grunt-babel');
+        grunt.loadNpmTasks('grunt-contrib-clean');
+        grunt.loadNpmTasks('grunt-contrib-watch');
+        grunt.loadNpmTasks('grunt-eslint');
+
+        grunt.registerTask('dev', ['watch:dev']);
+
+    };
+}());
+{% endhighlight %}
 
 where we:
 
@@ -92,7 +167,23 @@ ES6 code.
 In order to get eslint to recognize ES6 source code, we set up the following
 config file:
 
-{% gist dragonwasrobot/a7a17cb055b166c18754 .eslintrc %}
+{% highlight javascript linenos %}
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "rules": {
+        "quotes": [2, "single"],
+        "eol-last": [0],
+        "no-underscore-dangle": [0],
+        "comma-spacing": [0],
+        "no-extra-strict": [0],
+        "strict": [0]
+    }
+}
+{% endhighlight %}
 
 Here, we tell it to use the `babel-eslint` parser, set the environment to
 browser and node.js, and add a set of arbitrary style rules to be enforced.
@@ -101,7 +192,54 @@ browser and node.js, and add a set of arbitrary style rules to be enforced.
 Having set up our project structure, dependencies, Gruntfile and eslint
 configuration, we are now ready to write our brainfuck tokenizer in ES6:
 
-{% gist dragonwasrobot/a7a17cb055b166c18754 tokenizer.js %}
+{% highlight javascript linenos %}
+let tokenMap = {
+    '>': 'INC_POINTER',
+    '<': 'DEC_POINTER',
+    '+': 'INC_BYTE',
+    '-': 'DEC_BYTE',
+    '.': 'OUTPUT_BYTE',
+    ',': 'INPUT_BYTE',
+    '[': 'START_BLOCK',
+    ']': 'END_BLOCK'
+};
+
+let tokenize = program => program.split('')
+    .map(char => tokenMap[char])
+    .filter(token => token);
+
+let brainfuckProgram = `
+    ++++++++
+    [
+        >++++
+        [
+            >++
+            >+++
+            >+++
+            >+
+            <<<<-
+        ]
+        >+
+        >+
+        >-
+        >>+
+        [<]
+        <-
+    ]
+
+    >>.
+    >---.
+    +++++++..+++.
+    >>.
+    <-.
+    <.
+    +++.------.--------.
+    >>+.
+    >++.
+    `;
+
+console.log(tokenize(brainfuckProgram));
+{% endhighlight %}
 
 In this sample program, we start by defining a map from symbols to tokens using
 the `let` syntax. Then, we define a `tokenize` function using both the `let` and
@@ -117,10 +255,46 @@ Now, in order to lint and transpile our `tokenizer.js` code we simply run `grunt
 dev` in the root of the project folder, which start the development loop, and
 then the resulting transpiled ES6 code can be found in `dist/app.js`:
 
-{% gist dragonwasrobot/a7a17cb055b166c18754 app.js %}
+{% highlight javascript linenos %}
+'use strict';
+
+var tokenMap = {
+    '>': 'INC_POINTER',
+    '<': 'DEC_POINTER',
+    '+': 'INC_BYTE',
+    '-': 'DEC_BYTE',
+    '.': 'OUTPUT_BYTE',
+    ',': 'INPUT_BYTE',
+    '[': 'START_BLOCK',
+    ']': 'END_BLOCK'
+};
+
+var tokenize = function tokenize(program) {
+    return program.split('').map(function (char) {
+        return tokenMap[char];
+    }).filter(function (token) {
+        return token;
+    });
+};
+
+var brainfuckProgram = '\n    ++++++++\n    [\n        >++++\n        [\n            >++\n            >+++\n            >+++\n            >+\n            <<<<-\n        ]\n        >+\n        >+\n        >-\n        >>+\n        [<]\n        <-\n    ]\n\n    >>.\n    >---.\n    +++++++..+++.\n    >>.\n    <-.\n    <.\n    +++.------.--------.\n    >>+.\n    >++.\n    ';
+
+console.log(tokenize(brainfuckProgram));
+//# sourceMappingURL=app.js.map
+{% endhighlight %}
 
 We note how the transpiled code is far from as aesthetically pleasing as our
 original ES6 code in the `tokenizer.js` file. Furthermore, we can now run the
 transpiled code by executing `node dist/app.js` resulting in the following
 tokenized representation of the original brainfuck program:
-`[ 'INC_BYTE', 'INC_BYTE', ..., 'INC_POINTER', 'INC_BYTE', 'INC_BYTE', 'OUTPUT_BYTE' ].`
+
+{% highlight javascript linenos %}
+[ 'INC_BYTE',
+  'INC_BYTE',
+  ...,
+  'INC_POINTER',
+  'INC_BYTE',
+  'INC_BYTE',
+  'OUTPUT_BYTE'
+].
+{% endhighlight %}

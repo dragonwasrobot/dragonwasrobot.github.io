@@ -116,7 +116,7 @@ inductive form, has removed the computational overhead of evaluating
 each of the exponents in sequence. Lastly, it has even been proved
 that the number of additions and multiplications used in this
 procedure, are indeed the smallest number possible for evaluating a
-polynomial[^1].
+polynomial.[^1]
 
 Upon closer examination of the intermediate results of
 Formula \ref{eq:polynomial-evaluation-horner-example-calculation},
@@ -169,11 +169,19 @@ evaluation, and formalize it in
 [Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language))
 by first representing a polynomial as a list of integers,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b polynomial_notation.hs %}
+{% highlight haskell linenos %}
+type Polynomial = [Int]
+{% endhighlight %}
 
 for which we define the procedure,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_eval_acc.hs %}
+{% highlight haskell linenos %}
+hornersPolyEvalAcc :: Polynomial -> Int -> Int -> Int
+hornersPolyEvalAcc cs x a = case cs of
+  [] -> a
+  (c:cs') -> let a' = c + x * a
+             in hornersPolyEvalAcc cs' x a'
+{% endhighlight %}
 
 which takes a polynomial, `cs`, corresponding to $$a_i$$, an integer,
 `x`, corresponding to $$k$$, and an accumulator, `a`, corresponding to
@@ -182,7 +190,10 @@ final value of the accumulator (result), `a`, in the base case, and
 multiplies `a` by `x` for each recursive call and adds the coefficient
 `c`. Lastly, we define a wrapper procedure,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_eval.hs %}
+{% highlight haskell linenos %}
+hornersPolyEval :: Polynomial -> Int -> Int
+hornersPolyEval cs x = hornersPolyEvalAcc cs x 0
+{% endhighlight %}
 
 which initializes the accumulator to `0`. As a result, we now can evaluate the
 example polynomial of Formula
@@ -324,13 +335,24 @@ $$r$$, at the bottom row of the table.
 We formalize the tabular representation in
 Formula \ref{eq:horner-div-abstract} as the following procedure,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_div_acc.hs %}
+{% highlight haskell linenos %}
+hornersPolyDivAcc :: Polynomial -> Int -> Int -> Polynomial
+hornersPolyDivAcc cs x a = case cs of
+  [] -> []
+  (c:cs') -> let a' = c + x * a
+              in a' : (hornersPolyDivAcc cs' x a')
+{% endhighlight %}
 
 which performs the exact same substitution scheme as in `hornersPolyEvalAcc`,
 except that it also aggregates the intermediate results and adds them to the
 result polynomial. Likewise, we define a wrapper function,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_div.hs %}
+{% highlight haskell linenos %}
+hornersPolyDiv :: Polynomial -> Int -> Polynomial
+hornersPolyDiv cs x = case cs of
+  [] -> []
+  (c:cs') -> c : (hornersPolyDivAcc cs' x c)
+{% endhighlight %}
 
 which sets the initial accumulator to the first coefficient and adds
 it to the result polynomial. Now, if we wanted to divide our initial
@@ -352,19 +374,26 @@ such, we note that the last element in the result polynomial of
 `hornersPolyDiv` is equal to the result of `hornersPolyEval` when
 given the same input,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_eval_eq_horners_poly_div.hs %}
+{% highlight haskell linenos %}
+∀ (cs : Polynomial) (x : Int),
+  hornersPolyEval cs x == last $ hornersPolyDiv cs x
+{% endhighlight %}
 
 Proving the relation requires us to first prove a similar equivalence relation
 between the underlying procedures `hornersPolyEvalAcc` and `hornersPolyDivAcc`,
 parameterized over the accumulator,
 
-{% gist dragonwasrobot/aef03c9a8aa7ceaf309b horners_poly_eval_acc_eq_horners_poly_div_acc.hs %}
+{% highlight haskell linenos %}
+∀ (cs' : Polynomial) (c x a : Int),
+  hornersPolyEvalAcc (c:cs') x a ==
+  let a' = c + x * a
+  in last $ hornersPolyDivAcc cs' x a'
+{% endhighlight %}
 
 The equivalence can be proved by first proving the underlying theorem, using
 structural induction on the polynomial, `cs'`, followed by case analysis on the
-polynomial, `cs`, in the original theorem.[^4] Incidentally, the theorem
-`horners_poly_eval_eq_horners_poly_div` also proves an implementation-specific
-version of the
+polynomial, `cs`, in the original theorem.[^4] Incidentally, the above theorem
+also proves an implementation-specific version of the
 [polynomial remainder theorem](https://en.wikipedia.org/wiki/Polynomial_remainder_theorem).
 
 ### 5. Conclusion

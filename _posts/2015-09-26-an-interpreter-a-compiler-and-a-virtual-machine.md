@@ -45,11 +45,24 @@ by stating that a program consists of an expression, `e`, which can either be:
 
 The above description yields the following grammar:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 grammar.txt %}
+```
+e ::= Lit n
+    | Plus e e
+    | Mult e e
+```
 
 which we in turn can translate into an `Inductive` type in Coq:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 arithmetic_expression.v %}
+{% highlight coq linenos %}
+Inductive arithmetic_expression : Type :=
+  | Lit : nat -> arithmetic_expression
+  | Plus : arithmetic_expression ->
+           arithmetic_expression ->
+           arithmetic_expression
+  | Mult : arithmetic_expression ->
+           arithmetic_expression ->
+           arithmetic_expression.
+{% endhighlight %}
 
 Here, we state that any instance of the type `arithmetic_expression` is either a
 literal, an addition expression, or a multiplication expression, as described
@@ -58,7 +71,9 @@ three constructors of the definition. For example, if we want to create an
 instance of the `arithmetic_expression` type that corresponds to the expression
 $$(2 + 1) \cdot 5$$, we write the following:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 language_example.v %}
+{% highlight coq linenos %}
+Compute (Mult (Plus (Lit 2) (Lit 1)) (Lit 5)).
+{% endhighlight %}
 
 where the keyword `Compute` is simply used to evaluate the expression. Note that
 we have not yet computed the result of the expression, as we have not yet
@@ -84,7 +99,14 @@ arithmetic language are pretty straight forward:
 
 If we translate the description above into Coq, we get the following `Fixpoint`:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 interpret.v %}
+{% highlight coq linenos %}
+Fixpoint interpret (e : arithmetic_expression) : nat :=
+  match e with
+    | Lit n => n
+    | Plus e1 e2 => (interpret e1) + (interpret e2)
+    | Mult e1 e2 => (interpret e1) * (interpret e2)
+  end.
+{% endhighlight %}
 
 Here, the `interpret` function pattern matches on the structure of the
 arithmetic expression, `e`, and recursively evaluates its sub-expressions. If we
@@ -92,7 +114,10 @@ want to evaluate the expression $$(2 \cdot 5) \cdot (1 + 3)$$, we first
 translate it into the `arithmetic_expression` language and then pass it to the
 `interpret` function:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 interpret_example.v %}
+{% highlight coq linenos %}
+Compute (interpret (Mult (Mult (Lit 2) (Lit 5))
+                         (Plus (Lit 1) (Lit 3)))).
+{% endhighlight %}
 
 When evaluated, the above expression yields the result `40 : nat` as expected.
 Thus, we have now implemented an interpreter -- in six lines of code -- which can
@@ -108,15 +133,24 @@ construct a minimal
 [stack machine](https://en.wikipedia.org/wiki/Stack_machine) with the following
 three bytecode instructions:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 bytecode_instruction.v %}
+{% highlight coq linenos %}
+Inductive bytecode_instruction : Type :=
+  | PUSH : nat -> bytecode_instruction
+  | ADD : bytecode_instruction
+  | MUL : bytecode_instruction.
+{% endhighlight %}
 
 Furthermore, we define a bytecode program to be a list of byte code instructions:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 bytecode_program.v %}
+{% highlight coq linenos %}
+Definition bytecode_program := list bytecode_instruction.
+{% endhighlight %}
 
 and the data stack of our virtual machine to be a list of natural numbers:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 data_stack.v %}
+{% highlight coq linenos %}
+Definition data_stack := list nat.
+{% endhighlight %}
 
 With these three definitions taken care of, we move on to define the semantics
 of the three byte code instructions and translate them into a corresponding
@@ -130,12 +164,27 @@ result in the function `execute_bytecode_instruction`, which takes a
 capturing the effect of evaluating a `bytecode_instruction` with respect to a
 given `data_stack`:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_instruction.v %}
+{% highlight coq linenos %}
+Fixpoint execute_bytecode_instruction
+         (s : data_stack)
+         (bc : bytecode_instruction) : data_stack :=
+  match bc, s with
+    | PUSH n, s' => n :: s'
+    | ADD, nil => nil
+    | ADD, n :: nil => n :: nil
+    | ADD, n1 :: n2 :: s' => n1 + n2 :: s'
+    | MUL, nil => nil
+    | MUL, n :: nil => n :: nil
+    | MUL, n1 :: n2 :: s' => n1 * n2 :: s'
+  end.
+{% endhighlight %}
 
 An example application of `execute_bytecode_instruction` multiplies the two
 elements on top of the stack `[5,3,2]`[^1]:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_example.v %}
+{% highlight coq linenos %}
+Compute (execute_bytecode_instruction (5 :: 3 :: 2 :: nil) MUL).
+{% endhighlight %}
 
 and returns the resulting stack `[15,2]`.
 
@@ -144,12 +193,24 @@ The last step we need, in order to finish our virtual machine, is to wrap the
 and runs it on an initial data stack. This can be achieved by simply traversing
 the list of bytecode instructions and executing them one-by-one, like so:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_program.v %}
+{% highlight coq linenos %}
+Fixpoint execute_bytecode_program
+         (s : data_stack) (bcp : bytecode_program) : data_stack :=
+  match bcp, s with
+    | nil, s' => s'
+    | bci :: bcp', s' =>
+      execute_bytecode_program (execute_bytecode_instruction s' bci)
+                               bcp'
+  end.
+{% endhighlight %}
 
 Now we can execute a whole bytecode program on our virtual stack machine by
 calling `execute_bytecode_program` with a `bytecode_program` and a `data_stack`:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 execute_bytecode_program_example.v %}
+{% highlight coq linenos %}
+Compute (execute_bytecode_program nil
+  (PUSH 2 :: PUSH 3 :: ADD :: PUSH 5 :: MUL :: PUSH 1 :: nil)).
+{% endhighlight %}
 
 If we step through the execution of the above program, the major steps are as
 follows:
@@ -188,18 +249,29 @@ turn these into bytecode instructions:
 
 This brings us to the following definition of our compiler:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 compile.v %}
+{% highlight coq linenos %}
+Fixpoint compile (e : arithmetic_expression) : bytecode_program :=
+  match e with
+    | Lit n => PUSH n :: nil
+    | Plus e1 e2 => (compile e2) ++ (compile e1) ++ (ADD :: nil)
+    | Mult e1 e2 => (compile e2) ++ (compile e1) ++ (MUL :: nil)
+  end.
+{% endhighlight %}
 
 which takes an `arithmetic_expression` as its input and produces a
 `bytecode_program` as its output. If we want to compile an
 `arithmetic_expression` corresponding to $$5 + (3 \cdot 2)$$, we pass it to
 `compile` like so:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 compile_example.v %}
+{% highlight coq linenos %}
+Compute (compile (Plus (Lit 5) (Mult (Lit 3) (Lit 2)))).
+{% endhighlight %}
 
 which results in the following `bytecode_program` output:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 compile_example_output.v %}
+{% highlight coq linenos %}
+[PUSH 2, PUSH 3, MUL, PUSH 5, ADD].
+{% endhighlight %}
 
 Note that because we are working with a stack machine, the outputted program
 both flattens and reverses the compiled expression.
@@ -209,9 +281,11 @@ equivalence relation between **interpretation of an arithmetic expression** and
 **compilation of an arithmetic expression followed by execution of the
 compiled bytecode program**:
 
-{% gist dragonwasrobot/d46acd3d1f697c9c0030 equivalence_example.v %}
-
-The proof of the above equivalence relation is the topic of a future blog post.
+{% highlight coq linenos %}
+Compute let e := Plus (Lit 5) (Mult (Lit 3) (Lit 2))
+        in (interpret e :: nil,
+            execute_bytecode_program nil (compile e)).
+{% endhighlight %}
 
 ### 6. Conclusion
 
@@ -220,9 +294,11 @@ virtual machine for a small arithmetic language. Furthermore, we have also shown
 how the two types of evaluation relate to each other.
 
 Lastly, the language has been implemented in the Coq Proof Assistant such that
-we can later proof an equivalence relation between **interpretation of an
-arithmetic expression** and **compilation followed by execution of an arithmetic
-expression**.
+we can prove an equivalence relation between **interpretation of an arithmetic
+expression** and **compilation followed by execution of an arithmetic
+expression**, which is exactly the topic of the [next blog post]({% post_url
+2015-10-16-equivalence-proof-of-interpretation-and-compilation-followed-by-execution
+%}).
 
 [^1]: We use the notation `[1,2,3]` and `(1 :: 2 :: 3 :: nil)` interchangeably
     to denote the content of a `list` in Coq.

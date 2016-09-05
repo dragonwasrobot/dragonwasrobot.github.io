@@ -49,13 +49,21 @@ constructor that takes one argument, a `nat`, and returns a `nat`. Once again,
 what we are really saying is that the successor of any natural number is itself
 a natural number, which gives us the following definition:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_def.v %}
+{% highlight coq linenos %}
+Inductive nat : Type :=
+| O : nat
+| S : nat -> nat.
+{% endhighlight %}
 
 We can instantiate types like `nat` using the `Compute` keyword followed by the
 constructor. For example, if we wanted to create `nat`s corresponding to the
 natural numbers 0, 1, and 2, it would look like this:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_def_example.v %}
+{% highlight coq linenos %}
+Compute O.
+Compute (S O).
+Compute (S (S O)).
+{% endhighlight %}
 
 Notice the nice onion-like structure where we add another layer of `S` for each
 time we increment the value of a natural number. As we will see in the next
@@ -75,7 +83,13 @@ argument, `n`. If `n` is `O` we return the second argument `m`, otherwise `n`
 must be the successor of another natural number `n'`, so we peel a successor
 layer off `n` and apply it to the result of adding `n'` and `m`:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus.v %}
+{% highlight coq linenos %}
+Fixpoint plus (n m : nat) : nat :=
+  match n with
+    | O => m
+    | S n' => S (plus n' m)
+  end.
+{% endhighlight %}
 
 The intuition behind this recursive function is to take two onion-shaped natural
 numbers, peel off one layer of the first number, add it to the second number,
@@ -88,7 +102,14 @@ number: by applying `O` or `S`.
 If we want to add two natural numbers, we can use the `Compute` keyword again
 like so:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_example.v %}
+{% highlight coq linenos %}
+Compute (plus O (S O)).
+(* ==> S O *)
+Compute (plus (S (S O)) (S O)).
+(* ==> S (S (S O)) *)
+Compute (plus (S (S O)) (S (S (S O)))).
+(* ==> S (S (S (S (S O))))) *)
+{% endhighlight %}
 
 where `(* ... *)` is simply a Coq comment that we use to show the expected
 output of our computations.
@@ -99,7 +120,10 @@ plus, `+`. We do this by writing the `Notation` keyword followed by a string
 describing the intended notation, the function call corresponding to the
 notation, and a precedence level:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_notation.v %}
+{% highlight coq linenos %}
+Notation "x + y" := (plus x y) (at level 50, left associativity).
+Compute ((S (S O)) + (S O)). (* ==> S (S (S O)) *)
+{% endhighlight %}
 
 While we will not go into that much detail about custom notation, know that it
 can be a useful tool when we want to define our own
@@ -123,7 +147,19 @@ in the result of the inductive case pattern matching, `S n' => m + (mult n' m)`,
 we add the second argument `m` (notice the use of `+` rather than `plus`) to the
 result, instead of `S`.
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_mult.v %}
+{% highlight coq linenos %}
+Fixpoint mult (n m : nat) : nat :=
+  match n with
+    | O => O
+    | S n' => m + (mult n' m)
+  end.
+
+Compute (mult (S (S O)) O). (* ==> O *)
+Compute (mult (S (S O)) (S (S O))). (* ==> S (S (S (S O))) *)
+
+Notation "x * y" := (mult x y) (at level 40, left associativity).
+Compute ((S (S O)) * (S (S O))). (* ==> S (S (S (S O))) *)
+{% endhighlight %}
 
 Now that we have defined our natural number type, `nat`, and defined two functions
 that manipulate natural numbers, `plus` and `mult`, we are ready to start
@@ -140,12 +176,19 @@ all natural numbers (`forall` is a so-called
 `O + n = n`, simply states that zero plus a natural number is equal to that
 natural number:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_l_def.v %}
+{% highlight coq linenos %}
+Lemma plus_O_l :
+  forall (n : nat),
+    O + n = n.
+{% endhighlight %}
 
 The way we begin to prove our statement is by writing the keyword `Proof` which
 gives us the following content in our goal buffer:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_l_1.v %}
+{% highlight coq linenos %}
+============================
+forall n : nat, O + n = n
+{% endhighlight %}
 
 which says that we have to prove the conclusion `forall n : nat, O + n = n` (the
 stuff below the horizontal rule) and that we currently have no hypotheses (the
@@ -153,7 +196,11 @@ stuff above the horizontal rule). Now, if we write `intro n`, we instantiate the
 quantifier such that the `forall n : nat` disappears from our conclusion and is
 added as a hypothesis:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_l_2.v %}
+{% highlight coq linenos %}
+n : nat
+============================
+O + n = n
+{% endhighlight %}
 
 allowing us to better manipulate the statement in our conclusion. Having
 introduced our natural number `n`, we can apply a so-called unfold proof tactic,
@@ -161,7 +208,11 @@ introduced our natural number `n`, we can apply a so-called unfold proof tactic,
 conclusion. Since `plus O n` returns `n`, according to the definition of our
 `plus` function, we get:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_l_3.v %}
+{% highlight coq linenos %}
+n : nat
+===========================
+n = n
+{% endhighlight %}
 
 Now that the left- and right-hand side of the equality, `=`, in the conclusion
 are exactly the same, we can apply the `reflexivity` proof tactic, which proves
@@ -169,7 +220,13 @@ the current conclusion if the left- and right-hand side of an equality are
 trivially equivalent. To finish the proof we write the keyword `Qed`, and our
 final proof looks like this:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_l_proof.v %}
+{% highlight coq linenos %}
+Proof.
+  intro n.
+  unfold plus.
+  reflexivity.
+Qed.
+{% endhighlight %}
 
 Thus we have now proved our first lemma. Even better: just like we could
 reuse the structure of the definition of `plus`, when defining the `mult`
@@ -177,21 +234,41 @@ function, so can we reuse the proof structure of `plus_O_l`, when proving the
 equivalent property of mult, `mult_O_l`, which says that for all natural
 numbers, zero times a natural number is zero:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_mult_o_l.v %}
+{% highlight coq linenos %}
+Lemma mult_O_l :
+  forall (n : nat),
+    O * n = O.
+Proof.
+  intro n.
+  unfold mult.
+  reflexivity.
+Qed.
+{% endhighlight %}
 
 Having proved that zero plus a natural number is equal to that same natural
 number, the next logical step is to prove that a natural number plus zero is
 also equal to that same natural number:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_r_def.v %}
+{% highlight coq linenos %}
+Lemma plus_O_r :
+  forall (n : nat),
+    n + O = n.
+{% endhighlight %}
 
 As before, we first `intro n` to remove the `forall` quantifier:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_r_1.v %}
+{% highlight coq linenos %}
+============================
+forall n : nat, n + O = n
+{% endhighlight %}
 
 which gives us the intended conclusion `n + O = n`:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_r_2.v %}
+{% highlight coq linenos %}
+n : nat
+============================
+n + O = n
+{% endhighlight %}
 
 However, now we cannot just unfold `plus` and be done with it. The reason for
 this is that in the implementation of `plus` we pattern matched on the first
@@ -204,22 +281,34 @@ basic idea behind structural induction (on natural numbers) is the following:
 - If we can prove that some property, `P`, holds for the base case, `O`, written
   `P O`, and
 - we can prove that the property holds for the inductive case, `S n'`, if we
-  assume that it already holds `n'`, called the induction hypothesis and written
-  `forall (n' : nat), P n' -> P (S n')`, then
-- the property holds for all natural numbers, written `forall n : nat, P n`.
+  assume that it already holds `n'`, called the induction hypothesis, written
+  `forall (n' : nat), P n' -> P (S n')`,
+- then the property holds for all natural numbers, written `forall n : nat, P
+  n`.
 
 In practice, we do this with the command `induction n`, which tells Coq to do
 induction on the natural number `n`. What happens then is that we get two
 subgoals we have to prove: a base case, `O + O = O`, and an inductive case `S
 n' + O = S n'`:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_r_3.v %}
+{% highlight coq linenos %}
+============================
+O + O = O
+
+subgoal 2 (ID 19) is:
+ S n' + O = S n'
+{% endhighlight %}
 
 In order to prove the base case,`O + O = O`, we can again use the definition of
 `plus`, as the first argument is `O`, and do `unfold plus` followed by
 `reflexivity`, leaving us with the inductive case:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_r_4.v %}
+{% highlight coq linenos %}
+n' : nat
+IH_n' : n' + O = n'
+============================
+S n' + O = S n'
+{% endhighlight %}
 
 Here, we notice a new addition to our hypotheses: the induction hypothesis,
 `IH_n': n' + O = n'`, which lets us assume that the property we are trying to
@@ -229,7 +318,12 @@ definition of `plus`, we actually know what the result of applying `plus` on `S
 n'` and some `m` is: `S n' => S (plus n' m)`. Thus, we can again unfold `plus`
 giving us:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_r_5.v %}
+{% highlight coq linenos %}
+n' : nat
+IH_n' : n' + O = n'
+============================
+S (n' + O) = S n'
+{% endhighlight %}
 
 Our conclusion now contains the statement `(n' + O)`, corresponding to the
 left-hand side of our induction hypothesis, `IH_n'`. This allows us to do a
@@ -238,7 +332,12 @@ the expression in our conclusion corresponding to the expression found on the
 left-hand side of the equality in `IH_n'` with the right-hand side of the
 equality in `IH_n'`:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_r_6.v %}
+{% highlight coq linenos %}
+n' : nat
+IH_n' : n' + O = n'
+============================
+S n' = S n'
+{% endhighlight %}
 
 We have now reached a point where the left-hand and right-hand side of the
 equality in the conclusion are trivially equivalent. Thus, we can again use
@@ -246,7 +345,21 @@ equality in the conclusion are trivially equivalent. Thus, we can again use
 same natural number, is done. The code corresponding to the proof outlined above
 looks like so:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_plus_o_r_proof.v %}
+{% highlight coq linenos %}
+Proof.
+  intro n.
+  induction n as [ | n' IH_n' ].
+
+  (* case: n = O *)
+  unfold plus.
+  reflexivity.
+
+  (* case: n = S n' *)
+  unfold plus; fold plus.
+  rewrite -> IH_n'.
+  reflexivity.
+Qed.
+{% endhighlight %}
 
 with the addition of `as [ | n' IH_n' ]` in the `induction` proof step, which is
 some extra syntax used to properly name the natural number and induction
@@ -262,7 +375,25 @@ Having proved that a natural number plus zero is equal to that same natural
 number, we can use the exact same approach to prove that a natural number
 multiplied by zero is equal to zero:
 
-{% gist dragonwasrobot/6d530110a5413b073d22 nat_mult_o_r.v %}
+{% highlight coq linenos %}
+Lemma mult_O_r :
+  forall (n : nat),
+    n * O = O.
+Proof.
+  intro n.
+  induction n as [ | n' IH_n' ].
+
+  (* case: n = O *)
+  unfold mult.
+  reflexivity.
+
+  (* case: n = S n' *)
+  unfold mult; fold mult.
+  rewrite -> plus_O_l.
+  rewrite -> IH_n'.
+  reflexivity.
+Qed.
+{% endhighlight %}
 
 The only difference in the proof script for `mult` is the extra proof step
 `rewrite -> plus_O_l`, which demonstrates how we can use our already proved

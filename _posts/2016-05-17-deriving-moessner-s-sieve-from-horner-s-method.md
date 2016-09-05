@@ -71,11 +71,19 @@ $$
 We call this construction a Horner block and formalize it by first defining a
 `Block` to be a `List` of `Polynomials`,
 
-{% gist dragonwasrobot/6574804d8ff9509509d19665670f0813 block.hs %}
+{% highlight haskell linenos %}
+type Block = [Polynomial]
+{% endhighlight %}
 
 which we then use in the definition of the following procedure,
 
-{% gist dragonwasrobot/6574804d8ff9509509d19665670f0813 create_horner_block_acc.hs %}
+{% highlight haskell linenos %}
+createHornerBlockAcc :: Polynomial -> Int -> Int -> Block
+createHornerBlockAcc cs x n
+  | n == 0 = []
+  | n  > 0 = let cs' = init $ hornersPolyDiv cs x
+             in cs' : createHornerBlockAcc cs' x (n - 1)
+{% endhighlight %}
 
 which performs the repeated application of Horner's method for polynomial
 division, `hornersPolyDiv`, while removing the last entry of each intermediate
@@ -86,7 +94,13 @@ made. However, we note that there exists an extra base case in Formula
 \ref{eq:horner-block-example}, as no value is dropped from the initial
 `Polynomial` in the Horner block. Hence, we define a wrapper function,
 
-{% gist dragonwasrobot/6574804d8ff9509509d19665670f0813 create_horner_block.hs %}
+{% highlight haskell linenos %}
+createHornerBlock :: Polynomial -> Int -> Int -> Block
+createHornerBlock cs x n
+  | n == 0 = []
+  | n  > 0 = let cs' = hornersPolyDiv cs x
+             in cs' : createHornerBlockAcc cs' x (n - 1)
+{% endhighlight %}
 
 which performs a single division without removing the last entry, followed by a
 call to `createHornerBlockAcc`. Thus, we can obtain the Taylor polynomial of a
@@ -362,7 +376,14 @@ previous block in order to create the next, as made explicit in Formula
 state an equivalence relation between `createTriangleVertically` and
 `createHornerBlock`,
 
-{% gist dragonwasrobot/6574804d8ff9509509d19665670f0813 create_horner_block_acc_eq_create_triangle_vertically.hs %}
+{% highlight haskell linenos %}
+∀ (r : Int) (σ : Stream),
+  let k = 1
+  in hypotenuse $
+     createHornerBlockAcc (take (S r) σ) k r ==
+     hypotenuse $
+     createTriangleVertically (take (S r) $ repeat 0) (take (S r) σ)
+{% endhighlight %}
 
 where we use the prefix of streams, `(take (S r) σ)`, instead of lists to
 directly capture the relation between the length of the input tuples/polynomial

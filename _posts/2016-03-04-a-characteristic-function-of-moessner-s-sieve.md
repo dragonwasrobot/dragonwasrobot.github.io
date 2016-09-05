@@ -92,12 +92,12 @@ and $$t$$ is a variable. Using the initial Moessner triangle of Figure
 expansion,
 
 $$
+\definecolor{solarizedgray}{RGB}{88,110,117}
 \begin{equation*}
-  \color{black} (1 + t)^4 \color{gray} = \color{black} 1
-  \color{gray} \cdot t^4 + \color{black} 4 \color{gray} \cdot t^3 +
-  \color{black} 6 \color{gray} \cdot t^2 + \color{black} 4
-  \color{gray} \cdot t^1 + \color{black} 1 \color{gray} \cdot t^0
-  \color{black} ,
+  \color{solarizedgray} (1 + t)^4 \color{lightgray} = \color{solarizedgray} 1 \color{lightgray}
+  \cdot t^4 + \color{solarizedgray} 4 \color{lightgray} \cdot t^3 + \color{solarizedgray} 6
+  \color{lightgray} \cdot t^2 + \color{solarizedgray} 4 \color{lightgray} \cdot t^1 +
+  \color{solarizedgray} 1 \color{lightgray}\cdot t^0 \color{solarizedgray},
 \end{equation*}
 $$
 
@@ -107,13 +107,13 @@ enumerates the actual terms of the binomial expansion when $$t = 1$$,
 
 $$
 \begin{align*}
-  \color{black} (1 + 1)^4 &= 1 \cdot 1^4 \color{gray} +
-  \color{black} 4 \cdot 1^3 \color{gray} + \color{black} 6 \cdot 1^2
-  \color{gray} + \color{black} 4 \cdot 1^1 \color{gray} +
-  \color{black} 1 \cdot 1^0 \\
-  \color{black} &= 1 \color{gray} + \color{black} 4 \color{gray} +
-  \color{black} 6 \color{gray} + \color{black} 4 \color{gray} +
-  \color{black} 1,
+  \color{solarizedgray} (1 + 1)^4 &= \color{solarizedgray} 1 \cdot 1^4 \color{lightgray} +
+  \color{solarizedgray} 4 \cdot 1^3 \color{lightgray} + \color{solarizedgray} 6 \cdot 1^2
+  \color{lightgray} + \color{solarizedgray} 4 \cdot 1^1 \color{lightgray} +
+  \color{solarizedgray} 1 \cdot 1^0 \\
+  \color{solarizedgray} &= \color{solarizedgray} 1 \color{lightgray} + \color{solarizedgray} 4 \color{lightgray} +
+  \color{solarizedgray} 6 \color{lightgray} + \color{solarizedgray} 4 \color{lightgray} +
+  \color{solarizedgray} 1,
 \end{align*}
 $$
 
@@ -123,14 +123,14 @@ index, starting from $$t = 1$$. As it turns out, letting $$t = 2$$,
 $$
 \begin{align}
   \tag{2}\label{eq:binomial-expansion-example}
-  \color{black} (1 + 2)^4 &= 1 \cdot 2^4 \color{gray} +
-  \color{black} 4 \cdot 2^3 \color{gray} +
-  \color{black} 6 \cdot 2^2 \color{gray} +
-  \color{black} 4 \cdot 2^1 \color{gray} +
-  \color{black} 1 \cdot 2^0\\
-  \color{black} &=
-  16 \color{gray} + \color{black} 32 \color{gray} + \color{black} 24
-  \color{gray} + \color{black} 8 \color{gray} + \color{black} 1
+  \color{solarizedgray} (1 + 2)^4 &= \color{solarizedgray} 1 \cdot 2^4 \color{lightgray} +
+  \color{solarizedgray} 4 \cdot 2^3 \color{lightgray} +
+  \color{solarizedgray} 6 \cdot 2^2 \color{lightgray} +
+  \color{solarizedgray} 4 \cdot 2^1 \color{lightgray} +
+  \color{solarizedgray} 1 \cdot 2^0\\
+  \color{solarizedgray} &=
+  \color{solarizedgray} 16 \color{lightgray} + \color{solarizedgray} 32 \color{lightgray} + \color{solarizedgray} 24
+  \color{lightgray} + \color{solarizedgray} 8 \color{lightgray} + \color{solarizedgray} 1
 \end{align}
 $$
 
@@ -141,16 +141,16 @@ property holds for all triangles,
 
 $$
 \begin{align*}
-  \color{black} (1 + 3)^4 &=
-  1 \cdot 3^4 \color{gray} + \color{black}
-  4 \cdot 3^3 \color{gray} + \color{black}
-  6 \cdot 3^2 \color{gray} + \color{black}
-  4 \cdot 3^1 \color{gray} + \color{black}
+  \color{solarizedgray} (1 + 3)^4 &=
+  \color{solarizedgray} 1 \cdot 3^4 \color{lightgray} + \color{solarizedgray}
+  4 \cdot 3^3 \color{lightgray} + \color{solarizedgray}
+  6 \cdot 3^2 \color{lightgray} + \color{solarizedgray}
+  4 \cdot 3^1 \color{lightgray} + \color{solarizedgray}
   1 \cdot 3^0\\
-  \color{black} &=
-  81 \color{gray} + \color{black} 108 \color{gray} +
-  \color{black} 54 \color{gray} + \color{black} 12 \color{gray} +
-  \color{black} 1,
+  \color{solarizedgray} &=
+  \color{solarizedgray} 81 \color{lightgray} + \color{solarizedgray} 108 \color{lightgray} +
+  \color{solarizedgray} 54 \color{lightgray} + \color{solarizedgray} 12 \color{lightgray} +
+  \color{solarizedgray} 1,
 \end{align*}
 $$
 
@@ -165,41 +165,41 @@ $$
 \begin{equation}
   \tag{3}\label{eq:partial-sums-hpyotenuses}
 
-  \color{gray}
+  \color{lightgray}
 
   \begin{array}{*{5}{r}}
-    1 & 1 & 1 & 1 & \color{black}{1} \\
-    1 & 2 & 3 & \color{black}{4} &   \\
-    1 & 3 & \color{black}{6} &   &   \\
-    1 & \color{black}{4} &   &   &   \\
-    \color{black}{1} &   &   &   &
+    1 & 1 & 1 & 1 & \color{solarizedgray}{1} \\
+    1 & 2 & 3 & \color{solarizedgray}{4} &   \\
+    1 & 3 & \color{solarizedgray}{6} &   &   \\
+    1 & \color{solarizedgray}{4} &   &   &   \\
+    \color{solarizedgray}{1} &   &   &   &
   \end{array}
 
-  \color{black}{\Rightarrow}
+  \color{solarizedgray}{\Rightarrow}
 
-  \color{gray}
+  \color{lightgray}
 
   \begin{array}{*{5}{r}}
-    \color{black}{1} &  1 &  1 & 1 & \color{black}{1} \\
-    \color{black}{5} &  6 &  7 & \color{black}{8} &   \\
-    \color{black}{11} & 17 & \color{black}{24} &   &   \\
-    \color{black}{15} & \color{black}{32} &    &   &   \\
-    \color{black}{16} &    &    &   &
+    \color{solarizedgray}{1} &  1 &  1 & 1 & \color{solarizedgray}{1} \\
+    \color{solarizedgray}{5} &  6 &  7 & \color{solarizedgray}{8} &   \\
+    \color{solarizedgray}{11} & 17 & \color{solarizedgray}{24} &   &   \\
+    \color{solarizedgray}{15} & \color{solarizedgray}{32} &    &   &   \\
+    \color{solarizedgray}{16} &    &    &   &
   \end{array}
 
-  \color{black}{\Rightarrow}
+  \color{solarizedgray}{\Rightarrow}
 
-  \color{gray}
+  \color{lightgray}
 
   \begin{array}{*{5}{r}}
-    \color{black}{1} &   1 &  1 &  1 & 1 \\
-    \color{black}{9} &  10 & 11 & 12 &   \\
-    \color{black}{33} &  43 & 54 &    &   \\
-    \color{black}{65} & 108 &    &    &   \\
-    \color{black}{81} &     &    &    &
+    \color{solarizedgray}{1} &   1 &  1 &  1 & 1 \\
+    \color{solarizedgray}{9} &  10 & 11 & 12 &   \\
+    \color{solarizedgray}{33} &  43 & 54 &    &   \\
+    \color{solarizedgray}{65} & 108 &    &    &   \\
+    \color{solarizedgray}{81} &     &    &    &
   \end{array}
 
-  \color{black}
+  \color{solarizedgray}
 
 \end{equation}
 $$
@@ -256,7 +256,14 @@ $$
 where we use the same row-and-entry indexing scheme, `n` and `k`, as in the case
 of the `binomialCoefficient` function,
 
-{% gist dragonwasrobot/1196321c6eb53268e94b858535e5f9a7 binomial_coefficient.hs %}
+{% highlight haskell linenos %}
+binomialCoefficient :: Int -> Int -> Int
+binomialCoefficient n k
+  | n < k = 0
+  | k == 0 = 1
+  | n > 0 && k > 0 = binomialCoefficient (n - 1) k +
+                     binomialCoefficient (n - 1) (k - 1)
+{% endhighlight %}
 
 Just like the `binomialCoefficient` function, we have four combinations of `n`
 and `k` being either equal to `0` or greater than `0`, where the only difference
@@ -275,13 +282,24 @@ Combining the logic of the four cases of `n` and `k`, yields the following
 binomial coefficients-like characteristic function of the Pascal-like Moessner
 triangle,
 
-{% gist dragonwasrobot/1196321c6eb53268e94b858535e5f9a7 moessner_entry.hs %}
+{% highlight haskell linenos %}
+moessnerEntry :: Int -> Int -> Int -> Int -> Int
+moessnerEntry r t n k
+  | n < k = 0
+  | k == n = 1
+  | n > 0 && k == 0 = monomial r t n + moessnerEntry r t (n - 1) 0
+  | n > 0 && k > 0 = moessnerEntry r t (n - 1) k +
+                     moessnerEntry r t (n - 1) (k - 1)
+{% endhighlight %}
 
 indexed using the row and column indices `n` and `k`, where `r` denotes the rank
 of the triangle and `t` the triangle index. The `monomial` function, used
 in the new case of `n > 0 && k == 0`, is defined as,
 
-{% gist dragonwasrobot/1196321c6eb53268e94b858535e5f9a7 monomial.hs %}
+{% highlight haskell linenos %}
+monomial :: Int -> Int -> Int -> Int
+monomial r t n = (binomialCoefficient r n) * (t ^ n)
+{% endhighlight %}
 
 and computes a single monomial of the binomial expansion $${(1 + t)}^r$$, when
 given a rank, `r`, a triangle index, `t`, and an index, `n`, of a monomial in
@@ -291,14 +309,18 @@ To illustrate this, we compute the fourth element from the right in the binomial
 expansion of Formula \ref{eq:binomial-expansion-example}, $$4 \cdot 2^3$$, by
 letting $$r = 4$$, $$t = 2$$, and $$n = 3$$, yielding the expected result:
 
-{% gist dragonwasrobot/1196321c6eb53268e94b858535e5f9a7 monomial_example.hs %}
+{% highlight haskell linenos %}
+monomial 4 2 3 == 32
+{% endhighlight %}
 
 Likewise, if we want to compute the third entry of the fourth row of the second
 triangle in Figure \ref{char-eq:moessner-triangles-pascal-like}, having value
 $$7$$, we let $$r = 4$$, $$t = 1$$, $$n = 3$$, and $$k = 2$$, and pass them to
 `moessnerEntry`:
 
-{% gist dragonwasrobot/1196321c6eb53268e94b858535e5f9a7 moessner_entry_example.hs %}
+{% highlight haskell linenos %}
+moessnerEntry 4 1 3 2 == 7
+{% endhighlight %}
 
 Thus, the above results demonstrate the correctness of our first formalization
 of a characteristic function of Moessner's sieve.
@@ -317,12 +339,18 @@ which means the relation between `moessnerEntry` and its rotated counterpart,
 `rotatedMoessnerEntry`, is identical to the existing relation between
 `binomialCoefficient` and `rotatedBinomialCoefficient`,
 
-{% gist dragonwasrobot/1196321c6eb53268e94b858535e5f9a7 rotated_binomial_coefficient_transformation.hs %}
+{% highlight haskell linenos %}
+rotatedBinomialCoefficient :: Int -> Int -> Int
+rotatedBinomialCoefficient r c = binomialCoefficient (r + c) c
+{% endhighlight %}
 
 Thus, we can simply define the rotated version of `moessnerEntry` using the same
 transformation as above,
 
-{% gist dragonwasrobot/1196321c6eb53268e94b858535e5f9a7 rotated_moessner_entry_transformation.hs %}
+{% highlight haskell linenos %}
+rotatedMoessnerEntry :: Int -> Int -> Int -> Int -> Int
+rotatedMoessnerEntry n t r c = moessnerEntry n t (r + c) c
+{% endhighlight %}
 
 where `n` denotes the rank, `t` the triangle index, `r` the row index, and `c`
 the column index.
@@ -330,14 +358,29 @@ the column index.
 Similarly, we can also define `rotatedMoessnerEntry` by reusing the
 formalization we lifted from the rotated Pascal's triangle,
 
-{% gist dragonwasrobot/1196321c6eb53268e94b858535e5f9a7 rotated_binomial_coefficient_formalization.hs %}
+{% highlight haskell linenos %}
+rotatedBinomialCoefficient :: Int -> Int -> Int
+rotatedBinomialCoefficient r c
+  | r == 0 = 1
+  | c == 0 = 1
+  | r > 0 && c > 0 = rotatedBinomialCoefficient (r - 1) c +
+                     rotatedBinomialCoefficient r (c - 1)
+{% endhighlight %}
 
 and observe that the only case that has changed is the case where `c == 0`,
 corresponding to the case `n > 0 && k == 0` we discussed in the previous
 section, i.e. the first column of each Moessner triangle. This brings us to the
 following formalization of `rotatedMoessnerEntry`,
 
-{% gist dragonwasrobot/1196321c6eb53268e94b858535e5f9a7 rotated_moessner_entry_formalization.hs %}
+{% highlight haskell linenos %}
+rotatedMoessnerEntry :: Int -> Int -> Int -> Int -> Int
+rotatedMoessnerEntry n t r c
+  | r == 0 = 1
+  | c == 0 = monomial n t (r + c) +
+             rotatedMoessnerEntry n t (r - 1) 0
+  | r > 0 && c > 0 = rotatedMoessnerEntry n t (r - 1) c +
+                     rotatedMoessnerEntry n t r (c - 1)
+{% endhighlight %}
 
 which we can use to calculate the entries of the triangles in Figure
 \ref{char-eq:sieve-rank-six-three-triangles}, without first having to compute the
@@ -349,7 +392,9 @@ triangle in Figure \ref{char-eq:sieve-rank-six-three-triangles}, which we do by
 passing the following values $$n = 4$$, $$t = 2$$, $$r = 3$$, and $$c = 1$$ to
 our characteristic function of Moessner's sieve,
 
-{% gist dragonwasrobot/1196321c6eb53268e94b858535e5f9a7 rotated_moessner_entry_example.hs %}
+{% highlight haskell linenos %}
+rotatedMoessnerEntry 4 2 3 1 == 108
+{% endhighlight %}
 
 and obtain the expected result of $$108$$.
 

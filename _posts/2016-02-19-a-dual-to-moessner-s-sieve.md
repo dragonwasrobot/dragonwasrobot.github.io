@@ -98,7 +98,10 @@ $$
 and describe it as a set of *tuples*, marked by $$[ \dots ]$$. We can then
 translate the above representation into the following types in Haskell,
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f types.hs %}
+{% highlight haskell linenos %}
+type Tuple = [Int]
+type Triangle = [Tuple]
+{% endhighlight %}
 
 which we use for the remainder of this post, when referring to Moessner
 triangles in the context of Moessner's sieve. Lastly, we say that a Moessner
@@ -172,13 +175,22 @@ symmetry with respect to this procedure. By reducing Moessner's sieve to this
 core operation, which works for both rows and columns, we can translate our
 description above into the following Haskell function,
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f make_tuple.hs %}
+{% highlight haskell linenos %}
+makeTuple :: Tuple -> Int -> Tuple
+makeTuple xs a = case xs of
+  [] -> []
+  (x:[]) -> []
+  (x:xs') -> let a' = x + a
+             in a' : (makeTuple xs' a')
+{% endhighlight %}
 
 which takes a `Tuple`, `xs`, and a number, `a`, as the accumulator, and returns
 a new `Tuple` as described. With this definition, the above example calculation
 then becomes,
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f make_tuple_example.hs %}
+{% highlight haskell linenos %}
+makeTuple [1,2,3,4] 0 == [1,3,6]
+{% endhighlight %}
 
 Having defined a procedure for creating tuples, corresponding to individual rows
 or columns in a Moessner triangle, we move on to define procedures for creating
@@ -224,13 +236,27 @@ one element or less left in `ys` and the result of the procedure is a list of
 horizontal `Tuples` representing a `Triangle`. Translating the above description
 into Haskell, we obtain the following definition,
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f create_triangle_horizontally.hs %}
+{% highlight haskell linenos %}
+createTriangleHorizontally :: Tuple -> Tuple -> Triangle
+createTriangleHorizontally xs ys = case ys of
+  [] -> []
+  (y:[]) -> []
+  (y:ys') -> let xs' = makeTuple xs y
+             in xs' : (createTriangleHorizontally xs' ys')
+{% endhighlight %}
 
 which creates a Moessner triangle in a row by row fashion. For the second
 procedure, `createTriangleVertically`, we simply switch the roles of the `xs`
 and `ys` described above, and obtain the dual procedure,
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f create_triangle_vertically.hs %}
+{% highlight haskell linenos %}
+createTriangleVertically :: Tuple -> Tuple -> Triangle
+createTriangleVertically xs ys = case xs of
+  [] -> []
+  (x:[]) -> []
+  (x:xs') -> let ys' = makeTuple ys x
+             in ys' : (createTriangleVertically xs' ys')
+{% endhighlight %}
 
 creating the same `Triangle` represented as a list of vertical `Tuples`. The
 duality of `createTriangleHorizontally` and `createTriangleVertically` is now
@@ -241,11 +267,25 @@ To illustrate this, if we give the seed tuples in Figure
 \ref{eq:moessner-triangle-with-tuples} as arguments to our two new definitions, we
 obtain the following calculations,
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f create_triangle_horizontally_example.hs %}
+{% highlight haskell linenos %}
+createTriangleHorizontally [1,1,1,1,1] [0,0,0,0,0] == [
+  [1,2,3,4],
+  [1,3,6],
+  [1,4],
+  [1]
+]
+{% endhighlight %}
 
 and
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f create_triangle_vertically_example.hs %}
+{% highlight haskell linenos %}
+createTriangleVertically [1,1,1,1,1] [0,0,0,0,0] == [
+  [1,1,1,1],
+  [2,3,4],
+  [3,6],
+  [4]
+]
+{% endhighlight %}
 
 where the results correspond to enumerating the entries of the result Moessner
 triangle in Figure \ref{eq:moessner-triangle-with-tuples} either row by row or
@@ -388,7 +428,12 @@ implemented in a straightforward fashion by going through each `Tuple`, `t`, of
 a `Triangle`, `ts`, and aggregating the last values of each `Tuple` into a new
 `Tuple`, which is then returned,
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f hypotenuse.hs %}
+{% highlight haskell linenos %}
+hypotenuse :: Triangle -> Tuple
+hypotenuse ts = case ts of
+  [] -> []
+  (t:ts') -> (last t) : (hypotenuse ts')
+{% endhighlight %}
 
 For example, if we feed the triangle,
 
@@ -408,7 +453,11 @@ to `hypotenuse`, we get the tuple, $$[16, 32, 24, 8, 1]$$, when reading it
 column by column, which we can also express with the following piece of Haskell
 code,
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f hypotenuse_example.hs %}
+{% highlight haskell linenos %}
+hypotenuse $
+  createTriangleVertically [0,0,0,0,0,0] [1,4,6,4,1,0] ==
+  [16,32,24,8,1]
+{% endhighlight %}
 
 All we have left to do now is to compose `createTriangleVertically` and
 `hypotenuse` into a procedure which creates a list of `Triangles`, which is the
@@ -426,7 +475,14 @@ unchanged, as these are always $$0$$s. For each triangle created, we decrement
 the value of `n` and terminate the procedure when `n == 0`. This description
 brings us to the following definition,
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f create_triangles_vertically.hs %}
+{% highlight haskell linenos %}
+createTrianglesVertically :: Int -> Tuple -> Tuple -> [Triangle]
+createTrianglesVertically n xs ys
+  | n == 0 = []
+  | n  > 0 = let ts  = createTriangleVertically xs ys
+                 ys' = reverse $ 0 : hypotenuse ts
+             in ts : createTrianglesVertically (n - 1) xs ys'
+{% endhighlight %}
 
 which is exactly the dual of Moessner's sieve that we wanted, since it creates a
 sequence of Moessner triangles by constructing one triangle at a time -- in a
@@ -471,7 +527,31 @@ where we have explicitly added the seed tuples of each triangle. Finally, we can
 now emulate this dual sieve by passing the same arguments to
 `createTrianglesVertically` and obtain,
 
-{% gist dragonwasrobot/8ab3b43b882e384de07f40b62d54056f create_triangles_vertically_example.hs %}
+{% highlight haskell linenos %}
+createTrianglesVertically 3 [0,0,0,0,0,0] [1,0,0,0,0,0] == [
+  [
+    [1,1,1,1,1],
+    [1,2,3,4],
+    [1,3,6],
+    [1,4],
+    [1]
+  ],
+  [
+    [1,5,11,15,16],
+    [1,6,17,32],
+    [1,7,24],
+    [1,8],
+    [1]
+  ],
+  [
+    [1,9,33,65,81],
+    [1,10,43,108],
+    [1,11,54],
+    [1,12],
+    [1]
+  ]
+]
+{% endhighlight %}
 
 which lists the entries of the three Moessner triangles in the sieve above, each
 of which is enumerated column by column.

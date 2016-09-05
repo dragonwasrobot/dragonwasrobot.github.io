@@ -195,17 +195,29 @@ inductive case of the pattern matching, `xs = x : xs'`, we add the accumulator,
 `a`, to `(t + 1) * x` and cons the intermediate result with the result of the
 recursive call on `xs'`. Putting these pieces together we get the procedure,
 
-{% gist dragonwasrobot/05d0a1babc25508d61a3dfc62caeef5d upgrade_seed_tuple_aux.hs %}
+{% highlight haskell linenos %}
+upgradeSeedTupleAux :: Int -> Int -> Tuple -> Tuple
+upgradeSeedTupleAux t a xs = case xs of
+  [] -> [a]
+  (x:xs') -> (t + 1) * x + a : upgradeSeedTupleAux t x xs'
+{% endhighlight %}
 
 for which we also define a wrapper function that initializes the accumulator to`0`,
 
-{% gist dragonwasrobot/05d0a1babc25508d61a3dfc62caeef5d upgrade_seed_tuple.hs %}
+{% highlight haskell linenos %}
+upgradeSeedTuple :: Int -> Tuple -> Tuple
+upgradeSeedTuple t xs = upgradeSeedTupleAux t 0 xs
+{% endhighlight %}
 
 such that the three examples in Figure
 \ref{eq:substitute-moessner-triangle-one}-\ref{eq:substitute-moessner-triangle-three}
 can be expressed as the propositions,
 
-{% gist dragonwasrobot/05d0a1babc25508d61a3dfc62caeef5d upgrade_seed_tuple_example.hs %}
+{% highlight haskell linenos %}
+(upgradeSeedTuple 0 [1,3,3,1]) == [1,4,6,4,1]
+(upgradeSeedTuple 1 [8,12,6,1]) == [16,32,24,8,1]
+(upgradeSeedTuple 2 [27,27,9,1]) == [81,108,54,12,1]
+{% endhighlight %}
 
 Having defined `upgradeSeedTuple` and demonstrated its use, we take a step back
 and investigate the dual of this section. Specifically, our next step is to show
@@ -415,21 +427,24 @@ $$
     1 & 1 & 1 & 1 & 1 & &
     1 & 1 & 1 & 1 & 1 \\
 
-    1 &  2 &  3 &   4 &  \color{gray}{5} & &
-    5 &  6 &  7 &   8 &  \color{gray}{9} & &
-    9 & 10 & 11 &  12 & \color{gray}{13} \\
+    1 &  2 &  3 &   4 &  \color{lightgray}{5} & &
+    5 &  6 &  7 &   8 &  \color{lightgray}{9} & &
+    9 & 10 & 11 &  12 & \color{lightgray}{13} \\
 
-     1 &   3 &   6 & \color{gray}{10} & \color{gray}{15} & &
-    11 &  17 &  24 & \color{gray}{33} & \color{gray}{42} & &
-    33 &  43 &  54 & \color{gray}{66} & \color{gray}{76} \\
+     1 &   3 &   6 & \color{lightgray}{10} & \color{lightgray}{15} & &
+    11 &  17 &  24 & \color{lightgray}{33} & \color{lightgray}{42} & &
+    33 &  43 &  54 & \color{lightgray}{66} & \color{lightgray}{76} \\
 
-     1 &   4 &  \color{gray}{10} &  \color{gray}{20} &  \color{gray}{35} & &
-    15 &  32 &  \color{gray}{55} &  \color{gray}{88} & \color{gray}{130} & &
-    65 & 108 & \color{gray}{162} & \color{gray}{192} & \color{gray}{268} \\
+     1 &   4 &  \color{lightgray}{10} &  \color{lightgray}{20} &  \color{lightgray}{35} & &
+    15 &  32 &  \color{lightgray}{55} &  \color{lightgray}{88} & \color{lightgray}{130} & &
+    65 & 108 & \color{lightgray}{162} & \color{lightgray}{192} & \color{lightgray}{268} \\
 
-     1 &   \color{gray}{5} &  \color{gray}{15} &  \color{gray}{35} &  \color{gray}{70} & &
-    16 &  \color{gray}{48} & \color{gray}{103} & \color{gray}{191} & \color{gray}{321} & &
-    81 & \color{gray}{189} & \color{gray}{351} & \color{gray}{543} & \color{gray}{811}
+     1 & \color{lightgray}{5} &  \color{lightgray}{15} &
+     \color{lightgray}{35} &  \color{lightgray}{70} & &
+    16 & \color{lightgray}{48} & \color{lightgray}{103} &
+    \color{lightgray}{191} & \color{lightgray}{321} & &
+    81 & \color{lightgray}{189} & \color{lightgray}{351} &
+    \color{lightgray}{543} & \color{lightgray}{811}
   \end{array}
 \end{equation*}
 $$
@@ -446,7 +461,12 @@ of rank $$r + 1$$ in terms of the same entry in the triangle of rank $$r$$ along
 with the entry above it (northern neighbor), which works for all columns of a
 Moessner triangle. We can define this decomposition rule in the following way,
 
-{% gist dragonwasrobot/05d0a1babc25508d61a3dfc62caeef5d rank_decompose_by_row.hs %}
+{% highlight haskell linenos %}
+∀ (n r c t : Int),
+  rotatedMoessnerEntry (n  + 1) (r + 1) c t ==
+  t * rotatedMoessnerEntry n r c t +
+  rotatedMoessnerEntry n (r + 1) c t
+{% endhighlight %}
 
 which states that the entry in the $$(r + 1)$$th row and $$c$$th column of a
 Moessner triangle of rank $$n + 1$$, is the sum of $$t$$ times the entry at the
@@ -455,11 +475,21 @@ row and $$c$$th column of rank $$n$$. This rule captures the examples we have
 shown above, and it can be proved by nested induction on the row and column
 indices, `r` and `c`. From this rule follows the two Pascal-like rule,
 
-{% gist dragonwasrobot/05d0a1babc25508d61a3dfc62caeef5d rank_decompose_Pascal_like_c_eq_0.hs %}
+{% highlight haskell linenos %}
+∀ (n r t : Int),
+  rotatedMoessnerEntry (n + 1) (r + 1) 0 t ==
+  (t + 1) * rotatedMoessnerEntry n r 0 t +
+  monomial t n (r + 1)
+{% endhighlight %}
 
 and
 
-{% gist dragonwasrobot/05d0a1babc25508d61a3dfc62caeef5d rank_decompose_Pascal_like_c_gt_0.hs %}
+{% highlight haskell linenos %}
+∀ (r c n t : Int),
+  rotatedMoessnerEntry (n + 1) (r + 1) (c + 1) t ==
+  (t + 1) * rotatedMoessnerEntry n r (c + 1) t +
+  rotatedMoessnerEntry n (r + 1) c t
+{% endhighlight %}
 
 which captures the two cases where the column index, `c`, is either `0` or
 greater than `0`.
