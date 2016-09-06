@@ -24,9 +24,8 @@ of changes:
 - **No more gists:** The
   [Github Gists](https://help.github.com/articles/about-gists/) are gone in
   favour of
-  [Jekyll's own highlight tag](https://jekyllrb.com/docs/templates/#code-snippet-highlighting) -
-  using [Pygments](http://pygments.org/) - as this significantly reduces the
-  recompilation time when editing a blog post. Furthermore, this also aligns
-  neatly with the new Solarized color theme.
+  [Jekyll's own highlight tag](https://jekyllrb.com/docs/templates/#code-snippet-highlighting),
+  as this significantly reduces the recompilation time when editing a blog
+  post. Furthermore, this also aligns neatly with the new Solarized color theme.
 - **More space:** The space between lines has also been increased to further
   improve legibility.

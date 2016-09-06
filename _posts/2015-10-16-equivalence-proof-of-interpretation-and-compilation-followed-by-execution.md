@@ -67,7 +67,8 @@ we get the following candidate:
 {% highlight coq linenos %}
 Theorem equality_of_interpret_and_compile_candidate :
   forall (e : arithmetic_expression),
-    (interpret e) :: nil = execute_bytecode_program nil (compile e).
+    (interpret e) :: nil =
+    execute_bytecode_program nil (compile e).
 {% endhighlight %}
 
 However, since we just established earlier that the state of the `data_stack`
@@ -78,7 +79,8 @@ following revised version of the theorem:
 {% highlight coq linenos %}
 Theorem equality_of_interpret_and_compile :
   forall (e : arithmetic_expression) (s : data_stack),
-    (interpret e) :: s = execute_bytecode_program s (compile e).
+    (interpret e) :: s =
+    execute_bytecode_program s (compile e).
 {% endhighlight %}
 
 which perfectly captures the equivalence relation between interpretation and
@@ -302,7 +304,7 @@ like so:
 Lemma execute_bytecode_program_is_associative
   : forall (p1 p2 : bytecode_program) (s : data_stack),
     execute_bytecode_program s (p1 ++ p2) =
-    execute_bytecode_program (execute_bytecode_program s p1) p2 .
+    execute_bytecode_program (execute_bytecode_program s p1) p2.
 Proof.
   intro p1.
   induction p1 as [ | p1' p1s' IH_p1s' ].

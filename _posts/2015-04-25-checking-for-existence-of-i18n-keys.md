@@ -20,7 +20,7 @@ languages.
 
 Let us say that we have the following nested `i18n` folder in our grails project:
 
-```
+{% highlight python %}
 i18n/
   |-- default/
         |-- default_da.properties
@@ -31,7 +31,7 @@ i18n/
   |-- roles/
         |-- roles_da.properties
         |-- roles.properties
-```
+{% endhighlight %}
 
 where we have divided our keys in to three categories: `default`, `messages`, and
 `roles`. For each of these categories we include an English version and a Danish
@@ -77,7 +77,7 @@ class I18NIntegrationSpec extends IntegrationSpec {
 
   def "Test that all keys exist for all languages"() {
     given:
-    messageSource.metaClass.getAllMessageKeys = { Locale locale ->
+    messageSource.metaClass.getAllMessageKeys = {Locale locale ->
       Set applicationKeys = delegate
                                 .getMergedProperties(locale)
                                 .getProperties()

@@ -382,7 +382,8 @@ state an equivalence relation between `createTriangleVertically` and
   in hypotenuse $
      createHornerBlockAcc (take (S r) σ) k r ==
      hypotenuse $
-     createTriangleVertically (take (S r) $ repeat 0) (take (S r) σ)
+     createTriangleVertically (take (S r) $ repeat 0)
+                              (take (S r) σ)
 {% endhighlight %}
 
 where we use the prefix of streams, `(take (S r) σ)`, instead of lists to

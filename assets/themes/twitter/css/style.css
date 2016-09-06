@@ -105,10 +105,19 @@ body {
 code, pre {
   background-color: #eee8d5;
   border: 1px solid #cbc6d5;
-  color: #dc322f;
   font-family: "Cutive Mono";
   font-weight: 900;
   font-size: 14px;
+  color: #dc322f;
+}
+
+pre {
+  padding: 0.5em;
+  margin: 0;
+}
+
+td pre {
+  border: none;
 }
 
 a {

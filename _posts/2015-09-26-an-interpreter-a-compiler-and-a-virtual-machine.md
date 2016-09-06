@@ -45,11 +45,11 @@ by stating that a program consists of an expression, `e`, which can either be:
 
 The above description yields the following grammar:
 
-```
+{% highlight python %}
 e ::= Lit n
     | Plus e e
     | Mult e e
-```
+{% endhighlight %}
 
 which we in turn can translate into an `Inductive` type in Coq:
 
@@ -199,8 +199,9 @@ Fixpoint execute_bytecode_program
   match bcp, s with
     | nil, s' => s'
     | bci :: bcp', s' =>
-      execute_bytecode_program (execute_bytecode_instruction s' bci)
-                               bcp'
+      execute_bytecode_program
+          (execute_bytecode_instruction s' bci)
+          bcp'
   end.
 {% endhighlight %}
 

@@ -120,7 +120,7 @@ plus, `+`. We do this by writing the `Notation` keyword followed by a string
 describing the intended notation, the function call corresponding to the
 notation, and a precedence level:
 
-{% highlight coq linenos %}
+{%highlight haskell %}
 Notation "x + y" := (plus x y) (at level 50, left associativity).
 Compute ((S (S O)) + (S O)). (* ==> S (S (S O)) *)
 {% endhighlight %}
@@ -147,7 +147,7 @@ in the result of the inductive case pattern matching, `S n' => m + (mult n' m)`,
 we add the second argument `m` (notice the use of `+` rather than `plus`) to the
 result, instead of `S`.
 
-{% highlight coq linenos %}
+{% highlight haskell linenos %}
 Fixpoint mult (n m : nat) : nat :=
   match n with
     | O => O

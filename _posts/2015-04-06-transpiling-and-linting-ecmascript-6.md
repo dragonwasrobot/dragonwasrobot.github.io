@@ -25,7 +25,7 @@ Our example project will be a simple
 [brainfuck](http://en.wikipedia.org/wiki/Brainfuck) tokenizer, with the
 following basic project structure:
 
-```
+{% highlight python %}
 .eslintrc
 Gruntfile.js
 package.json
@@ -33,7 +33,7 @@ dist/
   |-- app.js
 src/
   |-- tokenizer.js
-```
+{% endhighlight %}
 
 where:
 
@@ -277,7 +277,12 @@ var tokenize = function tokenize(program) {
     });
 };
 
-var brainfuckProgram = '\n    ++++++++\n    [\n        >++++\n        [\n            >++\n            >+++\n            >+++\n            >+\n            <<<<-\n        ]\n        >+\n        >+\n        >-\n        >>+\n        [<]\n        <-\n    ]\n\n    >>.\n    >---.\n    +++++++..+++.\n    >>.\n    <-.\n    <.\n    +++.------.--------.\n    >>+.\n    >++.\n    ';
+var brainfuckProgram = '\n    ++++++++\n    [\n        >++++\n
+    [\n            >++\n            >+++\n            >+++\n
+    >+\n            <<<<-\n        ]\n        >+\n        >+\n
+    >-\n        >>+\n        [<]\n        <-\n    ]\n\n    >>.\n
+    >---.\n    +++++++..+++.\n    >>.\n    <-.\n    <.\n
+    +++.------.--------.\n    >>+.\n    >++.\n    ';
 
 console.log(tokenize(brainfuckProgram));
 //# sourceMappingURL=app.js.map
