@@ -116,6 +116,10 @@ pre {
   margin: 0;
 }
 
+pre.lineno {
+  color: #586e75;
+}
+
 td pre {
   border: none;
 }
