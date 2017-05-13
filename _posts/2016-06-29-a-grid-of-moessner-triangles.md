@@ -202,7 +202,8 @@ upgradeSeedTupleAux t a xs = case xs of
   (x:xs') -> (t + 1) * x + a : upgradeSeedTupleAux t x xs'
 {% endhighlight %}
 
-for which we also define a wrapper function that initializes the accumulator to`0`,
+for which we also define a wrapper function that initializes the accumulator to
+`0`,
 
 {% highlight haskell linenos %}
 upgradeSeedTuple :: Int -> Tuple -> Tuple
