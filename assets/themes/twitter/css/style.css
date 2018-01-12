@@ -129,7 +129,8 @@ a {
 }
 
 .navbar-inner {
-  background-image: -webkit-linear-gradient(top, #fdf6e3, #eee8d5);
+  background-image: -webkit-linear-gradient(top, #fdf6e3, #fdf6e3);
+  box-shadow: none;
 }
 
 .navbar .nav>li>a {
