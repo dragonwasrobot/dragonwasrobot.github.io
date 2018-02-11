@@ -9,8 +9,8 @@ tags: [Haskell, Moessner's sieve]
 #### prerequisites: The post [An introduction to Moessner's theorem and Moessner's sieve]({% post_url
 2016-01-12-an-introduction-to-moessner-s-theorem-and-moessner-s-sieve %})
 
-*“The poet doesn't invent.”*<br/>
-*“He listens.”*<br/>
+*“The poet doesn't invent.*<br/>
+*He listens.”*<br/>
 -- Jean Cocteau<br/>
 
 ### 1. Introduction

@@ -6,8 +6,8 @@ description: "In this post, we introduce an improved theme for the blog."
 tags: [Color, Typography]
 ---
 
-*Yellow is a light which has been dampened by darkness;*<br/>
-*Blue is a darkness weakened by light.*<br/>
+*“Yellow is a light which has been dampened by darkness;*<br/>
+*Blue is a darkness weakened by light.”*<br/>
 -- Johann Wolfgang von Goethe, Zur Farbenlehre
 
 ### Blog improvements

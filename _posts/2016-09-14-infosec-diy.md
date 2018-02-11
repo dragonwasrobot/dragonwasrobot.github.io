@@ -13,9 +13,9 @@ tags: [Privacy, InfoSec]
 > InfoSec "home improvements" I've done in order to protect my data and minimize
 > the amount of data I share with third parties.
 
-*If you are not paying for it,*<br/>
+*“If you are not paying for it,*<br/>
 *you're not the customer;*<br/>
-*you're the product being sold.*<br/>
+*you're the product being sold.”*<br/>
 -- Andrew Lewis
 
 ### Introduction
