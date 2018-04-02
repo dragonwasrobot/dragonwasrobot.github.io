@@ -4,7 +4,7 @@ title: "Enumerated types<br/> in Kotlin, Elixir, and Elm"
 category: programming
 description: "In this post, we define the concept of enumerated types with
 examples in Kotlin, Elixir, and Elm."
-tags: [Elm, Elixir, Kotlin, Types, enumerated types,
+tags: [Elm, Elixir, Kotlin, Types, Enumerated types,
 Functional programming, Programming languages]
 ---
 

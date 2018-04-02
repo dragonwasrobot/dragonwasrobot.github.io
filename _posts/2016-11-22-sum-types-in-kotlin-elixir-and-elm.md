@@ -4,7 +4,7 @@ title: "Sum types in Kotlin, Elixir, and Elm"
 category: programming
 description: "In this post, we define the concept of sum types with
 examples in Elm, Elixir, and Kotlin."
-tags: [Elm, Elixir, Kotlin, Types, sum types,
+tags: [Elm, Elixir, Kotlin, Types, Sum types,
 Functional programming, Programming languages]
 ---
 
