@@ -7,8 +7,8 @@ group: navigation
 
 ### The What
 
-A blog mostly about functional programming, some mathematics, their
-intersection, and a few other things.
+A blog mostly about functional programming, some mathematics, and their
+intersection.
 
 ### The Who
 
