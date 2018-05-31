@@ -21,13 +21,11 @@ the [Coq Proof Assistant](http://en.wikipedia.org/wiki/Coq) (or simply, Coq)
 with the guiding example of natural numbers and their basic arithmetic
 operators.
 
- While I could go on and on about the
-[The Curry-Howard isomorphism](http://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence)
-and [Dependent types](http://en.wikipedia.org/wiki/Dependent_type) - which would
-mostly likely just trigger a lot of
-[mathematical anxiety](http://en.wikipedia.org/wiki/Mathematical_anxiety) for
-people not used to doing math - I would much rather spend the remainder of this
-post doing something much more fun: writing code and doing proofs. So by the end
+Rather than give a theoretical introduction to
+the
+[The Curry-Howard isomorphism](http://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence) and
+[Dependent types](http://en.wikipedia.org/wiki/Dependent_type), this post will
+have a hands-on approach and focus on writing code and doing proofs. By the end
 of this small tutorial we will have done the following:
 
 - Defined a type in Coq corresponding to the natural numbers,
