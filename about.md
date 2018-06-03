@@ -30,5 +30,5 @@ As a tool for reflection and sharing.
 
 The name of the blog, *dragonwasrobot*, is from the ending credit of a poorly
 translated version of
-[Wonderboy in Monsterland](http://en.wikipedia.org/wiki/Wonder_Boy_in_Monster_Land)
+[Wonderboy in Monsterland](https://en.wikipedia.org/wiki/Wonder_Boy_in_Monster_Land)
 which I used to play on my old Amiga 500 as a kid.
