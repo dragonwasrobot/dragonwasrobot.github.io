@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "An interpreter, a compiler<br/> and a virtual machine"
-category: programming
+category: mathematics
 description: "In this post, we implement an interpreter, a compiler and a
 virtual machine."
 tags: [Coq, Programming Languages, Interpreters, Compilers, Virtual Machines]

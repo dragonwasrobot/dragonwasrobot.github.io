@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Meta post: new color scheme<br/> and improved legibility"
+title: "New color scheme<br/>and improved legibility"
 category: meta
 description: "In this post, we introduce an improved theme for the blog."
-tags: [Color, Typography]
+tags: []
 ---
 
 *“Yellow is a light which has been dampened by darkness;*<br/>

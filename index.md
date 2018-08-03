@@ -10,13 +10,21 @@ tagline: <br/>Will manipulate state machines for food
 *Writing blends all three of them.*<br/>
 -- Mason Cooley
 
-### Blog posts
-<ul>
-  {% for post in site.posts %}
-    <li>
-      {{ post.date | date: "%-d %B, %Y" }}:
-      <a href="{{ post.url }}">{{ post.title | replace:'<br/>',' ' }}</a>
-      <p>{{ post.description }}</p>
-    </li>
+{% assign sorted_categories = site.categories | sort %}
+{% for category in sorted_categories %}
+  <h3 id="{{ category[0] }}-ref">{{ category[0] | join: "/" | capitalize }}</h3>
+
+  <ul>
+  {% for posts in category %}
+    {% for post in posts %}
+      {% if post.title != null %}
+      <li>
+        {{ post.date | date: "%-d %B, %Y" }}:
+        <a href="{{ post.url }}">{{ post.title | replace: '<br/>', ' ' }}</a>
+        <p>{{ post.description }}</p>
+      </li>
+      {% endif %}
+    {% endfor %}
   {% endfor %}
-</ul>
+  </ul>
+{% endfor %}

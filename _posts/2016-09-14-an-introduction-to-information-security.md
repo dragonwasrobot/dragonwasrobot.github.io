@@ -1,7 +1,7 @@
 ---
 layout: post
-title: "InfoSec DIY"
-category: infosec
+title: "An introduction<br/> to Information Security"
+category: tools and techniques
 description: "In this post, we discuss a selection of tools and actions to
 improve your privacy."
 tags: [Privacy, InfoSec]
@@ -21,18 +21,18 @@ tags: [Privacy, InfoSec]
 ### Introduction
 
 I recently went to an event in which the speaker talked about the data we each
-share with Facebook and what characteristics Facebook infers about us. However,
-as the discussion opened up, a lot of wider questions about ad blocking,
-malware, encrypted instant messaging, etc. started popping up. As I happened to
-be one of the few tech people at the event, I ended up answering a fair share of
-these diverse InfoSec related questions - as best as I could.
+share with Facebook and what characteristics Facebook infers about us users. As
+the discussion opened up, a lot of wider questions about ad blocking, malware,
+encrypted instant messaging, etc. started popping up. As I happened to be one of
+the few tech people at the event, I ended up answering a fair share of these
+diverse InfoSec related questions - as best as I could.
 
 After the event, it really dawned on me that a lot of non-tech people are just
 as concerned with the integrity of their data and the privacy of their
-communications, but have a hard time finding an entry point into the complex
-world of InfoSec. So, in order to do my small part in improving the state of
-personal online privacy and security, here is a quick overview (or checklist) of
-the steps I've taken myself to do just that.
+communications, but have a hard time finding an entry point into the
+surprisingly complex world of InfoSec. So, in order to do my small part in
+improving the state of personal online privacy and security, here is a quick
+overview of the steps I've taken myself to do just that.
 
 ### Concepts
 

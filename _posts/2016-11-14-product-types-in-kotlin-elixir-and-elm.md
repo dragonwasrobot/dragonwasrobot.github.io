@@ -1,10 +1,10 @@
 ---
 layout: post
 title: "Product types in Kotlin, Elixir, and Elm"
-category: programming
+category: functional programming
 description: "In this post, we define the concept of product types with
 examples in Kotlin, Elixir, and Elm."
-tags: [Elm, Elixir, Kotlin, Types, Product types,
+tags: [Elm, Elixir, Kotlin, Types, Product types, Functional basics,
 Functional programming, Programming languages]
 ---
 
