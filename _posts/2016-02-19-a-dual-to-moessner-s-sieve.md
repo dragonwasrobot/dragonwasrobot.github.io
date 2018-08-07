@@ -11,7 +11,7 @@ tags: [Haskell, Moessner's sieve]
 
 *“The poet doesn't invent.*<br/>
 *He listens.”*<br/>
--- Jean Cocteau<br/>
+-- **Jean Cocteau**
 
 ### 1. Introduction
 

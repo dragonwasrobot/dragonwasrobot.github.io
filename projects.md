@@ -125,7 +125,7 @@ is my Master's thesis in Computer Science completed at Aarhus University, and
 done under the supervision of Olivier Danvy. The dissertation presents a new
 characterization of a mathematical procedure known as
 [*Moessner's Sieve*]({% post_url 2016-01-12-an-introduction-to-moessner-s-theorem-and-moessner-s-sieve %}),
-formulated in [Coq](https://coq.inria.fr/), along with a range of new
+formalized in [Coq](https://coq.inria.fr/), along with a range of new
 mathematical results.
 
 The dissertation was later published as an eBook by Aarhus University Library.

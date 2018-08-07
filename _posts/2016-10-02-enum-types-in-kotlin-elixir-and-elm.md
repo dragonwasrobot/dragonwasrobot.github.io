@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Enum types in Kotlin, Elixir, and Elm"
-category: functional programming
+category: functional-programming
 description: "In this post, we define the concept of enum types with
 examples in Kotlin, Elixir, and Elm."
 tags: [Elm, Elixir, Kotlin, Types, Enum types, Functional basics,

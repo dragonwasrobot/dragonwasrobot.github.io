@@ -12,7 +12,7 @@ tags: [Haskell, Moessner's sieve]
 *that the purpose of abstracting is not to be vague,*<br/>
 *but to create a new semantic level*<br/>
 *in which one can be absolutely precise”*<br/>
--- Edsger W. Dijkstra, 1972 (EWD340)<br/>
+-- **Edsger W. Dijkstra, 1972 (EWD340)**
 
 ### 1. Introduction
 

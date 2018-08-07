@@ -12,7 +12,7 @@ tags: [Moessner's sieve, Moessner's theorem, Long's theorem]
 *“One chord is fine.*<br/>
 *Two chords are pushing it.*<br/>
 *Three chords and you're into jazz.”*<br/>
--- Lou Reed
+-- **Lou Reed**
 
 ### 1. Introduction
 

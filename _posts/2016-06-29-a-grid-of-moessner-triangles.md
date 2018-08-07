@@ -11,7 +11,7 @@ tags: [Haskell, Moessner's sieve]
 
 *“The trick, William Potter,*<br/>
 *is not minding that it hurts.”*<br/>
--- Robert Bolt, Lawrence of Arabia
+-- **Robert Bolt, Lawrence of Arabia (1962)**
 
 ### 1. Introduction
 

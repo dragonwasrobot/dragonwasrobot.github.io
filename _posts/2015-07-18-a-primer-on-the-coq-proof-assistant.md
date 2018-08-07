@@ -11,7 +11,7 @@ tags: [Coq, Case analysis, Induction, Natural numbers, Arithmetic]
 
 *“Beware of bugs in the above code;*<br/>
 *I have only proved it correct, not tried it.”*<br/>
--- Donald Knuth
+-- **Donald Knuth**
 
 ### Introduction
 

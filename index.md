@@ -12,7 +12,7 @@ tagline: <br/>Will manipulate state machines for food
 
 {% assign sorted_categories = site.categories | sort %}
 {% for category in sorted_categories %}
-  <h3 id="{{ category[0] }}-ref">{{ category[0] | join: "/" | capitalize }}</h3>
+  <h3 id="{{ category[0] }}-ref">{{ category[0] | join: "/" | capitalize | replace: '-', ' ' }}</h3>
 
   <ul>
   {% for posts in category %}

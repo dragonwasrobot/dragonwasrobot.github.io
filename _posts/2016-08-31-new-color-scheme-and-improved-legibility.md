@@ -8,7 +8,7 @@ tags: []
 
 *“Yellow is a light which has been dampened by darkness;*<br/>
 *Blue is a darkness weakened by light.”*<br/>
--- Johann Wolfgang von Goethe, Zur Farbenlehre
+-- **Johann Wolfgang von Goethe, Zur Farbenlehre**
 
 ### Blog improvements
 

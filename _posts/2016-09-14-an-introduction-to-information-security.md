@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "An introduction<br/> to Information Security"
-category: tools and techniques
+category: tools-and-techniques
 description: "In this post, we discuss a selection of tools and actions to
 improve your privacy."
 tags: [Privacy, InfoSec]
@@ -16,7 +16,7 @@ tags: [Privacy, InfoSec]
 *“If you are not paying for it,*<br/>
 *you're not the customer;*<br/>
 *you're the product being sold.”*<br/>
--- Andrew Lewis
+-- **Andrew Lewis**
 
 ### Introduction
 
@@ -32,7 +32,7 @@ as concerned with the integrity of their data and the privacy of their
 communications, but have a hard time finding an entry point into the
 surprisingly complex world of InfoSec. So, in order to do my small part in
 improving the state of personal online privacy and security, here is a quick
-overview of the steps I've taken myself to do just that.
+overview of the steps I have taken myself to do just that.
 
 ### Concepts
 
@@ -212,7 +212,7 @@ Today, using a modern and secure browser is the first defense against malicious
 websites. However, browsers may also collect data about you thus invading your
 privacy.
 
-Personally, I've just switched to [Brave](https://www.brave.com/), which is an
+Personally, I have just switched to [Brave](https://www.brave.com/), which is an
 open source browser that blocks harmful advertisements, uses HTTPS for all
 connections and blocks tracking cookies and pixels. It is just as easy to use as
 Google Chrome or Firefox but has been designed with security and privacy in mind
@@ -227,8 +227,8 @@ on several occasions.
 Just as the browser can record your browsing history, so can your search engine
 record your search history. Generally, there are few alternatives to good old
 Google, but if you do not want Google snooping in your browsing history you can
-use [DuckDuckGo](https://duckduckgo.com/), which I've personally been using for
-the last few months, with very few hiccups.
+use [DuckDuckGo](https://duckduckgo.com/), which I have personally been using
+for the last few months, with very few hiccups.
 
 ### Passwords managers
 
@@ -277,11 +277,14 @@ to get more control of your privacy and security:
 - do as [Henry David Thoreau](https://en.wikipedia.org/wiki/Henry_David_Thoreau)
   and go live in a cabin in the woods.
 
-### Parting words
+### Conclusion
 
-If you feel that I did not cover any of the above topics in great enough detail,
-you can easily find more information using your search engine (DuckDuckGo) and a
-few well placed keywords in your search query.
+In this post, I have tried to cover the basics of what you as a private citizen
+can do to help keep your data private and secure without making any major
+sacrifices in terms of convenience. If you felt that I did not cover some of the
+above topics in great enough detail, you can easily find more information using
+your favorite search engine (DuckDuckGo) and a few well placed keywords in your
+search query.
 
 Before we leave, remember the following:
 

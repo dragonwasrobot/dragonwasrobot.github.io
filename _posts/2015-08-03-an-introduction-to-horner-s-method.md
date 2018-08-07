@@ -12,7 +12,7 @@ tags: [Haskell, Polynomial evaluation, Polynomial division, Horner's method, Moe
 *“What makes the desert beautiful,”*<br/>
 *said the little prince,*<br/>
 *“is that somewhere it hides a well...”*<br/>
--- Antoine de Saint-Expuéry, The Little Prince<br/>
+-- **Antoine de Saint-Expuéry, The Little Prince**
 
 ### 1. Introduction
 
