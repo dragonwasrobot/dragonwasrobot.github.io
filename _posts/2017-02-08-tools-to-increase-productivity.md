@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Helper tools for increasing productivity"
+title: "Tools to increase productivity"
 category: tools-and-techniques
 description: "In this post, we go through a set of tools for speeding up trivial
 tasks and cut out distractions."
@@ -17,27 +17,26 @@ productivity and stay more focused while working. One of the ways in which I
 have been trying to accomplish this, is by identifying trivial tasks that can be
 sped up, or made redundant, and sources of distraction that can be blocked.
 
-In this blog post, I go through the set of helper tools for macOS I use on a
-daily basis to either speed up trivial tasks by providing shortcuts, or cut out
+In this blog post, I go through the set of tools for macOS I use on a daily
+basis to either speed up trivial tasks by providing shortcuts, or cut out
 various kinds of distraction.
 
 ### Spectacle
 
-[Spectacle](https://www.spectacleapp.com/) is a helper tool that provides
-keyboard shortcuts for moving and resizing windows in macOS. Given that macOS is
+[Spectacle](https://www.spectacleapp.com/) is a tool that provides keyboard
+shortcuts for moving and resizing windows in macOS. Given that macOS is
 notoriously bad at rearranging and maximizing windows, this is a much needed
 tool that reduces these issues to simple keystrokes.
 
 ### Jitouch
 
-[Jitouch](http://www.jitouch.com/) is a helper tool that expands the set of
-multi-touch gestures for the magic trackpad on MacBooks. I have used the tool to
-make browsing the web easier using just the trackpad by using gestures for
-navigating between tabs, closing tabs and opening links in new tabs. I have also
-used its gestures for maximizing windows or filling either the left- or
-right-hand side of the display. Jitouch also provides gestures for opening
-custom applications, but this I prefer to do
-using Alfred.
+[Jitouch](http://www.jitouch.com/) is a tool that expands the set of multi-touch
+gestures for the magic trackpad on MacBooks. I have used the tool to make
+browsing the web easier using just the trackpad by using gestures for navigating
+between tabs, closing tabs and opening links in new tabs. I have also used its
+gestures for maximizing windows or filling either the left- or right-hand side
+of the display. Jitouch also provides gestures for opening custom applications,
+but this I prefer to do using Alfred.
 
 ### Alfred
 
@@ -62,8 +61,8 @@ quite as warm during the late evenings as *recommended colors*.
 
 ### Bartender
 
-[Bartender](https://www.macbartender.com/) is a helper tool that lets you
-organize the menu bar icons by hiding or rearranging them according to your
+[Bartender](https://www.macbartender.com/) is a tool that lets you organize the
+menu bar icons by hiding or rearranging them according to your
 tastes. Furthermore, it also adds keyboard shortcuts and allows you to choose
 whether the app icons should appear when the underlying application experiences
 some updated state. I have personally only used the app to hide all the noise in
@@ -103,5 +102,5 @@ blacklists your list of websites again after the 30 minutes has passed.
 
 ### Conclusion
 
-In this blog post I gone through the set of helper tools I use on a daily basis
-to speed up trivial tasks and cut out distractions.
+In this blog post I gone through the set of tools I use on a daily basis to
+speed up trivial tasks and cut out distractions.
