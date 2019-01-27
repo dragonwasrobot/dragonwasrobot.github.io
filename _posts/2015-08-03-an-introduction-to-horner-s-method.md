@@ -22,15 +22,15 @@ polynomial evaluation and polynomial division, and subsequently prove an
 equivalence relation between these two types of application.
 
 The blog post is structured as follows. In Section
-[2](#polynomial-evaluation-using-horners-method), we argue for the application
+[2](#2-polynomial-evaluation-using-horners-method), we argue for the application
 of Horner's method for polynomial evaluation, and subsequently derive its
 definition. Having covered polynomial evaluation, we then argue for the
 application of Horner's method for polynomial division and derive its definition
-in Section [3](#polynomial-division-using-horners-method). Lastly, we state and
+in Section [3](#3-polynomial-division-using-horners-method). Lastly, we state and
 prove an equivalence relation between the definition of polynomial evaluation
 and the definition of polynomial division using Horner's method in Section
-[4](#equivalence-of-the-two-horner-procedures). The blog post is concluded in
-Section [5](#conclusion).
+[4](#4-equivalence-of-the-two-horner-procedures). The blog post is concluded in
+Section [5](#5-conclusion).
 
 ### 2. Polynomial evaluation using Horner's method
 
@@ -169,13 +169,13 @@ evaluation, and formalize it in
 [Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language))
 by first representing a polynomial as a list of integers,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 type Polynomial = [Int]
 {% endhighlight %}
 
 for which we define the procedure,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 hornersPolyEvalAcc :: Polynomial -> Int -> Int -> Int
 hornersPolyEvalAcc cs x a = case cs of
   [] -> a
@@ -190,7 +190,7 @@ final value of the accumulator (result), `a`, in the base case, and
 multiplies `a` by `x` for each recursive call and adds the coefficient
 `c`. Lastly, we define a wrapper procedure,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 hornersPolyEval :: Polynomial -> Int -> Int
 hornersPolyEval cs x = hornersPolyEvalAcc cs x 0
 {% endhighlight %}
@@ -335,7 +335,7 @@ $$r$$, at the bottom row of the table.
 We formalize the tabular representation in
 Formula \ref{eq:horner-div-abstract} as the following procedure,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 hornersPolyDivAcc :: Polynomial -> Int -> Int -> Polynomial
 hornersPolyDivAcc cs x a = case cs of
   [] -> []
@@ -347,7 +347,7 @@ which performs the exact same substitution scheme as in `hornersPolyEvalAcc`,
 except that it also aggregates the intermediate results and adds them to the
 result polynomial. Likewise, we define a wrapper function,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 hornersPolyDiv :: Polynomial -> Int -> Polynomial
 hornersPolyDiv cs x = case cs of
   [] -> []
@@ -374,8 +374,8 @@ such, we note that the last element in the result polynomial of
 `hornersPolyDiv` is equal to the result of `hornersPolyEval` when
 given the same input,
 
-{% highlight haskell linenos %}
-∀ (cs : Polynomial) (x : Int),
+{% highlight coq %}
+forall (cs : Polynomial) (x : Int),
   hornersPolyEval cs x == last $ hornersPolyDiv cs x
 {% endhighlight %}
 
@@ -383,8 +383,8 @@ Proving the relation requires us to first prove a similar equivalence relation
 between the underlying procedures `hornersPolyEvalAcc` and `hornersPolyDivAcc`,
 parameterized over the accumulator,
 
-{% highlight haskell linenos %}
-∀ (cs' : Polynomial) (c x a : Int),
+{% highlight coq %}
+forall (cs' : Polynomial) (c x a : Int),
   hornersPolyEvalAcc (c:cs') x a ==
   let a' = c + x * a
   in last $ hornersPolyDivAcc cs' x a'

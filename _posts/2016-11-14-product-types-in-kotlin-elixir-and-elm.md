@@ -41,9 +41,9 @@ type, which compounds two float types, corresponding to an *x-* and a
 *y-coordinate*, into a new type. We can express this point type in our ML-like
 syntax as:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype point
-    = ( float * float ) (* x and y *)
+    = float * float (* x and y *)
 {% endhighlight %}
 
 where we declare `point` as a `datatype` consisting of two float values, the x-
@@ -53,7 +53,7 @@ a [tuple](https://en.wikipedia.org/wiki/Tuple) of two floats, e.g. `(3, 2)`. We
 can access the fields of such a tuple using pattern matching - sometimes also
 called destructuring:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 val p = (3, 2)
 val (x, y) = p
 x + y
@@ -73,9 +73,9 @@ corresponds to `y`. However, we can improve the situation by requiring that each
 field of a product type has to be assigned a name, which gives us the following
 new definition of the `point` type:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype point
-    = ( x of float * y of float )
+    = x of float * y of float
 {% endhighlight %}
 
 Any instance of the `point` type is now a tuple with named fields, e.g. `(x = 3,
@@ -88,7 +88,7 @@ we compute
 the [Euclidean distance](https://en.wikipedia.org/wiki/Euclidean_distance)
 between two points, `p` and `q`:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 fun euclidean_distance p q =
     sqrt(pow(q.x - p.x, 2) + pow(q.y - p.y, 2))
 {% endhighlight %}
@@ -105,21 +105,21 @@ shapes in terms of their corresponding mathematical definition, i.e. a rectangle
 has a *height* and *width*, a circle has a *radius*, and a triangle has a *base*
 and a *height*. In our ML-like syntax, we express this as follows:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype rectangle
-    = ( height of float * width of float )
+    = height of float * width of float
 
 datatype circle
-    = ( radius of float )
+    = radius of float
 
 datatype triangle
-    = ( base of float * height of float )
+    = base of float * height of float
 {% endhighlight %}
 
 For our example function, we want to compute the area of each of these three
 different shapes, so we have to implement corresponding area functions:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 fun rectangle_area (height, width) =
     height * width
 
@@ -135,7 +135,7 @@ the different types directly in the header of their corresponding area function,
 in order to make the definitions more concise. Alternatively, we could have
 chosen to access the fields of the product types without destructuring, e.g.
 
-{% highlight sml linenos %}
+{% highlight sml %}
 fun rectangle_area rectangle =
     rectangle.height * rectangle.width
 {% endhighlight %}
@@ -169,7 +169,7 @@ of `equals`, `toString`, and `copy`. Defining our product types, `Rectangle`,
 `Circle`, and `Triangle`, as data classes is now straightforward, as we just
 need to add the `data` keyword before the `class` keyword:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 data class Rectangle(val height: Float, val width: Float)
 data class Circle(val radius: Float)
 data class Triangle(val base: Float, val height: Float)
@@ -182,7 +182,7 @@ Implementing our three area functions is also rather straightforward, as each
 function takes an argument of their expected shape type and returns the
 calculated area of that type:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 fun rectangle_area(rectangle: Rectangle): Float {
     return rectangle.height * rectangle.width
 }
@@ -202,7 +202,7 @@ Kotlin's
 [destructuring declarations](https://kotlinlang.org/docs/reference/multi-declarations.html#destructuring-declarations) to
 do just that:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 fun rectangle_area(rectangle: Rectangle): Float {
     val (height, width) = rectangle
     return height * width
@@ -216,7 +216,7 @@ Finally, in order to test our code, we implement the `main` function which
 instantiates a variable of type `Rectangle` and prints the result of calling
 `rectangle_area` on it:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 fun main(args: Array<String>) {
     val rectangle = Rectangle(4.4, 5.8)
     println("Rectangle area: ${rectangle_area(rectangle)}!")
@@ -237,7 +237,7 @@ In order to define our different shape types in Elixir, we take a slightly
 different approach than in the case of the enum type, by encapsulating each of
 our types in a module named after the corresponding type:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 defmodule Rectangle do
   @type t :: %__MODULE__{height: float, width: float}
   defstruct [height: 0.0, width: 0.0]
@@ -257,7 +257,7 @@ both of type `float` and both with default value `0.0`.
 
 We define `Circle` and `Triangle` in a similar manner:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 defmodule Circle do
   @type t :: %__MODULE__{radius: float}
   defstruct [radius: 0.0]
@@ -274,7 +274,7 @@ We can now refer to the three product types as `Rectangle.t`, `Circle.t`, and
 given an argument of the corresponding shape type, returns the computed area of
 that shape:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 @spec rectangle_area(Rectangle.t) :: float
 def rectangle_area(%Rectangle{height: h, width: w}) do
   h * w
@@ -298,7 +298,7 @@ body of the function declaration.
 We test the code by instantiating a value of type `Rectangle.t` and pass it to
 its area function:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 rectangle = %Rectangle{height: 4.4, width: 5.8}
 IO.puts("Rectangle area: #{rectangle_area(rectangle)}!")
 # ==> "Rectangle area: 25.52!"
@@ -322,7 +322,7 @@ product type using the `type alias` keywords followed by listing each of the
 fields of the type, e.g. `height` and `width`, separated by `,` and encapsulated
 by `{...}`:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 type alias Rectangle
     = { height : Float, width : Float }
 
@@ -336,7 +336,7 @@ type alias Triangle
 As in the Elixir case, we can pattern match (or destructure) our product type
 arguments directly in the header of our function declarations:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 rectangleArea : Rectangle -> Float
 rectangleArea { height, width } =
     height * width
@@ -358,15 +358,15 @@ Once again, we implement the `main` function, in which we instantiate a value of
 type `Rectangle`, pass it to the `rectangleArea` function, and print it as a
 text DOM element:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 main =
   let
     rectangle = { height = 4.4, width = 5.8 }
   in
-    text <|
-        "Rectangle area: " ++
-        (toString <| rectangleArea <| rectangle) ++
-        "!"
+  text <|
+    "Rectangle area: " ++
+    (String.fromFloat <| rectangleArea <| rectangle) ++
+    "!"
 -- ==> "Rectangle area: 25.52!"
 {% endhighlight %}
 

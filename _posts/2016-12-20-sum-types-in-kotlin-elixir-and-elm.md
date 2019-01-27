@@ -23,11 +23,10 @@ languages:
 and [Elm](http://elm-lang.org/).
 
 The post is structured as follows. In Section [2](#2-sum-types), we define the
-concept of sum types. Then, in
-Sections [3](#3-sum-types-in-kotlin), [4](#4-sum-types-in-elixir),
-and [5](#5-sum-types-in-elm) we look at concrete implementations of sum types in
-Kotlin, Elixir, and Elm, respectively. The post is concluded in
-Section [6](#6-conclusion).
+concept of sum types. Then, in Sections [3](#3-sum-types-in-kotlin),
+[4](#4-sum-types-in-elixir), and [5](#5-sum-types-in-elm) we look at concrete
+implementations of sum types in Kotlin, Elixir, and Elm, respectively. The post
+is concluded in Section [6](#6-conclusion).
 
 ### 2. Sum types
 
@@ -38,7 +37,7 @@ In our
 we defined an enum type as a "data type consisting of a set of named
 values which we call the *members* of the type", e.g. we defined `shape` as:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype shape
     = Rectangle
     | Circle
@@ -59,7 +58,7 @@ triangle. Now, with the above definition of sum types in mind, we want to define
 a `shape` type that can be either a `Rectangle`, a `Circle`, or a `Triangle`. In
 our ML-like syntax, we could express our `shape` type and its members as:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype shape
     = Rectangle of float * float (* height and width *)
     | Circle of float (* radius *)
@@ -77,28 +76,28 @@ meaning. Fortunately, we can substitute the `float * float` arguments to the
 `Rectangle` type constructor, with the `rectangle` product type we defined in
 the previous post:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype rectangle
-    = ( height of float * width of float )
+    = height of float * width of float
 {% endhighlight %}
 
 and likewise for the `Circle` type constructor:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype circle
-    = ( radius of float )
+    = radius of float
 {% endhighlight %}
 
 and `Triangle` type constructor:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype triangle
-    = ( base of float * height of float )
+    = base of float * height of float
 {% endhighlight %}
 
 Combining all this, we get the following definition of the `shape` sum type:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype shape
     = Rectangle of rectangle
     | Circle of circle
@@ -117,7 +116,7 @@ type as argument, pattern matches on its type constructor and calculates the
 area of that type of shape. We express this `area` function in our ML-like
 syntax as:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 fun area shape =
     case shape
     of Rectangle rectangle =>
@@ -128,15 +127,14 @@ fun area shape =
          0.5 * triangle.base * triangle.height
 {% endhighlight %}
 
-As postulated above, we can see that the `area` function pattern matches on the
-type constructor of the `shape` argument, i.e. `Rectangle`, `Circle` and
-`Triangle`, and in doing so also unwraps the arguments of each type constructor
-and binds these to suitable variable names, thereby allowing us to calculate the
-area of the shape in the matched clause. As in the previous post, we can also
-destructure the arguments and directly access their fields in each of the
-clauses:
+We see that the `area` function pattern matches on the type constructor of the
+`shape` argument, i.e. `Rectangle`, `Circle` and `Triangle`, and in doing so
+also unwraps the arguments of each type constructor and binds these to suitable
+variable names, thereby allowing us to calculate the area of the shape in the
+matched clause. As in the previous post, we can also destructure the arguments
+and directly access their fields in each of the clauses:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 fun area shape =
     case shape
     of Rectangle (height, width) =>
@@ -162,7 +160,7 @@ Kotlin.
 If we look at the definition of the enum type we defined in the previous
 post:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 enum class Shape {
     Rectangle,
     Circle,
@@ -185,13 +183,13 @@ class declaration for each of the members of the sum type, `Rectangle`,
 `Circle`, and `Triangle`, each of which then has to be declared as a subclass of
 `Shape`:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 sealed class Shape
 data class Rectangle(val height: Float,
                      val width: Float) : Shape()
 data class Circle(val radius: Float) : Shape()
 data class Triangle(val base: Float,
-                     val height: Float) : Shape()
+                    val height: Float) : Shape()
 {% endhighlight %}
 
 Note that in contrast to our ML-like example, we do not explicitly list each of
@@ -203,7 +201,7 @@ Just as we could pattern match on instances of an `enum class` using a `when
 (<var>) {...}` expression, so is it the case for instances of a `sealed
 class`. Thus, we define our `area` function in Kotlin as:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 fun area(shape: Shape) : Number {
     return when (shape) {
         is Rectangle ->
@@ -230,7 +228,7 @@ A few details worth noting:
 Finally, we can run the above code by implementing the `main` function,
 instanting a variable of type `Shape` and passing it to the `area` function:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 fun main(args: Array<String>) {
     val circle = Circle(4.2F)
     println("The circle has an area of ${area(circle)}!")
@@ -250,7 +248,7 @@ As in the case of the `shape` enum type, we create a module named `Shape` and
 use the `@type` directive to define a type named `t`, which is either a
 `Rectangle.t`, `Circle.t` or `Triangle.t` type:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 defmodule Shape do
   alias Rectangle
   alias Circle
@@ -263,7 +261,7 @@ end
 where `Rectangle.t`, `Circle.t` and `Triangle.t` correspond to the product types
 we defined in our previoust post:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 defmodule Rectangle do
   @type t :: %__MODULE__{height: float, width: float}
   defstruct [height: 0.0, width: 0.0]
@@ -285,7 +283,7 @@ Having defined our `Shape.t` type and its members, `Rectangle.t`, `Circle.t` and
 type `Shape.t` and calculates the area of the shape by pattern matching on the
 concrete member of the `shape` sum type:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 defmodule Example do
   alias Rectangle
   alias Circle
@@ -316,7 +314,7 @@ suitable variable names.
 Finally, we can test the above code by instantiating a value of type `Shape.t`
 and pass it to the `area` function:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 circle = %Circle{radius: 4.2}
 IO.puts "The circle has an area of #{area(circle)}!"
 # ==> The circle has an area of 55.41769440932395!
@@ -334,7 +332,7 @@ beginning of this post, where we define our sum type, `Shape`, using the `type`
 keyword followed by listing each of the members of the type, `Rectangle`,
 `Circle`, and `Triangle`:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 type Shape
     = Rectangle { height: Float, width: Float }
     | Circle { radius: Float }
@@ -346,7 +344,7 @@ our previous post into their corresponding clauses in the `Shape` sum
 type. Alternatively, we would have to change the names of the clauses or
 argument types in order to avoid names clashing, e.g.
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 type Shape
     = RectangleShape Rectangle
     | CircleShape Circle
@@ -364,7 +362,7 @@ discussed in Section [2](#2-sum-types).
 The similarity to our ML-like syntax also holds in the case of pattern matching
 in the `area` function:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 area : Shape -> Float
 area shape =
     case shape of
@@ -383,7 +381,7 @@ where the difference are minor. Finally, we can run the above code snippets by
 implementing the `main` function, where we instantiate a value of type `Circle`,
 pass it to the `area` function and print it as a `text` DOM element:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 main =
     let
         circle =

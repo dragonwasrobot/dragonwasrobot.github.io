@@ -1,7 +1,76 @@
 ---
-theme :
-  name : twitter
 layout: default
 ---
-{% include JB/setup %}
-{% include themes/twitter/post.html %}
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+    <p class="post-meta">
+      <time class="dt-published"
+            datetime="{{ page.date | date_to_xmlschema }}"
+            itemprop="datePublished">
+        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+        {{ page.date | date: date_format }}
+      </time>
+      {%- if page.author -%}
+        • <span itemprop="author"
+                itemscope
+                itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">{{ page.author }}</span>
+          </span>
+      {%- endif -%}</p>
+  </header>
+
+  <div class="post-content e-content" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <!-- Category -->
+  <div class="category" style="margin-bottom: 2em">
+      <span>
+          Category: {% for category in page.category %}
+          {% capture category_name %}{{ category | capitalize | replace: '-', ' ' }}{% endcapture %}
+          <a href="/categories#{{ category_name }}-ref">
+              <code class="highligher-rouge"><nobr>{{ category_name }}</nobr></code>&nbsp;
+          </a>
+          {% endfor %}
+      </span>
+  </div>
+
+  <!-- Tags -->
+  {% if page.tags.size > 0 %}
+  <div class="tags" style="margin-bottom: 2em">
+      <span>
+          Tags: [{% for tag in page.tags %}
+          {% capture tag_name %}{{ tag | capitalize | replace: '-', ' ' }}{% endcapture %}
+          <a href="/tags#{{ tag_name }}-ref">
+              <code class="highligher-rouge"><nobr>{{ tag_name }}</nobr></code>&nbsp;
+          </a>
+          {% endfor %}]
+      </span>
+  </div>
+  {% endif %}
+
+  <!-- Pagination -->
+  <div class="pagination">
+      <ul style="text-align: center">
+          {% if page.previous.url %}
+          <li class="prev" style="display: inline">
+              <a class="previous" href="{{page.previous.url}}">&laquo; Previous</a>
+          </li>
+          {% endif %}
+          |
+          <li style="display: inline">
+              <a href="/archive/">Archive</a>
+          </li>
+          |
+          {% if page.next.url %}
+          <li class="next" style="display: inline">
+              <a class="next" href="{{page.next.url}}">Next &raquo;</a>
+          </li>
+          {% endif %}
+      </ul>
+  </div>
+
+  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+</article>

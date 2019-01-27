@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Rotating Pascal's triangle<br/> and the binomial coefficient"
+title: "Rotating Pascal's triangle and the binomial coefficient"
 category: mathematics
 description: "In this post, we introduce the rotated versions of Pascal's triangle and the binomial coefficient."
 tags: [Haskell, Pascal's triangle, Binomial coefficient]
 ---
 
-#### prerequisites: The post [An introduction to Pascal's triangle and the binomial coefficient](/mathematics/2015/11/07/an-introduction-to-pascal-s-triangle-and-the-binomial-coefficient)
+#### prerequisites: The post [An introduction to Pascal's triangle and the binomial coefficient]({% post_url 2015-11-07-an-introduction-to-pascal-s-triangle-and-the-binomial-coefficient %})
 
 ### 1. Introduction
 
@@ -16,10 +16,10 @@ The goal of this blog post is to introduce and formalize the rotated versions of
 which were the subject of the previous blog post.
 
 The blog post has the following structure. In Section
-[2](#rotating-pascals-triangle), we rotate Pascal's triangle and formalize its
+[2](#2-rotating-pascals-triangle), we rotate Pascal's triangle and formalize its
 rotated counterpart. Afterwards, we introduce the rotated binomial coefficient
-in Section [3](#the-rotated-binomial-coefficient), where we show how to obtain it in
-two different ways. The blog is concluded in Section [4](#conclusion).
+in Section [3](#3-the-rotated-binomial-coefficient), where we show how to obtain
+it in two different ways. The blog is concluded in Section [4](#4-conclusion).
 
 ### 2. Rotating Pascal's triangle
 
@@ -191,11 +191,11 @@ and `c`. Thus, if we take a look at the two base cases, $$\binom{0}{c}_r = 1$$
 and $$\binom{r}{0}_r = 1$$, we note that these naturally map to the two base
 cases for our function, `(r = 0, c > 0)` and `(r > 0, c = 0)`. Likewise, there
 exists a natural mapping from the inductive case of our formalization,
-$$\binom{r+1}{c+1}_r = \binom{r+1}{c}_r + \binom{r}{c+1}_r$$, to the inductive
-case of our function, `(r > 0, c > 0)`, which - when combined - gives us the
-following Haskell definition,
+$$\binom{r + 1}{c + 1}_r = \binom{r + 1}{c}_r + \binom{r}{c + 1}_r$$, to the
+inductive case of our function, `(r > 0, c > 0)`, which - when combined - gives
+us the following Haskell definition,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 rotatedBinomialCoefficient :: Int -> Int -> Int
 rotatedBinomialCoefficient r c
   | r == 0 = 1
@@ -229,7 +229,7 @@ the previous section. Putting these relations together yields the following
 definition of the rotated binomial coefficient function, as a transformation
 applied to the binomial coefficient function,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 rotatedBinomialCoefficient :: Int -> Int -> Int
 rotatedBinomialCoefficient r c = binomialCoefficient (r + c) c
 {% endhighlight %}
@@ -259,7 +259,7 @@ This post - [and the previous]({% post_url
 %}) - was a small excerpt from my
 [Master's thesis](https://github.com/dragonwasrobot/formal-moessner), in which I
 also prove how we can use the rotated Pascal's triangle and the rotated binomial
-coefficient to come up with a characteristic function for Moessner's sieve[^1].
+coefficient to come up with a characteristic function for Moessner's sieve.[^1]
 
 [^1]: Moessner's sieve is the procedure described in "Eine Bemerkung über die
     Potenzen der natürlichen Zahlen" (1951) by Alfred Moessner, and the term

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Deriving Moessner's sieve<br/> from Horner's method"
+title: "Deriving Moessner's sieve from Horner's method"
 category: mathematics
 description: "In this post, we derive Moessner's sieve from Horner's method."
 tags: [Haskell, Polynomial division, Taylor polynomials, Horner's method, Moessner's sieve]
@@ -10,19 +10,18 @@ tags: [Haskell, Polynomial division, Taylor polynomials, Horner's method, Moessn
 
 ### 1. Introduction
 
-The goal of this post is to derive Moessner's sieve from Horner's
-method for polynomial division, thus concluding this three part series on
-Horner's method.
+The goal of this post is to derive Moessner's sieve from Horner's method for
+polynomial division, thus concluding this three part series on Horner's method.
 
 The post is structured as follows. In Section
-[2](#horner-blocks-and-taylor-polynomials), we introduce and formalize Horner
+[2](#2-horner-blocks-and-taylor-polynomials), we introduce and formalize Horner
 blocks in the context of Taylor polynomials. Having defined Horner blocks, we
 transform them into Moessner triangles in Section
-[3](#from-horner-blocks-to-moessner-triangles) and in the process obtain an
+[3](#3-from-horner-blocks-to-moessner-triangles) and in the process obtain an
 alternative formalization of Moessner's sieve. In Section
-[4](#equivalence-of-moessners-sieve-and-horners-method), we state an equivalence
+[4](#4-equivalence-of-moessners-sieve-and-horners-method), we state an equivalence
 relation between Horner's method and Moessner's sieve. The post is concluded in
-Section [5](#conclusion).
+Section [5](#5-conclusion).
 
 ### 2. Horner blocks and Taylor polynomials
 
@@ -71,13 +70,13 @@ $$
 We call this construction a Horner block and formalize it by first defining a
 `Block` to be a `List` of `Polynomials`,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 type Block = [Polynomial]
 {% endhighlight %}
 
 which we then use in the definition of the following procedure,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 createHornerBlockAcc :: Polynomial -> Int -> Int -> Block
 createHornerBlockAcc cs x n
   | n == 0 = []
@@ -94,7 +93,7 @@ made. However, we note that there exists an extra base case in Formula
 \ref{eq:horner-block-example}, as no value is dropped from the initial
 `Polynomial` in the Horner block. Hence, we define a wrapper function,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 createHornerBlock :: Polynomial -> Int -> Int -> Block
 createHornerBlock cs x n
   | n == 0 = []
@@ -376,8 +375,8 @@ previous block in order to create the next, as made explicit in Formula
 state an equivalence relation between `createTriangleVertically` and
 `createHornerBlock`,
 
-{% highlight haskell linenos %}
-∀ (r : Int) (σ : Stream),
+{% highlight coq %}
+forall (r : Int) (σ : Stream),
   let k = 1
   in hypotenuse $
      createHornerBlockAcc (take (S r) σ) k r ==

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "An introduction<br/> to Information Security"
+title: "An introduction to Information Security"
 category: tools-and-techniques
 description: "In this post, we discuss a selection of tools and actions to
 improve your privacy."

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "An interpreter, a compiler<br/> and a virtual machine"
+title: "An interpreter, a compiler, and a virtual machine"
 category: mathematics
-description: "In this post, we implement an interpreter, a compiler and a
+description: "In this post, we implement an interpreter, a compiler, and a
 virtual machine."
 tags: [Coq, Programming Languages, Interpreters, Compilers, Virtual Machines]
 ---
@@ -21,14 +21,14 @@ we can later prove an equivalence relation between evaluation with an
 interpreter and a compiler, in a follow-up blog post.
 
 We start by introducing the small arithmetic language in Section
-[2](#language). Having defined our language, we introduce an interpreter in
-Section [3](#interpreter), which implements the
+[2](#2-language). Having defined our language, we introduce an interpreter in
+Section [3](#3-interpreter), which implements the
 [operational semantics](https://en.wikipedia.org/wiki/Operational_semantics) of
 the language. Before we introduce the corresponding compiler, we first have to
-build a virtual machine in Section [4](#virtual-machine) onto which we can
+build a virtual machine in Section [4](#4-virtual-machine) onto which we can
 execute the [bytecode](https://en.wikipedia.org/wiki/Bytecode) output of the
-compiler. Finally, we introduce the compiler in Section [5](#compiler) and
-conclude in Section [6](#conclusion).
+compiler. Finally, we introduce the compiler in Section [5](#5-compiler) and
+conclude in Section [6](#6-conclusion).
 
 ### 2. Language
 
@@ -45,7 +45,7 @@ by stating that a program consists of an expression, `e`, which can either be:
 
 The above description yields the following grammar:
 
-{% highlight python %}
+{% highlight haskell %}
 e ::= Lit n
     | Plus e e
     | Mult e e
@@ -53,7 +53,7 @@ e ::= Lit n
 
 which we in turn can translate into an `Inductive` type in Coq:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Inductive arithmetic_expression : Type :=
   | Lit : nat -> arithmetic_expression
   | Plus : arithmetic_expression ->
@@ -71,7 +71,7 @@ three constructors of the definition. For example, if we want to create an
 instance of the `arithmetic_expression` type that corresponds to the expression
 $$(2 + 1) \cdot 5$$, we write the following:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Compute (Mult (Plus (Lit 2) (Lit 1)) (Lit 5)).
 {% endhighlight %}
 
@@ -99,7 +99,7 @@ arithmetic language are pretty straight forward:
 
 If we translate the description above into Coq, we get the following `Fixpoint`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Fixpoint interpret (e : arithmetic_expression) : nat :=
   match e with
     | Lit n => n
@@ -114,7 +114,7 @@ want to evaluate the expression $$(2 \cdot 5) \cdot (1 + 3)$$, we first
 translate it into the `arithmetic_expression` language and then pass it to the
 `interpret` function:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Compute (interpret (Mult (Mult (Lit 2) (Lit 5))
                          (Plus (Lit 1) (Lit 3)))).
 {% endhighlight %}
@@ -133,7 +133,7 @@ construct a minimal
 [stack machine](https://en.wikipedia.org/wiki/Stack_machine) with the following
 three bytecode instructions:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Inductive bytecode_instruction : Type :=
   | PUSH : nat -> bytecode_instruction
   | ADD : bytecode_instruction
@@ -142,13 +142,13 @@ Inductive bytecode_instruction : Type :=
 
 Furthermore, we define a bytecode program to be a list of byte code instructions:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Definition bytecode_program := list bytecode_instruction.
 {% endhighlight %}
 
 and the data stack of our virtual machine to be a list of natural numbers:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Definition data_stack := list nat.
 {% endhighlight %}
 
@@ -164,7 +164,7 @@ result in the function `execute_bytecode_instruction`, which takes a
 capturing the effect of evaluating a `bytecode_instruction` with respect to a
 given `data_stack`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Fixpoint execute_bytecode_instruction
          (s : data_stack)
          (bc : bytecode_instruction) : data_stack :=
@@ -182,7 +182,7 @@ Fixpoint execute_bytecode_instruction
 An example application of `execute_bytecode_instruction` multiplies the two
 elements on top of the stack `[5,3,2]`[^1]:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Compute (execute_bytecode_instruction (5 :: 3 :: 2 :: nil) MUL).
 {% endhighlight %}
 
@@ -193,7 +193,7 @@ The last step we need, in order to finish our virtual machine, is to wrap the
 and runs it on an initial data stack. This can be achieved by simply traversing
 the list of bytecode instructions and executing them one-by-one, like so:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Fixpoint execute_bytecode_program
          (s : data_stack) (bcp : bytecode_program) : data_stack :=
   match bcp, s with
@@ -208,7 +208,7 @@ Fixpoint execute_bytecode_program
 Now we can execute a whole bytecode program on our virtual stack machine by
 calling `execute_bytecode_program` with a `bytecode_program` and a `data_stack`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Compute (execute_bytecode_program nil
   (PUSH 2 :: PUSH 3 :: ADD :: PUSH 5 :: MUL :: PUSH 1 :: nil)).
 {% endhighlight %}
@@ -250,7 +250,7 @@ turn these into bytecode instructions:
 
 This brings us to the following definition of our compiler:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Fixpoint compile (e : arithmetic_expression) : bytecode_program :=
   match e with
     | Lit n => PUSH n :: nil
@@ -264,13 +264,13 @@ which takes an `arithmetic_expression` as its input and produces a
 `arithmetic_expression` corresponding to $$5 + (3 \cdot 2)$$, we pass it to
 `compile` like so:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Compute (compile (Plus (Lit 5) (Mult (Lit 3) (Lit 2)))).
 {% endhighlight %}
 
 which results in the following `bytecode_program` output:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 [PUSH 2, PUSH 3, MUL, PUSH 5, ADD].
 {% endhighlight %}
 
@@ -282,7 +282,7 @@ equivalence relation between **interpretation of an arithmetic expression** and
 **compilation of an arithmetic expression followed by execution of the
 compiled bytecode program**:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Compute let e := Plus (Lit 5) (Mult (Lit 3) (Lit 2))
         in (interpret e :: nil,
             execute_bytecode_program nil (compile e)).

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "New projects page<br/>and improved post structure"
+title: "New projects page and improved post structure"
 category: meta
 description: "In this post, we introduce an improved structure for the blog."
 tags: []

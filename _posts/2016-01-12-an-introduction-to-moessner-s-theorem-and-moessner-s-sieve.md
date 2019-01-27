@@ -14,12 +14,12 @@ The goal of this post is to introduce and formalize Moessner's theorem and
 Moessner's sieve.
 
 The post is structured as follows. In Section
-[2](#moessners-theorem-and-moessners-sieve), we introduce the basics of
+[2](#2-moessners-theorem-and-moessners-sieve), we introduce the basics of
 Moessner's theorem and Moessner's sieve. Afterwards, we discuss some of the
 generalizations of Moessner's theorem in Section
-[3](#generalizations-of-moessners-theorem), and finally implement Moessner's
-sieve in Section [4](#implementing-moessners-sieve). The post is concluded in
-Section [5](#conclusion).
+[3](#3-generalizations-of-moessners-theorem), and finally implement Moessner's
+sieve in Section [4](#4-implementing-moessners-sieve). The post is concluded in
+Section [5](#5-conclusion).
 
 ### 2. Moessner's theorem and Moessner's sieve
 
@@ -378,20 +378,20 @@ The first step, in the process of translating the above description into
 Haskell, is to define the types we are going to use. Thus, we represent a
 sequence of values as a `Stream` type, corresponding to a list of `Int`,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 type Stream = [Int]
 {% endhighlight %}
 
 and we represent a rank as a `Rank` type, corresponding to an `Int`,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 type Rank = Int
 {% endhighlight %}
 
 Then, we translate Step 1. of the Moessner's sieve procedure to the stream
 operator `dropEvery`,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 dropEvery :: Int -> Stream -> Stream
 dropEvery n σ = (take n σ) ++ (dropEvery n $ drop (n + 1) σ)
 {% endhighlight %}
@@ -403,7 +403,7 @@ been dropped, thereby removing the `(n + 1)`th element of the resulting
 
 In order to translate Step 2. we first define a `partiallySum` stream operator,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 partiallySum :: Int -> Stream -> Stream
 partiallySum a σ =
   let a' = a + (head σ)
@@ -415,7 +415,7 @@ which, given an accumulator, `a`, partially sums the elements of a `Stream`,
 recursively calling itself with the tail of `σ`. Then, we define the
 stream operator `sieveStep`,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 sieveStep :: Rank -> Stream -> Stream
 sieveStep n σ = (partiallySum 0) . (dropEvery n) $ σ
 {% endhighlight %}
@@ -426,7 +426,7 @@ of a `Stream`, `σ`, and then partially summing the remaining
 elements. Finally, we capture Step 3. of Moessner' sieve, and the conditional
 check of the rank, as the stream operator `moessnersSieve`,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 moessnersSieve :: Rank -> Stream -> Stream
 moessnersSieve 0 σ = σ
 moessnersSieve n σ = moessnersSieve (n - 1) (sieveStep n σ)
@@ -440,7 +440,7 @@ alignment with Moessner's theorem, we define the `Stream` of natural numbers,
 when applying `moessnersSieve` with rank `1..3` on `nats`, yields the expected
 results,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 nats :: Stream
 nats = [1..]
 

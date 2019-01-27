@@ -14,11 +14,10 @@ Functional programming, Programming languages]
 
 ### 1. Introduction
 
-The goal of this blog post is to define the concept of enum types and
-compare the implementation of enum types in three different functional
-programming languages:
-[Kotlin](https://kotlinlang.org/), [Elixir](https://elixir-lang.org/),
-and [Elm](http://elm-lang.org/).
+The goal of this blog post is to define the concept of enum types and compare
+the implementation of enum types in three different functional programming
+languages: [Kotlin](https://kotlinlang.org/),
+[Elixir](https://elixir-lang.org/), and [Elm](http://elm-lang.org/).
 
 The post is structured as follows. In Section [2](#2-enum-types), we
 define the concept of enum types. Then, in
@@ -38,7 +37,7 @@ enum types in modern programming languages is the *boolean* type, which has
 exactly two members: **true** and **false**. We can express this boolean type in
 an [ML](https://en.wikipedia.org/wiki/ML_(programming_language))-like syntax as:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype boolean
     = True
     | False
@@ -52,7 +51,7 @@ the value of either `True` or `False`, which allows us to do
 exhaustive [pattern matching](https://en.wikipedia.org/wiki/Pattern_matching)
 like so:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 fun foo bool =
     case bool
     of True => (* do this if bool == True *)
@@ -68,7 +67,7 @@ modern programming languages, so in the following three sections we instead look
 at how to express a `shape` enum type, with members `Rectangle`, `Circle`,
 and `Triangle`:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 datatype shape
     = Rectangle
     | Circle
@@ -80,7 +79,7 @@ see how each language handles pattern matching, we also implement an example
 function, `edges`, which takes an argument of type `shape` and returns the
 number of edges of the given shape:
 
-{% highlight sml linenos %}
+{% highlight sml %}
 fun edges shape =
     case shape
     of Rectangle => 4
@@ -106,7 +105,7 @@ define our custom enum type we declare our new type as `enum class Shape`
 followed by listing each of the members of the enum type, `Rectangle`, `Circle`,
 and `Triangle`:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 enum class Shape {
     Rectangle,
     Circle,
@@ -120,7 +119,7 @@ Kotlin also allows us to do pattern matching on enums, as demonstrated below
 where we define the `edges` function, which takes an argument of type `Shape`
 and returns its number of edges:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 fun edges(shape : Shape): Int {
     return when (shape) {
         Shape.Rectangle -> 4
@@ -156,7 +155,7 @@ Finally, in order to test the above code, we write a `main` function which
 instantiates a variable of type `Shape` and prints the result of calling `edges`
 on it:
 
-{% highlight kotlin linenos %}
+{% highlight kotlin %}
 fun main(args: Array<String>) {
     val rectangle = Shape.Rectangle
     println("A rectangle has ${edges(rectangle)} edges!")
@@ -186,7 +185,7 @@ and declare a custom `@type` named `t` inside of it, where the members of `t`
 are the [atoms](https://en.wikipedia.org/wiki/Symbol_(programming)) `:rectangle`,
 `:circle`, and `:triangle`:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 defmodule Shape do
   @type t :: :rectangle | :circle | :triangle
 end
@@ -203,7 +202,7 @@ Similar to the Kotlin case, we define an example function, `edges`, which given
 an argument of type `Shape.t`, returns the numbers of edges of the matched
 `Shape.t` member, via pattern matching:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 @spec edges(Shape.t) :: integer
 def edges(shape) do
   case shape do
@@ -231,7 +230,7 @@ Once again, we notice a few things about the code snippets above:
 Again, we can test the above code by instantiating a value of type `Shape.t` and
 pass it to `edges`:
 
-{% highlight elixir linenos %}
+{% highlight elixir %}
 rectangle = :rectangle
 IO.puts("A rectangle has #{edges(rectangles)} edges!")
 # ==> "A rectangle has 4 edges!"
@@ -273,7 +272,7 @@ beginning of this post, where we define our type, `Shape`, using the `type`
 keyword followed by listing each of the members of the type, `Rectangle`, `Circle`, and
 `Triangle`, separated by `|`:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 type Shape
     = Rectangle
     | Circle
@@ -284,7 +283,7 @@ As in the Kotlin case, we can do exhaustive pattern matching without any
 `else`-clause in our `case` expression, as the `Shape` type can only be
 constructed using the three listed members:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 edges : Shape -> Int
 edges shape =
     case shape of
@@ -306,7 +305,7 @@ Finally, in order to run the above code, we implement the `main` function, where
 we instantiate a value of type `Shape`, pass it to the `edges` function, and
 print it as a text DOM element:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 main =
   let
     rectangle = Rectangle

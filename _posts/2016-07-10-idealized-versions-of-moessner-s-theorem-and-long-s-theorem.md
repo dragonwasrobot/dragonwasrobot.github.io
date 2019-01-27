@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Idealized versions of Moessner's theorem<br/>and Long's theorem"
+title: "Idealized versions of Moessner's theorem and Long's theorem"
 category: mathematics
 description: "In this post, we present idealized versions of Moessner's theorem
 and Long's theorem."
@@ -20,13 +20,13 @@ The goal of this blog post is to state Moessner's idealized theorem, Long's
 idealized theorem, and conjecture a further generalization.
 
 The chapter is structured as follows. In Section
-[2](#moessners-idealized-theorem) we start by adapting Moessner's theorem to the
-dual sieve in order to obtain Moessner's idealized theorem. Then, in Section
-[3](#longs-idealized-theorem), we repeat the process for Long's theorem, which
+[2](#2-moessners-idealized-theorem) we start by adapting Moessner's theorem to
+the dual sieve in order to obtain Moessner's idealized theorem. Then, in Section
+[3](#3-longs-idealized-theorem), we repeat the process for Long's theorem, which
 motivates the statement of Long's idealized theorem along with Long's weak
 theorem. Finally, we conjecture a further generalization of Long's idealized
-theorem in Section [4](#beyond-longs-idealized-theorem). The post is concluded
-in Section [5](#conclusion).
+theorem in Section [4](#4-beyond-longs-idealized-theorem). The post is concluded
+in Section [5](#5-conclusion).
 
 ### 2. Moessner's idealized theorem
 

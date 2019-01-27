@@ -1,9 +1,8 @@
 ---
 layout: page
 title: About
-group: navigation
+permalink: /about/
 ---
-{% include JB/setup %}
 
 ### The What
 

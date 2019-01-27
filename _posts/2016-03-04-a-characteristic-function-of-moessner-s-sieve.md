@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A characteristic function<br/> of Moessner's sieve"
+title: "A characteristic function of Moessner's sieve"
 category: mathematics
 description: "In this post, we introduce a characteristic function of Moessner's sieve."
 tags: [Haskell, Moessner's sieve]
@@ -21,11 +21,11 @@ sieve, which computes the entries of a given Moessner triangle without needing
 to compute the prefix of the sieve.
 
 The post is structured as follows. In Section
-[2](#characterizing-moessner-triangles), we derive the operational description
+[2](#2-characterizing-moessner-triangles), we derive the operational description
 of a characteristic function of Moessner's sieve, which we then formalize in
-Section [3](#defining-a-characteristic-function) as the two Haskell functions
+Section [3](#3-defining-a-characteristic-function) as the two Haskell functions
 `moessnerEntry` and `rotatedMoessnerEntry`. The post is concluded in Section
-[4](#conclusion).
+[4](#4-conclusion).
 
 ### 2. Characterizing Moessner triangles
 
@@ -256,7 +256,7 @@ $$
 where we use the same row-and-entry indexing scheme, `n` and `k`, as in the case
 of the `binomialCoefficient` function,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 binomialCoefficient :: Int -> Int -> Int
 binomialCoefficient n k
   | n < k = 0
@@ -282,7 +282,7 @@ Combining the logic of the four cases of `n` and `k`, yields the following
 binomial coefficients-like characteristic function of the Pascal-like Moessner
 triangle,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 moessnerEntry :: Int -> Int -> Int -> Int -> Int
 moessnerEntry r t n k
   | n < k = 0
@@ -296,7 +296,7 @@ indexed using the row and column indices `n` and `k`, where `r` denotes the rank
 of the triangle and `t` the triangle index. The `monomial` function, used
 in the new case of `n > 0 && k == 0`, is defined as,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 monomial :: Int -> Int -> Int -> Int
 monomial r t n = (binomialCoefficient r n) * (t ^ n)
 {% endhighlight %}
@@ -309,7 +309,7 @@ To illustrate this, we compute the fourth element from the right in the binomial
 expansion of Formula \ref{eq:binomial-expansion-example}, $$4 \cdot 2^3$$, by
 letting $$r = 4$$, $$t = 2$$, and $$n = 3$$, yielding the expected result:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 monomial 4 2 3 == 32
 {% endhighlight %}
 
@@ -318,7 +318,7 @@ triangle in Figure \ref{char-eq:moessner-triangles-pascal-like}, having value
 $$7$$, we let $$r = 4$$, $$t = 1$$, $$n = 3$$, and $$k = 2$$, and pass them to
 `moessnerEntry`:
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 moessnerEntry 4 1 3 2 == 7
 {% endhighlight %}
 
@@ -339,7 +339,7 @@ which means the relation between `moessnerEntry` and its rotated counterpart,
 `rotatedMoessnerEntry`, is identical to the existing relation between
 `binomialCoefficient` and `rotatedBinomialCoefficient`,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 rotatedBinomialCoefficient :: Int -> Int -> Int
 rotatedBinomialCoefficient r c = binomialCoefficient (r + c) c
 {% endhighlight %}
@@ -347,7 +347,7 @@ rotatedBinomialCoefficient r c = binomialCoefficient (r + c) c
 Thus, we can simply define the rotated version of `moessnerEntry` using the same
 transformation as above,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 rotatedMoessnerEntry :: Int -> Int -> Int -> Int -> Int
 rotatedMoessnerEntry n t r c = moessnerEntry n t (r + c) c
 {% endhighlight %}
@@ -358,7 +358,7 @@ the column index.
 Similarly, we can also define `rotatedMoessnerEntry` by reusing the
 formalization we lifted from the rotated Pascal's triangle,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 rotatedBinomialCoefficient :: Int -> Int -> Int
 rotatedBinomialCoefficient r c
   | r == 0 = 1
@@ -372,7 +372,7 @@ corresponding to the case `n > 0 && k == 0` we discussed in the previous
 section, i.e. the first column of each Moessner triangle. This brings us to the
 following formalization of `rotatedMoessnerEntry`,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 rotatedMoessnerEntry :: Int -> Int -> Int -> Int -> Int
 rotatedMoessnerEntry n t r c
   | r == 0 = 1
@@ -392,7 +392,7 @@ triangle in Figure \ref{char-eq:sieve-rank-six-three-triangles}, which we do by
 passing the following values $$n = 4$$, $$t = 2$$, $$r = 3$$, and $$c = 1$$ to
 our characteristic function of Moessner's sieve,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 rotatedMoessnerEntry 4 2 3 1 == 108
 {% endhighlight %}
 

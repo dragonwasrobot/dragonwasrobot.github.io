@@ -23,15 +23,15 @@ Moessner's sieve as generating a 2-dimensional grid of triangles instead of just
 a 1-dimensional sequence of triangles.
 
 The post is structured as follows. In Section
-[2](#generating-a-grid-of-triangles-with-moessners-sieve), we motivate the idea
-of viewing Moessner's sieve as generating a grid of triangles, and introduce a
-rank upgrading procedure, which takes a seed tuple of a Moessner triangle of
-rank $$r$$ and returns the seed tuple of the same Moessner triangle of rank
-$$r + 1$$. As a dual to the first section, we introduce a set of rank
-decomposition rules in Section [3](#rank-decomposition-of-moessner-triangles),
+[2](#2-generating-a-grid-of-triangles-with-moessners-sieve), we motivate the
+idea of viewing Moessner's sieve as generating a grid of triangles, and
+introduce a rank upgrading procedure, which takes a seed tuple of a Moessner
+triangle of rank $$r$$ and returns the seed tuple of the same Moessner triangle
+of rank $$r + 1$$. As a dual to the first section, we introduce a set of rank
+decomposition rules in Section [3](#3-rank-decomposition-of-moessner-triangles),
 which allows us to describe any entry of a Moessner triangle of rank $$r + 1$$
 as a sum of entries in the same Moessner triangle of rank $$r$$. The post is
-concluded in Section [4](#conclusion).
+concluded in Section [4](#4-conclusion).
 
 ### 2. Generating a grid of triangles with Moessner's sieve
 
@@ -195,7 +195,7 @@ inductive case of the pattern matching, `xs = x : xs'`, we add the accumulator,
 `a`, to `(t + 1) * x` and cons the intermediate result with the result of the
 recursive call on `xs'`. Putting these pieces together we get the procedure,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 upgradeSeedTupleAux :: Int -> Int -> Tuple -> Tuple
 upgradeSeedTupleAux t a xs = case xs of
   [] -> [a]
@@ -205,7 +205,7 @@ upgradeSeedTupleAux t a xs = case xs of
 for which we also define a wrapper function that initializes the accumulator to
 `0`,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 upgradeSeedTuple :: Int -> Tuple -> Tuple
 upgradeSeedTuple t xs = upgradeSeedTupleAux t 0 xs
 {% endhighlight %}
@@ -214,7 +214,7 @@ such that the three examples in Figure
 \ref{eq:substitute-moessner-triangle-one}-\ref{eq:substitute-moessner-triangle-three}
 can be expressed as the propositions,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 (upgradeSeedTuple 0 [1,3,3,1]) == [1,4,6,4,1]
 (upgradeSeedTuple 1 [8,12,6,1]) == [16,32,24,8,1]
 (upgradeSeedTuple 2 [27,27,9,1]) == [81,108,54,12,1]
@@ -462,8 +462,8 @@ of rank $$r + 1$$ in terms of the same entry in the triangle of rank $$r$$ along
 with the entry above it (northern neighbor), which works for all columns of a
 Moessner triangle. We can define this decomposition rule in the following way,
 
-{% highlight haskell linenos %}
-∀ (n r c t : Int),
+{% highlight coq %}
+forall (n r c t : Int),
   rotatedMoessnerEntry (n  + 1) (r + 1) c t ==
   t * rotatedMoessnerEntry n r c t +
   rotatedMoessnerEntry n (r + 1) c t
@@ -476,8 +476,8 @@ row and $$c$$th column of rank $$n$$. This rule captures the examples we have
 shown above, and it can be proved by nested induction on the row and column
 indices, `r` and `c`. From this rule follows the two Pascal-like rule,
 
-{% highlight haskell linenos %}
-∀ (n r t : Int),
+{% highlight coq %}
+forall (n r t : Int),
   rotatedMoessnerEntry (n + 1) (r + 1) 0 t ==
   (t + 1) * rotatedMoessnerEntry n r 0 t +
   monomial t n (r + 1)
@@ -485,8 +485,8 @@ indices, `r` and `c`. From this rule follows the two Pascal-like rule,
 
 and
 
-{% highlight haskell linenos %}
-∀ (r c n t : Int),
+{% highlight coq %}
+forall (r c n t : Int),
   rotatedMoessnerEntry (n + 1) (r + 1) (c + 1) t ==
   (t + 1) * rotatedMoessnerEntry n r (c + 1) t +
   rotatedMoessnerEntry n (r + 1) c t

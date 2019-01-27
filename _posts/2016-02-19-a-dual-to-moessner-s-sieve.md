@@ -21,16 +21,16 @@ instead of an initial sequence, and creates a result sequence of Moessner
 triangles, each constructed column by column, instead of a result sequence of
 successive powers, constructed row by row.
 
-The post is structured as follows. In Section [2](#from-successive-powers-to-triangles),
-we motivate the redefinition of Moessner's sieve as a procedure for generating a
-sequence of so-called Moessner triangles, instead of a sequence of successive
-powers. As a result, we introduce two triangle creation procedures, which
-construct individual Moessner triangles either row by row or column by
-column. In Section [3](#the-dual-of-moessners-sieve), we first show how our
-triangle creation procedures give rise to a new and simpler initial
-configuration of Moessner's sieve, which we then use as inspiration for the
-final formalization of the dual of Moessner's sieve. The post is concluded in
-Section [4](#conclusion).
+The post is structured as follows. In Section
+[2](#2-from-successive-powers-to-triangles), we motivate the redefinition of
+Moessner's sieve as a procedure for generating a sequence of so-called Moessner
+triangles, instead of a sequence of successive powers. As a result, we introduce
+two triangle creation procedures, which construct individual Moessner triangles
+either row by row or column by column. In Section
+[3](#3-the-dual-of-moessners-sieve), we first show how our triangle creation
+procedures give rise to a new and simpler initial configuration of Moessner's
+sieve, which we then use as inspiration for the final formalization of the dual
+of Moessner's sieve. The post is concluded in Section [4](#4-conclusion).
 
 ### 2. From successive powers to triangles
 
@@ -98,7 +98,7 @@ $$
 and describe it as a set of *tuples*, marked by $$[ \dots ]$$. We can then
 translate the above representation into the following types in Haskell,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 type Tuple = [Int]
 type Triangle = [Tuple]
 {% endhighlight %}
@@ -175,7 +175,7 @@ symmetry with respect to this procedure. By reducing Moessner's sieve to this
 core operation, which works for both rows and columns, we can translate our
 description above into the following Haskell function,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 makeTuple :: Tuple -> Int -> Tuple
 makeTuple xs a = case xs of
   [] -> []
@@ -188,7 +188,7 @@ which takes a `Tuple`, `xs`, and a number, `a`, as the accumulator, and returns
 a new `Tuple` as described. With this definition, the above example calculation
 then becomes,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 makeTuple [1,2,3,4] 0 == [1,3,6]
 {% endhighlight %}
 
@@ -236,7 +236,7 @@ one element or less left in `ys` and the result of the procedure is a list of
 horizontal `Tuples` representing a `Triangle`. Translating the above description
 into Haskell, we obtain the following definition,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 createTriangleHorizontally :: Tuple -> Tuple -> Triangle
 createTriangleHorizontally xs ys = case ys of
   [] -> []
@@ -249,7 +249,7 @@ which creates a Moessner triangle in a row by row fashion. For the second
 procedure, `createTriangleVertically`, we simply switch the roles of the `xs`
 and `ys` described above, and obtain the dual procedure,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 createTriangleVertically :: Tuple -> Tuple -> Triangle
 createTriangleVertically xs ys = case xs of
   [] -> []
@@ -267,7 +267,7 @@ To illustrate this, if we give the seed tuples in Figure
 \ref{eq:moessner-triangle-with-tuples} as arguments to our two new definitions, we
 obtain the following calculations,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 createTriangleHorizontally [1,1,1,1,1] [0,0,0,0,0] == [
   [1,2,3,4],
   [1,3,6],
@@ -278,7 +278,7 @@ createTriangleHorizontally [1,1,1,1,1] [0,0,0,0,0] == [
 
 and
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 createTriangleVertically [1,1,1,1,1] [0,0,0,0,0] == [
   [1,1,1,1],
   [2,3,4],
@@ -428,7 +428,7 @@ implemented in a straightforward fashion by going through each `Tuple`, `t`, of
 a `Triangle`, `ts`, and aggregating the last values of each `Tuple` into a new
 `Tuple`, which is then returned,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 hypotenuse :: Triangle -> Tuple
 hypotenuse ts = case ts of
   [] -> []
@@ -453,10 +453,9 @@ to `hypotenuse`, we get the tuple, $$[16, 32, 24, 8, 1]$$, when reading it
 column by column, which we can also express with the following piece of Haskell
 code,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 hypotenuse $
-  createTriangleVertically [0,0,0,0,0,0] [1,4,6,4,1,0] ==
-  [16,32,24,8,1]
+  createTriangleVertically [0,0,0,0,0,0] [1,4,6,4,1,0] == [16,32,24,8,1]
 {% endhighlight %}
 
 All we have left to do now is to compose `createTriangleVertically` and
@@ -475,7 +474,7 @@ unchanged, as these are always $$0$$s. For each triangle created, we decrement
 the value of `n` and terminate the procedure when `n == 0`. This description
 brings us to the following definition,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 createTrianglesVertically :: Int -> Tuple -> Tuple -> [Triangle]
 createTrianglesVertically n xs ys
   | n == 0 = []
@@ -527,7 +526,7 @@ where we have explicitly added the seed tuples of each triangle. Finally, we can
 now emulate this dual sieve by passing the same arguments to
 `createTrianglesVertically` and obtain,
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 createTrianglesVertically 3 [0,0,0,0,0,0] [1,0,0,0,0,0] == [
   [
     [1,1,1,1,1],

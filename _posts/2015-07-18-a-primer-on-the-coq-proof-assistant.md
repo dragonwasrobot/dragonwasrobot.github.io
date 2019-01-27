@@ -21,8 +21,7 @@ the [Coq Proof Assistant](http://en.wikipedia.org/wiki/Coq) (or simply, Coq)
 with the guiding example of natural numbers and their basic arithmetic
 operators.
 
-Rather than give a theoretical introduction to
-the
+Rather than give a theoretical introduction to the
 [The Curry-Howard isomorphism](http://en.wikipedia.org/wiki/Curry%E2%80%93Howard_correspondence) and
 [Dependent types](http://en.wikipedia.org/wiki/Dependent_type), this post will
 have a hands-on approach and focus on writing code and doing proofs. By the end
@@ -47,7 +46,7 @@ constructor that takes one argument, a `nat`, and returns a `nat`. Once again,
 what we are really saying is that the successor of any natural number is itself
 a natural number, which gives us the following definition:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Inductive nat : Type :=
 | O : nat
 | S : nat -> nat.
@@ -57,7 +56,7 @@ We can instantiate types like `nat` using the `Compute` keyword followed by the
 constructor. For example, if we wanted to create `nat`s corresponding to the
 natural numbers 0, 1, and 2, it would look like this:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Compute O.
 Compute (S O).
 Compute (S (S O)).
@@ -81,7 +80,7 @@ argument, `n`. If `n` is `O` we return the second argument `m`, otherwise `n`
 must be the successor of another natural number `n'`, so we peel a successor
 layer off `n` and apply it to the result of adding `n'` and `m`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Fixpoint plus (n m : nat) : nat :=
   match n with
     | O => m
@@ -100,7 +99,7 @@ number: by applying `O` or `S`.
 If we want to add two natural numbers, we can use the `Compute` keyword again
 like so:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Compute (plus O (S O)).
 (* ==> S O *)
 Compute (plus (S (S O)) (S O)).
@@ -118,7 +117,7 @@ plus, `+`. We do this by writing the `Notation` keyword followed by a string
 describing the intended notation, the function call corresponding to the
 notation, and a precedence level:
 
-{%highlight haskell %}
+{%highlight coq %}
 Notation "x + y" := (plus x y) (at level 50, left associativity).
 Compute ((S (S O)) + (S O)). (* ==> S (S (S O)) *)
 {% endhighlight %}
@@ -145,7 +144,7 @@ in the result of the inductive case pattern matching, `S n' => m + (mult n' m)`,
 we add the second argument `m` (notice the use of `+` rather than `plus`) to the
 result, instead of `S`.
 
-{% highlight haskell linenos %}
+{% highlight coq %}
 Fixpoint mult (n m : nat) : nat :=
   match n with
     | O => O
@@ -174,7 +173,7 @@ all natural numbers (`forall` is a so-called
 `O + n = n`, simply states that zero plus a natural number is equal to that
 natural number:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Lemma plus_O_l :
   forall (n : nat),
     O + n = n.
@@ -183,7 +182,7 @@ Lemma plus_O_l :
 The way we begin to prove our statement is by writing the keyword `Proof` which
 gives us the following content in our goal buffer:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 ============================
 forall n : nat, O + n = n
 {% endhighlight %}
@@ -194,7 +193,7 @@ stuff above the horizontal rule). Now, if we write `intro n`, we instantiate the
 quantifier such that the `forall n : nat` disappears from our conclusion and is
 added as a hypothesis:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 n : nat
 ============================
 O + n = n
@@ -206,7 +205,7 @@ introduced our natural number `n`, we can apply a so-called unfold proof tactic,
 conclusion. Since `plus O n` returns `n`, according to the definition of our
 `plus` function, we get:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 n : nat
 ===========================
 n = n
@@ -218,7 +217,7 @@ the current conclusion if the left- and right-hand side of an equality are
 trivially equivalent. To finish the proof we write the keyword `Qed`, and our
 final proof looks like this:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Proof.
   intro n.
   unfold plus.
@@ -232,7 +231,7 @@ function, so can we reuse the proof structure of `plus_O_l`, when proving the
 equivalent property of mult, `mult_O_l`, which says that for all natural
 numbers, zero times a natural number is zero:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Lemma mult_O_l :
   forall (n : nat),
     O * n = O.
@@ -247,7 +246,7 @@ Having proved that zero plus a natural number is equal to that same natural
 number, the next logical step is to prove that a natural number plus zero is
 also equal to that same natural number:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Lemma plus_O_r :
   forall (n : nat),
     n + O = n.
@@ -255,14 +254,14 @@ Lemma plus_O_r :
 
 As before, we first `intro n` to remove the `forall` quantifier:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 ============================
 forall n : nat, n + O = n
 {% endhighlight %}
 
 which gives us the intended conclusion `n + O = n`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 n : nat
 ============================
 n + O = n
@@ -289,7 +288,7 @@ induction on the natural number `n`. What happens then is that we get two
 subgoals we have to prove: a base case, `O + O = O`, and an inductive case `S
 n' + O = S n'`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 ============================
 O + O = O
 
@@ -301,7 +300,7 @@ In order to prove the base case,`O + O = O`, we can again use the definition of
 `plus`, as the first argument is `O`, and do `unfold plus` followed by
 `reflexivity`, leaving us with the inductive case:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 n' : nat
 IH_n' : n' + O = n'
 ============================
@@ -316,7 +315,7 @@ definition of `plus`, we actually know what the result of applying `plus` on `S
 n'` and some `m` is: `S n' => S (plus n' m)`. Thus, we can again unfold `plus`
 giving us:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 n' : nat
 IH_n' : n' + O = n'
 ============================
@@ -330,7 +329,7 @@ the expression in our conclusion corresponding to the expression found on the
 left-hand side of the equality in `IH_n'` with the right-hand side of the
 equality in `IH_n'`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 n' : nat
 IH_n' : n' + O = n'
 ============================
@@ -343,7 +342,7 @@ equality in the conclusion are trivially equivalent. Thus, we can again use
 same natural number, is done. The code corresponding to the proof outlined above
 looks like so:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Proof.
   intro n.
   induction n as [ | n' IH_n' ].
@@ -373,7 +372,7 @@ Having proved that a natural number plus zero is equal to that same natural
 number, we can use the exact same approach to prove that a natural number
 multiplied by zero is equal to zero:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Lemma mult_O_r :
   forall (n : nat),
     n * O = O.

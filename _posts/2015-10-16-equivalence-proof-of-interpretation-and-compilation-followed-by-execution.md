@@ -1,13 +1,14 @@
 ---
 layout: post
-title: "Equivalence proof of interpretation<br/>and compilation followed by execution"
+title: "Equivalence proof of interpretation and compilation followed by execution"
 category: mathematics
 description: "In this post, we prove equivalence between interpretation and
 compilation of code."
 tags: [Coq, Programming Languages, Interpreters, Compilers, Virtual Machines]
 ---
 
-#### prerequisites: The post [An interpreter, a compiler and a virtual machine](/programming/2015/09/26/an-interpreter-a-compiler-and-a-virtual-machine)
+#### prerequisites: The post [An interpreter, a compiler and a virtual machine]({% post_url
+2015-09-26-an-interpreter-a-compiler-and-a-virtual-machine %})
 
 ### 1. Introduction
 
@@ -17,10 +18,10 @@ between **interpretation of an arithmetic expression** and **compilation of an
 arithmetic expression followed by execution of the bytecode program resulting
 from compilation**.
 
-First, we derive the equivalence relation in Section [2](#equivalence-relation),
-start the proof in Section [3](#equivalence-proof), take a detour in Section
-[4](#lists-and-bytecode-programs), and finish the proof in Section
-[5](#equivalence-proof-continued). Finally, we conclude in Section [4](#conclusion).
+First, we derive the equivalence relation in Section [2](#2-equivalence-relation),
+start the proof in Section [3](#3-equivalence-proof), take a detour in Section
+[4](#4-lists-and-bytecode-programs), and finish the proof in Section
+[5](#5-equivalence-proof-continued). Finally, we conclude in Section [6](#6-conclusion).
 
 ### 2. Equivalence relation
 
@@ -30,7 +31,7 @@ by execution of the compiled bytecode program**, we first have to capture the
 nature of this relation. If we look at the signatures of `interpret`, `compile`,
 and `execute_bytecode_program`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Fixpoint interpret
            (e : arithmetic_expression) : nat := ...
 Fixpoint compile
@@ -54,7 +55,7 @@ the same `arithmetic_expression`. Thus, if we let our example expression be
 $$5 + (3 \cdot 2)$$, we can capture the equivalence relation with the following
 snippet of code:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Compute let e := Plus (Lit 5) (Mult (Lit 3) (Lit 2))
         in (interpret e :: nil,
             execute_bytecode_program nil (compile e)).
@@ -64,7 +65,7 @@ where both expressions found in the body of the `let` expression evaluate to the
 same result, `11 : nat`. If we turn the above `let` expression into a theorem,
 we get the following candidate:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Theorem equality_of_interpret_and_compile_candidate :
   forall (e : arithmetic_expression),
     (interpret e) :: nil =
@@ -76,7 +77,7 @@ was irrelevant, we can actually generalize the equivalence relation to hold
 for all possible stacks, and not just the empty stack. This gives us the
 following revised version of the theorem:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Theorem equality_of_interpret_and_compile :
   forall (e : arithmetic_expression) (s : data_stack),
     (interpret e) :: s =
@@ -96,7 +97,7 @@ Just as in the
 we start our proof by writing the `Proof` keyword, which gives us the following
 goal:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 ============================
 forall (e : arithmetic_expression) (s : data_stack),
   interpret e :: s = execute_bytecode_program s (compile e)
@@ -111,7 +112,7 @@ on the arithmetic expression, `e`, would be a fruitful approach for getting
 there. With this approach, we first introduce the arithmetic expression `e` and
 then use induction on its structure,
 
-{% highlight coq linenos %}
+{% highlight coq %}
 intro e.
 induction e as [ n |
                  e1' IH_e1' e2' IH_e2' |
@@ -120,7 +121,7 @@ induction e as [ n |
 
 which gives us three subgoals:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 n : nat
 ============================
 forall s : data_stack,
@@ -141,7 +142,7 @@ subgoal 3 is:
 one for each of the constructors of the `arithmetic_expression` type. Starting
 with the case of the literal expression, `Lit`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 n : nat
 ============================
 forall s : data_stack,
@@ -153,7 +154,7 @@ Here, we note that both interpretation and compilation of a `Lit` expression
 involves no recursive calls and therefore we can just unfold the definitions
 present in both expressions:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 intro s.
 unfold interpret.
 unfold compile.
@@ -165,7 +166,7 @@ and obtain the goal `n :: s = n :: s` which we can prove with `reflexivity`.
 
 When we look at the next subgoal:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 e1' : arithmetic_expression
 e2' : arithmetic_expression
 IH_e1' : forall s : data_stack,
@@ -186,7 +187,7 @@ our goal in a position where we can use the two induction hypotheses, `IH_e1'`
 and `IH_e2'`. If we repeat the steps of the previous proof and try to unfold the
 definitions at hand:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 intro s.
 unfold interpret; fold interpret.
 unfold compile; fold compile.
@@ -194,7 +195,7 @@ unfold compile; fold compile.
 
 we arrive at the following goal:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 ============================
 interpret e1' + interpret e2' :: s =
 execute_bytecode_program
@@ -205,7 +206,7 @@ However, now we are not able to do anymore unfolding - we do not known how to
 unfold `execute_bytecode_program` when given a concatenated list - so we have to
 somehow restate the right-hand side of the equation,
 
-{% highlight coq linenos %}
+{% highlight coq %}
 execute_bytecode_program
   s (compile e2' ++ compile e1' ++ ADD :: nil)
 {% endhighlight %}
@@ -220,7 +221,7 @@ about the execution of several concatenated bytecode programs, `compile e2'`,
 program, with respect to a stack, results in a new stack, which again can be
 used to execute a new bytecode program, we propose the following statement:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Lemma execute_bytecode_program_is_associative :
   forall (p1 p2 : bytecode_program) (s : data_stack),
     execute_bytecode_program s (p1 ++ p2) =
@@ -237,7 +238,7 @@ consisting of a list of bytecode instructions, which means we first have to
 prove that the statement holds for the empty program, `nil`, and then for all
 non-empty programs, `bci :: bcis'`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 intro p1.
 induction p1 as [ | bci' bcis' IH_bcis' ].
 {% endhighlight %}
@@ -245,7 +246,7 @@ induction p1 as [ | bci' bcis' IH_bcis' ].
 In the case of the empty program, `nil`, the proof is trivial and follows from
 unfolding the definitions of the statement:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 intros p2 s.
 unfold app.
 unfold execute_bytecode_program; fold execute_bytecode_program.
@@ -255,13 +256,13 @@ reflexivity.
 For the inductive case, `bci :: bcis'`, we start by introducing the other
 bytecode program, `p2`, and the stack, `s`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 intros p2 s.
 {% endhighlight %}
 
 which gives us the following goal:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 ============================
 execute_bytecode_program
   s ((bci' :: bcis') ++ p2) =
@@ -273,7 +274,7 @@ Here, we would like to unfold `execute_bytecode_program` on the left-hand side
 of the equation, but in order to do so we need to grab the following lemma from
 the Coq library:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 app_comm_cons
   : forall (A : Type) (x y : list A) (a : A),
      a :: x ++ y = (a :: x) ++ y
@@ -282,14 +283,14 @@ app_comm_cons
 which allows us to shift the inner parentheses in expression on the left-hand
 side of the equality, `((bci' :: bcis') ++ p2)`,
 
-{% highlight coq linenos %}
+{% highlight coq %}
 rewrite <- app_comm_cons.
 {% endhighlight %}
 
 such that we can unfold `execute_bytecode_program` and apply the induction
 hypothesis, `IH_bcis'`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 unfold execute_bytecode_program; fold execute_bytecode_program.
 rewrite <- IH_bcis'.
 {% endhighlight %}
@@ -300,7 +301,7 @@ the equality have the exact same value.
 The complete proof of `execute_bytecode_program_is_associative` ends up looking
 like so:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Lemma execute_bytecode_program_is_associative
   : forall (p1 p2 : bytecode_program) (s : data_stack),
     execute_bytecode_program s (p1 ++ p2) =
@@ -332,7 +333,7 @@ equivalence relation.
 Having proved `execute_bytecode_program_is_associative`, we return to the `Plus
 e1' e2'` case of `equality_of_interpret_and_compile`,
 
-{% highlight coq linenos %}
+{% highlight coq %}
 ============================
 interpret e1' + interpret e2' :: s =
 execute_bytecode_program
@@ -342,13 +343,13 @@ execute_bytecode_program
 where we can now use `execute_bytecode_program_is_associative` to rewrite the
 bytecode program expression from a concatenated list to a nested structure,
 
-{% highlight coq linenos %}
+{% highlight coq %}
 rewrite ->2 execute_bytecode_program_is_associative.
 {% endhighlight %}
 
 giving us the following goal:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 ============================
 interpret e1' + interpret e2' :: s =
   execute_bytecode_program
@@ -361,7 +362,7 @@ interpret e1' + interpret e2' :: s =
 Now, we are able to rewrite the `execute_bytecode_program` expression with both
 of our induction hypotheses,
 
-{% highlight coq linenos %}
+{% highlight coq %}
 rewrite <- IH_e1'.
 rewrite <- IH_e2'.
 unfold execute_bytecode_program.
@@ -370,7 +371,7 @@ unfold execute_bytecode_instruction.
 
 resulting in the following equality,
 
-{% highlight coq linenos %}
+{% highlight coq %}
 ============================
 interpret e1' + interpret e2' :: s =
 interpret e1' + interpret e2' :: s
@@ -380,7 +381,7 @@ which is again proved with `reflexivity`.
 
 The proof of the last subgoal,
 
-{% highlight coq linenos %}
+{% highlight coq %}
 e1' : arithmetic_expression
 e2' : arithmetic_expression
 IH_e1' : forall s : data_stack,
@@ -399,7 +400,7 @@ is completely identical to the proof of the previous subgoal, except that `Plus`
 and `ADD` have been substituted with `Mult` and `MUL`. This brings us to the
 final version of the proof for `equality_of_interpret_and_compile`:
 
-{% highlight coq linenos %}
+{% highlight coq %}
 Theorem equality_of_interpret_and_compile :
   forall (e : arithmetic_expression) (s : data_stack),
     (interpret e) :: s = execute_bytecode_program s (compile e).

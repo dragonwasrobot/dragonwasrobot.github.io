@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Obtaining Taylor Polynomials<br/> with Horner's method"
+title: "Obtaining Taylor Polynomials with Horner's method"
 category: mathematics
 description: "In this post, we calculate Taylor Polynomials with Horner's method."
 tags: [Haskell, Polynomial division, Taylor polynomials, Horner's method]
@@ -14,20 +14,19 @@ The goal of this post is to derive Taylor polynomials using Horner's method for
 polynomial division.
 
 The post is structured as follows. In Section
-[2](#taylor-polynomials-and-taylors-theorem), we introduce the concept of Taylor
-polynomials and Taylor's theorem. In Section
-[3](#generating-taylor-polynomials), we derive a procedure for obtaining Taylor
-polynomials using Horner's method for polynomial division. The post is concluded
-in Section [4](#conclusion).
+[2](#2-taylor-polynomials-and-taylors-theorem), we introduce the concept of
+Taylor polynomials and Taylor's theorem. In Section
+[3](#3-generating-taylor-polynomials), we derive a procedure for obtaining
+Taylor polynomials using Horner's method for polynomial division. The post is
+concluded in Section [4](#4-conclusion).
 
 ### 2. Taylor polynomials and Taylor's theorem
 
-In this section, we first state the
-[polynomial remainder theorem](https://en.wikipedia.org/wiki/Polynomial_remainder_theorem)
-followed by the definitions of
-[Taylor series](https://en.wikipedia.org/wiki/Taylor_series) and Taylor
-polynomials, which we use to finally state
-[Taylor's theorem](https://en.wikipedia.org/wiki/Taylor%27s_theorem).
+In this section, we first state the [polynomial remainder
+theorem](https://en.wikipedia.org/wiki/Polynomial_remainder_theorem) followed by
+the definitions of [Taylor series](https://en.wikipedia.org/wiki/Taylor_series)
+and Taylor polynomials, which we use to finally state [Taylor's
+theorem](https://en.wikipedia.org/wiki/Taylor%27s_theorem).
 
 As pointed out in the [previous blog post]({% post_url
 2015-08-03-an-introduction-to-horner-s-method %}), if we divide a polynomial,
@@ -303,8 +302,7 @@ sieve[^3] from Horner's method.
 [^2]: See "The wonder of Horner's method" (2003) by Alex Pathan and Tony
     Collyer.
 
-[^3]: Moessner's sieve is the procedure described in "Eine Bemerkung
-    über die Potenzen der natürlichen Zahlen" (1951) by Alfred
-    Moessner, and the term *Moessner's sieve* was first coined by
-    Olivier Danvy in the paper "A Characterization of Moessner's
-    sieve" (2014).
+[^3]: Moessner's sieve is the procedure described in "Eine Bemerkung über die
+    Potenzen der natürlichen Zahlen" (1951) by Alfred Moessner, and the term
+    *Moessner's sieve* was first coined by Olivier Danvy in the paper "A
+    Characterization of Moessner's sieve" (2014).

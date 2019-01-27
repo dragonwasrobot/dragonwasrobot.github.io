@@ -1,9 +1,8 @@
 ---
 layout: page
 title: Projects
-group: navigation
+permalink: /projects/
 ---
-{% include JB/setup %}
 
 This page lists some of my non-work related projects, that I have done over the
 years:
@@ -29,6 +28,29 @@ code generator.
 - [Online documentation](https://hexdocs.pm/json_schema/getting-started.html)
 - [hex.pm page](https://hex.pm/packages/json_schema)
 - [GitHub page](https://github.com/dragonwasrobot/json_schema)
+
+### ExRerun (Code library)
+
+#### Description
+
+The [ex_rerun](https://github.com/dragonwasrobot/ex_rerun) project is an
+[Elixir](https://elixir-lang.org/) library for monitoring your source code and
+running a set of custom `mix` tasks, like `compile` or `test`, whenever source
+files change. The tool is made to be pluggable allowing developers to add their
+own `mix` tasks to be run by the tool, e.g. for compiling frontend code or
+generating API documentation.
+
+The project was created because I was developing a RESTful Elixir backend, in
+[cowboy](https://ninenines.eu/docs/en/cowboy/2.6/guide/), which was bundled with
+a corresponding CRUD frontend in [Elm](http://elm-lang.org/), and wanted to
+compile the Elm code alongside the Elixir code whenever either of the code bases
+changed.
+
+#### Links
+
+- [Online documentation](https://hexdocs.pm/ex_rerun/getting-started.html)
+- [hex.pm page](https://hex.pm/packages/ex_rerun)
+- [GitHub page](https://github.com/dragonwasrobot/ex_rerun)
 
 ### JSON Schema to Elm code generator (Command line tool)
 
@@ -123,9 +145,9 @@ The project was created for two reasons:
 The [formal-moessner](https://github.com/dragonwasrobot/formal-moessner) project
 is my Master's thesis in Computer Science completed at Aarhus University, and
 done under the supervision of Olivier Danvy. The dissertation presents a new
-characterization of a mathematical procedure known as
-[*Moessner's Sieve*]({% post_url 2016-01-12-an-introduction-to-moessner-s-theorem-and-moessner-s-sieve %}),
-formalized in [Coq](https://coq.inria.fr/), along with a range of new
+characterization of a mathematical procedure known as [*Moessner's Sieve*]({%
+post_url 2016-01-12-an-introduction-to-moessner-s-theorem-and-moessner-s-sieve
+%}), formalized in [Coq](https://coq.inria.fr/), along with a range of new
 mathematical results.
 
 The dissertation was later published as an eBook by Aarhus University Library.

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "An introduction to Pascal's triangle<br/> and the binomial coefficient"
+title: An introduction to Pascal's triangle and the binomial coefficient
 category: mathematics
 description: "In this post, we introduce Pascal's triangle and the binomial
 coefficient."
@@ -16,12 +16,12 @@ The goal of this blog post is to introduce
 [binomial coefficient](https://en.wikipedia.org/wiki/Binomial_coefficient).
 
 The blog post is structured in the following way. In Section
-[2](#pascals-triangle), we introduce Pascal's triangle and formalize its
+[2](#2-pascals-triangle), we introduce Pascal's triangle and formalize its
 construction. Before we define the binomial coefficient in Section
-[4](#the-binomial-coefficient), we first motivate its introduction by stating
+[4](#4-the-binomial-coefficient), we first motivate its introduction by stating
 the [Binomial Theorem](https://en.wikipedia.org/wiki/Binomial_theorem) in
-Section [3](#the-binomial-theorem). The blog is concluded in Section
-[5](#conclusion).
+Section [3](#3-the-binomial-theorem). The blog is concluded in Section
+[5](#5-conclusion).
 
 ### 2. Pascal's triangle
 
@@ -312,12 +312,12 @@ two cases where `(n = 0, k = 0)` and `(n > 0, k = 0)`, which leaves the cases
 `(n = 0, k > 0)` and `(n > 0, k > 0)`. For the case `(n = 0, k > 0)`, we know
 from the definition of Pascal's triangle that for all values $$n < k$$ the
 result is $$0$$, and similarly we know that the case `(n > 0, k > 0)` is the sum
-of the two entries just above it `(n-1, k)` and `(n-1, k-1)`. Combining these
-observations we get the following
+of the two entries just above it `(n - 1, k)` and `(n - 1, k - 1)`. Combining
+these observations we get the following
 [Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language))
 definition,[^2]
 
-{% highlight haskell linenos %}
+{% highlight haskell %}
 binomialCoefficient :: Int -> Int -> Int
 binomialCoefficient n k
   | k == 0 = 1
