@@ -2,7 +2,7 @@
 layout: home
 ---
 
-*There are different rules for reading,*<br/>
+*“There are different rules for reading,*<br/>
 *for thinking, and for talking.*<br/>
-*Writing blends all three of them.*<br/>
--- Mason Cooley
+*Writing blends all three of them.”*<br/>
+-- **Mason Cooley**
