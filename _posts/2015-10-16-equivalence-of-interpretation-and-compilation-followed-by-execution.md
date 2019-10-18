@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Equivalence proof of interpretation and compilation followed by execution"
+title: "Equivalence of interpretation and compilation followed by execution"
 category: mathematics
 description: "In this post, we prove equivalence between interpretation and
 compilation of code."

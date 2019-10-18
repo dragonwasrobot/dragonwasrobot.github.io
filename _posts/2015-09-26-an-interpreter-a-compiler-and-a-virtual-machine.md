@@ -298,7 +298,7 @@ Lastly, the language has been implemented in the Coq Proof Assistant such that
 we can prove an equivalence relation between **interpretation of an arithmetic
 expression** and **compilation followed by execution of an arithmetic
 expression**, which is exactly the topic of the [next blog post]({% post_url
-2015-10-16-equivalence-proof-of-interpretation-and-compilation-followed-by-execution
+2015-10-16-equivalence-of-interpretation-and-compilation-followed-by-execution
 %}).
 
 [^1]: We use the notation `[1,2,3]` and `(1 :: 2 :: 3 :: nil)` interchangeably

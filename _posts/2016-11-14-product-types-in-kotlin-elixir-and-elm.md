@@ -90,7 +90,7 @@ between two points, `p` and `q`:
 
 {% highlight sml %}
 fun euclidean_distance p q =
-    sqrt(pow(q.x - p.x, 2) + pow(q.y - p.y, 2))
+    sqrt (pow (q.x - p.x) 2 + pow (q.y - p.y) 2)
 {% endhighlight %}
 
 Here, we access an individual field using the common `<var>.<field>`

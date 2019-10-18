@@ -138,6 +138,24 @@ The project was created for two reasons:
 - [Running interpreter](https://www.dragonwasrobot.com/brainfuck/)
 - [GitHub page](https://github.com/dragonwasrobot/brainfuck)
 
+### Helm Bitbucket (Emacs package)
+
+#### Description
+
+The [helm-bitbucket](https://github.com/dragonwasrobot/helm-bitbucket) project
+is an Emacs package, written in [Emacs
+Lisp](https://en.wikipedia.org/wiki/Emacs_Lisp), which adds
+[Helm](https://emacs-helm.github.io/helm/) support for searching Bitbucket
+repositories, of which you are a member, and opening the corresponding the
+Bitbucket web page in the browser.
+
+The project was created to easily lookup a Bitbucket repository while
+developing, e.g. to compare some piece of code or check on a pull request.
+
+#### Links
+
+- [GitHub page](https://github.com/dragonwasrobot/helm-bitbucket)
+
 ### A Formal Study of Moessner's Sieve (Master's thesis)
 
 #### Description
