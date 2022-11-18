@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A primer on the Coq Proof Assistant"
-category: mathematics
+categories: mathematics
 description: "In this post, we give a short primer on interactive theorem
 proving in the Coq Proof Assistant."
 tags: [Coq, Case analysis, Induction, Natural numbers, Arithmetic]

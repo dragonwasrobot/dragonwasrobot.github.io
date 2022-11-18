@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "An introduction to Horner's method"
-category: mathematics
+categories: mathematics
 description: "In this post, we introduce Horner's method for
 polynomial evaluation and polynomial division."
 tags: [Haskell, Polynomial evaluation, Polynomial division, Horner's method, Moessner's sieve]
