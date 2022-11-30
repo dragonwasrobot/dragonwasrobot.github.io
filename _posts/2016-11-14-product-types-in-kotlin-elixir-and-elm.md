@@ -2,10 +2,8 @@
 layout: post
 title: "Product types in Kotlin, Elixir, and Elm"
 category: functional-programming
-description: "In this post, we define the concept of product types with
-examples in Kotlin, Elixir, and Elm."
-tags: [Elm, Elixir, Kotlin, Types, Product types, Functional basics,
-Functional programming, Programming languages]
+description: "In this post, we define the concept of product types with examples in Kotlin, Elixir, and Elm."
+tags: [Elm, Elixir, Kotlin, Product types, Functional programming]
 ---
 
 #### prerequisites: The post [Enum types in Elm, Elixir, and Kotlin]({% post_url 2016-10-02-enum-types-in-kotlin-elixir-and-elm %})
@@ -322,21 +320,21 @@ product type using the `type alias` keywords followed by listing each of the
 fields of the type, e.g. `height` and `width`, separated by `,` and encapsulated
 by `{...}`:
 
-{% highlight haskell %}
-type alias Rectangle
-    = { height : Float, width : Float }
+{% highlight elm %}
+type alias Rectangle =
+    { height : Float, width : Float }
 
-type alias Circle
-    = { radius : Float }
+type alias Circle =
+    { radius : Float }
 
-type alias Triangle
-    = { base : Float, height : Float }
+type alias Triangle =
+    { base : Float, height : Float }
 {% endhighlight %}
 
 As in the Elixir case, we can pattern match (or destructure) our product type
 arguments directly in the header of our function declarations:
 
-{% highlight haskell %}
+{% highlight elm %}
 rectangleArea : Rectangle -> Float
 rectangleArea { height, width } =
     height * width
@@ -358,15 +356,15 @@ Once again, we implement the `main` function, in which we instantiate a value of
 type `Rectangle`, pass it to the `rectangleArea` function, and print it as a
 text DOM element:
 
-{% highlight haskell %}
+{% highlight elm %}
 main =
   let
     rectangle = { height = 4.4, width = 5.8 }
   in
   text <|
-    "Rectangle area: " ++
-    (String.fromFloat <| rectangleArea <| rectangle) ++
-    "!"
+      "Rectangle area: " ++
+      (String.fromFloat <| rectangleArea <| rectangle) ++
+      "!"
 -- ==> "Rectangle area: 25.52!"
 {% endhighlight %}
 

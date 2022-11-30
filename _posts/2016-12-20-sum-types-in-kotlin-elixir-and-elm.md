@@ -2,10 +2,8 @@
 layout: post
 title: "Sum types in Kotlin, Elixir, and Elm"
 category: functional-programming
-description: "In this post, we define the concept of sum types with
-examples in Elm, Elixir, and Kotlin."
-tags: [Elm, Elixir, Kotlin, Types, Sum types, Functional basics,
-Functional programming, Programming languages]
+description: "In this post, we define the concept of sum types with examples in Elm, Elixir, and Kotlin."
+tags: [Elm, Elixir, Kotlin, Sum types, Functional programming]
 ---
 
 #### prerequisites: The post [Product types in Elm, Elixir, and Kotlin]({% post_url 2016-11-14-product-types-in-kotlin-elixir-and-elm %})
@@ -332,7 +330,7 @@ beginning of this post, where we define our sum type, `Shape`, using the `type`
 keyword followed by listing each of the members of the type, `Rectangle`,
 `Circle`, and `Triangle`:
 
-{% highlight haskell %}
+{% highlight elm %}
 type Shape
     = Rectangle { height: Float, width: Float }
     | Circle { radius: Float }
@@ -344,7 +342,7 @@ our previous post into their corresponding clauses in the `Shape` sum
 type. Alternatively, we would have to change the names of the clauses or
 argument types in order to avoid names clashing, e.g.
 
-{% highlight haskell %}
+{% highlight elm %}
 type Shape
     = RectangleShape Rectangle
     | CircleShape Circle
@@ -362,7 +360,7 @@ discussed in Section [2](#2-sum-types).
 The similarity to our ML-like syntax also holds in the case of pattern matching
 in the `area` function:
 
-{% highlight haskell %}
+{% highlight elm %}
 area : Shape -> Float
 area shape =
     case shape of
@@ -381,16 +379,15 @@ where the difference are minor. Finally, we can run the above code snippets by
 implementing the `main` function, where we instantiate a value of type `Circle`,
 pass it to the `area` function and print it as a `text` DOM element:
 
-{% highlight haskell %}
+{% highlight elm %}
 main =
     let
-        circle =
-            Circle 4.2
+        circle = Circle 4.2
     in
         text <|
             "The circle has an area of " ++
-                (toString <| area <| circle) ++
-                "!"
+            (String.fromFloat <| area <| circle) ++
+            "!"
 -- ==> "The circle has an area of 55.41769440932395!"
 {% endhighlight %}
 

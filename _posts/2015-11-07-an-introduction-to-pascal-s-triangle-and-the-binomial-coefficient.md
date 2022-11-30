@@ -1,9 +1,8 @@
 ---
 layout: post
-title: An introduction to Pascal's triangle and the binomial coefficient
+title: "An introduction to Pascal's triangle\nand the binomial coefficient"
 category: mathematics
-description: "In this post, we introduce Pascal's triangle and the binomial
-coefficient."
+description: "In this post, we introduce Pascal's triangle and the binomial coefficient."
 tags: [Haskell, Pascal's triangle, Binomial coefficient]
 ---
 

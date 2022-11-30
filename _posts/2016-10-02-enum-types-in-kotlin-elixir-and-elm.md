@@ -2,10 +2,8 @@
 layout: post
 title: "Enum types in Kotlin, Elixir, and Elm"
 category: functional-programming
-description: "In this post, we define the concept of enum types with
-examples in Kotlin, Elixir, and Elm."
-tags: [Elm, Elixir, Kotlin, Types, Enum types, Functional basics,
-Functional programming, Programming languages]
+description: "In this post, we define the concept of enum types with examples in Kotlin, Elixir, and Elm."
+tags: [Elm, Elixir, Kotlin, Enum types, Functional programming]
 ---
 
 *“‘Begin at the beginning’, the King said, very gravely,*<br/>
@@ -272,7 +270,7 @@ beginning of this post, where we define our type, `Shape`, using the `type`
 keyword followed by listing each of the members of the type, `Rectangle`, `Circle`, and
 `Triangle`, separated by `|`:
 
-{% highlight haskell %}
+{% highlight elm %}
 type Shape
     = Rectangle
     | Circle
@@ -283,7 +281,7 @@ As in the Kotlin case, we can do exhaustive pattern matching without any
 `else`-clause in our `case` expression, as the `Shape` type can only be
 constructed using the three listed members:
 
-{% highlight haskell %}
+{% highlight elm %}
 edges : Shape -> Int
 edges shape =
     case shape of
@@ -305,7 +303,7 @@ Finally, in order to run the above code, we implement the `main` function, where
 we instantiate a value of type `Shape`, pass it to the `edges` function, and
 print it as a text DOM element:
 
-{% highlight haskell %}
+{% highlight elm %}
 main =
   let
     rectangle = Rectangle

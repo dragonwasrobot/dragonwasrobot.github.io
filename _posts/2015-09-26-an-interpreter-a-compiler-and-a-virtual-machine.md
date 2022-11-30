@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "An interpreter, a compiler, and a virtual machine"
+title: "An interpreter, a compiler,\nand a virtual machine"
 category: mathematics
 description: "In this post, we implement an interpreter, a compiler, and a
 virtual machine."

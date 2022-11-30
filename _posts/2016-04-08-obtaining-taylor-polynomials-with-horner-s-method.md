@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Obtaining Taylor Polynomials with Horner's method"
+title: "Obtaining Taylor Polynomials\nwith Horner's method"
 category: mathematics
 description: "In this post, we calculate Taylor Polynomials with Horner's method."
 tags: [Haskell, Polynomial division, Taylor polynomials, Horner's method]

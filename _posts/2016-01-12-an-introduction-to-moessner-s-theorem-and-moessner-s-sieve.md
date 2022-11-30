@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "An introduction to Moessner's theorem and Moessner's sieve"
+title: "An introduction to Moessner's theorem\nand Moessner's sieve"
 category: mathematics
 description: "In this post, we introduce Moessner's theorem and Moessner's sieve."
 tags: [Haskell, Moessner's theorem, Moessner's sieve]

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "A characteristic function of Moessner's sieve"
+title: "A characteristic function\nof Moessner's sieve"
 category: mathematics
 description: "In this post, we introduce a characteristic function of Moessner's sieve."
 tags: [Haskell, Moessner's sieve]

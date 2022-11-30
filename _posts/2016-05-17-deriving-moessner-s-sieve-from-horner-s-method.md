@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Deriving Moessner's sieve from Horner's method"
+title: "Deriving Moessner's sieve\nfrom Horner's method"
 category: mathematics
 description: "In this post, we derive Moessner's sieve from Horner's method."
 tags: [Haskell, Polynomial division, Taylor polynomials, Horner's method, Moessner's sieve]
