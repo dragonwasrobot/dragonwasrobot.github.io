@@ -6,7 +6,7 @@ description: "In this post, we define the concept of product types with examples
 tags: [Elm, Elixir, Kotlin, Product types, Functional programming]
 ---
 
-#### prerequisites: The post [Enum types in Elm, Elixir, and Kotlin]({% post_url 2016-10-02-enum-types-in-kotlin-elixir-and-elm %})
+#### prerequisites: [Enum types in Elm, Elixir, and Kotlin]({% post_url 2016-10-02-enum-types-in-kotlin-elixir-and-elm %})
 
 *“All for one and one for all,<br/>*
 *united we stand divided we fall.”*<br/>

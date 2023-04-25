@@ -7,7 +7,7 @@ proving in the Coq Proof Assistant."
 tags: [Coq, Case analysis, Induction, Natural numbers, Arithmetic]
 ---
 
-#### prerequisites: An installation of the Coq Proof Assistant.
+#### prerequisites: Basic knowledge of functional programming
 
 *“Beware of bugs in the above code;*<br/>
 *I have only proved it correct, not tried it.”*<br/>

@@ -6,7 +6,7 @@ description: "In this post, we introduce the rotated versions of Pascal's triang
 tags: [Haskell, Pascal's triangle, Binomial coefficient]
 ---
 
-#### prerequisites: The post [An introduction to Pascal's triangle and the binomial coefficient]({% post_url 2015-11-07-an-introduction-to-pascal-s-triangle-and-the-binomial-coefficient %})
+#### prerequisites: [An introduction to Pascal's triangle and the binomial coefficient]({% post_url 2015-11-07-an-introduction-to-pascal-s-triangle-and-the-binomial-coefficient %})
 
 ### 1. Introduction
 

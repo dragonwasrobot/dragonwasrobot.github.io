@@ -6,7 +6,7 @@ description: "In this post, we derive Moessner's sieve from Horner's method."
 tags: [Haskell, Polynomial division, Taylor polynomials, Horner's method, Moessner's sieve]
 ---
 
-#### prerequisites: The posts [Obtaining Taylor Polynomials with Horner's method]({% post_url 2016-04-08-obtaining-taylor-polynomials-with-horner-s-method %}) and [A dual to Moessner's sieve]({% post_url 2016-02-19-a-dual-to-moessner-s-sieve %})
+#### prerequisites: [Obtaining Taylor Polynomials with Horner's method]({% post_url 2016-04-08-obtaining-taylor-polynomials-with-horner-s-method %}) and [A dual to Moessner's sieve]({% post_url 2016-02-19-a-dual-to-moessner-s-sieve %})
 
 ### 1. Introduction
 

@@ -7,7 +7,7 @@ and Long's theorem."
 tags: [Moessner's sieve, Moessner's theorem, Long's theorem]
 ---
 
-#### prerequisites: The post [A dual to Moessner's sieve]({% post_url 2016-02-19-a-dual-to-moessner-s-sieve %})
+#### prerequisites: [A dual to Moessner's sieve]({% post_url 2016-02-19-a-dual-to-moessner-s-sieve %})
 
 *“One chord is fine.*<br/>
 *Two chords are pushing it.*<br/>

@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "A characteristic function\nof Moessner's sieve"
+title: "A characteristic function of Moessner's sieve"
 category: mathematics
 description: "In this post, we introduce a characteristic function of Moessner's sieve."
 tags: [Haskell, Moessner's sieve]
 ---
 
-#### prerequisites: The posts [A dual to Moessner's sieve]({% post_url 2016-02-19-a-dual-to-moessner-s-sieve %}) and [Rotating Pascal's triangle and the binomial coefficient]({% post_url 2015-12-20-rotating-pascal-s-triangle-and-the-binomial-coefficient %})
+#### prerequisites: [A dual to Moessner's sieve]({% post_url 2016-02-19-a-dual-to-moessner-s-sieve %}) and [Rotating Pascal's triangle and the binomial coefficient]({% post_url 2015-12-20-rotating-pascal-s-triangle-and-the-binomial-coefficient %})
 
 *“It might be worth-while to point out*<br/>
 *that the purpose of abstracting is not to be vague,*<br/>
@@ -92,12 +92,11 @@ and $$t$$ is a variable. Using the initial Moessner triangle of Figure
 expansion,
 
 $$
-\definecolor{solarizedgray}{RGB}{88,110,117}
 \begin{equation*}
-  \color{solarizedgray} (1 + t)^4 \color{lightgray} = \color{solarizedgray} 1 \color{lightgray}
-  \cdot t^4 + \color{solarizedgray} 4 \color{lightgray} \cdot t^3 + \color{solarizedgray} 6
-  \color{lightgray} \cdot t^2 + \color{solarizedgray} 4 \color{lightgray} \cdot t^1 +
-  \color{solarizedgray} 1 \color{lightgray}\cdot t^0 \color{solarizedgray},
+  \color{black} (1 + t)^4 \color{lightgray} = \color{black} 1 \color{lightgray}
+  \cdot t^4 + \color{black} 4 \color{lightgray} \cdot t^3 + \color{black} 6
+  \color{lightgray} \cdot t^2 + \color{black} 4 \color{lightgray} \cdot t^1 +
+  \color{black} 1 \color{lightgray}\cdot t^0 \color{black},
 \end{equation*}
 $$
 
@@ -107,13 +106,13 @@ enumerates the actual terms of the binomial expansion when $$t = 1$$,
 
 $$
 \begin{align*}
-  \color{solarizedgray} (1 + 1)^4 &= \color{solarizedgray} 1 \cdot 1^4 \color{lightgray} +
-  \color{solarizedgray} 4 \cdot 1^3 \color{lightgray} + \color{solarizedgray} 6 \cdot 1^2
-  \color{lightgray} + \color{solarizedgray} 4 \cdot 1^1 \color{lightgray} +
-  \color{solarizedgray} 1 \cdot 1^0 \\
-  \color{solarizedgray} &= \color{solarizedgray} 1 \color{lightgray} + \color{solarizedgray} 4 \color{lightgray} +
-  \color{solarizedgray} 6 \color{lightgray} + \color{solarizedgray} 4 \color{lightgray} +
-  \color{solarizedgray} 1,
+  \color{black} (1 + 1)^4 &= \color{black} 1 \cdot 1^4 \color{lightgray} +
+  \color{black} 4 \cdot 1^3 \color{lightgray} + \color{black} 6 \cdot 1^2
+  \color{lightgray} + \color{black} 4 \cdot 1^1 \color{lightgray} +
+  \color{black} 1 \cdot 1^0 \\
+  \color{black} &= \color{black} 1 \color{lightgray} + \color{black} 4 \color{lightgray} +
+  \color{black} 6 \color{lightgray} + \color{black} 4 \color{lightgray} +
+  \color{black} 1,
 \end{align*}
 $$
 
@@ -123,14 +122,14 @@ index, starting from $$t = 1$$. As it turns out, letting $$t = 2$$,
 $$
 \begin{align}
   \tag{2}\label{eq:binomial-expansion-example}
-  \color{solarizedgray} (1 + 2)^4 &= \color{solarizedgray} 1 \cdot 2^4 \color{lightgray} +
-  \color{solarizedgray} 4 \cdot 2^3 \color{lightgray} +
-  \color{solarizedgray} 6 \cdot 2^2 \color{lightgray} +
-  \color{solarizedgray} 4 \cdot 2^1 \color{lightgray} +
-  \color{solarizedgray} 1 \cdot 2^0\\
-  \color{solarizedgray} &=
-  \color{solarizedgray} 16 \color{lightgray} + \color{solarizedgray} 32 \color{lightgray} + \color{solarizedgray} 24
-  \color{lightgray} + \color{solarizedgray} 8 \color{lightgray} + \color{solarizedgray} 1
+  \color{black} (1 + 2)^4 &= \color{black} 1 \cdot 2^4 \color{lightgray} +
+  \color{black} 4 \cdot 2^3 \color{lightgray} +
+  \color{black} 6 \cdot 2^2 \color{lightgray} +
+  \color{black} 4 \cdot 2^1 \color{lightgray} +
+  \color{black} 1 \cdot 2^0\\
+  \color{black} &=
+  \color{black} 16 \color{lightgray} + \color{black} 32 \color{lightgray} + \color{black} 24
+  \color{lightgray} + \color{black} 8 \color{lightgray} + \color{black} 1
 \end{align}
 $$
 
@@ -141,16 +140,16 @@ property holds for all triangles,
 
 $$
 \begin{align*}
-  \color{solarizedgray} (1 + 3)^4 &=
-  \color{solarizedgray} 1 \cdot 3^4 \color{lightgray} + \color{solarizedgray}
-  4 \cdot 3^3 \color{lightgray} + \color{solarizedgray}
-  6 \cdot 3^2 \color{lightgray} + \color{solarizedgray}
-  4 \cdot 3^1 \color{lightgray} + \color{solarizedgray}
+  \color{black} (1 + 3)^4 &=
+  \color{black} 1 \cdot 3^4 \color{lightgray} + \color{black}
+  4 \cdot 3^3 \color{lightgray} + \color{black}
+  6 \cdot 3^2 \color{lightgray} + \color{black}
+  4 \cdot 3^1 \color{lightgray} + \color{black}
   1 \cdot 3^0\\
-  \color{solarizedgray} &=
-  \color{solarizedgray} 81 \color{lightgray} + \color{solarizedgray} 108 \color{lightgray} +
-  \color{solarizedgray} 54 \color{lightgray} + \color{solarizedgray} 12 \color{lightgray} +
-  \color{solarizedgray} 1,
+  \color{black} &=
+  \color{black} 81 \color{lightgray} + \color{black} 108 \color{lightgray} +
+  \color{black} 54 \color{lightgray} + \color{black} 12 \color{lightgray} +
+  \color{black} 1,
 \end{align*}
 $$
 
@@ -168,38 +167,38 @@ $$
   \color{lightgray}
 
   \begin{array}{*{5}{r}}
-    1 & 1 & 1 & 1 & \color{solarizedgray}{1} \\
-    1 & 2 & 3 & \color{solarizedgray}{4} &   \\
-    1 & 3 & \color{solarizedgray}{6} &   &   \\
-    1 & \color{solarizedgray}{4} &   &   &   \\
-    \color{solarizedgray}{1} &   &   &   &
+    1 & 1 & 1 & 1 & \color{black}{1} \\
+    1 & 2 & 3 & \color{black}{4} &   \\
+    1 & 3 & \color{black}{6} &   &   \\
+    1 & \color{black}{4} &   &   &   \\
+    \color{black}{1} &   &   &   &
   \end{array}
 
-  \color{solarizedgray}{\Rightarrow}
+  \color{black}{\Rightarrow}
 
   \color{lightgray}
 
   \begin{array}{*{5}{r}}
-    \color{solarizedgray}{1} &  1 &  1 & 1 & \color{solarizedgray}{1} \\
-    \color{solarizedgray}{5} &  6 &  7 & \color{solarizedgray}{8} &   \\
-    \color{solarizedgray}{11} & 17 & \color{solarizedgray}{24} &   &   \\
-    \color{solarizedgray}{15} & \color{solarizedgray}{32} &    &   &   \\
-    \color{solarizedgray}{16} &    &    &   &
+    \color{black}{1} &  1 &  1 & 1 & \color{black}{1} \\
+    \color{black}{5} &  6 &  7 & \color{black}{8} &   \\
+    \color{black}{11} & 17 & \color{black}{24} &   &   \\
+    \color{black}{15} & \color{black}{32} &    &   &   \\
+    \color{black}{16} &    &    &   &
   \end{array}
 
-  \color{solarizedgray}{\Rightarrow}
+  \color{black}{\Rightarrow}
 
   \color{lightgray}
 
   \begin{array}{*{5}{r}}
-    \color{solarizedgray}{1} &   1 &  1 &  1 & 1 \\
-    \color{solarizedgray}{9} &  10 & 11 & 12 &   \\
-    \color{solarizedgray}{33} &  43 & 54 &    &   \\
-    \color{solarizedgray}{65} & 108 &    &    &   \\
-    \color{solarizedgray}{81} &     &    &    &
+    \color{black}{1} &   1 &  1 &  1 & 1 \\
+    \color{black}{9} &  10 & 11 & 12 &   \\
+    \color{black}{33} &  43 & 54 &    &   \\
+    \color{black}{65} & 108 &    &    &   \\
+    \color{black}{81} &     &    &    &
   \end{array}
 
-  \color{solarizedgray}
+  \color{black}
 
 \end{equation}
 $$

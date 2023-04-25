@@ -6,7 +6,7 @@ description: "In this post, we introduce a dual to Moessner's sieve."
 tags: [Haskell, Moessner's sieve]
 ---
 
-#### prerequisites: The post [An introduction to Moessner's theorem and Moessner's sieve]({% post_url
+#### prerequisites: [An introduction to Moessner's theorem and Moessner's sieve]({% post_url
 2016-01-12-an-introduction-to-moessner-s-theorem-and-moessner-s-sieve %})
 
 *“The poet doesn't invent.*<br/>

@@ -6,7 +6,7 @@ description: "In this post, we calculate Taylor Polynomials with Horner's method
 tags: [Haskell, Polynomial division, Taylor polynomials, Horner's method]
 ---
 
-#### prerequisites: The post [An introduction to Horner's method]({% post_url 2015-08-03-an-introduction-to-horner-s-method %})
+#### prerequisites: [An introduction to Horner's method]({% post_url 2015-08-03-an-introduction-to-horner-s-method %})
 
 ### 1. Introduction
 

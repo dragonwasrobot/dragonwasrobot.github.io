@@ -7,7 +7,7 @@ compilation of code."
 tags: [Coq, Programming Languages, Interpreters, Compilers, Virtual Machines]
 ---
 
-#### prerequisites: The post [An interpreter, a compiler and a virtual machine]({% post_url
+#### prerequisites: [An interpreter, a compiler and a virtual machine]({% post_url
 2015-09-26-an-interpreter-a-compiler-and-a-virtual-machine %})
 
 ### 1. Introduction

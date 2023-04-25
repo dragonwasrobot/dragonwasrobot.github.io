@@ -6,7 +6,7 @@ description: "In this post, we define the concept of sum types with examples in 
 tags: [Elm, Elixir, Kotlin, Sum types, Functional programming]
 ---
 
-#### prerequisites: The post [Product types in Elm, Elixir, and Kotlin]({% post_url 2016-11-14-product-types-in-kotlin-elixir-and-elm %})
+#### prerequisites: [Product types in Elm, Elixir, and Kotlin]({% post_url 2016-11-14-product-types-in-kotlin-elixir-and-elm %})
 
 *“We are our choices.”*<br/>
 -- **Jean-Paul Sartre**

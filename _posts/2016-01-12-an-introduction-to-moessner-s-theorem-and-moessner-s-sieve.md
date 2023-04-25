@@ -6,7 +6,7 @@ description: "In this post, we introduce Moessner's theorem and Moessner's sieve
 tags: [Haskell, Moessner's theorem, Moessner's sieve]
 ---
 
-#### prerequisites: A basic knowledge of Haskell or similar.
+#### prerequisites: Basic knowledge of functional programming
 
 ### 1. Introduction
 

@@ -27,7 +27,6 @@ body {
   flex-direction: column;
 }
 
-
 /**
  * Set `margin-bottom` to maintain vertical rhythm
  */
@@ -87,31 +86,38 @@ li {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: $base-font-weight;
+  font-family: $base-header-font-family;
+  font-weight: $base-header-font-weight;
 }
-
 
 /**
  * Links
  */
+header {
+  a {
+    font-family: $base-header-font-family;
+    font-weight: 300;
+  }
+}
+
 a {
   color: $brand-color;
   text-decoration: none;
 
   &:visited {
-    color: darken($brand-color, 15%);
+    color: darken($brand-color, 5%);
   }
 
   &:hover {
     color: $text-color;
-    text-decoration: underline;
+    text-decoration: underline 1px;
   }
 
   .social-media-list &:hover {
     text-decoration: none;
 
     .username {
-      text-decoration: underline;
+      text-decoration: underline 1px;
     }
   }
 }
@@ -146,7 +152,7 @@ code {
   font-family: $base-font-family-code;
   border: 1px solid $grey-color-light;
   border-radius: 3px;
-  background-color: #fdf6e3;
+  background-color: #f5f5f5;
 }
 
 code {

@@ -7,7 +7,7 @@ Moessner triangles."
 tags: [Haskell, Moessner's sieve]
 ---
 
-#### prerequisites: The post [A characteristic function of Moessner's sieve]({% post_url 2016-03-04-a-characteristic-function-of-moessner-s-sieve %})
+#### prerequisites: [A characteristic function of Moessner's sieve]({% post_url 2016-03-04-a-characteristic-function-of-moessner-s-sieve %})
 
 *“The trick, William Potter,*<br/>
 *is not minding that it hurts.”*<br/>
