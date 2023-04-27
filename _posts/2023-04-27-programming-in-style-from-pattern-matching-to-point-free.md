@@ -2,7 +2,7 @@
 layout: post
 title: "Programming in Style:\nFrom Pattern Matching to Point Free"
 category: functional-programming
-description: "In this post, we present several concept for making Elm code more declarative and precise"
+description: "In this post, we present several techniques for making Elm code more declarative and precise"
 tags: [Elm, Functional programming]
 ---
 

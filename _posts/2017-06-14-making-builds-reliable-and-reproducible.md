@@ -2,8 +2,7 @@
 layout: post
 title: "Making builds reliable and reproducible"
 category: programming
-description: "In this post, we present how to significantly improve the
-reliability and reproducibility of software builds."
+description: "In this post, we present how to significantly improve the reliability and reproducibility of software builds."
 tags: [Dependency management]
 ---
 
