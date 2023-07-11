@@ -138,6 +138,26 @@ The project was created for two reasons:
 - [Running interpreter](https://www.dragonwasrobot.com/brainfuck/)
 - [GitHub page](https://github.com/dragonwasrobot/brainfuck)
 
+### b.el (Emacs package)
+
+#### Description
+
+The [b.el](https://github.com/dragonwasrobot/b.el) project is an Emacs package,
+written in [Emacs Lisp](https://en.wikipedia.org/wiki/Emacs_Lisp), which
+provides a range of standard functions for manipulating and parsing bytes
+centered around three distinct representations for bytes as decimal, hexadecimal
+and binary values, respectively.
+
+The project was create to aid developers who either want to rapidly prototype a
+parser for a binary format, and would prefer to do this from the comforts of an
+Emacs buffer, or simply want become better acquainted with bytes as a
+fundamental building block for software development and how these can be
+manipulated and represented.
+
+#### Links
+
+- [GitHub page](https://github.com/dragonwasrobot/b.el)
+
 ### Helm Bitbucket (Emacs package)
 
 #### Description
