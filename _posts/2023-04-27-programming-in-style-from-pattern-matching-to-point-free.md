@@ -2,7 +2,7 @@
 layout: post
 title: "Programming in Style:\nFrom Pattern Matching to Point Free"
 category: functional-programming
-description: "In this post, we present several techniques for making Elm code more declarative and precise"
+description: "In this post, we present several techniques for making Elm code more declarative and precise."
 tags: [Elm, Functional programming]
 ---
 
@@ -49,7 +49,7 @@ following definition:
 {% highlight elm %}
 isCoprimeWith42 : String -> Bool
 isCoprimeWith42 s =
-  case String.fromInt s of
+  case String.toInt s of
     Nothing ->
       False
 
@@ -89,18 +89,18 @@ s
 |> function2
 {% endhighlight %}
 
-Looking at `String.fromInt`, which takes a `String` and produces `Maybe Int`,
+Looking at `String.toInt`, which takes a `String` and produces `Maybe Int`,
 and how we may combine it with `gcd`, which takes an `Int` and also produces a
 `Maybe Int`, we turn to `Maybe.andThen`. With this function, we can connect the
 two by wrapping the call to `gcd` in a [lambda
 expression](https://en.wikipedia.org/wiki/Anonymous_function) and [partially
 applying](https://en.wikipedia.org/wiki/Partial_application) it to
 `Maybe.andThen`. This produces a new function that takes a `Maybe Int`, which it
-gets from `String.fromInt`, and produces a `Maybe Int`:
+gets from `String.toInt`, and produces a `Maybe Int`:
 
 {% highlight elm %}
 s
-|> String.fromInt
+|> String.toInt
 |> Maybe.andThen (\n -> gcd 42 n)
 {% endhighlight %}
 
@@ -124,7 +124,7 @@ Piecing all of the above together, we get our new definition:
 isCoprimeWith42 : String -> Bool
 isCoprimeWith42 s =
   s
-  |> String.fromInt
+  |> String.toInt
   |> Maybe.andThen (\i -> gcd 42 i)
   |> Maybe.map (\n -> 1 == n)
   |> Maybe.withDefault False
@@ -138,7 +138,7 @@ way of thinking about functions.
 ### Function Composition, Point Free Style and Community Libraries
 
 An alternative to using the pipe operator `|>`, where we take our argument `s`
-and first pass it to `String.fromInt` and then pass the result to
+and first pass it to `String.toInt` and then pass the result to
 `Maybe.andThen`, is to use the [function
 composition](https://en.wikipedia.org/wiki/Function_composition) operator `>>`
 which has the type:
@@ -226,7 +226,7 @@ import Maybe.Extra as Maybe
 
 isCoprimeWith42 : String -> Bool
 isCoprimeWith42 =
-  String.fromInt
+  String.toInt
   >> Maybe.andThen (gcd 42)
   >> Maybe.unwrap False ((==) 1)
 {% endhighlight %}
@@ -244,7 +244,7 @@ import Maybe.Extra as Maybe
 
 isCoprimeWith : Int -> String -> Bool
 isCoprimeWith n =
-  String.fromInt
+  String.toInt
   >> Maybe.andThen (gcd n)
   >> Maybe.unwrap False ((==) 1)
 
