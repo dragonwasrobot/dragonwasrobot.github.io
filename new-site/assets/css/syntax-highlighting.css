@@ -1,0 +1,415 @@
+@import "tailwindcss";
+
+/* Utilities */
+
+@utility dwr-code-name-color {
+  @apply text-gray-900;
+}
+
+@utility dwr-code-operator-color {
+  @apply text-gray-900;
+}
+
+@utility dwr-code-keyword-color {
+  @apply text-sky-800;
+}
+
+@utility dwr-code-comment-color {
+  @apply text-stone-400;
+}
+
+@utility dwr-code-literal-number-color {
+  @apply text-cyan-600;
+}
+
+@utility dwr-code-literal-string-color {
+  @apply text-emerald-700;
+}
+
+/* ** code elements */
+
+pre {
+  @apply overflow-x-auto;
+}
+
+code {
+  @apply dwr-font-fixed;
+}
+
+li code {
+  @apply px-1;
+  @apply border;
+  @apply rounded;
+  @apply bg-neutral-50;
+  @apply border-neutral-200;
+}
+
+p code {
+  @apply px-1;
+  @apply border;
+  @apply rounded;
+  @apply bg-neutral-50;
+  @apply border-neutral-200;
+}
+
+div.highlight {
+  @apply mb-4;
+  @apply mx-4;
+  @apply py-2;
+  @apply px-4;
+  @apply border;
+  @apply rounded;
+  @apply bg-neutral-50;
+  @apply border-neutral-200;
+}
+
+pre.chroma {
+  @apply bg-neutral-50;
+}
+
+/* ** chromastyles classes */
+
+/* Generated using: hugo gen chromastyles --style=xcode
+
+/*
+ * The DOM looks like this:
+ *
+ * <div class="highlight">
+ *   <pre class="chroma">
+ *     <code class="language-kotlin" data-lang="kotlin">
+ *       <span class="line">
+ *         <span class="cl">
+ *           <span class="k">enum</span>
+ *
+ * Which means that it is possible to customize the color scheme per language
+ * using the attribute selector: `code[data-lang="kotlin"] {`
+ */
+
+/* Background */ .bg {
+  background-color: #fff;
+}
+
+/* PreWrapper */ .chroma {
+  background-color: #fff;
+}
+
+/* Other */ .chroma .x { }
+
+/* Error */ .chroma .err {
+  color: #000;
+}
+/* CodeLine */ .chroma .cl {  }
+
+/* LineLink */ .chroma .lnlinks {
+  outline: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* LineTableTD */ .chroma .lntd {
+  vertical-align: top;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+/* LineTable */ .chroma .lntable {
+  border-spacing: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+/* LineHighlight */ .chroma .hl {
+  background-color: #e5e5e5;
+}
+
+/* LineNumbersTable */ .chroma .lnt {
+  white-space: pre;
+  -webkit-user-select: none;
+  user-select: none;
+  margin-right: 0.4em;
+  padding: 0 0.4em 0 0.4em;
+  color:#7f7f7f;
+}
+
+/* LineNumbers */ .chroma .ln {
+  white-space: pre;
+  -webkit-user-select: none;
+  user-select: none;
+  margin-right: 0.4em;
+  padding: 0 0.4em 0 0.4em;
+  color:#7f7f7f;
+}
+
+/* Line */ .chroma .line {
+  display:flex;
+}
+
+/* Keyword */ .chroma .k {
+  @apply dwr-code-literal-string-color;
+}
+
+/* KeywordConstant */ .chroma .kc {
+  @apply dwr-code-keyword-color;
+}
+
+/* KeywordDeclaration */ .chroma .kd {
+  @apply dwr-code-keyword-color;
+}
+
+/* KeywordNamespace */ .chroma .kn {
+  @apply dwr-code-literal-string-color;
+}
+
+/* KeywordPseudo */ .chroma .kp {
+  @apply dwr-code-keyword-color;
+}
+
+/* KeywordReserved */ .chroma .kr {
+  @apply dwr-code-literal-string-color;
+}
+
+/* KeywordType */ .chroma .kt {
+  @apply dwr-code-keyword-color;
+}
+
+/* Name */ .chroma .n {
+  @apply dwr-code-name-color;
+}
+
+/* NameAttribute */ .chroma .na {
+  color: #836c28
+}
+
+/* NameBuiltin */ .chroma .nb {
+  color: #445588
+}
+
+/* NameBuiltinPseudo */ .chroma .bp {
+  color: #5b269a
+}
+
+/* NameClass */ .chroma .nc {
+  @apply dwr-code-keyword-color;
+}
+
+/* NameConstant */ .chroma .no {
+  @apply dwr-code-name-color;
+}
+
+/* NameDecorator */ .chroma .nd {
+  @apply dwr-code-name-color;
+}
+
+/* NameEntity */ .chroma .ni {
+  @apply dwr-code-name-color;
+}
+
+/* NameException */ .chroma .ne {
+  @apply dwr-code-name-color;
+}
+
+/* NameFunction */ .chroma .nf {
+  @apply dwr-code-name-color;
+}
+
+/* NameFunctionMagic */ .chroma .fm {
+  @apply dwr-code-name-color;
+}
+
+/* NameLabel */ .chroma .nl {
+  @apply dwr-code-name-color;
+}
+
+/* NameNamespace */ .chroma .nn {
+  @apply dwr-code-name-color;
+}
+
+/* NameOther */ .chroma .nx {
+  @apply dwr-code-name-color;
+}
+
+/* NameProperty */ .chroma .py {
+  @apply dwr-code-name-color;
+}
+
+/* NameTag */ .chroma .nt {
+  @apply dwr-code-name-color;
+}
+
+/* NameVariable */ .chroma .nv {
+  @apply dwr-code-name-color;
+}
+
+/* NameVariableClass */ .chroma .vc {
+  @apply dwr-code-name-color;
+}
+
+/* NameVariableGlobal */ .chroma .vg {
+  @apply dwr-code-name-color;
+}
+
+/* NameVariableInstance */ .chroma .vi {
+  @apply dwr-code-name-color;
+}
+
+/* NameVariableMagic */ .chroma .vm {
+  @apply dwr-code-name-color;
+}
+
+/* Literal */ .chroma .l {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralDate */ .chroma .ld {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralString */ .chroma .s {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringAffix */ .chroma .sa {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringBacktick */ .chroma .sb {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringChar */ .chroma .sc {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringDelimiter */ .chroma .dl {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringDoc */ .chroma .sd {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringDouble */ .chroma .s2 {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringEscape */ .chroma .se {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringHeredoc */ .chroma .sh {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringInterpol */ .chroma .si {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringOther */ .chroma .sx {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringRegex */ .chroma .sr {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringSingle */ .chroma .s1 {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralStringSymbol */ .chroma .ss {
+  @apply dwr-code-literal-string-color;
+}
+
+/* LiteralNumber */ .chroma .m {
+  @apply dwr-code-literal-number-color;
+}
+
+/* LiteralNumberBin */ .chroma .mb {
+  @apply dwr-code-literal-number-color;
+}
+
+/* LiteralNumberFloat */ .chroma .mf {
+  @apply dwr-code-literal-number-color;
+}
+
+/* LiteralNumberHex */ .chroma .mh {
+  @apply dwr-code-literal-number-color;
+}
+
+/* LiteralNumberInteger */ .chroma .mi {
+  @apply dwr-code-literal-number-color;
+}
+
+/* LiteralNumberIntegerLong */ .chroma .il {
+  @apply dwr-code-literal-number-color;
+}
+
+/* LiteralNumberOct */ .chroma .mo {
+  @apply dwr-code-literal-number-color;
+}
+
+/* Operator */ .chroma .o {
+  @apply dwr-code-operator-color;
+}
+
+/* OperatorWord */ .chroma .ow {
+  @apply dwr-code-operator-color;
+}
+
+/* Punctuation */ .chroma .p { }
+
+/* Comment */ .chroma .c {
+  @apply dwr-code-comment-color;
+}
+
+/* CommentHashbang */ .chroma .ch {
+  @apply dwr-code-comment-color;
+}
+
+/* CommentMultiline */ .chroma .cm {
+  @apply dwr-code-comment-color;
+}
+
+/* CommentSingle */ .chroma .c1 {
+  @apply dwr-code-comment-color;
+}
+
+/* CommentSpecial */ .chroma .cs {
+  @apply dwr-code-comment-color;
+}
+
+/* CommentPreproc */ .chroma .cp {
+  @apply dwr-code-comment-color;
+}
+
+/* CommentPreprocFile */ .chroma .cpf {
+  @apply dwr-code-comment-color;
+}
+
+/* Generic */ .chroma .g { }
+
+/* GenericDeleted */ .chroma .gd { }
+
+/* GenericEmph */ .chroma .ge { }
+
+/* GenericError */ .chroma .gr { }
+
+/* GenericHeading */ .chroma .gh { }
+
+/* GenericInserted */ .chroma .gi { }
+
+/* GenericOutput */ .chroma .go { }
+
+/* GenericPrompt */ .chroma .gp { }
+
+/* GenericStrong */ .chroma .gs { }
+
+/* GenericSubheading */ .chroma .gu { }
+
+/* GenericTraceback */ .chroma .gt { }
+
+/* GenericUnderline */ .chroma .gl { }
+
+/* TextWhitespace */ .chroma .w { }

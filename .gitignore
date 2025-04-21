@@ -1,9 +1,13 @@
 # dot-gitignore
 
-.DS_Store
-_site
-_drafts
-.sass-cache
-.jekyll-cache
-.jekyll-metadata
-vendor
+# drafts
+ideas/
+
+# dependencies
+node_modules/
+
+# build
+fontawesome/
+index.css
+.hugo_build.lock
+public/
