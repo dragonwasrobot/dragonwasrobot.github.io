@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/* Utilities */
+
+@utility dwr-font-sans-serif {
+  font-family: system-ui;
+}
+
+@utility dwr-font-serif {
+  font-family: "PT Serif", -apple-system, serif;
+}
+
+@utility dwr-font-fixed {
+  font-family: "Fira Code", monospace;
+}
+
+@utility dwr-text-primary-color {
+  @apply text-sky-800;
+}
+
+@utility dwr-text-default-color {
+  @apply text-gray-900;
+}
+
+/* * Elements */
+
+body {
+  @apply dwr-font-serif;
+  @apply dwr-text-default-color;
+}
+
+/* ** Paragraphs */
+
+p {
+  @apply mb-4;
+}
+
+p a {
+  @apply dwr-text-primary-color;
+}
+
+/* ** Lists */
+
+ol, ul {
+  @apply mb-4;
+  @apply px-8;
+}
+
+ol {
+  @apply list-decimal;
+}
+
+ul {
+  @apply list-disc;
+}
+
+ol a {
+  @apply dwr-text-primary-color;
+}
+
+ul a {
+  @apply dwr-text-primary-color;
+}
+
+/* ** Headings */
+
+h1, h2, h3, h4, h5, h6 {
+  @apply dwr-font-sans-serif;
+  @apply font-extralight;
+}
+
+h1, h2, h3 {
+  @apply mb-4;
+}
+
+h4 {
+  margin-top: 0px;
+}
+
+h1 {
+  @apply text-4xl tracking-tight whitespace-pre-line;
+}
+
+h2 {
+  @apply text-2xl tracking-tight whitespace-pre-line;
+}
+
+h3 {
+  @apply text-xl tracking-tight whitespace-pre-line;
+}
+
+/* ** Footnotes */
+
+div.footnotes {
+
+  hr {
+    @apply text-neutral-200;
+  }
+
+  ol {
+    @apply mt-4;
+  }
+
+}
+
+/* ** Tags */
+
+div#tags {
+  display: none;
+}

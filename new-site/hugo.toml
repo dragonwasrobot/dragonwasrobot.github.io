@@ -1,0 +1,44 @@
+baseURL = 'https://dragonwasrobot.com/'
+languageCode = 'en-us'
+title = 'dragonwasrobot'
+disableKinds = ["taxonomy", "term"]
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Projects'
+    pageRef = '/projects/'
+    weight = 20
+
+  [[menus.main]]
+    name = 'About'
+    pageRef = '/about/'
+    weight = 30
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup]
+  [markup.highlight]
+    # disable highlighting theme and use own CSS styling
+    # to renable set: `style = 'xcode'`
+    noClasses = false
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.146.0'
+
+[outputs]
+  home = ['html', 'rss']
+  section = ['html']
+  taxonomy = ['html']
+  term = ['html']
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
