@@ -1,0 +1,390 @@
++++
+title = "Deriving Moessner's sieve&#x000a;from Horner's method"
+author = ["Peter Urbak"]
+summary = "In this post, we derive Moessner's sieve from Horner's method."
+date = 2016-05-17T00:00:00Z
+tags = ["Haskell", "Mathematics", "Polynomial division", "Taylor polynomials", "Horner's method", "Moessner's Process"]
+categories = ["Moessner's Theorem"]
+draft = false
++++
+
+## 1. Introduction {#1-dot-introduction}
+
+This is a follow-up post to [Obtaining Taylor polynomials with Horner's method](/posts/obtaining-taylor-polynomials-with-horners-method)
+and [A Dual to Moessner's Sieve](/posts/a-dual-to-moessners-sieve). The goal of this post is to derive Moessner's
+sieve from Horner's method for polynomial division, thus concluding this three
+part series on Horner's method.
+
+The post is structured as follows. In Section [2](#2-dot-horner-blocks-and-taylor-polynomials), we introduce and formalize
+Horner blocks in the context of Taylor polynomials. Having defined Horner
+blocks, we transform them into Moessner triangles in Section [3](#3-dot-from-horner-blocks-to-moessner-triangles) and in the
+process obtain an alternative formalization of Moessner's sieve. In Section [4](#4-dot-equivalence-of-moessner-s-sieve-and-horner-s-method),
+we state an equivalence relation between Horner's method and Moessner's sieve.
+The post is concluded in Section [5](#5-dot-conclusion).
+
+
+## 2. Horner blocks and Taylor polynomials {#2-dot-horner-blocks-and-taylor-polynomials}
+
+In this section, we introduce and formalize the concept of Horner blocks and
+show how they relate to [Taylor polynomials](https://en.wikipedia.org/wiki/Taylor%27s_theorem).
+
+We start this section by picking up from where we left off in the [previous blog
+post](/posts/obtaining-taylor-polynomials-with-horners-method) and represent the repeated application of Horner's method for polynomial
+division in a tabular format. Given the polynomial \\(p(x) = 2x^3 + 4x^2 + 11x +
+3\\), we can restate its repeated division with the binomial \\(d(x) = x - 2\\)
+(captured in Formulas 7-9 in the previous blog post) by stacking the
+calculations on top of each other,
+
+\begin{equation}
+  \tag{1}\label{eq:horner-block-example}
+  \begin{array}{ c | c c c c }
+    2  &   2 &   4 &  11 &   3 \\\\
+       &     &   4 &  16 &  54 \\\\
+       &   2 &   8 & 27  & \textbf{57}\\\\
+       \\\\
+       &     &   4 & 24 \\\\
+       &   2 & 12 & \textbf{51}\\\\
+       \\\\
+       &     & 4 \\\\
+       &   2 & \textbf{16} \\\\
+       \\\\
+       & \textbf{2}. &
+  \end{array}
+\end{equation}
+
+In this way, the three calculations are merged into a triangular array, such
+that the hypotenuse of the triangle, highlighted in boldface, enumerates the
+coefficients of the resulting Taylor polynomial,
+
+\begin{equation\*}
+    P\_{3,2}(x) = 2 {(x - 2)}^3 + 16 {(x - 2)}^2 + 51 (x - 2) + 57.
+\end{equation\*}
+
+We call this construction a Horner block and formalize it by first defining a
+`Block` to be a `List` of `Polynomials`,
+
+```haskell
+type Block = [Polynomial]
+```
+
+which we then use in the definition of the following procedure,
+
+```haskell
+createHornerBlockAcc :: Polynomial -> Int -> Int -> Block
+createHornerBlockAcc cs x n
+  | n == 0 = []
+  | n  > 0 = let cs' = init $ hornersPolyDiv cs x
+             in cs' : createHornerBlockAcc cs' x (n - 1)
+```
+
+which performs the repeated application of Horner's method for polynomial
+division, `hornersPolyDiv`, while removing the last entry of each intermediate
+results -- what `init` does. As in the previous posts, `cs` corresponds to the
+coefficients of a polynomial \\(p\\), while `x` corresponds to the point \\(k\\), and
+the final argument `n` specifies the number of divisions to be made. However, we
+note that there exists an extra base case in Formula
+\ref{eq:horner-block-example}, as no value is dropped from the initial
+`Polynomial` in the Horner block. Hence, we define a wrapper function,
+
+```haskell
+createHornerBlock :: Polynomial -> Int -> Int -> Block
+createHornerBlock cs x n
+  | n == 0 = []
+  | n  > 0 = let cs' = hornersPolyDiv cs x
+             in cs' : createHornerBlockAcc cs' x (n - 1)
+```
+
+which performs a single division without removing the last entry, followed by a
+call to `createHornerBlockAcc`. Thus, we can obtain the Taylor polynomial of a
+polynomial \\(p\\) at a point \\(k\\) by reading the hypotenuse of the `Block` returned
+by `createHornerBlock` when given a list of \\(p\\)'s coefficients and a value of
+\\(k\\).
+
+
+## 3. From Horner blocks to Moessner triangles {#3-dot-from-horner-blocks-to-moessner-triangles}
+
+In this section, we transform Horner blocks into Moessner triangles and in the
+process derive an alternative formalization of Moessner's sieve.
+
+If we let \\(p(x) = x^3\\) and want to obtain the Taylor polynomial \\(P\_{3,3}\\), we can
+do so in two ways:
+
+-   Repeatedly divide \\(p\\) with \\(x - 3\\) and obtain the hypotenuse equal to the
+    coefficients of \\(P\_{3,3}\\),
+
+\begin{equation\*}
+  \begin{array}{ c | c c c c }
+       & x^3 & x^2 & x^1 & x^0 \\\\
+     3 & 1 & 0 & 0 & 0 \\\\
+       &   & 3 & 9 & 27 \\\\
+       & 1 & 3 & 9 & \textbf{27} \\\\
+       \\\\
+       &   & 3 & 18 &   \\\\
+       & 1 & 6 & \textbf{27} &   \\\\
+       \\\\
+       &   & 3 &   &   \\\\
+       & 1 & \textbf{9} &   &   \\\\
+       \\\\
+       & \textbf{1} &   &   &
+  \end{array}
+\end{equation\*}
+
+-   Repeatedly divide \\(p\\) with \\(x - 1\\), obtain the Taylor polynomial \\(P\_{3,1}\\) and
+    repeatedly divide it with \\(x - 1\\) to get \\(P\_{3,2}\\), and lastly repeatedly divide
+    \\(P\_{3,2}\\) with \\(x - 1\\) to get the coefficients of \\(P\_{3,3}\\),
+
+\begin{equation}
+  \tag{2}\label{eq:horner-x-3-three-divs}
+  \begin{array}{ c | c c c c }
+     & x^3 & x^2 & x^1 & x^0 \\\\
+     1 & 1 & 0 & 0 & 0 \\\\
+     &   & 1 & 1 & 1 \\\\
+     & 1 & 1 & 1 & 1 \\\\
+     \\\\
+     &   & 1 & 2 &   \\\\
+     & 1 & 2 & 3 &   \\\\
+     \\\\
+     &   & 1 &   &   \\\\
+     & 1 & 3 &   &   \\\\
+     \\\\
+     & 1 &   &   &
+  \end{array}
+  ~
+  \begin{array}{ c | c c c c }
+     & x^3 & x^2 & x^1 & x^0 \\\\
+   1 & 1 & 3 & 3 & 1 \\\\
+     &   & 1 & 4 & 7 \\\\
+     & 1 & 4 & 7 & 8 \\\\
+     \\\\
+     &   & 1 & 5 &   \\\\
+     & 1 & 5 & 12 &   \\\\
+     \\\\
+     &   & 1 &   &   \\\\
+     & 1 & 6 &   &   \\\\
+     \\\\
+     & 1 &   &   &
+  \end{array}
+  ~
+  \begin{array}{ c | c c c c }
+     & x^3 & x^2 & x^1 & x^0 \\\\
+   1 & 1 & 6 & 12 & 8 \\\\
+     &   & 1 & 7 & 19 \\\\
+     & 1 & 7 & 19 & \textbf{27} \\\\
+     \\\\
+     &   & 1 & 8 &   \\\\
+     & 1 & 8 & \textbf{27} &   \\\\
+     \\\\
+     &   & 1 &   &   \\\\
+     & 1 & \textbf{9} &   &   \\\\
+     \\\\
+     & \textbf{1} &   &   &
+  \end{array}
+\end{equation}
+
+From the above calculations, we first observe that the two result hypotenuses --
+highlighted in boldface -- are identical. Secondly, we observe that the first
+remainder calculated in each of the three triangles in Formula
+\ref{eq:horner-x-3-three-divs}, \\((1, 8, 27)\\), are equal to the powers of \\(3\\),
+\\((1^3, 2^3, 3^3)\\), and thus equal to the values of \\(p(1)\\), \\(p(2)\\) and \\(p(3)\\),
+which demonstrates that Horner's method can be used to enumerate the values of
+\\(p\\) for the set of positive natural numbers. Lastly, upon closer examination of
+the procedure used above, we note that given a polynomial,
+
+\begin{equation\*}
+  p(x) = a\_3 x^3 + a\_2 x^2 + a\_1 x + a\_0,
+\end{equation\*}
+
+the repeated division of \\(p\\) with \\(x - 1\\) has the following structure,
+
+\begin{equation\*}
+  \begin{array}{ c c c c }
+    a\_3 & a\_2 & a\_1 & a\_0 \\\\
+        & a\_3 & a\_3 + a\_2 & a\_3 + a\_2 + a\_1 \\\\
+    a\_3 & a\_3 + a\_2 & a\_3 + a\_2 + a\_1 & \mathbf{a\_3 + a\_2 + a\_1 + a\_0} \\\\
+    \\\\
+        & a\_3 & 2a\_3 + a\_2 & \\\\
+    a\_3 & 2a\_3 + a\_2 & \mathbf{3a\_3 + 2a\_2 + a\_1} & \\\\
+    \\\\
+        & a\_3 & & \\\\
+    a\_3 & \mathbf{3a\_3 + a\_2} & & \\\\
+    \\\\
+    \mathbf{a\_3} & & &
+  \end{array}
+\end{equation\*}
+
+where every non-shifted row, starting with the first row,
+
+\begin{equation}
+  \tag{3}\label{eq:horner-block-stripped}
+  \begin{array}{ c c c c }
+    a\_3 & a\_2 & a\_1 & a\_0 \\\\
+    a\_3 & a\_3 + a\_2 & a\_3 + a\_2 + a\_1 & \mathbf{a\_3 + a\_2 + a\_1 + a\_0} \\\\
+    a\_3 & 2a\_3 + a\_2 & \mathbf{3a\_3 + 2a\_2 + a\_1} & \\\\
+    a\_3 & \mathbf{3a\_3 + a\_2} & & \\\\
+    \mathbf{a\_3} & & &
+  \end{array}
+\end{equation}
+
+is the partial sum of the former non-shifted row. If we take the results of
+Formula \ref{eq:horner-x-3-three-divs} and strip away the left-most column and
+the top row, containing the value of \\(k\\) and the exponents, we get the following
+three Horner blocks,
+
+\begin{equation}
+  \tag{4}\label{eq:horner-x-3-three-divs-blocks}
+  \begin{array}{ c c c c }
+    1 & 0 & 0 & 0 \\\\
+    & 1 & 1 & 1 \\\\
+    1 & 1 & 1 & \textbf{1} \\\\
+    & 1 & 2 &   \\\\
+    1 & 2 & \textbf{3} &   \\\\
+    & 1 & &        \\\\
+    1 & \textbf{3} \\\\
+    \textbf{1} & & &
+  \end{array}
+  \qquad
+  \begin{array}{ c c c c }
+    1 & 3 &  3 & 1 \\\\
+    & 1 &  4 & 7 \\\\
+    1 & 4 &  7 & \textbf{8} \\\\
+    & 1 &  5 &   \\\\
+    1 & 5 & \textbf{12} &  \\\\
+    & 1         \\\\
+    1 & \textbf{6} & & \\\\
+    \textbf{1}
+  \end{array}
+  \qquad
+  \begin{array}{ c c c c }
+    1 & 6 & 12 &  8 \\\\
+    & 1 &  7 & 19 \\\\
+    1 & 7 & 19 & \textbf{27} \\\\
+    & 1 &  8 &   \\\\
+    1 & 8 & \textbf{27} &  \\\\
+    & 1 &  &      \\\\
+    1 & \textbf{9} & & \\\\
+    \textbf{1} & & &
+  \end{array}
+\end{equation}
+
+Here, we note the regular structure of the blocks where every block is created
+from the hypotenuse of the previous block. Next, we perform the same
+transformation on Formula \ref{eq:horner-x-3-three-divs-blocks} as seen in
+Formula \ref{eq:horner-block-stripped}, where every shifted row is removed in
+order to expose the partial summation pattern between each intermediate result,
+
+\begin{equation}
+  \tag{5}\label{eq:horner-x-3-three-divs-blocks-stripped}
+  \begin{array}{ c c c c }
+    1 & 0 & 0 & 0 \\\\
+    1 & 1 & 1 & \textbf{1} \\\\
+    1 & 2 & \textbf{3} &   \\\\
+    1 & \textbf{3} \\\\
+    \textbf{1} & & &
+  \end{array}
+  \qquad
+  \begin{array}{ c c c c }
+    1 & 3 &  3 & 1 \\\\
+    1 & 4 &  7 & \textbf{8} \\\\
+    1 & 5 & \textbf{12} &  \\\\
+    1 & \textbf{6} & & \\\\
+    \textbf{1}
+  \end{array}
+  \qquad
+  \begin{array}{ c c c c }
+    1 & 6 & 12 &  8 \\\\
+    1 & 7 & 19 & \textbf{27} \\\\
+    1 & 8 & \textbf{27} &  \\\\
+    1 & \textbf{9} & & \\\\
+    \textbf{1} & & &
+  \end{array}
+\end{equation}
+
+Lastly, we remove the redundant rows, which appear as both the hypotenuse of one
+block and the initial row of the subsequent block, e.g., \\((1,3,3,1)\\) is both the
+hypotenuse of the first Horner block and also the first row of the second Horner
+block. Furthermore, we pile the blocks on top of each other,
+
+\begin{equation}
+  \tag{6}\label{eq:horner-moessner-x-3}
+  \begin{array}{ r r r r }
+    1 & 0 & 0 & 0 \\\\
+    1 & 1 & 1 & \textbf{1} \\\\
+    1 & 2 & \textbf{3} &   \\\\
+    1 & \textbf{3} \\\\
+    \textbf{1} & & & \\\\
+    1 & 4 &  7 & \textbf{8} \\\\
+    1 & 5 & \textbf{12} &  \\\\
+    1 & \textbf{6} & & \\\\
+    \textbf{1} \\\\
+    1 & 7 & 19 & \textbf{27} \\\\
+    1 & 8 & \textbf{27} &  \\\\
+    1 & \textbf{9} & & \\\\
+    \textbf{1} & & &
+  \end{array}
+\end{equation}
+
+resulting in a rotated mirror image of Moessner's sieve,
+
+\begin{equation\*}
+  \begin{array}{\*{12}{r}}
+    1 & 1 & 1 & \textbf{1} & 1 & 1 & 1 & \textbf{1} & 1 & 1 & 1 & \textbf{1}\\\\
+    1 & 2 & \textbf{3}  &  & 4 & 5 & \textbf{6}  &  & 7 & 8 & \textbf{9}  & \\\\
+    1 & \textbf{3}  &   &  & 7 & \textbf{12} &   &  & 19 & \textbf{27} &  & \\\\
+    \textbf{1} &    &   &  & \textbf{8} &    &   &  & \textbf{27}   &  &  &
+  \end{array}
+\end{equation\*}
+
+where the right-most column enumerates the successive powers of \\(x^3\\), which is
+the statement of Moessner's theorem for \\(n = 3\\).
+
+
+## 4. Equivalence of Moessner's sieve and Horner's method {#4-dot-equivalence-of-moessner-s-sieve-and-horner-s-method}
+
+Now, if we examine Formula \ref{eq:horner-moessner-x-3} from the perspective of
+our dual sieve, we observe that the rows of the Horner-based sieve do indeed
+enumerate the columns of the traditional sieve, just like our triangle creation
+procedure, `createTriangleVertically`. Furthermore, we observe that the
+Horner-based sieve collects the values of the hypotenuse of the previous block
+in order to create the next, as made explicit in Formula
+\ref{eq:horner-moessner-x-3}, just like the dual sieve,
+`createTrianglesVertically`. Together, these observations suggest that we can
+state an equivalence relation between `createTriangleVertically` and
+`createHornerBlock`,
+
+```coq
+forall (r : Int) (σ : Stream),
+  let k = 1
+  in hypotenuse $
+     createHornerBlockAcc (take (S r) σ) k r ==
+     hypotenuse $
+     createTriangleVertically (take (S r) $ repeat 0)
+                              (take (S r) σ)
+```
+
+where we use the prefix of streams, `(take (S r) σ)`, instead of lists to
+directly capture the relation between the length of the input tuples/polynomial
+and the number of divisions to be made. The above statement can be proved by
+induction on the prefix length, `r`, thus showing that
+`createTriangleVertically` and `createHornerBlockAcc` have a simple to state
+equivalence relation, which captures the fact that the alternative sieve
+described above is actually emulating `createTrianglesVertically`, which
+accounts for it being the "rotated mirror image" of Moessner's sieve.
+
+
+## 5. Conclusion {#5-dot-conclusion}
+
+In this post, we have derived Moessner's sieve from Horner's method.
+
+In order to derive Moessner's sieve, we transformed the successive calculations
+of Taylor polynomials, called Horner blocks, into a rotated mirror image of
+Moessner's sieve, which we then showed had an equivalence relation to the dual
+of Moessner's sieve.
+
+This post - and the previous two - was a small excerpt from my [Master's thesis](https://github.com/dragonwasrobot/formal-moessner),
+in which I also formalize all the discussed optics, in the three blog posts, in
+Coq and prove the above equivalence between Moessner's sieve and Horner's method
+for polynomial division.[^fn:1]
+
+[^fn:1]: The observation that you can derive Moessner's sieve from Horner's method
+    was first observed - but not proved - by Jan van Yzeren in the paper "A Note
+    on An Additive Property of Natural Numbers" (1959).
