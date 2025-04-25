@@ -8,6 +8,7 @@ notes.org
 node_modules/
 
 # build
+.hugo_build.lock
 static/fontawesome/
 assets/css/index.css
 public/
