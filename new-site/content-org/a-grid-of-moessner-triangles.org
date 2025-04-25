@@ -1,0 +1,504 @@
+#+hugo_base_dir: ../
+#+hugo_section: ./posts
+#+hugo_front_matter_key_replace: description>summary
+#+hugo_categories: "Moessner's Theorem"
+#+hugo_tags: "Haskell" "Mathematics" "Moessner's Process"
+
+#+title: A grid of Moessner triangles
+#+date: 2016-06-29T00:00:00Z
+#+description: In this post, we derive Moessner's sieve from Horner's method.
+
+
+#+begin_blockquote
+/"The trick, William Potter,/\\
+/is not minding that it hurts."/\\
+-- *Robert Bolt*, Lawrence of Arabia (1962)
+#+end_blockquote
+
+** 1. Introduction
+This is a follow-up post to [[/posts/a-characteristic-function-of-moessners-sieve][A characteristic function of Moessner's Sieve]]. The
+goal of this blog post is to introduce a new combinatorial property which
+connects Moessner triangles of different rank but with the same triangle index,
+thus acting as a dual to the existing connection between Moessner triangles of
+the same rank but different triangle index. This duality proposes the view of
+Moessner's sieve as generating a 2-dimensional grid of triangles instead of just
+a 1-dimensional sequence of triangles.
+
+The post is structured as follows. In Section [[*2. Generating a grid of triangles with Moessner's sieve][2]], we motivate the idea of viewing
+Moessner's sieve as generating a grid of triangles, and introduce a rank
+upgrading procedure, which takes a seed tuple of a Moessner triangle of rank $r$
+and returns the seed tuple of the same Moessner triangle of rank $r + 1$. As a
+dual to the first section, we introduce a set of rank decomposition rules in
+Section [[*3. Rank decomposition of Moessner triangles][3]], which allows us to describe any entry of a Moessner triangle of rank
+$r + 1$ as a sum of entries in the same Moessner triangle of rank $r$. The post
+is concluded in Section [[*4. Conclusion][4]].
+
+** 2. Generating a grid of triangles with Moessner's sieve
+In this section, we propose the idea of viewing the output of Moessner's sieve
+as a grid of triangles by first observing a connection between the seed tuples
+of the \(t\)th Moessner triangle of different rank, $r$ and $r + 1$. Using this
+observation, we introduce a rank upgrading procedure, ~upgradeSeedTuple~, which
+takes a seed tuple of a Moessner triangle of rank $r$ and returns the seed tuple
+of the same Moessner triangle of rank $r + 1$. Finally, we demonstrate its
+application.
+
+*** 2.1 A connection between seed tuples
+In order to motivate the idea of Moessner's sieve generating a grid of
+triangles, we start by examining the first three Moessner triangles of rank $3$
+and $4$, along with their respective seed tuples,
+
+\begin{equation*}
+  \begin{array}{*{8}{r}}
+     & & 0 & 0 & 0 & 0 & 0 & \\\\
+   1 & & 1 & 1 & 1 & 1 &   & \\
+   0 & & 1 & 2 & 3 &   &   & \\
+   0 & & 1 & 3 &   &   &   & \\
+   0 & & 1 &   &   &   &   & \\
+   0 & &   &   &   &   &   & \\
+   \\\\
+     & & 0 & 0 & 0 & 0 & 0 & 0 \\\\
+   1 & & 1 & 1 & 1 & 1 & 1 &   \\
+   0 & & 1 & 2 & 3 & 4 &   &   \\
+   0 & & 1 & 3 & 6 &   &   &   \\
+   0 & & 1 & 4 &   &   &   &   \\
+   0 & & 1 &   &   &   &   &   \\
+   0 & &   &   &   &   &   &
+  \end{array}
+  \quad
+  \begin{array}{*{8}{r}}
+      & &  0 &  0 &  0 & 0 & 0 & \\\\
+    1 & &  1 &  1 &  1 & 1 &   & \\
+    3 & &  4 &  5 &  6 &   &   & \\
+    3 & &  7 & 12 &    &   &   & \\
+    1 & &  8 &    &    &   &   & \\
+    0 & &    &    &    &   &   & \\
+    \\\\
+      & &  0 &  0 &  0 & 0 & 0 & 0 \\\\
+    1 & &  1 &  1 &  1 & 1 & 1 &   \\
+    4 & &  5 &  6 &  7 & 8 &   &   \\
+    6 & & 11 & 17 & 24 &   &   &   \\
+    4 & & 15 & 32 &    &   &   &   \\
+    1 & & 16 &    &    &   &   &   \\
+    0 & &    &    &    &   &   &
+  \end{array}
+  \quad
+  \begin{array}{*{8}{r}}
+      & &  0 &   0 &  0 &  0 & 0 & \\\\
+    1 & &  1 &   1 &  1 &  1 &   & \\
+    6 & &  7 &   8 &  9 &    &   & \\
+   12 & & 19 &  27 &    &    &   & \\
+    8 & & 27 &     &    &    &   & \\
+    0 & &    &     &    &    &   & \\
+    \\\\
+      & &  0 &   0 &  0 &  0 & 0 & 0 \\\\
+    1 & &  1 &   1 &  1 &  1 & 1 &   \\
+    8 & &  9 &  10 & 11 & 12 &   &   \\
+   24 & & 33 &  43 & 54 &    &   &   \\
+   32 & & 65 & 108 &    &    &   &   \\
+   16 & & 81 &     &    &    &   &   \\
+    0 & &    &     &    &    &   &
+  \end{array}
+\end{equation*}
+
+Now, for both sieves we know that we can move from left to right, i.e., increase
+the index of the triangles, but we do not know if we can move from top to
+bottom, i.e., increase the rank of the triangles. However, if we remember that
+we can characterize each seed tuple as an instance of the binomial expansion
+${(1 + t)}^r$, where $r$ is the rank of the Moessner triangle and $t$ is the
+triangle index, we search for a combinatorial property that allows us to go from
+the seed tuple corresponding to the binomial expansion where $r = r'$ to the
+seed tuple corresponding to the binomial expansion where $r = r' + 1$, thus
+obtaining the needed vertical movement in the grid of triangles.
+
+If we examine the two seed tuples generated by the first Moessner triangles,
+$(1, 3, 3, 1)$ and $(1 ,4, 6, 4, 1)$, we observe that we can obtain the second
+seed tuple from the first using the following scheme,
+
+\begin{align}
+  \tag{1}\label{eq:substitute-moessner-triangle-one}
+  1 &= 1 + 0\\
+  4 &= 3 + 1\\
+  6 &= 3 + 3\\
+  4 &= 1 + 3\\
+  1 &= 0 + 1,
+\end{align}
+
+where we obtain the \((i + 1)\)th element of rank $r + 1$ by adding the \((i +
+1)\)th element of rank $r$ plus the value of an accumulator which contains the
+value of the $i$th element of rank $r$ -- coincidentally this calculation is
+also equivalent to an application of Pascal's rule in Pascal's triangle for
+these values. However, when we examine the next pair of seed tuples, $(1, 6, 12,
+8)$ and $(1, 8, 24, 32, 16)$, we realize that the above scheme is insufficient
+for calculating the second tuple from the first. Fortunately, we receive a hint
+from the fact that the last elements of the two tuples are equal to $2^3$ and
+$2^4$, respectively, which means that we can obtain the latter by multiplying
+the former by $2$. With this in mind, we change the scheme accordingly and get,
+
+\begin{align}
+  \tag{2}\label{eq:substitute-moessner-triangle-two}
+  16 &= 2 \cdot 8 + 0\\
+  32 &= 2 \cdot 12 + 8\\
+  24 &= 2 \cdot 6 + 12\\
+   8 &= 2 \cdot 1 + 6\\
+   1 &= 2 \cdot 0 + 1,
+\end{align}
+
+which now yields the desired result. It turns out that this Pascal-like
+property, of adding the two nearest entries of the seed tuple of rank $r'$,
+holds in general if we substitute the $2$ with $(1 + t)$. For example, if we
+look at the hypotenuses of the third pair of triangles, where $t = 2$, we get
+the following calculations,
+
+\begin{align}
+  \tag{3}\label{eq:substitute-moessner-triangle-three}
+   81 &= (1 + 2) \cdot 27 + 0\\
+  108 &= (1 + 2) \cdot 27 + 27\\
+   54 &= (1 + 2) \cdot 9 + 27\\
+   12 &= (1 + 2) \cdot 1 + 9\\
+   1 &= (1 + 2) \cdot 0 + 1,
+\end{align}
+
+which confirm the correctness of the formula -- this property can also be seen
+from the multiplicative property, ${(1 + t)}^{r + 1} = (1 + t) \cdot {(1 + t)}^r$, of
+the binomial expansion. Thus, we have now demonstrated how to obtain the seed
+tuple of rank $r + 1$, when given the seed tuple of rank $r$, which means that
+we can now move in a vertical direction as well as a horizontal direction in the
+grid of triangles shown at the beginning of this section.
+
+Having covered the motivation for perceiving Moessner's sieve as generating a
+grid of triangles, rather than a sequence of triangles, we move on to construct
+a rank upgrading procedure, which given a seed tuple of rank $r$ returns the
+corresponding seed tuple of rank $r + 1$, thus implementing the vertical
+direction discussed above.
+
+*** 2.2 Rank upgrading procedure
+When taking the description of the rank upgrading procedure in the previous
+section and translating it into Haskell, we initially note that the procedure
+should take a seed tuple, ~xs~, an accumulator, ~a~, and a triangle index, ~t~,
+as inputs. Furthermore, we want to pattern match on the structure of the seed
+tuple, ~xs~, as the procedure works by traversing the tuple and operating on its
+elements. Lastly, we observe that for the base case of the pattern matching, ~xs
+= []~, we simply return a list containing just the accumulator, while in the
+inductive case of the pattern matching, ~xs = x : xs'~, we add the accumulator,
+~a~, to ~(t + 1) * x~ and cons the intermediate result with the result of the
+recursive call on ~xs'~. Putting these pieces together we get the procedure,
+
+#+begin_src haskell
+upgradeSeedTupleAux :: Int -> Int -> Tuple -> Tuple
+upgradeSeedTupleAux t a xs = case xs of
+  [] -> [a]
+  (x:xs') -> (t + 1) * x + a : upgradeSeedTupleAux t x xs'
+#+end_src
+
+for which we also define a wrapper function that initializes the accumulator to
+~0~,
+
+#+begin_src haskell
+upgradeSeedTuple :: Int -> Tuple -> Tuple
+upgradeSeedTuple t xs = upgradeSeedTupleAux t 0 xs
+#+end_src
+
+such that the three examples in Figure
+\ref{eq:substitute-moessner-triangle-one}-\ref{eq:substitute-moessner-triangle-three}
+can be expressed as the propositions,
+
+#+begin_src haskell
+(upgradeSeedTuple 0 [1,3,3,1]) == [1,4,6,4,1]
+(upgradeSeedTuple 1 [8,12,6,1]) == [16,32,24,8,1]
+(upgradeSeedTuple 2 [27,27,9,1]) == [81,108,54,12,1]
+#+end_src
+
+Having defined ~upgradeSeedTuple~ and demonstrated its use, we take a step back
+and investigate the dual of this section. Specifically, our next step is to show
+how to decompose the entries of the \(t\)th Moessner triangle of rank $r + 1$ in
+terms of the same Moessner triangle of rank $r$.
+
+** 3. Rank decomposition of Moessner triangles
+In this section, we take the dual approach of the previous section by first
+motivating the introduction of a series of rank decomposition rules, which
+allows us to describe the entries of a Moessner triangle of rank $r + 1$ in
+terms of the same Moessner triangle of rank $r$.
+
+*** 3.1 Motivating the decomposition of Moessner triangles
+Starting from the same example as in the previous section, we examine the first
+three Moessner triangles of rank $3$ and $4$,
+
+\begin{equation*}
+  \begin{array}{*{8}{r}}
+     & & 0 & 0 & 0 & 0 & 0 & \\\\
+   1 & & 1 & 1 & 1 & 1 &   & \\
+   0 & & 1 & 2 & 3 &   &   & \\
+   0 & & 1 & 3 &   &   &   & \\
+   0 & & 1 &   &   &   &   & \\
+   0 & &   &   &   &   &   & \\
+   \\\\
+     & & 0 & 0 & 0 & 0 & 0 & 0 \\\\
+   1 & & 1 & 1 & 1 & 1 & 1 &   \\
+   0 & & 1 & 2 & 3 & 4 &   &   \\
+   0 & & 1 & 3 & 6 &   &   &   \\
+   0 & & 1 & 4 &   &   &   &   \\
+   0 & & 1 &   &   &   &   &   \\
+   0 & &   &   &   &   &   &
+  \end{array}
+  \quad
+  \begin{array}{*{8}{r}}
+      & &  0 &  0 &  0 & 0 & 0 & \\\\
+    1 & &  1 &  1 &  1 & 1 &   & \\
+    3 & &  4 &  5 &  6 &   &   & \\
+    3 & &  7 & 12 &    &   &   & \\
+    1 & &  8 &    &    &   &   & \\
+    0 & &    &    &    &   &   & \\
+    \\\\
+      & &  0 &  0 &  0 & 0 & 0 & 0 \\\\
+    1 & &  1 &  1 &  1 & 1 & 1 &   \\
+    4 & &  5 &  6 &  7 & 8 &   &   \\
+    6 & & 11 & 17 & 24 &   &   &   \\
+    4 & & 15 & 32 &    &   &   &   \\
+    1 & & 16 &    &    &   &   &   \\
+    0 & &    &    &    &   &   &
+  \end{array}
+  \quad
+  \begin{array}{*{8}{r}}
+      & &  0 &   0 &  0 &  0 & 0 & \\\\
+    1 & &  1 &   1 &  1 &  1 &   & \\
+    6 & &  7 &   8 &  9 &    &   & \\
+   12 & & 19 &  27 &    &    &   & \\
+    8 & & 27 &     &    &    &   & \\
+    0 & &    &     &    &    &   & \\
+    \\\\
+      & &  0 &   0 &  0 &  0 & 0 & 0 \\\\
+    1 & &  1 &   1 &  1 &  1 & 1 &   \\
+    8 & &  9 &  10 & 11 & 12 &   &   \\
+   24 & & 33 &  43 & 54 &    &   &   \\
+   32 & & 65 & 108 &    &    &   &   \\
+   16 & & 81 &     &    &    &   &   \\
+    0 & &    &     &    &    &   &
+  \end{array}
+\end{equation*}
+
+and use the knowledge we have gathered so far to drive our motivation. Instead
+of looking at the calculations in Formula
+\ref{eq:substitute-moessner-triangle-two} and
+\ref{eq:substitute-moessner-triangle-three} as the upgrading of a seed tuple, we
+flip the perspective and see it as an example of decomposing the hypotenuse in
+terms of the Moessner triangle of lower rank. Taking this idea one step further,
+we propose the idea that there exists a set of rank decomposition rules which
+work for all entries of a triangle and not just the hypotenuse/seed tuple. With
+this idea in mind, we focus on the first column of the second and third pair of
+Moessner triangles and try to apply the same scheme as before, except that we
+make two minor adjustments,
+
+1. we multiply the first term with $t$ instead of $(1 + t)$, and
+2. we start with an accumulator equal to the last value of the column instead of
+   $0$,
+
+which gives us the following calculations, for the second and third triangles,
+
+\begin{equation*}
+  \begin{aligned}
+    16 &= 1 \cdot 8 + 8\\
+    15 &= 1 \cdot 7 + 8\\
+    11 &= 1 \cdot 4 + 7\\
+     5 &= 1 \cdot 1 + 4\\
+     1 &= 1 \cdot 0 + 1,
+  \end{aligned}
+  \qquad\text{and}\qquad
+  \begin{aligned}
+    81 &= 2 \cdot 27 + 27\\
+    65 &= 2 \cdot 19 + 27\\
+    33 &= 2 \cdot 7 + 19\\
+     9 &= 2 \cdot 1 + 7\\
+     1 &= 2 \cdot 0 + 1,
+  \end{aligned}
+\end{equation*}
+
+demonstrating that the property also holds for the initial column of every
+Moessner triangle. Remembering that the different Moessner triangles are
+constructed using Pascal's rule, we restate the calculations in the formula
+above as,
+
+\begin{equation*}
+  \begin{aligned}
+    16 &= 2 \cdot 8 + 0\\
+    15 &= 2 \cdot 7 + 1\\
+    11 &= 2 \cdot 4 + 3\\
+     5 &= 2 \cdot 1 + 3\\
+     1 &= 2 \cdot 0 + 1,
+  \end{aligned}
+  \qquad\text{and}\qquad
+  \begin{aligned}
+    81 &= 3 \cdot 27 + 0\\
+    65 &= 3 \cdot 19 + 8\\
+    33 &= 3 \cdot 7 + 12\\
+     9 &= 3 \cdot 1 + 6\\
+     1 &= 3 \cdot 0 + 1,
+  \end{aligned}
+\end{equation*}
+
+by realizing that each of the values used for accumulators is actually the sum
+of one of the values in the seed tuple (western neighbor) and the entry which we
+have already multiplied by $t$ (northern neighbor),
+
+\begin{equation*}
+  \begin{aligned}
+    16 &= 1 \cdot 8 + (8 + 0)\\
+    15 &= 1 \cdot 7 + (7 + 1)\\
+    11 &= 1 \cdot 4 + (4 + 3)\\
+     5 &= 1 \cdot 1 + (1 + 3)\\
+     1 &= 1 \cdot 0 + (0 + 1),
+  \end{aligned}
+  \qquad\text{and}\qquad
+  \begin{aligned}
+    81 &= 2 \cdot 27 + (27 + 0)\\
+    65 &= 2 \cdot 19 + (19 + 8)\\
+    33 &= 2 \cdot 7 + (7 + 12)\\
+     9 &= 2 \cdot 1 + (1 + 6)\\
+     1 &= 2 \cdot 0 + (0 + 1).
+  \end{aligned}
+\end{equation*}
+
+Thus, we get $(1 + t)$ times the entry above the desired entry (northern
+neighbor) and a value of the seed tuple/hypotenuse of the previous triangle
+(western neighbor).
+
+Noting that we now have a Pascal-like rule which works across ranks, we examine
+whether it also holds true for the subsequent columns of the Moessner triangles.
+As such, we try to calculate the second column of the second and third pair of
+triangles using the first columns for accumulator values, instead of the seed
+tuples,
+
+\begin{equation}
+  \begin{aligned}
+    32 &= 2 \cdot 12 + 8\\
+    17 &= 2 \cdot 5 + 7\\
+     6 &= 2 \cdot 1 + 4\\
+     1 &= 2 \cdot 0 + 1,
+  \end{aligned}
+  \qquad\text{and}\qquad
+  \begin{aligned}
+    108 &= 3 \cdot 27 + 27\\
+     43 &= 3 \cdot 8 + 19\\
+     10 &= 3 \cdot 1 + 7\\
+      1 &= 3 \cdot 0 + 1.
+  \end{aligned}
+\end{equation}
+
+Again, we obtain the desired results, which demonstrates a consistent
+Pascal-like property across ranks and triangles. Thus, we have now shown how it
+is possible to state an entry of a Moessner triangle of rank $r + 1$ as a sum of
+entries in the same Moessner triangle of rank $r$.
+
+Next, we transform our motivating examples into concrete rank decomposition
+rules.
+
+*** 3.2 Formalizing the decomposition rules
+A subtle point lies in the fact that while the Moessner triangles have a finite
+number of entries in each column, this is not the case of our characteristic
+function ~rotatedMoessnerEntry~,
+
+\begin{equation*}
+  \begin{array}{*{17}{r}}
+    1 & 1 & 1 & 1 & 1 & &
+    1 & 1 & 1 & 1 & 1 & &
+    1 & 1 & 1 & 1 & 1 \\
+    %
+    1 &  2 &  3 &   4 &  \color{lightgray}{5} & &
+    5 &  6 &  7 &   8 &  \color{lightgray}{9} & &
+    9 & 10 & 11 &  12 & \color{lightgray}{13} \\
+    %
+     1 &   3 &   6 & \color{lightgray}{10} & \color{lightgray}{15} & &
+    11 &  17 &  24 & \color{lightgray}{33} & \color{lightgray}{42} & &
+    33 &  43 &  54 & \color{lightgray}{66} & \color{lightgray}{76} \\
+    %
+     1 &   4 &  \color{lightgray}{10} &  \color{lightgray}{20} &  \color{lightgray}{35} & &
+    15 &  32 &  \color{lightgray}{55} &  \color{lightgray}{88} & \color{lightgray}{130} & &
+    65 & 108 & \color{lightgray}{162} & \color{lightgray}{192} & \color{lightgray}{268} \\
+    %
+     1 & \color{lightgray}{5} &  \color{lightgray}{15} &
+     \color{lightgray}{35} &  \color{lightgray}{70} & &
+    16 & \color{lightgray}{48} & \color{lightgray}{103} &
+    \color{lightgray}{191} & \color{lightgray}{321} & &
+    81 & \color{lightgray}{189} & \color{lightgray}{351} &
+    \color{lightgray}{543} & \color{lightgray}{811}
+  \end{array}
+\end{equation*}
+
+as the gray values above are the results of computing entries outside of the
+Moessner triangles using our characteristic function. Thus, we obtain a more
+general, and easier to state, set of the rank decomposition rules by stating
+them in terms of our characteristic function, ~rotatedMoessnerEntry~, rather
+than directly on the triangle creation procedure, ~createTriangleVertically~.
+
+In the previous section, we demonstrated two Pascal-like properties that could
+be merged into one simpler property, expressing an entry of a Moessner triangle
+of rank $r + 1$ in terms of the same entry in the triangle of rank $r$ along
+with the entry above it (northern neighbor), which works for all columns of a
+Moessner triangle. We can define this decomposition rule in the following way,
+
+#+begin_src coq
+forall (n r c t : Int),
+  rotatedMoessnerEntry (n  + 1) (r + 1) c t ==
+  t * rotatedMoessnerEntry n r c t +
+  rotatedMoessnerEntry n (r + 1) c t
+#+end_src
+
+which states that the entry in the \((r + 1)\)th row and \(c\)th column of a
+Moessner triangle of rank $n + 1$, is the sum of $t$ times the entry at the
+\(r\)th row and \(c\)th column of rank $n$ and the entry at the \((r + 1)\)th
+row and \(c\)th column of rank $n$. This rule captures the examples we have
+shown above, and it can be proved by nested induction on the row and column
+indices, ~r~ and ~c~. From this rule follows the two Pascal-like rule,
+
+#+begin_src coq
+forall (n r t : Int),
+  rotatedMoessnerEntry (n + 1) (r + 1) 0 t ==
+  (t + 1) * rotatedMoessnerEntry n r 0 t +
+  monomial t n (r + 1)
+#+end_src
+
+and
+
+#+begin_src coq
+forall (r c n t : Int),
+  rotatedMoessnerEntry (n + 1) (r + 1) (c + 1) t ==
+  (t + 1) * rotatedMoessnerEntry n r (c + 1) t +
+  rotatedMoessnerEntry n (r + 1) c t
+#+end_src
+
+which captures the two cases where the column index, ~c~, is either ~0~ or
+greater than ~0~.
+
+Combining the above rules and the procedure of the previous section, we have now
+shown a new property of Moessner's sieve that creates a vertical connection
+between the seed tuples and entries of two Moessner triangles with the same
+triangle index, $t$, but different ranks, $r$ and $r + 1$, thus acting as a dual
+to the existing properties which horizontally connects two triangles with
+different triangle index, $t$, but same rank, $r$, in this implicit grid of
+triangles.
+
+** 4. Conclusion
+In this post, we have introduced a new combinatorial property which connects
+Moessner triangles of different rank but with the same triangle index, thus
+acting as a dual to the existing connection between Moessner triangles of the
+same rank but different triangle index. This duality implies a 2-dimensional
+grid of Moessner triangles, where the triangle index is increasing as we go
+along the horizontal axis, from left to right, while the rank is increasing when
+going along the vertical axis, from top to bottom. These grid properties have
+been introduced as a rank upgrading procedure, which takes a seed tuple of the
+$t$th Moessner triangle of rank $r$ and returns the seed tuple of the $t$th
+Moessner triangle of rank $r + 1$, and several rank decomposition rules, which
+describe an entry of the $t$th Moessner triangle of rank $r + 1$ as a sum of
+entries in the $t$th Moessner triangle of rank $r$.
+
+The rank upgrading procedure, ~upgradeSeedTuple~, was the result of the
+observation that we could obtain the seed tuple of the Moessner triangle of rank
+$r + 1$ by adding pairs of entries in the seed tuple of the Moessner triangle of
+rank $r$ where one was multiplied with the triangle index.
+
+Conversely, the rank decomposition rules were the result of exploring whether
+the decomposition rule only applied for the seed tuples or if it persisted into
+the entries of the Moessner triangles.
+
+This post was a small excerpt from my [[https://github.com/dragonwasrobot/formal-moessner][Master's thesis]], in which I also prove the
+correctness of the decomposition rules stated above, and relate them to the
+actual triangle creation procedures of the dual sieve.
