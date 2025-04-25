@@ -1,5 +1,6 @@
 {
   "scripts": {
+    "postinstall": "npx @tailwindcss/cli -i assets/css/main.css -o assets/css/index.css",
     "dev": "run-p dev-hugo dev-tailwind",
     "dev-hugo": "hugo server -D",
     "dev-tailwind": "npx @tailwindcss/cli -i assets/css/main.css -o assets/css/index.css --watch"
