@@ -13,6 +13,8 @@ Renders a menu for the given menu ID.
 {{- with index site.Menus $menuID }}
   <nav class="">
     {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+
+    {{ partial "/inline/menu/dark-theme.html" . }}
   </nav>
 {{- end }}
 
@@ -45,4 +47,22 @@ Renders a menu for the given menu ID.
           {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
       {{- end }}
   {{- end }}
+{{- end }}
+
+{{- define "_partials/inline/menu/dark-theme.html" }}
+<div id="theme-toggle-wrapper"
+     class="inline-block">
+
+  <input id="theme-toggle"
+         type="checkbox"
+         class="theme-toggle">
+
+  <label for="theme-toggle"
+         class="theme-toggle-label">
+    <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i>
+    <span class="toggle-ball"></span>
+  </label>
+
+</div>
 {{- end }}
