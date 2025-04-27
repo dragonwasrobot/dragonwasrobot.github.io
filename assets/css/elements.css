@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./theme.css";
 
 /* Utilities */
 
@@ -14,29 +15,39 @@
   font-family: "Fira Code", monospace;
 }
 
-@utility dwr-text-primary-color {
-  @apply text-sky-800;
-}
-
-@utility dwr-text-default-color {
-  @apply text-gray-900;
-}
-
 /* * Elements */
+
+.preload * {
+  /* Stops transition animations from playing during page load */
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -ms-transition: none !important;
+  -o-transition: none !important;
+}
 
 body {
   @apply dwr-font-serif;
-  @apply dwr-text-default-color;
+
+  @apply text-gray-900;
+  @apply dark:text-gray-100;
+}
+
+/* ** Links */
+
+main a {
+  @apply text-syd7;
+  @apply dark:text-nord7;
+}
+
+footer a {
+  @apply text-syd7;
+  @apply dark:text-nord7;
 }
 
 /* ** Paragraphs */
 
 p {
   @apply mb-4;
-}
-
-p a {
-  @apply dwr-text-primary-color;
 }
 
 /* ** Lists */
@@ -52,14 +63,6 @@ ol {
 
 ul {
   @apply list-disc;
-}
-
-ol a {
-  @apply dwr-text-primary-color;
-}
-
-ul a {
-  @apply dwr-text-primary-color;
 }
 
 /* ** Headings */
@@ -107,4 +110,56 @@ div.footnotes {
 
 div#tags {
   display: none;
+}
+
+/* ** Light/Dark theme toggle */
+
+.theme-toggle {
+  @apply opacity-0;
+  @apply absolute;
+}
+
+.theme-toggle-label {
+  @apply relative;
+  @apply bg-nord1;
+  @apply dark:bg-neutral-50;
+  @apply cursor-pointer;
+  @apply flex;
+  @apply items-center;
+  @apply justify-between;
+
+  transition: transform 0.2s linear;
+
+  /* pixel-pushing */
+  width: 50px;
+  height: 26px;
+  border-radius: 50px;
+  padding: 5px;
+}
+
+.fa-moon {
+  @apply text-yellow-400;
+}
+
+.fa-sun {
+  @apply text-amber-600;
+}
+
+.theme-toggle-label .toggle-ball {
+  @apply absolute;
+  @apply bg-gray-100;
+  @apply dark:bg-nord1;
+
+  transition: transform 0.2s linear;
+
+  /* pixel-pushing */
+  width: 22px;
+  height: 22px;
+  left: 2px;
+  top: 2px;
+  border-radius: 50%;
+}
+
+.theme-toggle:checked + .theme-toggle-label .toggle-ball {
+  transform: translateX(24px);
 }

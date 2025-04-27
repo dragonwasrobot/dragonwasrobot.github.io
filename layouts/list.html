@@ -5,10 +5,10 @@
   <div id="post-summaries" class="mt-6">
   {{ range .Pages }}
     <div id="post-summary" class="mb-6">
-      <span class="text-neutral-500 text-sm font-extralight">
+      <span class="text-neutral-500 dark:text-sky-100 text-sm font-extralight">
         {{ .Date | time.Format ":date_medium" }}
       </span>
-      <h4 class="mt-3 mb-1 text-2xl tracking-tight text-sky-900">
+      <h4 class="mt-3 mb-1 text-2xl tracking-tight text-sky-900 dark:text-sky-200">
         <a href="{{ .RelPermalink }}">{{ replace .LinkTitle "&#x000a;" " " }}</a>
       </h4>
       {{ .Summary }}
