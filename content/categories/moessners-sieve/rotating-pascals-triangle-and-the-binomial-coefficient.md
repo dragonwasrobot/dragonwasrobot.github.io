@@ -4,13 +4,13 @@ author = ["Peter Urbak"]
 summary = "In this post, we introduce the rotated versions of Pascal's triangle and the binomial coefficient."
 date = 2015-12-20T00:00:00Z
 tags = ["Haskell", "Pascal's triangle", "Binomial coefficient", "Mathematics"]
-categories = ["Moessner's Theorem"]
+categories = ["Moessner's Sieve"]
 draft = false
 +++
 
 ## 1. Introduction {#1-dot-introduction}
 
-This is a follow-up post to [An introduction to Pascal's triangle](/posts/an-introduction-to-pascals-triangle), which we will
+This is a follow-up post to [An introduction to Pascal's triangle](/categories/moessners-sieve/an-introduction-to-pascals-triangle), which we will
 build on top off by introducing and formalizing the rotated versions of [Pascal's
 triangle](https://en.wikipedia.org/wiki/Pascal%27s_triangle) and the [binomial coefficient](https://en.wikipedia.org/wiki/Binomial_coefficient).
 

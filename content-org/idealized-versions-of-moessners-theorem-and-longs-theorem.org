@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./categories/moessner's-theorem/
+#+hugo_section: ./categories/moessners-sieve/
 #+hugo_front_matter_key_replace: description>summary
-#+hugo_categories: "Moessner's Theorem"
+#+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics" "Moessner's Process" "Moessner's Theorem" "Long's Theorem"
 
 #+title: Idealized versions of Moessner's theorem&#x000a;and Long's theorem
@@ -16,7 +16,7 @@
 #+end_blockquote
 
 ** 1. Introduction
-This is a follow-up post to [[/posts/a-grid-of-moessner-triangles][A grid of Moessner triangles]]. The goal of this blog
+This is a follow-up post to [[/categories/moessners-sieve/a-grid-of-moessner-triangles][A grid of Moessner triangles]]. The goal of this blog
 post is to state Moessner's idealized theorem, Long's idealized theorem, and
 conjecture a further generalization.
 
@@ -54,7 +54,7 @@ powers,/
 /The above procedure is repeated if $k>1$ and stops if $k=1$. We call the
 procedure above Moessner’s sieve and call $k$ the rank of the sieve./
 
-As we saw in [[/posts/an-introduction-to-moessner-s-theorem-and-moessners-sieve][the first post on Moessner's theorem]] we can generalize the initial
+As we saw in [[/categories/moessners-sieve/an-introduction-to-moessner-s-theorem-and-moessners-sieve][the first post on Moessner's theorem]] we can generalize the initial
 sequence and still obtain the same result sequence,
 
 *Theorem 2* (Moessner's generalized theorem). /Given the initial sequence of $1$
@@ -95,7 +95,7 @@ So, if we let the rank $k = 4$, an example application of Theorem 2 becomes,
 \end{equation*}
 
 where we still obtain a result sequence of values to the fourth power. If we
-compare the above example to where we left off in the [[/posts/a-dual-to-moessners-sieve][post on the dual of
+compare the above example to where we left off in the [[/categories/moessners-sieve/a-dual-to-moessners-sieve][post on the dual of
 Moessner's sieve]],
 
 \begin{equation*}

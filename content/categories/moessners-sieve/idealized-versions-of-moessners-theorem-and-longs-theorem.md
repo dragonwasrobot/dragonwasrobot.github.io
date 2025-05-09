@@ -4,7 +4,7 @@ author = ["Peter Urbak"]
 summary = "In this post, we present idealized versions of Moessner's theorem and Long's theorem."
 date = 2016-07-10T00:00:00Z
 tags = ["Haskell", "Mathematics", "Moessner's Process", "Moessner's Theorem", "Long's Theorem"]
-categories = ["Moessner's Theorem"]
+categories = ["Moessner's Sieve"]
 draft = false
 +++
 
@@ -20,7 +20,7 @@ _Three chords and you're into jazz."_<br />
 
 ## 1. Introduction {#1-dot-introduction}
 
-This is a follow-up post to [A grid of Moessner triangles](/posts/a-grid-of-moessner-triangles). The goal of this blog
+This is a follow-up post to [A grid of Moessner triangles](/categories/moessners-sieve/a-grid-of-moessner-triangles). The goal of this blog
 post is to state Moessner's idealized theorem, Long's idealized theorem, and
 conjecture a further generalization.
 
@@ -60,7 +60,7 @@ _when performing the following procedure:_
 _The above procedure is repeated if \\(k>1\\) and stops if \\(k=1\\). We call the
 procedure above Moessner’s sieve and call \\(k\\) the rank of the sieve._
 
-As we saw in [the first post on Moessner's theorem](/posts/an-introduction-to-moessner-s-theorem-and-moessners-sieve) we can generalize the initial
+As we saw in [the first post on Moessner's theorem](/categories/moessners-sieve/an-introduction-to-moessner-s-theorem-and-moessners-sieve) we can generalize the initial
 sequence and still obtain the same result sequence,
 
 **Theorem 2** (Moessner's generalized theorem). _Given the initial sequence of \\(1\\)
@@ -102,7 +102,7 @@ So, if we let the rank \\(k = 4\\), an example application of Theorem 2 becomes,
 
 where we still obtain a result sequence of values to the fourth power. If we
 compare the above example to where we left off in the [post on the dual of
-Moessner's sieve](/posts/a-dual-to-moessners-sieve),
+Moessner's sieve](/categories/moessners-sieve/a-dual-to-moessners-sieve),
 
 \begin{equation\*}
   \begin{array}{\*{8}{r}}
@@ -196,7 +196,7 @@ We can visualize Long's theorem as the sieve,
 \end{equation\*}
 
 for which Long[^fn:1] also noted that we can generalize the sieve by adding a row of
-$d$s,
+\\(d\\)s,
 
 \begin{equation\*}
   \begin{array}{\*{11}{r}}

@@ -15,7 +15,7 @@
 #+end_blockquote
 
 ** 1. Introduction
-This is a follow-up post to [[/posts/enum-types-in-kotlin-elixir-and-elm][Enum types in Kotlin, Elixir, and Elm]]. The goal of
+This is a follow-up post to [[/categories/musings/enum-types-in-kotlin-elixir-and-elm][Enum types in Kotlin, Elixir, and Elm]]. The goal of
 this blog post is to define the concept of product types and compare the
 implementation of product types in three different functional programming
 languages: [[https://kotlinlang.org/][Kotlin]], [[https://elixir-lang.org/][Elixir]], and [[http://elm-lang.org/][Elm]].
@@ -86,7 +86,7 @@ fun euclidean_distance p q =
 Here, we access an individual field using the common ~<var>.<field>~ expression.
 
 In each of the following sections, we return to the ~shape~ example from our
-[[/posts/enum-types-in-kotlin-elixir-and-elm][previous post]], and implement product type versions of each of the different
+[[/categories/musings/enum-types-in-kotlin-elixir-and-elm][previous post]], and implement product type versions of each of the different
 shapes: ~rectangle~, ~circle~, and ~triangle~. Specifically, we define each of
 the shapes in terms of their corresponding mathematical definition, i.e. a
 rectangle has a /height/ and /width/, a circle has a /radius/, and a triangle
@@ -134,7 +134,7 @@ product types along with their corresponding area example functions in Kotlin.
 In this section, we implement the ~rectangle~, ~circle~, and ~triangle~ product
 types along with their area functions in Kotlin.
 
-As discussed in the [[/posts/enum-types-in-kotlin-elixir-and-elm][previous post]], Kotlin is heavily influenced by Java which
+As discussed in the [[/categories/musings/enum-types-in-kotlin-elixir-and-elm][previous post]], Kotlin is heavily influenced by Java which
 means that all non-primitive data types are defined in terms of classes, and
 product types are no exception. Likewise, we also discussed that we prefer to
 separate data and logic, and thus would like to avoid defining our product types

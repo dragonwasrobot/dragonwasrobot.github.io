@@ -4,14 +4,14 @@ author = ["Peter Urbak"]
 summary = "In this post, we derive Moessner's sieve from Horner's method."
 date = 2016-05-17T00:00:00Z
 tags = ["Haskell", "Mathematics", "Polynomial division", "Taylor polynomials", "Horner's method", "Moessner's Process"]
-categories = ["Moessner's Theorem"]
+categories = ["Moessner's Sieve"]
 draft = false
 +++
 
 ## 1. Introduction {#1-dot-introduction}
 
-This is a follow-up post to [Obtaining Taylor polynomials with Horner's method](/posts/obtaining-taylor-polynomials-with-horners-method)
-and [A Dual to Moessner's Sieve](/posts/a-dual-to-moessners-sieve). The goal of this post is to derive Moessner's
+This is a follow-up post to [Obtaining Taylor polynomials with Horner's method](/categories/moessners-sieve/obtaining-taylor-polynomials-with-horners-method)
+and [A Dual to Moessner's Sieve](/categories/moessners-sieve/a-dual-to-moessners-sieve). The goal of this post is to derive Moessner's
 sieve from Horner's method for polynomial division, thus concluding this three
 part series on Horner's method.
 
@@ -29,7 +29,7 @@ In this section, we introduce and formalize the concept of Horner blocks and
 show how they relate to [Taylor polynomials](https://en.wikipedia.org/wiki/Taylor%27s_theorem).
 
 We start this section by picking up from where we left off in the [previous blog
-post](/posts/obtaining-taylor-polynomials-with-horners-method) and represent the repeated application of Horner's method for polynomial
+post](/categories/moessners-sieve/obtaining-taylor-polynomials-with-horners-method) and represent the repeated application of Horner's method for polynomial
 division in a tabular format. Given the polynomial \\(p(x) = 2x^3 + 4x^2 + 11x +
 3\\), we can restate its repeated division with the binomial \\(d(x) = x - 2\\)
 (captured in Formulas 7-9 in the previous blog post) by stacking the

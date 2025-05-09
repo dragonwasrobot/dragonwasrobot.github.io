@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./categories/moessner's-theorem/
+#+hugo_section: ./categories/moessners-sieve/
 #+hugo_front_matter_key_replace: description>summary
-#+hugo_categories: "Moessner's Theorem"
+#+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics" "Polynomial division" "Taylor polynomials" "Horner's method"
 
 #+title: Obtaining Taylor Polynomials&#x000a;with Horner's method
@@ -9,7 +9,7 @@
 #+description: In this post, we calculate Taylor Polynomials with Horner's method.
 
 ** 1. Introduction
-This is a follow-up post to [[/posts/an-introduction-to-horners-method][An introduction to Horner's method]]. The goal of this
+This is a follow-up post to [[/categories/moessners-sieve/an-introduction-to-horners-method][An introduction to Horner's method]]. The goal of this
 post is to derive Taylor polynomials using Horner's method for polynomial
 division.
 
@@ -23,7 +23,7 @@ In this section, we first state the [[https://en.wikipedia.org/wiki/Polynomial_r
 definitions of [[https://en.wikipedia.org/wiki/Taylor_series][Taylor series]] and Taylor polynomials, which we use to finally
 state [[https://en.wikipedia.org/wiki/Taylor%27s_theorem][Taylor's theorem]].
 
-As pointed out in the [[/posts/an-introduction-to-horners-method][previous blog post]], if we divide a polynomial, $p$, with a
+As pointed out in the [[/categories/moessners-sieve/an-introduction-to-horners-method][previous blog post]], if we divide a polynomial, $p$, with a
 binomial, $x - k$, the remainder of the division is equal to $p(k)$, which is
 captured by the polynomial remainder theorem.
 
@@ -241,11 +241,11 @@ where $p$ is the initial polynomial to be divided.[fn:2]
 In this post, we have shown how to obtain Taylor polynomials with Horner's
 method for polynomial division.
 
-In our [[/posts/deriving-moessners-sieve-from-horners-method][next post]], we use what we have learned from this -- and the previous --
+In our [[/categories/moessners-sieve/deriving-moessners-sieve-from-horners-method][next post]], we use what we have learned from this -- and the previous --
 blog post to derive Moessner's sieve[fn:3] from Horner's method.
 
 [fn:1] Note that we use the tabular representation for polynomial division, which
-  we introduced in Formula 7 of the [[/posts/an-introduction-to-horners-method][previous blog post]].
+  we introduced in Formula 7 of the [[/categories/moessners-sieve/an-introduction-to-horners-method][previous blog post]].
 
 [fn:2] See "The wonder of Horner's method" (2003) by Alex Pathan and Tony Collyer.
 

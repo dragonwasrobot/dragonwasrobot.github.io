@@ -4,7 +4,7 @@ author = ["Peter Urbak"]
 summary = "In this post, we derive Moessner's sieve from Horner's method."
 date = 2016-06-29T00:00:00Z
 tags = ["Haskell", "Mathematics", "Moessner's Process"]
-categories = ["Moessner's Theorem"]
+categories = ["Moessner's Sieve"]
 draft = false
 +++
 
@@ -19,7 +19,7 @@ _is not minding that it hurts."_<br />
 
 ## 1. Introduction {#1-dot-introduction}
 
-This is a follow-up post to [A characteristic function of Moessner's Sieve](/posts/a-characteristic-function-of-moessners-sieve). The
+This is a follow-up post to [A characteristic function of Moessner's Sieve](/categories/moessners-sieve/a-characteristic-function-of-moessners-sieve). The
 goal of this blog post is to introduce a new combinatorial property which
 connects Moessner triangles of different rank but with the same triangle index,
 thus acting as a dual to the existing connection between Moessner triangles of
@@ -132,7 +132,7 @@ seed tuple from the first using the following scheme,
 
 where we obtain the \\((i + 1)\\)th element of rank \\(r + 1\\) by adding the \\((i +
 1)\\)th element of rank \\(r\\) plus the value of an accumulator which contains the
-value of the $i$th element of rank \\(r\\) -- coincidentally this calculation is
+value of the \\(i\\)th element of rank \\(r\\) -- coincidentally this calculation is
 also equivalent to an application of Pascal's rule in Pascal's triangle for
 these values. However, when we examine the next pair of seed tuples, \\((1, 6, 12,
 8)\\) and \\((1, 8, 24, 32, 16)\\), we realize that the above scheme is insufficient
@@ -502,10 +502,10 @@ grid of Moessner triangles, where the triangle index is increasing as we go
 along the horizontal axis, from left to right, while the rank is increasing when
 going along the vertical axis, from top to bottom. These grid properties have
 been introduced as a rank upgrading procedure, which takes a seed tuple of the
-$t$th Moessner triangle of rank \\(r\\) and returns the seed tuple of the $t$th
+\\(t\\)th Moessner triangle of rank \\(r\\) and returns the seed tuple of the \\(t\\)th
 Moessner triangle of rank \\(r + 1\\), and several rank decomposition rules, which
-describe an entry of the $t$th Moessner triangle of rank \\(r + 1\\) as a sum of
-entries in the $t$th Moessner triangle of rank \\(r\\).
+describe an entry of the \\(t\\)th Moessner triangle of rank \\(r + 1\\) as a sum of
+entries in the \\(t\\)th Moessner triangle of rank \\(r\\).
 
 The rank upgrading procedure, `upgradeSeedTuple`, was the result of the
 observation that we could obtain the seed tuple of the Moessner triangle of rank

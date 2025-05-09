@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./categories/moessner's-theorem/
+#+hugo_section: ./categories/moessners-sieve/
 #+hugo_front_matter_key_replace: description>summary
-#+hugo_categories: "Moessner's Theorem"
+#+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics"
 
 #+title: A dual to Moessner's sieve
@@ -15,7 +15,7 @@
 #+end_blockquote
 
 ** 1. Introduction
-This is a follow-up post to [[/posts/an-introduction-to-moessners-theorem-and-moessners-sieve][An introduction to Moessner's Theorem and Moessner's
+This is a follow-up post to [[/categories/moessners-sieve/an-introduction-to-moessners-theorem-and-moessners-sieve][An introduction to Moessner's Theorem and Moessner's
 Sieve]]. The goal of this post is to introduce a dual to Moessner's sieve that
 simplifies the initial configuration of Moessner's sieve, by starting from two
 seed tuples instead of an initial sequence, and creates a result sequence of
@@ -558,7 +558,7 @@ paved the way for defining the dual procedure of Moessner's sieve,
 ~createTrianglesVertically~, which creates a sequence of Moessner triangles
 instead of a sequence of successive powers.
 
-This post - and [[/posts/an-introduction-to-moessners-theorem-and-moessners-sieve][the previous]] - was a small excerpt from my [[https://github.com/dragonwasrobot/formal-moessner][Master's thesis]], in
+This post - and [[/categories/moessners-sieve/an-introduction-to-moessners-theorem-and-moessners-sieve][the previous]] - was a small excerpt from my [[https://github.com/dragonwasrobot/formal-moessner][Master's thesis]], in
 which I also prove the equivalence relation of the two triangle creation
 procedures.
 

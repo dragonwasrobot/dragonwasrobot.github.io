@@ -4,7 +4,7 @@ author = ["Peter Urbak"]
 summary = "In this post, we introduce a characteristic function of Moessner's sieve."
 date = 2016-03-04T00:00:00Z
 tags = ["Haskell", "Mathematics"]
-categories = ["Moessner's Theorem"]
+categories = ["Moessner's Sieve"]
 draft = false
 +++
 
@@ -21,8 +21,8 @@ _in which one can be absolutely precise"_<br />
 
 ## 1. Introduction {#1-dot-introduction}
 
-This is a follow-up post to [A dual to Moessner's Sieve](/posts/a-dual-to-moessners-sieve) and [Rotating Pascal's
-triangle and the binomial coefficient](/posts/rotating-pascals-triangle-and-the-binomial-coefficient). The goal of this post is to introduce a
+This is a follow-up post to [A dual to Moessner's Sieve](/categories/moessners-sieve/a-dual-to-moessners-sieve) and [Rotating Pascal's
+triangle and the binomial coefficient](/categories/moessners-sieve/rotating-pascals-triangle-and-the-binomial-coefficient). The goal of this post is to introduce a
 characteristic function of Moessner's sieve, which computes the entries of a
 given Moessner triangle without needing to compute the prefix of the sieve.
 
@@ -75,7 +75,7 @@ equal to the rotated Pascal's triangle, having a depth equal to the rank of the
 Moessner triangle plus one. Furthermore, we also notice that the subsequent
 Moessner triangles exhibit Pascal-like properties, i.e., Pascal's rule holds for
 all triangles, as every entry is the sum of its immediate western and northern
-neighbors, as [previously illustrated](/posts/a-dual-to-moessners-sieve) and originally noted by Long.[^fn:2] Knowing
+neighbors, as [previously illustrated](/categories/moessners-sieve/a-dual-to-moessners-sieve) and originally noted by Long.[^fn:2] Knowing
 that the Moessner triangles behave in a Pascal-like fashion, hints at a possible
 binomial coefficient-like characteristic function, parameterized over the first
 row and column of a given Moessner triangle. If we again focus on Figure

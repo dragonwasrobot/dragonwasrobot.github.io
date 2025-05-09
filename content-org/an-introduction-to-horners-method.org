@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./categories/moessner's-theorem/
+#+hugo_section: ./categories/moessners-sieve/
 #+hugo_front_matter_key_replace: description>summary
-#+hugo_categories: "Moessner's Theorem"
+#+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics" "Polynomial evaluation" "Polynomial division" "Horner's method" "Moessner's Process"
 
 #+title: An introduction to Horner's method
@@ -338,7 +338,7 @@ polynomial division. Furthermore, we have also stated and proved an equivalence
 relation between the definition of Horner's method for polynomial evaluation and
 polynomial division.
 
-In our [[/posts/obtaining-taylor-polynomials-with-horners-method][next post]], we show how we can obtain [[https://en.wikipedia.org/wiki/Taylor%27s_theorem][Taylor polynomials]] using Horner's
+In our [[/categories/moessners-sieve/obtaining-taylor-polynomials-with-horners-method][next post]], we show how we can obtain [[https://en.wikipedia.org/wiki/Taylor%27s_theorem][Taylor polynomials]] using Horner's
 method.
 
 [fn:1] See "On Two Problems in Abstract Algebra Connected with Horner's

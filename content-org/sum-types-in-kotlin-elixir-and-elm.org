@@ -14,7 +14,7 @@
 #+end_blockquote
 
 ** 1. Introduction
-This is a follow-up post to [[/posts/product-types-in-kotlin-elixir-and-elm][Product types in Kotlin, Elixir, and Elm]]. The goal
+This is a follow-up post to [[/categories/musings/product-types-in-kotlin-elixir-and-elm][Product types in Kotlin, Elixir, and Elm]]. The goal
 of this blog post is to define the concept of sum types and compare the
 implementation of sum types in three different functional programming languages:
 [[https://kotlinlang.org/][Kotlin]], [[https://elixir-lang.org/][Elixir]], and [[http://elm-lang.org/][Elm]].
@@ -27,7 +27,7 @@ types in Kotlin, Elixir, and Elm, respectively. The post is concluded in Section
 ** 2. Sum types
 In this section, we define the concept of sum types.
 
-In our [[/posts/enum-types-in-kotlin-elixir-and-elm][post on enum types]], we defined an enum type as a /“data type consisting
+In our [[/categories/musings/enum-types-in-kotlin-elixir-and-elm][post on enum types]], we defined an enum type as a /“data type consisting
 of a set of named values which we call the members of the type”/, e.g. we
 defined ~shape~ as:
 
@@ -44,7 +44,7 @@ its own set of arguments. Conversely, we may also look at enum types as the
 subset of sum types for which each member is a [[https://en.wikipedia.org/wiki/Unit_type][unit type]], i.e. each member's
 type constructor takes zero arguments.
 
-In our [[/posts/product-types-in-kotlin-elixir-and-elm][post on product types]] we implemented three different types of shapes:
+In our [[/categories/musings/product-types-in-kotlin-elixir-and-elm][post on product types]] we implemented three different types of shapes:
 rectangle, circle, and triangle. Now, with the above definition of sum types in
 mind, we want to define a ~shape~ type that can be either a ~Rectangle~, a
 ~Circle~, or a ~Triangle~. In our ML-like syntax, we could express our ~shape~

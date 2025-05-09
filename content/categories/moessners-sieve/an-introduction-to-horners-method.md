@@ -4,7 +4,7 @@ author = ["Peter Urbak"]
 summary = "In this post, we introduce Horner's method for polynomial evaluation and polynomial division."
 date = 2015-08-03T00:00:00Z
 tags = ["Haskell", "Mathematics", "Polynomial evaluation", "Polynomial division", "Horner's method", "Moessner's Process"]
-categories = ["Moessner's Theorem"]
+categories = ["Moessner's Sieve"]
 draft = false
 +++
 
@@ -345,7 +345,7 @@ polynomial division. Furthermore, we have also stated and proved an equivalence
 relation between the definition of Horner's method for polynomial evaluation and
 polynomial division.
 
-In our [next post](/posts/obtaining-taylor-polynomials-with-horners-method), we show how we can obtain [Taylor polynomials](https://en.wikipedia.org/wiki/Taylor%27s_theorem) using Horner's
+In our [next post](/categories/moessners-sieve/obtaining-taylor-polynomials-with-horners-method), we show how we can obtain [Taylor polynomials](https://en.wikipedia.org/wiki/Taylor%27s_theorem) using Horner's
 method.
 
 [^fn:1]: See "On Two Problems in Abstract Algebra Connected with Horner's

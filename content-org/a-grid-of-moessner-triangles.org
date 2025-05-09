@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./categories/moessner's-theorem/
+#+hugo_section: ./categories/moessners-sieve/
 #+hugo_front_matter_key_replace: description>summary
-#+hugo_categories: "Moessner's Theorem"
+#+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics" "Moessner's Process"
 
 #+title: A grid of Moessner triangles
@@ -15,7 +15,7 @@
 #+end_blockquote
 
 ** 1. Introduction
-This is a follow-up post to [[/posts/a-characteristic-function-of-moessners-sieve][A characteristic function of Moessner's Sieve]]. The
+This is a follow-up post to [[/categories/moessners-sieve/a-characteristic-function-of-moessners-sieve][A characteristic function of Moessner's Sieve]]. The
 goal of this blog post is to introduce a new combinatorial property which
 connects Moessner triangles of different rank but with the same triangle index,
 thus acting as a dual to the existing connection between Moessner triangles of

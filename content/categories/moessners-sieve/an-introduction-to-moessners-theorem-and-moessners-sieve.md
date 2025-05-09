@@ -4,14 +4,14 @@ author = ["Peter Urbak"]
 summary = "In this post, we introduce Moessner's theorem and Moessner's sieve."
 date = 2016-01-12T00:00:00Z
 tags = ["Haskell", "Mathematics"]
-categories = ["Moessner's Theorem"]
+categories = ["Moessner's Sieve"]
 draft = false
 +++
 
 ## 1. Introduction {#1-dot-introduction}
 
 This is a follow-up post to [Rotating Pascal's triangle and the binomial
-coefficient](/posts/rotating-pascals-triangle-and-the-binomial-coefficient). The goal of this post is to introduce and formalize Moessner's
+coefficient](/categories/moessners-sieve/rotating-pascals-triangle-and-the-binomial-coefficient). The goal of this post is to introduce and formalize Moessner's
 theorem and Moessner's sieve.
 
 The post is structured as follows. In Section [2](#2-dot-moessner-s-theorem-and-moessner-s-sieve), we introduce the basics of
@@ -419,7 +419,7 @@ In this post, we have introduced Moessner's theorem and Moessner's sieve, along
 with some of the generalizations of Moessner's theorem. Furthermore, we have
 formalized and implemented Moessner's sieve in Haskell.
 
-In our [next post](/posts/a-dual-to-moessners-sieve), we introduce the dual to Moessner's sieve, which generates
+In our [next post](/categories/moessners-sieve/a-dual-to-moessners-sieve), we introduce the dual to Moessner's sieve, which generates
 Moessner triangles in a column-by-column fashion.
 
 [^fn:1]: See "Eine Bemerkung über die Potenzen der natürlichen Zahlen" (1951) by
@@ -429,7 +429,7 @@ Moessner triangles in a column-by-column fashion.
     "A Characterization of Moessner's sieve" (2014).
 [^fn:4]: See "A Characterization of Moessner's sieve" (2014) by Danvy et al.
 [^fn:5]: See the post [An introduction to Pascal's triangle and the binomial
-    coefficient](/posts/an-introduction-to-pascals-triangle-and-the-binomial-coefficient) for more about the intuition behind Pascal's triangle.
-[^fn:6]: See the post [Rotating Pascal's triangle and the binomial coefficient](/posts/rotating-pascals-triangle-and-the-binomial-coefficient) on how
+    coefficient](/categories/moessners-sieve/an-introduction-to-pascals-triangle-and-the-binomial-coefficient) for more about the intuition behind Pascal's triangle.
+[^fn:6]: See the post [Rotating Pascal's triangle and the binomial coefficient](/categories/moessners-sieve/rotating-pascals-triangle-and-the-binomial-coefficient) on how
     to rotate Pascal's triangle to resemble the first Moessner triangle.
 [^fn:7]: See "On the Moessner Theorem on Integral Powers" (1966) by Calvin T. Long.

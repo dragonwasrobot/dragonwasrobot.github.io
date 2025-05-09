@@ -4,7 +4,7 @@ author = ["Peter Urbak"]
 summary = "In this post, we introduce Pascal's triangle and the binomial coefficient."
 date = 2015-11-07T00:00:00Z
 tags = ["Haskell", "Pascal's Triangle", "Binomial coefficient", "Mathematics"]
-categories = ["Moessner's Theorem"]
+categories = ["Moessner's Sieve"]
 draft = false
 +++
 
@@ -297,7 +297,7 @@ Afterwards, we introduced the binomial coefficient function, as a result of
 describing the binomial theorem, and formalized it as the function
 `binomialCoefficient`, in Haskell.
 
-In our [next post](/posts/rotating-pascals-triangle-and-the-binomial-coefficient), we look at what happens when we rotate Pascal's triangle and
+In our [next post](/categories/moessners-sieve/rotating-pascals-triangle-and-the-binomial-coefficient), we look at what happens when we rotate Pascal's triangle and
 the binomial coefficient, and their properties.
 
 [^fn:1]: We quietly ignore the cases where `n` and `k` are negative, and instead

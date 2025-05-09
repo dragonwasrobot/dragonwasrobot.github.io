@@ -9,7 +9,7 @@
 #+description: In this post, we prove equivalence between interpretation and compilation of code.
 
 ** 1. Introduction
-This post is a follow-up to [[/posts/an-interpreter-a-compiler-and-a-virtual-machine][An interpreter, a compiler, and a virtual machine]],
+This post is a follow-up to [[/categories/musings/an-interpreter-a-compiler-and-a-virtual-machine][An interpreter, a compiler, and a virtual machine]],
 in which we defined the fixpoints we will now use to prove an [[https://en.wikipedia.org/wiki/Equivalence_relation][equivalence
 relation]] between *interpretation of an arithmetic expression* and *compilation
 of an arithmetic expression followed by execution of the bytecode program
@@ -86,7 +86,7 @@ Having derived our equivalence relation, we are ready to move on to proving the
 relation.
 
 ** 3. Equivalence proof
-Just as in the [[/posts/a-primer-on-the-coq-proof-assistant][introductory post on the Coq Proof Assistant]], we start our proof
+Just as in the [[/categories/musings/a-primer-on-the-coq-proof-assistant][introductory post on the Coq Proof Assistant]], we start our proof
 by writing the ~Proof~ keyword, which gives us the following goal:
 
 #+begin_src coq

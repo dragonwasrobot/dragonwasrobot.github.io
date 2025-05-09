@@ -4,13 +4,13 @@ author = ["Peter Urbak"]
 summary = "In this post, we calculate Taylor Polynomials with Horner's method."
 date = 2016-04-08T00:00:00Z
 tags = ["Haskell", "Mathematics", "Polynomial division", "Taylor polynomials", "Horner's method"]
-categories = ["Moessner's Theorem"]
+categories = ["Moessner's Sieve"]
 draft = false
 +++
 
 ## 1. Introduction {#1-dot-introduction}
 
-This is a follow-up post to [An introduction to Horner's method](/posts/an-introduction-to-horners-method). The goal of this
+This is a follow-up post to [An introduction to Horner's method](/categories/moessners-sieve/an-introduction-to-horners-method). The goal of this
 post is to derive Taylor polynomials using Horner's method for polynomial
 division.
 
@@ -26,7 +26,7 @@ In this section, we first state the [polynomial remainder theorem](https://en.wi
 definitions of [Taylor series](https://en.wikipedia.org/wiki/Taylor_series) and Taylor polynomials, which we use to finally
 state [Taylor's theorem](https://en.wikipedia.org/wiki/Taylor%27s_theorem).
 
-As pointed out in the [previous blog post](/posts/an-introduction-to-horners-method), if we divide a polynomial, \\(p\\), with a
+As pointed out in the [previous blog post](/categories/moessners-sieve/an-introduction-to-horners-method), if we divide a polynomial, \\(p\\), with a
 binomial, \\(x - k\\), the remainder of the division is equal to \\(p(k)\\), which is
 captured by the polynomial remainder theorem.
 
@@ -248,11 +248,11 @@ where \\(p\\) is the initial polynomial to be divided.[^fn:2]
 In this post, we have shown how to obtain Taylor polynomials with Horner's
 method for polynomial division.
 
-In our [next post](/posts/deriving-moessners-sieve-from-horners-method), we use what we have learned from this -- and the previous --
+In our [next post](/categories/moessners-sieve/deriving-moessners-sieve-from-horners-method), we use what we have learned from this -- and the previous --
 blog post to derive Moessner's sieve[^fn:3] from Horner's method.
 
 [^fn:1]: Note that we use the tabular representation for polynomial division, which
-    we introduced in Formula 7 of the [previous blog post](/posts/an-introduction-to-horners-method).
+    we introduced in Formula 7 of the [previous blog post](/categories/moessners-sieve/an-introduction-to-horners-method).
 [^fn:2]: See "The wonder of Horner's method" (2003) by Alex Pathan and Tony Collyer.
 [^fn:3]: Moessner's sieve is the procedure described in "Eine Bemerkung über die
     Potenzen der natürlichen Zahlen" (1951) by Alfred Moessner, and the term
