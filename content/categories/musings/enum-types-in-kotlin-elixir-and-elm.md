@@ -4,7 +4,7 @@ author = ["Peter Urbak"]
 summary = "In this post, we define the concept of enum types with examples in Kotlin, Elixir, and Elm."
 date = 2016-10-02T00:00:00Z
 tags = ["Elm", "Elixir", "Kotlin", "Enum types", "Functional Programming"]
-categories = ["Code"]
+categories = ["Musings"]
 draft = false
 +++
 

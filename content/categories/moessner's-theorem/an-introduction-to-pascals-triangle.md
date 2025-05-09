@@ -43,11 +43,11 @@ of Pascal's triangle,
 
 \begin{equation\*}
     \begin{array}{\*{9}{c}}
-    & & & & 1 & & & & \\\\
-    & & & 1 & & 1 & & & \\\\
-    & & 1 & & 2 & & 1 & & \\\\
-    & 1 & & 3 & & 3 & & 1 & \\\\
-    1 & & 4 & & 6 & & 4 & & 1
+      &   &   &   & 1 &   &   &   & \\\\
+      &   &   & 1 &   & 1 &   &   & \\\\
+      &   & 1 &   & 2 &   & 1 &   & \\\\
+      & 1 &   & 3 &   & 3 &   & 1 & \\\\
+    1 &   & 4 &   & 6 &   & 4 &   & 1
     \end{array}
 \end{equation\*}
 
@@ -58,11 +58,11 @@ just above them, like so,
 
 \begin{equation\*}
   \begin{array}{\*{9}{c}}
-    1 &    &   &    & 2 &    &   &    & 1\\\\
-    & \searrow &   & \swarrow &   & \searrow &   & \swarrow &\\\\
-    &    & 3 &    &   &    & 3 &    &\\\\
-    &    &   & \searrow &   & \swarrow &   &    &\\\\
-    &    &   &    & 6 &    &   &    &
+    1 &          &   &          & 2 &          &   &          & 1\\\\
+      & \searrow &   & \swarrow &   & \searrow &   & \swarrow & \\\\
+      &          & 3 &          &   &          & 3 &          & \\\\
+      &          &   & \searrow &   & \swarrow &   &          & \\\\
+      &          &   &          & 6 &          &   &          &
   \end{array}
 \end{equation\*}
 
@@ -75,10 +75,10 @@ consists of 1s,
   \begin{array}{\*{9}{c}}
     & & & & 1 & & & & \\\\
     & & & 1 & & 1 & & & \\\\
-    & & 1 & & \color{lightgray}{2} & & 1 & & \\\\
-    & 1 & & \color{lightgray}{3} & & \color{lightgray}{3} & & 1 & \\\\
-    1 & & \color{lightgray}{4} & & \color{lightgray}{6} & &
-    \color{lightgray}{4} & & 1 \\\\
+    & & 1 & & \class{faint}{2} & & 1 & & \\\\
+    & 1 & & \class{faint}{3} & & \class{faint}{3} & & 1 & \\\\
+    1 & & \class{faint}{4} & & \class{faint}{6} & &
+    \class{faint}{4} & & 1 \\\\
   \end{array}
 \end{equation\*}
 
@@ -101,11 +101,11 @@ values to the right of Pascal's triangle,
 
 \begin{equation\*}
   \begin{array}{\*{13}{c}}
-      & & & & 1 & & \color{lightgray}{0} & & \color{lightgray}{0} & & \color{lightgray}{0} & \dots \\\\
-      & & & 1 & & 1 &   & \color{lightgray}{0} & & \color{lightgray}{0} & & \dots \\\\
-      & & 1 & & 2 & & 1 &   & \color{lightgray}{0} & & \color{lightgray}{0} & \dots \\\\
-      & 1 & & 3 & & 3 & & 1 &   & \color{lightgray}{0} & & \dots \\\\
-    1 & & 4 & & 6 & & 4 &   & 1 & & \color{lightgray}{0} & \dots
+      & & & & 1 & & \class{faint}{0} & & \class{faint}{0} & & \class{faint}{0} & \dots \\\\
+      & & & 1 & & 1 &   & \class{faint}{0} & & \class{faint}{0} & & \dots \\\\
+      & & 1 & & 2 & & 1 &   & \class{faint}{0} & & \class{faint}{0} & \dots \\\\
+      & 1 & & 3 & & 3 & & 1 &   & \class{faint}{0} & & \dots \\\\
+    1 & & 4 & & 6 & & 4 &   & 1 & & \class{faint}{0} & \dots
   \end{array}
 \end{equation\*}
 

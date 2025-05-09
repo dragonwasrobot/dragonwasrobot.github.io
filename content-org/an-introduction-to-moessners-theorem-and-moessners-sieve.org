@@ -1,5 +1,5 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./posts
+#+hugo_section: ./categories/moessner's-theorem/
 #+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Theorem"
 #+hugo_tags: "Haskell" "Mathematics"
@@ -38,7 +38,7 @@ powers/,
 
 when performing the following procedure:
 
-1. Drop every $k$th element of the inital sequence,
+1. Drop every \(k\)th element of the inital sequence,
 2. partially sum the remaining elements into a new sequence, and
 3. decrease $k$ by $1$.
 

@@ -1,8 +1,8 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./posts
+#+hugo_section: ./categories/musings/
 #+hugo_front_matter_key_replace: description>summary
-#+hugo_categories: "Mathematics"
-#+hugo_tags: "Coq" "Induction"
+#+hugo_categories: "Musings"
+#+hugo_tags: "Mathematics" "Coq" "Induction"
 
 #+title: A Primer on the Coq Proof Assistant
 #+date: 2015-07-18T00:00:00Z

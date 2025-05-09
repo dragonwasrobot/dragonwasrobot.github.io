@@ -4,7 +4,7 @@ author = ["Peter Urbak"]
 summary = "In this post, we define the concept of sum types with examples in Elm, Elixir, and Kotlin."
 date = 2016-12-20T00:00:00Z
 tags = ["Elm", "Elixir", "Kotlin", "Sum types", "Functional Programming"]
-categories = ["Code"]
+categories = ["Musings"]
 draft = false
 +++
 

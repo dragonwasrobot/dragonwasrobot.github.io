@@ -3,8 +3,8 @@ title = "An interpreter, a compiler,&#x000a;and a virtual machine"
 author = ["Peter Urbak"]
 summary = "In this post, we implement a minimal interpreter, a compiler, and a virtual machine in Coq."
 date = 2015-09-26T00:00:00Z
-tags = ["Coq", "Interpreters", "Compilers", "Virtual Machines"]
-categories = ["Mathematics"]
+tags = ["Mathematics", "Coq", "Interpreters", "Compilers", "Virtual Machines"]
+categories = ["Musings"]
 draft = false
 +++
 

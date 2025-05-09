@@ -3,8 +3,8 @@ title = "A Primer on the Coq Proof Assistant"
 author = ["Peter Urbak"]
 summary = "In this post, we give a short primer on interactive theorem proving in the Coq Proof Assistant."
 date = 2015-07-18T00:00:00Z
-tags = ["Coq", "Induction"]
-categories = ["Mathematics"]
+tags = ["Mathematics", "Coq", "Induction"]
+categories = ["Musings"]
 draft = false
 +++
 

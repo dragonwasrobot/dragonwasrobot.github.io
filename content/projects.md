@@ -4,11 +4,10 @@ date = 2025-04-20T00:00:00+00:00
 draft = false
 layout = "static"
 +++
-  
-This page lists some of my non-work related projects, that I have done over the
-years:
 
-### JSON Schema parser (Code library)
+<section class="category-group">
+
+### JSON Schema parser
 
 #### Description
 
@@ -26,34 +25,15 @@ code generator.
 
 #### Links
 
-- [Online documentation](https://hexdocs.pm/json_schema/getting-started.html)
+- [Online documentation](https://hexdocs.pm/json_schema/readme.html)
 - [hex.pm page](https://hex.pm/packages/json_schema)
 - [GitHub page](https://github.com/dragonwasrobot/json_schema)
 
-### ExRerun (Code library)
+</section>
 
-#### Description
+<section class="category-group">
 
-The [ex_rerun](https://github.com/dragonwasrobot/ex_rerun) project is an
-[Elixir](https://elixir-lang.org/) library for monitoring your source code and
-running a set of custom `mix` tasks, like `compile` or `test`, whenever source
-files change. The tool is made to be pluggable allowing developers to add their
-own `mix` tasks to be run by the tool, e.g. for compiling frontend code or
-generating API documentation.
-
-The project was created because I was developing a RESTful Elixir backend, in
-[cowboy](https://ninenines.eu/docs/en/cowboy/2.6/guide/), which was bundled with
-a corresponding CRUD frontend in [Elm](http://elm-lang.org/), and wanted to
-compile the Elm code alongside the Elixir code whenever either of the code bases
-changed.
-
-#### Links
-
-- [Online documentation](https://hexdocs.pm/ex_rerun/getting-started.html)
-- [hex.pm page](https://hex.pm/packages/ex_rerun)
-- [GitHub page](https://github.com/dragonwasrobot/ex_rerun)
-
-### JSON Schema to Elm code generator (Command line tool)
+### JSON Schema to Elm code generator
 
 #### Description
 
@@ -74,8 +54,13 @@ case.
 #### Links
 
 - [GitHub page](https://github.com/dragonwasrobot/json-schema-to-elm)
+- [Conference Presentation](https://www.slideshare.net/slideshow/it-can-t-be-that-hard-elm-serializers-and-fuzz-testing-for-free/278693036)
 
-### i18n to Elm code generator (Command line tool)
+</section>
+
+<section class="category-group">
+
+### i18n to Elm code generator
 
 #### Description
 
@@ -102,7 +87,11 @@ JSON schema files.
 
 - [GitHub page](https://github.com/dragonwasrobot/i18n-to-elm)
 
-### CHIP-8 emulator (Web application)
+</section>
+
+<section class="category-group">
+
+### CHIP-8 emulator
 
 #### Description
 
@@ -120,7 +109,11 @@ The project was created for two reasons:
 - [Running emulator](https://www.dragonwasrobot.com/chip-8/)
 - [GitHub page](https://github.com/dragonwasrobot/chip-8)
 
-### Brainfuck interpreter (Web application)
+</section>
+
+<section class="category-group">
+
+### Brainfuck interpreter
 
 #### Description
 
@@ -139,7 +132,11 @@ The project was created for two reasons:
 - [Running interpreter](https://www.dragonwasrobot.com/brainfuck/)
 - [GitHub page](https://github.com/dragonwasrobot/brainfuck)
 
-### b.el (Emacs package)
+</section>
+
+<section class="category-group">
+
+### b.el
 
 #### Description
 
@@ -159,7 +156,38 @@ manipulated and represented.
 
 - [GitHub page](https://github.com/dragonwasrobot/b.el)
 
-### Helm Bitbucket (Emacs package)
+</section>
+
+<section class="category-group">
+
+### ExRerun
+
+#### Description
+
+The [ex_rerun](https://github.com/dragonwasrobot/ex_rerun) project is an
+[Elixir](https://elixir-lang.org/) library for monitoring your source code and
+running a set of custom `mix` tasks, like `compile` or `test`, whenever source
+files change. The tool is made to be pluggable allowing developers to add their
+own `mix` tasks to be run by the tool, e.g. for compiling frontend code or
+generating API documentation.
+
+The project was created because I was developing a RESTful Elixir backend, in
+[cowboy](https://ninenines.eu/docs/en/cowboy/2.6/guide/), which was bundled with
+a corresponding CRUD frontend in [Elm](http://elm-lang.org/), and wanted to
+compile the Elm code alongside the Elixir code whenever either of the code bases
+changed.
+
+#### Links
+
+- [Online documentation](https://hexdocs.pm/ex_rerun/getting-started.html)
+- [hex.pm page](https://hex.pm/packages/ex_rerun)
+- [GitHub page](https://github.com/dragonwasrobot/ex_rerun)
+
+</section>
+
+<section class="category-group">
+
+### Helm Bitbucket
 
 #### Description
 
@@ -177,21 +205,4 @@ developing, e.g. to compare some piece of code or check on a pull request.
 
 - [GitHub page](https://github.com/dragonwasrobot/helm-bitbucket)
 
-### A Formal Study of Moessner's Sieve (Master's thesis)
-
-#### Description
-
-The [formal-moessner](https://github.com/dragonwasrobot/formal-moessner) project
-is my Master's thesis in Computer Science completed at Aarhus University, and
-done under the supervision of Olivier Danvy. The dissertation presents a new
-characterization of a mathematical procedure known as [*Moessner's Sieve*]({%
-post_url 2016-01-12-an-introduction-to-moessner-s-theorem-and-moessner-s-sieve
-%}), formalized in [Coq](https://coq.inria.fr/), along with a range of new
-mathematical results.
-
-The dissertation was later published as an eBook by Aarhus University Library.
-
-#### Links
-
-- [Published eBook](http://ebooks.au.dk/index.php/aul/catalog/book/213)
-- [GitHub page](https://github.com/dragonwasrobot/formal-moessner)
+</section>

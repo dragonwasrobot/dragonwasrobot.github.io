@@ -41,7 +41,7 @@ powers_,
 
 when performing the following procedure:
 
-1.  Drop every $k$th element of the inital sequence,
+1.  Drop every \\(k\\)th element of the inital sequence,
 2.  partially sum the remaining elements into a new sequence, and
 3.  decrease \\(k\\) by \\(1\\).
 

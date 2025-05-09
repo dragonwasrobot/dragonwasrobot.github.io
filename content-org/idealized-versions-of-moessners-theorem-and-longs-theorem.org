@@ -1,5 +1,5 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./posts
+#+hugo_section: ./categories/moessner's-theorem/
 #+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Theorem"
 #+hugo_tags: "Haskell" "Mathematics" "Moessner's Process" "Moessner's Theorem" "Long's Theorem"
@@ -188,7 +188,7 @@ We can visualize Long's theorem as the sieve,
 \end{equation*}
 
 for which Long[fn:1] also noted that we can generalize the sieve by adding a row of
-$d$s,
+\(d\)s,
 
 \begin{equation*}
   \begin{array}{*{11}{r}}
