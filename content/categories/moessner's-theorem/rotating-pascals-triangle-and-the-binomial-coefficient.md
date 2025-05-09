@@ -59,11 +59,11 @@ First, we notice that the base case of Pascal's triangle, where \\(\binom{n}{0} 
 
 \begin{equation\*}
   \begin{array}{\*{5}{r}}
-    1 & \color{lightgray}{1} & \color{lightgray}{1} &
-    \color{lightgray}{1} & \color{lightgray}{1} \\\\
-    1 & \color{lightgray}{2} & \color{lightgray}{3} & \color{lightgray}{4} & \\\\
-    1 & \color{lightgray}{3} & \color{lightgray}{6} &   & \\\\
-    1 & \color{lightgray}{4} &   &   &   \\\\
+    1 & \class{faint}{1} & \class{faint}{1} &
+    \class{faint}{1} & \class{faint}{1} \\\\
+    1 & \class{faint}{2} & \class{faint}{3} & \class{faint}{4} & \\\\
+    1 & \class{faint}{3} & \class{faint}{6} &   & \\\\
+    1 & \class{faint}{4} &   &   &   \\\\
     1 &   &   &   &
   \end{array}
 \end{equation\*}
@@ -76,12 +76,12 @@ the rotated Pascal's triangle,
 \begin{equation\*}
   \begin{array}{\*{5}{r}}
       1 & 1 & 1 & 1 & 1 \\\\
-    \color{lightgray}{1} & \color{lightgray}{2} &
-    \color{lightgray}{3} & \color{lightgray}{4} &   \\\\
-    \color{lightgray}{1} & \color{lightgray}{3} &
-    \color{lightgray}{6} &   &   \\\\
-    \color{lightgray}{1} & \color{lightgray}{4} &   &   &   \\\\
-    \color{lightgray}{1} &   &   &   &
+    \class{faint}{1} & \class{faint}{2} &
+    \class{faint}{3} & \class{faint}{4} &   \\\\
+    \class{faint}{1} & \class{faint}{3} &
+    \class{faint}{6} &   &   \\\\
+    \class{faint}{1} & \class{faint}{4} &   &   &   \\\\
+    \class{faint}{1} &   &   &   &
   \end{array}
 \end{equation\*}
 

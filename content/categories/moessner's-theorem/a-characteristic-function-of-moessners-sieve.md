@@ -93,10 +93,9 @@ expansion of \\((1 + t)^r\\), where \\(r\\) is equal to the rank of the triangle
 expansion,
 
 \begin{equation\*}
-  \color{black} (1 + t)^4 \color{lightgray} = \color{black} 1 \color{lightgray}
-  \cdot t^4 + \color{black} 4 \color{lightgray} \cdot t^3 + \color{black} 6
-  \color{lightgray} \cdot t^2 + \color{black} 4 \color{lightgray} \cdot t^1 +
-  \color{black} 1 \color{lightgray}\cdot t^0 \color{black},
+  (1 + t)^4 \class{faint}{=} 1 \class{faint}{\cdot t^4 +\hspace{0.1pt}} 4
+  \class{faint}{\cdot t^3 +\hspace{0.1pt}} 6 \class{faint}{\cdot t^2 +\hspace{0.1pt}} 4
+  \class{faint}{\cdot t^1 +\hspace{0.1pt}} 1 \class{faint}{\cdot\hspace{0.1pt}} t^0,
 \end{equation\*}
 
 where the values of the hypotenuse, \\((1,4,6,4,1)\\), do indeed enumerate the
@@ -104,13 +103,13 @@ binomial coefficients of the expansion. Incidentally, the hypotenuse also
 enumerates the actual terms of the binomial expansion when \\(t = 1\\),
 
 \begin{align\*}
-  \color{black} (1 + 1)^4 &= \color{black} 1 \cdot 1^4 \color{lightgray} +
-  \color{black} 4 \cdot 1^3 \color{lightgray} + \color{black} 6 \cdot 1^2
-  \color{lightgray} + \color{black} 4 \cdot 1^1 \color{lightgray} +
-  \color{black} 1 \cdot 1^0 \\\\
-  \color{black} &= \color{black} 1 \color{lightgray} + \color{black} 4 \color{lightgray} +
-  \color{black} 6 \color{lightgray} + \color{black} 4 \color{lightgray} +
-  \color{black} 1,
+  (1 + 1)^4 &\class{faint}{=\hspace{0.1pt}} 1 \cdot 1^4 \class{faint}{+\hspace{0.1pt}}
+            4 \cdot 1^3 \class{faint}{+\hspace{0.1pt}} 6 \cdot 1^2
+            \class{faint}{+\hspace{0.1pt}} 4 \cdot 1^1 \class{faint}{+\hspace{0.1pt}}
+            1 \cdot 1^0 \\\\
+            &\class{faint}{=\hspace{0.1pt}} 1 \class{faint}{+\hspace{0.1pt}} 4
+            \class{faint}{+\hspace{0.1pt}} 6 \class{faint}{+\hspace{0.1pt}} 4
+            \class{faint}{+\hspace{0.1pt}} 1,
 \end{align\*}
 
 which raises the question of what happens if we let \\(t\\) denote the triangle
@@ -118,14 +117,12 @@ index, starting from \\(t = 1\\). As it turns out, letting \\(t = 2\\),
 
 \begin{align}
   \tag{2}\label{eq:binomial-expansion-example}
-  \color{black} (1 + 2)^4 &= \color{black} 1 \cdot 2^4 \color{lightgray} +
-  \color{black} 4 \cdot 2^3 \color{lightgray} +
-  \color{black} 6 \cdot 2^2 \color{lightgray} +
-  \color{black} 4 \cdot 2^1 \color{lightgray} +
-  \color{black} 1 \cdot 2^0\\\\
-  \color{black} &=
-  \color{black} 16 \color{lightgray} + \color{black} 32 \color{lightgray} + \color{black} 24
-  \color{lightgray} + \color{black} 8 \color{lightgray} + \color{black} 1
+  (1 + 2)^4 &\class{faint}{=\hspace{0.1pt}} 1 \cdot 2^4 \class{faint}{+\hspace{0.1pt}} 4
+  \cdot 2^3 \class{faint}{+\hspace{0.1pt}} 6 \cdot 2^2 \class{faint}{+\hspace{0.1pt}} 4
+  \cdot 2^1 \class{faint}{+\hspace{0.1pt}} 1 \cdot 2^0\\\\
+            &\class{faint}{=\hspace{0.1pt}} 16 \class{faint}{+\hspace{0.1pt}} 32
+            \class{faint}{+\hspace{0.1pt}} 24 \class{faint}{+\hspace{0.1pt}} 8
+            \class{faint}{+\hspace{0.1pt}} 1,
 \end{align}
 
 results in the terms of the binomial expansion to be equal to the values found
@@ -134,16 +131,12 @@ in the hypotenuse of the second Moessner triangle, \\((16,32,24,8,1)\\), in Figu
 holds for all triangles,
 
 \begin{align\*}
-  \color{black} (1 + 3)^4 &=
-  \color{black} 1 \cdot 3^4 \color{lightgray} + \color{black}
-  4 \cdot 3^3 \color{lightgray} + \color{black}
-  6 \cdot 3^2 \color{lightgray} + \color{black}
-  4 \cdot 3^1 \color{lightgray} + \color{black}
-  1 \cdot 3^0\\\\
-  \color{black} &=
-  \color{black} 81 \color{lightgray} + \color{black} 108 \color{lightgray} +
-  \color{black} 54 \color{lightgray} + \color{black} 12 \color{lightgray} +
-  \color{black} 1,
+  (1 + 3)^4 &\class{faint}{=\hspace{0.1pt}} 1 \cdot 3^4 \class{faint}{+\hspace{0.1pt}} 4
+            \cdot 3^3 \class{faint}{+\hspace{0.1pt}} 6 \cdot 3^2 \class{faint}{+\hspace{0.1pt}} 4
+            \cdot 3^1 \class{faint}{+\hspace{0.1pt}} 1 \cdot 3^0\\\\
+            &\class{faint}{=\hspace{0.1pt}} 81 \class{faint}{+\hspace{0.1pt}} 108
+            \class{faint}{+\hspace{0.1pt}} 54 \class{faint}{+\hspace{0.1pt}} 12
+            \class{faint}{+\hspace{0.1pt}} 1,
 \end{align\*}
 
 as seen here for \\(t = 3\\), and was recently pointed out by Danvy et al.[^fn:3] as a
@@ -156,42 +149,33 @@ of the monomials of the binomial expansion \\({(1 + t)}^r\\),
 \begin{equation}
   \tag{3}\label{eq:partial-sums-hpyotenuses}
   %
-  \color{lightgray}
-  %
   \begin{array}{\*{5}{r}}
-    1 & 1 & 1 & 1 & \color{black}{1} \\\\
-    1 & 2 & 3 & \color{black}{4} &   \\\\
-    1 & 3 & \color{black}{6} &   &   \\\\
-    1 & \color{black}{4} &   &   &   \\\\
-    \color{black}{1} &   &   &   &
+    \class{faint}{1} & \class{faint}{1} & \class{faint}{1} & \class{faint}{1} & 1 \\\\
+    \class{faint}{1} & \class{faint}{2} & \class{faint}{3} &                4 &   \\\\
+    \class{faint}{1} & \class{faint}{3} &                6 &                  &   \\\\
+    \class{faint}{1} &                4 &                  &                  &   \\\\
+                   1 &                  &                  &                  &
   \end{array}
   %
-  \color{black}{\Rightarrow}
-  %
-  \color{lightgray}
+  \Rightarrow
   %
   \begin{array}{\*{5}{r}}
-    \color{black}{1} &  1 &  1 & 1 & \color{black}{1} \\\\
-    \color{black}{5} &  6 &  7 & \color{black}{8} &   \\\\
-    \color{black}{11} & 17 & \color{black}{24} &   &   \\\\
-    \color{black}{15} & \color{black}{32} &    &   &   \\\\
-    \color{black}{16} &    &    &   &
+     1 &  \class{faint}{1} & \class{faint}{1} & \class{faint}{1} & 1 \\\\
+     5 &  \class{faint}{6} & \class{faint}{7} &                8 &   \\\\
+    11 & \class{faint}{17} &               24 &                  &   \\\\
+    15 &                32 &                  &                  &   \\\\
+    16 &                   &                  &                  &
   \end{array}
   %
-  \color{black}{\Rightarrow}
-  %
-  \color{lightgray}
+  \Rightarrow
   %
   \begin{array}{\*{5}{r}}
-    \color{black}{1} &   1 &  1 &  1 & 1 \\\\
-    \color{black}{9} &  10 & 11 & 12 &   \\\\
-    \color{black}{33} &  43 & 54 &    &   \\\\
-    \color{black}{65} & 108 &    &    &   \\\\
-    \color{black}{81} &     &    &    &
+     1 &   \class{faint}{1} &  \class{faint}{1} &   \class{faint}{1} & \class{faint}{1} \\\\
+     9 &  \class{faint}{10} & \class{faint}{11} &  \class{faint}{12} &   \\\\
+    33 &  \class{faint}{43} & \class{faint}{54} &    &   \\\\
+    65 & \class{faint}{108} &                   &    &   \\\\
+    81 &                    &                   &    &
   \end{array}
-  %
-  \color{black}
-  %
 \end{equation}
 
 as seen in Figure \ref{eq:partial-sums-hpyotenuses}, where \\((1,4,6,4,1)\\)
@@ -199,7 +183,7 @@ partially sums to \\((1,5,11,15,16)\\), and \\((1,8,24,32,16)\\) partially sums 
 \\((1,9,33,65,81)\\).
 
 Having characterized how every Moessner triangle is constructed using Pascal's
-rule, where the first row of a triangle is a sequence of $1$s and the first
+rule, where the first row of a triangle is a sequence of \\(1\\)s and the first
 column is a partial sum parameterized over the binomial expansion, we are ready
 to formalize the characteristic function in Haskell.
 

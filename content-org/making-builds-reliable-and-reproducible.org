@@ -1,8 +1,8 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./posts
+#+hugo_section: ./categories/musings/
 #+hugo_front_matter_key_replace: description>summary
-#+hugo_categories: "Code"
-#+hugo_tags: "Dependency management"
+#+hugo_categories: "Musings"
+#+hugo_tags: "Software development" "Dependency management"
 
 #+title: Making builds reliable and reproducible
 #+date: 2017-06-14T00:00:00Z

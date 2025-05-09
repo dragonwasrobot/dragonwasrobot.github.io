@@ -417,24 +417,24 @@ function `rotatedMoessnerEntry`,
     1 & 1 & 1 & 1 & 1 & &
     1 & 1 & 1 & 1 & 1 \\\\
     %
-    1 &  2 &  3 &   4 &  \color{lightgray}{5} & &
-    5 &  6 &  7 &   8 &  \color{lightgray}{9} & &
-    9 & 10 & 11 &  12 & \color{lightgray}{13} \\\\
+    1 &  2 &  3 &   4 &  \class{faint}{5} & &
+    5 &  6 &  7 &   8 &  \class{faint}{9} & &
+    9 & 10 & 11 &  12 & \class{faint}{13} \\\\
     %
-     1 &   3 &   6 & \color{lightgray}{10} & \color{lightgray}{15} & &
-    11 &  17 &  24 & \color{lightgray}{33} & \color{lightgray}{42} & &
-    33 &  43 &  54 & \color{lightgray}{66} & \color{lightgray}{76} \\\\
+     1 &   3 &   6 & \class{faint}{10} & \class{faint}{15} & &
+    11 &  17 &  24 & \class{faint}{33} & \class{faint}{42} & &
+    33 &  43 &  54 & \class{faint}{66} & \class{faint}{76} \\\\
     %
-     1 &   4 &  \color{lightgray}{10} &  \color{lightgray}{20} &  \color{lightgray}{35} & &
-    15 &  32 &  \color{lightgray}{55} &  \color{lightgray}{88} & \color{lightgray}{130} & &
-    65 & 108 & \color{lightgray}{162} & \color{lightgray}{192} & \color{lightgray}{268} \\\\
+     1 &   4 &  \class{faint}{10} &  \class{faint}{20} &  \class{faint}{35} & &
+    15 &  32 &  \class{faint}{55} &  \class{faint}{88} & \class{faint}{130} & &
+    65 & 108 & \class{faint}{162} & \class{faint}{192} & \class{faint}{268} \\\\
     %
-     1 & \color{lightgray}{5} &  \color{lightgray}{15} &
-     \color{lightgray}{35} &  \color{lightgray}{70} & &
-    16 & \color{lightgray}{48} & \color{lightgray}{103} &
-    \color{lightgray}{191} & \color{lightgray}{321} & &
-    81 & \color{lightgray}{189} & \color{lightgray}{351} &
-    \color{lightgray}{543} & \color{lightgray}{811}
+     1 & \class{faint}{5} &  \class{faint}{15} &
+     \class{faint}{35} &  \class{faint}{70} & &
+    16 & \class{faint}{48} & \class{faint}{103} &
+    \class{faint}{191} & \class{faint}{321} & &
+    81 & \class{faint}{189} & \class{faint}{351} &
+    \class{faint}{543} & \class{faint}{811}
   \end{array}
 \end{equation\*}
 

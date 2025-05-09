@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./posts
+#+hugo_section: ./categories/musings/
 #+hugo_front_matter_key_replace: description>summary
-#+hugo_categories: "Code"
+#+hugo_categories: "Musings"
 #+hugo_tags: "Elm" "Pattern matching" "Point-free Style" "Functional Programming"
 
 #+title: Programming in Style:&#x000a;From Pattern Matching to Point Free

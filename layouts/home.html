@@ -2,17 +2,33 @@
   <div id="page-content" class="mx-auto max-w-3xl">
   {{ .Content }}
 
-  <div id="post-summaries" class="mt-6">
-  {{ range (where site.RegularPages "Type" "posts") }}
-    <div id="post-summary" class="mb-6">
-    <span class="text-neutral-500 dark:text-sky-100 text-sm font-extralight">
-      {{ .Date | time.Format ":date_medium" }}
-    </span>
-    <h4 class="mt-3 mb-1 text-2xl tracking-tight text-sky-900 dark:text-sky-200">
-      <a href="{{ .RelPermalink }}">{{ replace .LinkTitle "&#x000a;" " " }}</a>
-    </h4>
-    {{ .Summary }}
-    </div>
+  {{ range sort .Site.Taxonomies.categories ".Page.Params.weight" "asc" }}
+  <section class="category-group">
+    {{- $parent := (index . 0).Parent }}
+    <h2>{{ $parent.LinkTitle }}</h2>
+    <div>{{ $parent.Content }}</div>
+
+    <h4>Posts</h4>
+    <ul>
+      {{ range .Pages.ByDate }}
+      <li>
+        <a href="{{ .Permalink }}">{{ replace .Title "&#x000a;" " " }}</a>
+      </li>
+      {{ end }}
+    </ul>
+  </section>
   {{ end }}
+
+  {{ with .Site.GetPage "page" "projects.md" }}
+    {{ .Content }}
+  {{ end }}
+
+  <div id="page-quote" class="mt-6 text-sm text-neutral-400 dark:text-slate-500">
+    <em>"War is over. DRAGON was robot. He may come from star.</em><br/>
+    <em>We regained our peace. People will be happy.</em><br/>
+    <em>But, be careful more tests wait for you.</em><br/>
+    <em>Bye! MONSTER LAND. So long."</em><br/>
+    <strong>-- Ending credits of Wonderboy in Monsterland (Amiga release 1989)</strong>
   </div>
+
 {{ end }}

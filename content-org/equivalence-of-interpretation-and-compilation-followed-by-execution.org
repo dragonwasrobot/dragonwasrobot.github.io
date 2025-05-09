@@ -1,8 +1,8 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./posts
+#+hugo_section: ./categories/musings/
 #+hugo_front_matter_key_replace: description>summary
-#+hugo_categories: "Mathematics"
-#+hugo_tags: "Coq" "Interactive Theorem Proving" "Interpreters" "Compilers" "Virtual Machines"
+#+hugo_categories: "Musings"
+#+hugo_tags: "Mathematics" "Coq" "Interactive Theorem Proving" "Interpreters" "Compilers" "Virtual Machines"
 
 #+title: Equivalence of interpretation&#x000a;and compilation followed by execution
 #+date: 2015-10-16T00:00:00Z

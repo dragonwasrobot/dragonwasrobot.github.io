@@ -4,7 +4,7 @@ author = ["Peter Urbak"]
 summary = "In this post, we present several techniques for making Elm code declarative and precise."
 date = 2023-04-27T00:00:00Z
 tags = ["Elm", "Pattern matching", "Point-free Style", "Functional Programming"]
-categories = ["Code"]
+categories = ["Musings"]
 draft = false
 +++
 

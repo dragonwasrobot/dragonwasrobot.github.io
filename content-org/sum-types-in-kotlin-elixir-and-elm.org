@@ -1,7 +1,7 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./posts
+#+hugo_section: ./categories/musings/
 #+hugo_front_matter_key_replace: description>summary
-#+hugo_categories: "Code"
+#+hugo_categories: "Musings"
 #+hugo_tags: "Elm" "Elixir" "Kotlin" "Sum types" "Functional Programming"
 
 #+title: Sum types in Kotlin, Elixir, and Elm

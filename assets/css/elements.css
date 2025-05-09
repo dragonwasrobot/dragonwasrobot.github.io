@@ -5,6 +5,7 @@
 
 @utility dwr-font-sans-serif {
   font-family: system-ui;
+  line-height: 1.5em;
 }
 
 @utility dwr-font-serif {
@@ -28,8 +29,18 @@
 body {
   @apply dwr-font-serif;
 
-  @apply text-gray-900;
-  @apply dark:text-gray-100;
+  @apply text-stone-900;
+  @apply dark:text-slate-100;
+}
+
+section.category-group {
+  @apply bg-syd12/40;
+  @apply dark:bg-nord19/20;
+
+  @apply rounded-sm;
+  @apply py-4;
+  @apply px-6;
+  @apply mt-5;
 }
 
 /* ** Links */
@@ -65,6 +76,10 @@ ul {
   @apply list-disc;
 }
 
+li {
+  @apply mt-1;
+}
+
 /* ** Headings */
 
 h1, h2, h3, h4, h5, h6 {
@@ -97,7 +112,8 @@ h3 {
 div.footnotes {
 
   hr {
-    @apply text-neutral-200;
+    @apply text-syd2;
+    @apply dark:text-nord5;
   }
 
   ol {
@@ -111,6 +127,14 @@ div.footnotes {
 div#tags {
   display: none;
 }
+
+/* ** MathJax */
+
+mjx-math .faint {
+  @apply text-stone-300;
+  @apply dark:text-slate-600;
+}
+
 
 /* ** Light/Dark theme toggle */
 
