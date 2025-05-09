@@ -10,7 +10,7 @@ draft = false
 
 ## 1. Introduction {#1-dot-introduction}
 
-This post is a follow-up to [An interpreter, a compiler, and a virtual machine](/posts/an-interpreter-a-compiler-and-a-virtual-machine),
+This post is a follow-up to [An interpreter, a compiler, and a virtual machine](/categories/musings/an-interpreter-a-compiler-and-a-virtual-machine),
 in which we defined the fixpoints we will now use to prove an [equivalence
 relation](https://en.wikipedia.org/wiki/Equivalence_relation) between **interpretation of an arithmetic expression** and **compilation
 of an arithmetic expression followed by execution of the bytecode program
@@ -91,7 +91,7 @@ relation.
 
 ## 3. Equivalence proof {#3-dot-equivalence-proof}
 
-Just as in the [introductory post on the Coq Proof Assistant](/posts/a-primer-on-the-coq-proof-assistant), we start our proof
+Just as in the [introductory post on the Coq Proof Assistant](/categories/musings/a-primer-on-the-coq-proof-assistant), we start our proof
 by writing the `Proof` keyword, which gives us the following goal:
 
 ```coq

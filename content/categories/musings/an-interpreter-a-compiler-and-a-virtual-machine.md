@@ -293,7 +293,7 @@ how the two types of evaluation relate to each other.
 Lastly, the language has been implemented in the Coq Proof Assistant such that
 we can prove an equivalence relation between **interpretation of an arithmetic
 expression** and **compilation followed by execution of an arithmetic expression**,
-which is exactly the topic of the [next post](/posts/equivalence-of-interpretation-and-compilation-followed-by-execution).
+which is exactly the topic of the [next post](/categories/moessners-sieve/equivalence-of-interpretation-and-compilation-followed-by-execution).
 
 [^fn:1]: We use the notation `[1,2,3]` and `(1 :: 2 :: 3 :: nil)` interchangeably to
     denote the content of a `list` in Coq.

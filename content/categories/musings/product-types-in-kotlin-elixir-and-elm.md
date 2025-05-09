@@ -19,7 +19,7 @@ _united we stand divided we fall.”_<br />
 
 ## 1. Introduction {#1-dot-introduction}
 
-This is a follow-up post to [Enum types in Kotlin, Elixir, and Elm](/posts/enum-types-in-kotlin-elixir-and-elm). The goal of
+This is a follow-up post to [Enum types in Kotlin, Elixir, and Elm](/categories/musings/enum-types-in-kotlin-elixir-and-elm). The goal of
 this blog post is to define the concept of product types and compare the
 implementation of product types in three different functional programming
 languages: [Kotlin](https://kotlinlang.org/), [Elixir](https://elixir-lang.org/), and [Elm](http://elm-lang.org/).
@@ -92,7 +92,7 @@ fun euclidean_distance p q =
 Here, we access an individual field using the common `<var>.<field>` expression.
 
 In each of the following sections, we return to the `shape` example from our
-[previous post](/posts/enum-types-in-kotlin-elixir-and-elm), and implement product type versions of each of the different
+[previous post](/categories/musings/enum-types-in-kotlin-elixir-and-elm), and implement product type versions of each of the different
 shapes: `rectangle`, `circle`, and `triangle`. Specifically, we define each of
 the shapes in terms of their corresponding mathematical definition, i.e. a
 rectangle has a _height_ and _width_, a circle has a _radius_, and a triangle
@@ -142,7 +142,7 @@ product types along with their corresponding area example functions in Kotlin.
 In this section, we implement the `rectangle`, `circle`, and `triangle` product
 types along with their area functions in Kotlin.
 
-As discussed in the [previous post](/posts/enum-types-in-kotlin-elixir-and-elm), Kotlin is heavily influenced by Java which
+As discussed in the [previous post](/categories/musings/enum-types-in-kotlin-elixir-and-elm), Kotlin is heavily influenced by Java which
 means that all non-primitive data types are defined in terms of classes, and
 product types are no exception. Likewise, we also discussed that we prefer to
 separate data and logic, and thus would like to avoid defining our product types
