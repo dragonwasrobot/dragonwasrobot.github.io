@@ -26,33 +26,14 @@
   -o-transition: none !important;
 }
 
-body {
-  @apply dwr-font-serif;
-
-  @apply text-stone-900;
-  @apply dark:text-slate-100;
-}
-
 section.category-group {
   @apply bg-syd12/40;
   @apply dark:bg-nord19/20;
 
   @apply rounded-sm;
   @apply py-4;
-  @apply px-6;
+  @apply px-3 md:px-6;
   @apply mt-5;
-}
-
-/* ** Links */
-
-main a {
-  @apply text-syd7;
-  @apply dark:text-nord7;
-}
-
-footer a {
-  @apply text-syd7;
-  @apply dark:text-nord7;
 }
 
 /* ** Paragraphs */
@@ -80,6 +61,11 @@ li {
   @apply mt-1;
 }
 
+li a {
+  @apply mt-1;
+  @apply text-syd7 dark:text-nord7;
+}
+
 /* ** Headings */
 
 h1, h2, h3, h4, h5, h6 {
@@ -89,6 +75,7 @@ h1, h2, h3, h4, h5, h6 {
 
 h1, h2, h3 {
   @apply mb-4;
+  @apply tracking-tight whitespace-pre-line;
 }
 
 h4 {
@@ -96,15 +83,15 @@ h4 {
 }
 
 h1 {
-  @apply text-4xl tracking-tight whitespace-pre-line;
+  @apply text-2xl md:text-4xl;
 }
 
 h2 {
-  @apply text-2xl tracking-tight whitespace-pre-line;
+  @apply text-xl md:text-2xl;
 }
 
 h3 {
-  @apply text-xl tracking-tight whitespace-pre-line;
+  @apply text-lg md:text-xl;
 }
 
 /* ** Footnotes */
@@ -129,6 +116,12 @@ div#tags {
 }
 
 /* ** MathJax */
+
+mjx-container {
+  @apply w-full;
+  @apply min-w-full!;
+  @apply overflow-x-scroll;
+}
 
 mjx-math .faint {
   @apply text-stone-300;
@@ -159,14 +152,6 @@ mjx-math .faint {
   height: 26px;
   border-radius: 50px;
   padding: 5px;
-}
-
-.fa-moon {
-  @apply text-yellow-400;
-}
-
-.fa-sun {
-  @apply text-amber-600;
 }
 
 .theme-toggle-label .toggle-ball {

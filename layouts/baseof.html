@@ -3,14 +3,14 @@
 <head>
   {{ partial "head.html" . }}
 </head>
-<body class="preload bg-neutral-50 dark:bg-nord1">
-  <header class="relative border-solid border-b-1 border-syd2 dark:border-nord5">
+<body class="preload bg-neutral-50 dark:bg-nord1 text-sm md:text-base dwr-font-serif text-stone-900 dark:text-slate-100">
+  <header class="px-3 relative border-solid border-b-1 border-syd2 dark:border-nord5">
     {{ partial "header.html" . }}
   </header>
-  <main class="mt-8">
+  <main class="mt-8 px-3">
     {{ block "main" . }}{{ end }}
   </main>
-  <footer class="mt-8 pt-4 border-solid border-t-1 border-syd2 dark:border-nord5">
+  <footer class="mt-8 px-3 pt-6 border-solid border-t-1 border-syd2 dark:border-nord5">
     {{ partial "footer.html" . }}
   </footer>
 </body>

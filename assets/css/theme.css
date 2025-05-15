@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Custom Tailwind CSS theme.
+ *
+ * The `syd` theme is the light theme while the `nord` is the dark theme.
+ */
 @theme {
   --color-syd1: #fafafa;
   --color-syd2: #e5e5e5;

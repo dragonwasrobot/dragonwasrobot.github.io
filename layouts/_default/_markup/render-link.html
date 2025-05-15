@@ -1,0 +1,6 @@
+<a href="{{ .Destination | safeURL }}"
+   class="text-syd7 dark:text-nord7"
+   {{- with .Title }} title="{{ . }}"{{ end -}}>
+  {{- with .Text }}{{ . }}{{ end -}}
+</a>
+{{- /* chomp trailing newline */ -}}
