@@ -1,26 +1,26 @@
+# Global Hugo setting
 baseURL = 'https://dragonwasrobot.com/'
 languageCode = 'en-us'
 title = 'dragonwasrobot'
 
 [menus]
-  # empty for now, trying to fit everything in the front page and individual
-  # blog posts and pages
+  # Config for setting up menus. Left intentionally empty as everything is on
+  # the front page.
 
 [markup.goldmark.renderer]
+  # Hugo uses Goldmark for rendering markdown to HTML.
+  # The `unsafe` flag allows embedding arbitrary raw HTML in markdown files.
   unsafe = true
 
 [markup]
   [markup.highlight]
-    # disable highlighting theme and use own CSS styling
-    # to renable set: `style = 'xcode'`
+    # Hugo uses Chroma for syntax highlighting.
+    # The `noClasses` flag disables the default themed based coloring, e.g.
+    # `style = 'nord'`.
     noClasses = false
 
-[module]
-  [module.hugoVersion]
-    extended = false
-    min = '0.146.0'
-
 [outputs]
+  # Determines the output formats for each page kind.
   home = ['html', 'rss']
   section = ['html']
   taxonomy = ['html']
@@ -28,4 +28,31 @@ title = 'dragonwasrobot'
 
 [caches]
   [caches.images]
+    # Specifies where to store cached images.
     dir = ':cacheDir/images'
+  [caches.assets]
+    dir = ':cacheDir/assets'
+
+[build]
+  [build.buildStats]
+    # `buildStats` determines whether to create a hugo_stats.json containing
+    # arrays of the class attributes, id attributes, and tags of every HTML
+    # element.
+    enable = true
+  [[build.cachebusters]]
+    # Sets up cache busting for css assets
+    source = 'assets/watching/hugo_stats\.json'
+    target = 'styles\\.css'
+
+[module]
+  [module.hugoVersion]
+    # The `extended` flag determines whether to include support for SASS/SCSS.
+    extended = false
+    min = '0.146.0'
+  [[module.mounts]]
+    # Specifies mounts from project sources into Hugo virtual file system.
+    source = 'assets'
+    target = 'assets'
+  [[module.mounts]]
+    source = 'hugo_stats.json'
+    target = 'assets/watching/hugo_stats.json'

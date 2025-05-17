@@ -7,5 +7,5 @@ weight = 2
 
 #### Description
 
-A scratch pad where all the stray thoughts that aren't yet -- and may never be
--- part of a bigger project or blog series.
+A scratch pad for all the stray thoughts that aren't yet -- and may never be --
+part of a bigger project or blog series.

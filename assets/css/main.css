@@ -3,3 +3,5 @@
 @import "./syntax-highlighting.css";
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@source "hugo_stats.json";

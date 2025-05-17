@@ -121,13 +121,13 @@ mjx-container {
   @apply w-full;
   @apply min-w-full!;
   @apply overflow-x-scroll;
+  @apply overflow-y-clip;
 }
 
 mjx-math .faint {
   @apply text-stone-300;
   @apply dark:text-slate-600;
 }
-
 
 /* ** Light/Dark theme toggle */
 
