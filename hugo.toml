@@ -2,6 +2,7 @@
 baseURL = 'https://dragonwasrobot.com/'
 languageCode = 'en-us'
 title = 'dragonwasrobot'
+enableRobotsTXT = true
 
 [menus]
   # Config for setting up menus. Left intentionally empty as everything is on
