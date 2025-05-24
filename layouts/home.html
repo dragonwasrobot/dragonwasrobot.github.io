@@ -1,26 +1,30 @@
 {{ define "main" }}
+
   <div id="page-content" class="mx-auto max-w-3xl">
   {{ .Content }}
 
-  {{ range sort .Site.Taxonomies.categories ".Page.Params.weight" "asc" }}
-  <section class="category-group">
-    {{- $parent := (index . 0).Parent }}
-    <h2>{{ $parent.LinkTitle }}</h2>
-    <div>{{ $parent.Content }}</div>
+  {{ $taxo := "categories" }}
+  {{ with ($.Site.GetPage (printf "/%s" $taxo)) }}
+    {{ range .Pages.ByWeight }}
 
-    <h4>Posts</h4>
-    <ul>
-      {{ range .Pages.ByDate }}
-      <li>
-        <a href="{{ .Permalink }}">{{ replace .Title "&#x000a;" " " }}</a>
-      </li>
-      {{ end }}
-    </ul>
-  </section>
+    <section class="category-group">
+      <h2>{{ .LinkTitle }}</h2>
+      <div>{{ .Content }}</div>
+
+      <h4>Posts</h4>
+      <ul>
+        {{ range .Pages.ByDate }}
+        <li>
+          <a href="{{ .Permalink }}">{{ replace .Title "&#x000a;" " " }}</a>
+        </li>
+        {{ end }}
+      </ul>
+    </section>
+    {{ end }}
   {{ end }}
 
   {{ with .Site.GetPage "page" "projects.md" }}
-    {{ .Content }}
+  {{ .Content }}
   {{ end }}
 
   <div id="page-quote" class="mt-6 text-sm text-neutral-400 dark:text-slate-500">

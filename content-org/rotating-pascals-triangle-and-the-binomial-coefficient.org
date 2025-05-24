@@ -1,5 +1,5 @@
 #+hugo_base_dir: ../
-#+hugo_section: ./categories/moessners-sieve/
+#+hugo_section: ./categories/moessner's-sieve/
 #+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Pascal's triangle" "Binomial coefficient" "Mathematics"
