@@ -1,7 +1,6 @@
 +++
 title = "A dual to Moessner's sieve"
 author = ["Peter Urbak"]
-summary = "In this post, we introduce a dual to Moessner's sieve."
 date = 2016-02-19T00:00:00Z
 tags = ["Haskell", "Mathematics"]
 categories = ["Moessner's Sieve"]

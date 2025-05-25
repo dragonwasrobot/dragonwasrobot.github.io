@@ -1,7 +1,6 @@
 +++
 title = "An introduction to Pascal's triangle&#x000a;and the binomial coefficient"
 author = ["Peter Urbak"]
-summary = "In this post, we introduce Pascal's triangle and the binomial coefficient."
 date = 2015-11-07T00:00:00Z
 tags = ["Haskell", "Pascal's Triangle", "Binomial coefficient", "Mathematics"]
 categories = ["Moessner's Sieve"]

@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/moessner's-sieve/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics" "Moessner's Process"
 
 #+title: A grid of Moessner triangles
 #+date: 2016-06-29T00:00:00Z
-#+description: In this post, we derive Moessner's sieve from Horner's method.
 
 #+begin_blockquote
 /"The trick, William Potter,/\\

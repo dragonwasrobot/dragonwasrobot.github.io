@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/moessner's-sieve/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Pascal's Triangle" "Binomial coefficient" "Mathematics"
 
 #+title: An introduction to Pascal's triangle&#x000a;and the binomial coefficient
 #+date: 2015-11-07T00:00:00Z
-#+description: In this post, we introduce Pascal's triangle and the binomial coefficient.
 
 ** 1. Introduction
 The goal of this blog post is to introduce [[https://en.wikipedia.org/wiki/Pascal%27s_triangle][Pascal's triangle]] and the [[https://en.wikipedia.org/wiki/Binomial_coefficient][binomial

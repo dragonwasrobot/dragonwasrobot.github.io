@@ -1,13 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/moessner's-sieve/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics" "Polynomial division" "Taylor polynomials" "Horner's method" "Moessner's Process"
 
 #+title: Deriving Moessner's sieve&#x000a;from Horner's method
 #+date: 2016-05-17T00:00:00Z
-#+description: In this post, we derive Moessner's sieve from Horner's method.
-
 
 ** 1. Introduction
 This is a follow-up post to [[/categories/moessners-sieve/obtaining-taylor-polynomials-with-horners-method][Obtaining Taylor polynomials with Horner's method]]

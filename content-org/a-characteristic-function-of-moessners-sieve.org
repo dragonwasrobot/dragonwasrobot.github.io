@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/moessner's-sieve/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics"
 
 #+title: A characteristic function of Moessner's sieve
 #+date: 2016-03-04T00:00:00Z
-#+description: In this post, we introduce a characteristic function of Moessner's sieve.
 
 #+begin_blockquote
 /"It might be worth-while to point out/\\

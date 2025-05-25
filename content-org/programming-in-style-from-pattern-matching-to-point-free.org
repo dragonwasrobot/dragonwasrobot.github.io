@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/musings/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Musings"
 #+hugo_tags: "Elm" "Pattern matching" "Point-free Style" "Functional Programming"
 
 #+title: Programming in Style:&#x000a;From Pattern Matching to Point Free
 #+date: 2023-04-27T00:00:00Z
-#+description: In this post, we present several techniques for making Elm code declarative and precise.
 
 #+begin_quote
 /“If you detect a needlessly complex style when you read,/\\

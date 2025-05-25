@@ -1,7 +1,6 @@
 +++
 title = "Equivalence of interpretation&#x000a;and compilation followed by execution"
 author = ["Peter Urbak"]
-summary = "In this post, we prove equivalence between interpretation and compilation of code."
 date = 2015-10-16T00:00:00Z
 tags = ["Mathematics", "Coq", "Interactive Theorem Proving", "Interpreters", "Compilers", "Virtual Machines"]
 categories = ["Musings"]

@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/musings/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Musings"
 #+hugo_tags: "Mathematics" "Coq" "Interactive Theorem Proving" "Interpreters" "Compilers" "Virtual Machines"
 
 #+title: Equivalence of interpretation&#x000a;and compilation followed by execution
 #+date: 2015-10-16T00:00:00Z
-#+description: In this post, we prove equivalence between interpretation and compilation of code.
 
 ** 1. Introduction
 This post is a follow-up to [[/categories/musings/an-interpreter-a-compiler-and-a-virtual-machine][An interpreter, a compiler, and a virtual machine]],

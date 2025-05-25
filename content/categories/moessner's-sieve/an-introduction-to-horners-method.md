@@ -1,7 +1,6 @@
 +++
 title = "An introduction to Horner's method"
 author = ["Peter Urbak"]
-summary = "In this post, we introduce Horner's method for polynomial evaluation and polynomial division."
 date = 2015-08-03T00:00:00Z
 tags = ["Haskell", "Mathematics", "Polynomial evaluation", "Polynomial division", "Horner's method", "Moessner's Process"]
 categories = ["Moessner's Sieve"]

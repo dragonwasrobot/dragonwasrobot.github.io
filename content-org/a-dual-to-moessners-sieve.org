@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/moessner's-sieve/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics"
 
 #+title: A dual to Moessner's sieve
 #+date: 2016-02-19T00:00:00Z
-#+description: In this post, we introduce a dual to Moessner's sieve.
 
 #+begin_blockquote
 /"The poet doesn't invent./\\

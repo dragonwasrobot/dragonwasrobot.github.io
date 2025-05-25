@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/musings/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Musings"
 #+hugo_tags: "Elm" "Elixir" "Kotlin" "Product types" "Functional Programming"
 
 #+title: Product types in Kotlin, Elixir, and Elm
 #+date: 2016-11-14T00:00:00Z
-#+description: In this post, we define the concept of product types with examples in Kotlin, Elixir, and Elm.
 
 #+begin_blockquote
 /“All for one and one for all,/\\

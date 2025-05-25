@@ -1,7 +1,6 @@
 +++
 title = "A grid of Moessner triangles"
 author = ["Peter Urbak"]
-summary = "In this post, we derive Moessner's sieve from Horner's method."
 date = 2016-06-29T00:00:00Z
 tags = ["Haskell", "Mathematics", "Moessner's Process"]
 categories = ["Moessner's Sieve"]

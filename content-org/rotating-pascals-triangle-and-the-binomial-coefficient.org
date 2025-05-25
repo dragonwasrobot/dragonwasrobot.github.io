@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/moessner's-sieve/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Pascal's triangle" "Binomial coefficient" "Mathematics"
 
 #+title: Rotating Pascal's triangle&#x000a;and the binomial coefficient
 #+date: 2015-12-20T00:00:00Z
-#+description: In this post, we introduce the rotated versions of Pascal's triangle and the binomial coefficient.
 
 ** 1. Introduction
 This is a follow-up post to [[/categories/moessners-sieve/an-introduction-to-pascals-triangle][An introduction to Pascal's triangle]], which we will

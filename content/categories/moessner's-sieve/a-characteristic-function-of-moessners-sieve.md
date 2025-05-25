@@ -1,7 +1,6 @@
 +++
 title = "A characteristic function of Moessner's sieve"
 author = ["Peter Urbak"]
-summary = "In this post, we introduce a characteristic function of Moessner's sieve."
 date = 2016-03-04T00:00:00Z
 tags = ["Haskell", "Mathematics"]
 categories = ["Moessner's Sieve"]

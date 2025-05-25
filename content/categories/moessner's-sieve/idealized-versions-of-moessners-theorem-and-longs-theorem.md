@@ -1,7 +1,6 @@
 +++
 title = "Idealized versions of Moessner's theorem&#x000a;and Long's theorem"
 author = ["Peter Urbak"]
-summary = "In this post, we present idealized versions of Moessner's theorem and Long's theorem."
 date = 2016-07-10T00:00:00Z
 tags = ["Haskell", "Mathematics", "Moessner's Process", "Moessner's Theorem", "Long's Theorem"]
 categories = ["Moessner's Sieve"]

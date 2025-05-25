@@ -1,7 +1,6 @@
 +++
 title = "Sum types in Kotlin, Elixir, and Elm"
 author = ["Peter Urbak"]
-summary = "In this post, we define the concept of sum types with examples in Elm, Elixir, and Kotlin."
 date = 2016-12-20T00:00:00Z
 tags = ["Elm", "Elixir", "Kotlin", "Sum types", "Functional Programming"]
 categories = ["Musings"]
@@ -18,7 +17,7 @@ _“We are our choices.”_<br />
 
 ## 1. Introduction {#1-dot-introduction}
 
-This is a follow-up post to [Product types in Kotlin, Elixir, and Elm](/posts/product-types-in-kotlin-elixir-and-elm). The goal
+This is a follow-up post to [Product types in Kotlin, Elixir, and Elm](/categories/musings/product-types-in-kotlin-elixir-and-elm). The goal
 of this blog post is to define the concept of sum types and compare the
 implementation of sum types in three different functional programming languages:
 [Kotlin](https://kotlinlang.org/), [Elixir](https://elixir-lang.org/), and [Elm](http://elm-lang.org/).
@@ -33,7 +32,7 @@ types in Kotlin, Elixir, and Elm, respectively. The post is concluded in Section
 
 In this section, we define the concept of sum types.
 
-In our [post on enum types](/posts/enum-types-in-kotlin-elixir-and-elm), we defined an enum type as a _“data type consisting
+In our [post on enum types](/categories/musings/enum-types-in-kotlin-elixir-and-elm), we defined an enum type as a _“data type consisting
 of a set of named values which we call the members of the type”_, e.g. we
 defined `shape` as:
 
@@ -50,7 +49,7 @@ its own set of arguments. Conversely, we may also look at enum types as the
 subset of sum types for which each member is a [unit type](https://en.wikipedia.org/wiki/Unit_type), i.e. each member's
 type constructor takes zero arguments.
 
-In our [post on product types](/posts/product-types-in-kotlin-elixir-and-elm) we implemented three different types of shapes:
+In our [post on product types](/categories/musings/product-types-in-kotlin-elixir-and-elm) we implemented three different types of shapes:
 rectangle, circle, and triangle. Now, with the above definition of sum types in
 mind, we want to define a `shape` type that can be either a `Rectangle`, a
 `Circle`, or a `Triangle`. In our ML-like syntax, we could express our `shape`

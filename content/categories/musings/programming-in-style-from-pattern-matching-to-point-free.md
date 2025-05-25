@@ -1,7 +1,6 @@
 +++
 title = "Programming in Style:&#x000a;From Pattern Matching to Point Free"
 author = ["Peter Urbak"]
-summary = "In this post, we present several techniques for making Elm code declarative and precise."
 date = 2023-04-27T00:00:00Z
 tags = ["Elm", "Pattern matching", "Point-free Style", "Functional Programming"]
 categories = ["Musings"]

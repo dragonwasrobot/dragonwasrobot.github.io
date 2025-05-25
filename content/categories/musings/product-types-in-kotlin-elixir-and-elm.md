@@ -1,7 +1,6 @@
 +++
 title = "Product types in Kotlin, Elixir, and Elm"
 author = ["Peter Urbak"]
-summary = "In this post, we define the concept of product types with examples in Kotlin, Elixir, and Elm."
 date = 2016-11-14T00:00:00Z
 tags = ["Elm", "Elixir", "Kotlin", "Product types", "Functional Programming"]
 categories = ["Musings"]

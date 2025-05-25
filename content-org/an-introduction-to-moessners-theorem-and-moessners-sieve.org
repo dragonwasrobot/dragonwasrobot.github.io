@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/moessner's-sieve/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics"
 
 #+title: An introduction to Moessner's theorem&#x000a;and Moessner's sieve
 #+date: 2016-01-12T00:00:00Z
-#+description: In this post, we introduce Moessner's theorem and Moessner's sieve.
 
 ** 1. Introduction
 This is a follow-up post to [[/categories/moessners-sieve/rotating-pascals-triangle-and-the-binomial-coefficient][Rotating Pascal's triangle and the binomial

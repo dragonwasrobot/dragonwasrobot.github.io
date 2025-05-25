@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/moessner's-sieve/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics" "Polynomial division" "Taylor polynomials" "Horner's method"
 
 #+title: Obtaining Taylor Polynomials&#x000a;with Horner's method
 #+date: 2016-04-08T00:00:00Z
-#+description: In this post, we calculate Taylor Polynomials with Horner's method.
 
 ** 1. Introduction
 This is a follow-up post to [[/categories/moessners-sieve/an-introduction-to-horners-method][An introduction to Horner's method]]. The goal of this

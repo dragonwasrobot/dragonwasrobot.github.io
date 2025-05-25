@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/musings/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Musings"
 #+hugo_tags: "Mathematics" "Coq" "Induction"
 
 #+title: A Primer on the Coq Proof Assistant
 #+date: 2015-07-18T00:00:00Z
-#+description: In this post, we give a short primer on interactive theorem proving in the Coq Proof Assistant.
 
 #+begin_quote
 /"Beware of bugs in the above code;/\\

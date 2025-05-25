@@ -7,7 +7,7 @@ layout = "static"
 
 <section class="category-group">
 
-### JSON Schema parser
+## JSON Schema parser
 
 #### Description
 
@@ -33,7 +33,7 @@ code generator.
 
 <section class="category-group">
 
-### JSON Schema to Elm code generator
+## JSON Schema to Elm code generator
 
 #### Description
 
@@ -60,7 +60,7 @@ case.
 
 <section class="category-group">
 
-### i18n to Elm code generator
+## i18n to Elm code generator
 
 #### Description
 
@@ -91,7 +91,7 @@ JSON schema files.
 
 <section class="category-group">
 
-### CHIP-8 emulator
+## CHIP-8 emulator
 
 #### Description
 
@@ -113,7 +113,7 @@ The project was created for two reasons:
 
 <section class="category-group">
 
-### Brainfuck interpreter
+## Brainfuck interpreter
 
 #### Description
 
@@ -136,7 +136,7 @@ The project was created for two reasons:
 
 <section class="category-group">
 
-### b.el
+## b.el
 
 #### Description
 
@@ -160,7 +160,7 @@ manipulated and represented.
 
 <section class="category-group">
 
-### ExRerun
+## ExRerun
 
 #### Description
 
@@ -187,7 +187,7 @@ changed.
 
 <section class="category-group">
 
-### Helm Bitbucket
+## Helm Bitbucket
 
 #### Description
 

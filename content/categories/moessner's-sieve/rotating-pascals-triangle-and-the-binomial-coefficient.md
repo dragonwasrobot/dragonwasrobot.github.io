@@ -1,7 +1,6 @@
 +++
 title = "Rotating Pascal's triangle&#x000a;and the binomial coefficient"
 author = ["Peter Urbak"]
-summary = "In this post, we introduce the rotated versions of Pascal's triangle and the binomial coefficient."
 date = 2015-12-20T00:00:00Z
 tags = ["Haskell", "Pascal's triangle", "Binomial coefficient", "Mathematics"]
 categories = ["Moessner's Sieve"]

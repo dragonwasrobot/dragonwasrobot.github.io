@@ -1,7 +1,6 @@
 +++
 title = "Making builds reliable and reproducible"
 author = ["Peter Urbak"]
-summary = "In this post, we present how to improve the reliability and reproducibility of software builds."
 date = 2017-06-14T00:00:00Z
 tags = ["Software development", "Dependency management"]
 categories = ["Musings"]

@@ -4,6 +4,12 @@ languageCode = 'en-us'
 title = 'dragonwasrobot'
 enableRobotsTXT = true
 
+[params]
+  subtitle = 'A website about functional programming, computer sciencey side-projects, with a sprinkling of mathematics for added authority.'
+  [params.author]
+    email = 'peter@dragonwasrobot.com'
+    name = 'Peter Udklit Urbak'
+
 [menus]
   # Config for setting up menus. Left intentionally empty as everything is on
   # the front page.

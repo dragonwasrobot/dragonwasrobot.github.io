@@ -1,7 +1,6 @@
 +++
 title = "Obtaining Taylor Polynomials&#x000a;with Horner's method"
 author = ["Peter Urbak"]
-summary = "In this post, we calculate Taylor Polynomials with Horner's method."
 date = 2016-04-08T00:00:00Z
 tags = ["Haskell", "Mathematics", "Polynomial division", "Taylor polynomials", "Horner's method"]
 categories = ["Moessner's Sieve"]

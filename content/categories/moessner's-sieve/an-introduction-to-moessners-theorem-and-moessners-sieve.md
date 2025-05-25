@@ -1,7 +1,6 @@
 +++
 title = "An introduction to Moessner's theorem&#x000a;and Moessner's sieve"
 author = ["Peter Urbak"]
-summary = "In this post, we introduce Moessner's theorem and Moessner's sieve."
 date = 2016-01-12T00:00:00Z
 tags = ["Haskell", "Mathematics"]
 categories = ["Moessner's Sieve"]

@@ -1,12 +1,10 @@
 #+hugo_base_dir: ../
 #+hugo_section: ./categories/moessner's-sieve/
-#+hugo_front_matter_key_replace: description>summary
 #+hugo_categories: "Moessner's Sieve"
 #+hugo_tags: "Haskell" "Mathematics" "Moessner's Process" "Moessner's Theorem" "Long's Theorem"
 
 #+title: Idealized versions of Moessner's theorem&#x000a;and Long's theorem
 #+date: 2016-07-10T00:00:00Z
-#+description: In this post, we present idealized versions of Moessner's theorem and Long's theorem.
 
 #+begin_blockquote
 /"One chord is fine./\\

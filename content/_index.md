@@ -9,9 +9,7 @@ draft = false
 *Writing blends all three of them."*<br/>
 – **Mason Cooley**
 
-A website about functional programming, computer sciencey side-projects, with a
-sprinkling of mathematics for added authority.
-
+{{< subtitle >}}
 
 Below is a list of my various (documented) projects and some musings on
 programming.
