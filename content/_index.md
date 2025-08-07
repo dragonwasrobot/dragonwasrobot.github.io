@@ -1,13 +1,18 @@
 +++
-title = 'Home'
-date = 2025-04-17T08:00:00+00:00
+title = "Home"
+author = ["Peter Urbak"]
+date = 2025-04-17T00:00:00+02:00
 draft = false
 +++
 
-*"There are different rules for reading,*<br/>
-*for thinking, and for talking.*<br/>
-*Writing blends all three of them."*<br/>
+<div class="blockquote">
+
+_"There are different rules for reading,_<br />
+_for thinking, and for talking._<br />
+_Writing blends all three of them."_<br />
 – **Mason Cooley**
+
+</div>
 
 {{< subtitle >}}
 

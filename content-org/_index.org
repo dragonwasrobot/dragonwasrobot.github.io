@@ -1,0 +1,19 @@
+#+hugo_base_dir: ../
+#+hugo_section: /
+
+#+title: Home
+#+date: 2025-04-17T08:00:00+00.00
+
+#+begin_blockquote
+/"There are different rules for reading,/\\
+/for thinking, and for talking./\\
+/Writing blends all three of them."/\\
+– *Mason Cooley*
+#+end_blockquote
+
+#+begin_export hugo
+{{< subtitle >}}
+#+end_export
+
+Below is a list of my various (documented) projects and some musings on
+programming.

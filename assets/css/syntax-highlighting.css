@@ -3,13 +3,34 @@
 
 /* ** code elements */
 
+div.highlight {
+  @apply mb-4;
+  @apply mx-4;
+  @apply py-2;
+  @apply px-4;
+  @apply border;
+  @apply rounded;
+
+  @apply bg-syd12;
+  @apply dark:bg-nord19;
+
+  @apply border-syd2;
+  @apply dark:border-nord5;
+}
+
 pre {
   @apply overflow-x-auto;
+}
+
+pre.chroma {
+  @apply bg-syd12;
+  @apply dark:bg-nord19;
 }
 
 code {
   @apply dwr-font-fixed;
   @apply font-extralight;
+  @apply tracking-tight;
 
   @apply bg-syd12;
   @apply dark:bg-nord19;
@@ -31,26 +52,6 @@ p code {
   @apply px-1;
   @apply border;
   @apply rounded;
-}
-
-div.highlight {
-  @apply mb-4;
-  @apply mx-4;
-  @apply py-2;
-  @apply px-4;
-  @apply border;
-  @apply rounded;
-
-  @apply bg-syd12;
-  @apply dark:bg-nord19;
-
-  @apply border-syd2;
-  @apply dark:border-nord5;
-}
-
-pre.chroma {
-  @apply bg-syd12;
-  @apply dark:bg-nord19;
 }
 
 /* ** chromastyles classes */
