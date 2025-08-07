@@ -1,4 +1,4 @@
-#+hugo_base_dir: ../
+#+hugo_base_dir: ../../../
 #+hugo_section: ./categories/musings/
 #+hugo_categories: "Musings"
 #+hugo_tags: "Software development" "Dependency management"
