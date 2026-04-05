@@ -3,6 +3,7 @@
     "dev": "hugo server -D"
   },
   "devDependencies": {
+    "@fontsource/iosevka": "^5.2.5",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@tailwindcss/cli": "^4.1.4",
     "tailwindcss": "^4.1.4"

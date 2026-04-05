@@ -13,7 +13,8 @@
 }
 
 @utility dwr-font-fixed {
-  font-family: "Fira Code", monospace;
+  font-family: "Iosevka", monospace;
+  font-feature-settings: "calt" 0, "dlig" 1;
 }
 
 /* * Elements */

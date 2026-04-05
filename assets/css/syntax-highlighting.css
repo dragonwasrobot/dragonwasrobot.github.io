@@ -30,7 +30,7 @@ pre.chroma {
 code {
   @apply dwr-font-fixed;
   @apply font-extralight;
-  @apply tracking-tight;
+  @apply tracking-normal;
 
   @apply bg-syd12;
   @apply dark:bg-nord19;
