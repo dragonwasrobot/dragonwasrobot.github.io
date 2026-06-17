@@ -22,7 +22,7 @@ Aarhus University Library.
 
 #### Links
 
-- [Published eBook](http://ebooks.au.dk/index.php/aul/catalog/book/213)
+- [Published eBook](https://openbooks.kb.dk/au/catalog/book/213)
 - [GitHub page](https://github.com/dragonwasrobot/formal-moessner)
 - [Thesis presentation](https://www.slideshare.net/slideshow/masters-thesis-a-formal-study-of-moessners-sieve/54496197)
 
