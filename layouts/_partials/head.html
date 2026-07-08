@@ -7,7 +7,7 @@
     {{ printf "%s | %s" (replace .Title "&#x000a;" " ") site.Title }}
   {{ end }}
 </title>
-{{ partialCached "head/css.html" . }}
+{{ partial "head/css.html" . }}
 {{ partialCached "head/js.html" . }}
 
 {{ with .OutputFormats.Get "rss" }}

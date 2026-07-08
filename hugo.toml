@@ -1,6 +1,6 @@
 # Global Hugo setting
 baseURL = 'https://dragonwasrobot.com/'
-languageCode = 'en-us'
+locale = 'en-us'
 title = 'dragonwasrobot'
 enableRobotsTXT = true
 
