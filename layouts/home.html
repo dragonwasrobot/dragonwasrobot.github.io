@@ -13,7 +13,7 @@
 
       <h4>Posts</h4>
       <ul>
-        {{ range .Pages.ByDate }}
+        {{ range .Pages.ByDate.Reverse }}
         <li>
           <a href="{{ .Permalink }}">{{ replace .Title "&#x000a;" " " }}</a>
         </li>

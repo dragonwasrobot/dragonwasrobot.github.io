@@ -3,7 +3,7 @@
   {{ .Content }}
 
   <div id="post-summaries" class="mt-6">
-  {{ range .Pages }}
+  {{ range .Pages.ByDate.Reverse }}
     <div id="post-summary" class="mb-6">
       <span class="text-neutral-500 dark:text-sky-100 text-sm font-extralight">
         {{ .Date | time.Format ":date_medium" }}
