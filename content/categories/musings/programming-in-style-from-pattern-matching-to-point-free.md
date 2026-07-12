@@ -7,10 +7,14 @@ categories = ["Musings"]
 draft = false
 +++
 
-> _“If you detect a needlessly complex style when you read,_<br />
-> _look for characters and actions so that you can unravel for yourself_<br />
-> _the complexity the writer needlessly inflicted on you.”_<br />
-> -- **Joseph M. Williams**, [Style: Toward Clarity and Grace](https://app.thestorygraph.com/books/d4766a94-07d4-47c5-9f5c-a6492603b336)
+<div class="verse">
+
+_“If you detect a needlessly complex style when you read,_<br />
+_look for characters and actions so that you can unravel for yourself_<br />
+_the complexity the writer needlessly inflicted on you.”_<br />
+-- **Joseph M. Williams**, [Style: Toward Clarity and Grace](https://app.thestorygraph.com/books/d4766a94-07d4-47c5-9f5c-a6492603b336)<br />
+
+</div>
 
 The goal of this post is to show in [Elm](http://elm-lang.org/) how to go from
 a case of having nested pattern matching and refining it into a point free

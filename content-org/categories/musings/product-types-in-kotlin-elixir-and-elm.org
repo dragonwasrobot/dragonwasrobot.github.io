@@ -6,11 +6,11 @@
 #+title: Product types in Kotlin, Elixir, and Elm
 #+date: 2016-11-14T00:00:00Z
 
-#+begin_blockquote
-/“All for one and one for all,/\\
-/united we stand divided we fall.”/\\
+#+begin_verse
+/“All for one and one for all,/
+/united we stand divided we fall.”/
 -- *Alexandre Dumas*, The Three Musketeers
-#+end_blockquote
+#+end_verse
 
 ** 1. Introduction
 This is a follow-up post to [[/categories/musings/enum-types-in-kotlin-elixir-and-elm][Enum types in Kotlin, Elixir, and Elm]]. The goal of

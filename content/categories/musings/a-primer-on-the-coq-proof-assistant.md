@@ -7,9 +7,13 @@ categories = ["Musings"]
 draft = false
 +++
 
-> _"Beware of bugs in the above code;_<br />
-> _I have only proved it correct, not tried it."_<br />
-> -- **Donald Knuth**
+<div class="verse">
+
+_"Beware of bugs in the above code;_<br />
+_I have only proved it correct, not tried it."_<br />
+-- **Donald Knuth**<br />
+
+</div>
 
 
 ## Introduction {#introduction}

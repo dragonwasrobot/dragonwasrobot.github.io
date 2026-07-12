@@ -7,11 +7,11 @@ categories = ["Musings"]
 draft = false
 +++
 
-<div class="blockquote">
+<div class="verse">
 
 _“All for one and one for all,_<br />
 _united we stand divided we fall.”_<br />
--- **Alexandre Dumas**, The Three Musketeers
+-- **Alexandre Dumas**, The Three Musketeers<br />
 
 </div>
 

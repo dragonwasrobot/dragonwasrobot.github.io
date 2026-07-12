@@ -6,12 +6,12 @@
 #+title: Programming in Style:&#x000a;From Pattern Matching to Point Free
 #+date: 2023-04-27T00:00:00Z
 
-#+begin_quote
-/“If you detect a needlessly complex style when you read,/\\
-/look for characters and actions so that you can unravel for yourself/\\
-/the complexity the writer needlessly inflicted on you.”/\\
+#+begin_verse
+/“If you detect a needlessly complex style when you read,/
+/look for characters and actions so that you can unravel for yourself/
+/the complexity the writer needlessly inflicted on you.”/
 -- *Joseph M. Williams*, [[https://app.thestorygraph.com/books/d4766a94-07d4-47c5-9f5c-a6492603b336][Style: Toward Clarity and Grace]]
-#+end_quote
+#+end_verse
 
 The goal of this post is to show in [[http://elm-lang.org/][Elm]] how to go from
 a case of having nested pattern matching and refining it into a point free

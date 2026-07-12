@@ -6,11 +6,11 @@
 #+title: Enum types in Kotlin, Elixir, and Elm
 #+date: 2016-10-02T00:00:00Z
 
-#+begin_blockquote
-/“‘Begin at the beginning’, the King said, very gravely,/\\
-/‘and go on till you come to the end: then stop.’”/\\
+#+begin_verse
+/“‘Begin at the beginning’, the King said, very gravely,/
+/‘and go on till you come to the end: then stop.’”/
 -- *Lewis Carroll*, Alice in Wonderland
-#+end_blockquote
+#+end_verse
 
 ** 1. Introduction
 The goal of this blog post is to define the concept of enum types and compare

@@ -7,11 +7,11 @@ categories = ["Musings"]
 draft = false
 +++
 
-<div class="blockquote">
+<div class="verse">
 
 _“‘Begin at the beginning’, the King said, very gravely,_<br />
 _‘and go on till you come to the end: then stop.’”_<br />
--- **Lewis Carroll**, Alice in Wonderland
+-- **Lewis Carroll**, Alice in Wonderland<br />
 
 </div>
 

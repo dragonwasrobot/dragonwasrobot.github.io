@@ -6,10 +6,10 @@
 #+title: Sum types in Kotlin, Elixir, and Elm
 #+date: 2016-12-20T00:00:00Z
 
-#+begin_blockquote
-/“We are our choices.”/\\
+#+begin_verse
+/“We are our choices.”/
 -- *Jean-Paul Sartre*
-#+end_blockquote
+#+end_verse
 
 ** 1. Introduction
 This is a follow-up post to [[/categories/musings/product-types-in-kotlin-elixir-and-elm][Product types in Kotlin, Elixir, and Elm]]. The goal

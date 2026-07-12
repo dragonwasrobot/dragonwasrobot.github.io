@@ -7,10 +7,10 @@ categories = ["Musings"]
 draft = false
 +++
 
-<div class="blockquote">
+<div class="verse">
 
 _“We are our choices.”_<br />
--- **Jean-Paul Sartre**
+-- **Jean-Paul Sartre**<br />
 
 </div>
 
