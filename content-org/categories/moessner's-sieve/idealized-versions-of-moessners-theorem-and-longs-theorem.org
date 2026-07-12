@@ -6,12 +6,12 @@
 #+title: Idealized versions of Moessner's theorem&#x000a;and Long's theorem
 #+date: 2016-07-10T00:00:00Z
 
-#+begin_blockquote
-/"One chord is fine./\\
-/Two chords are pushing it./\\
-/Three chords and you're into jazz."/\\
+#+begin_verse
+/"One chord is fine./
+/Two chords are pushing it./
+/Three chords and you're into jazz."/
 -- *Lou Reed*
-#+end_blockquote
+#+end_verse
 
 ** 1. Introduction
 This is a follow-up post to [[/categories/moessners-sieve/a-grid-of-moessner-triangles][A grid of Moessner triangles]]. The goal of this blog

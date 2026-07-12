@@ -7,12 +7,12 @@ categories = ["Moessner's Sieve"]
 draft = false
 +++
 
-<div class="blockquote">
+<div class="verse">
 
 _"One chord is fine._<br />
 _Two chords are pushing it._<br />
 _Three chords and you're into jazz."_<br />
--- **Lou Reed**
+-- **Lou Reed**<br />
 
 </div>
 

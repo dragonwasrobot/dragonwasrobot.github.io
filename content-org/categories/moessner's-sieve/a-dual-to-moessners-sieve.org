@@ -6,11 +6,11 @@
 #+title: A dual to Moessner's sieve
 #+date: 2016-02-19T00:00:00Z
 
-#+begin_blockquote
-/"The poet doesn't invent./\\
-/He listens."/\\
+#+begin_verse
+/"The poet doesn't invent./
+/He listens."/
 -- *Jean Cocteau*
-#+end_blockquote
+#+end_verse
 
 ** 1. Introduction
 This is a follow-up post to [[/categories/moessners-sieve/an-introduction-to-moessners-theorem-and-moessners-sieve][An introduction to Moessner's Theorem and Moessner's

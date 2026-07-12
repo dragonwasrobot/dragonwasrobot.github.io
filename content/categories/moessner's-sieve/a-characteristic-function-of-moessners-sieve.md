@@ -7,13 +7,13 @@ categories = ["Moessner's Sieve"]
 draft = false
 +++
 
-<div class="blockquote">
+<div class="verse">
 
 _"It might be worth-while to point out_<br />
 _that the purpose of abstracting is not to be vague,_<br />
 _but to create a new semantic level_<br />
 _in which one can be absolutely precise"_<br />
--- **Edsger W. Dijkstra**, 1972 (EWD340)
+-- **Edsger W. Dijkstra**, 1972 (EWD340)<br />
 
 </div>
 

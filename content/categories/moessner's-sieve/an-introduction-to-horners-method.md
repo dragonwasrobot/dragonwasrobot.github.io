@@ -7,10 +7,14 @@ categories = ["Moessner's Sieve"]
 draft = false
 +++
 
-> _"What makes the desert beautiful,"_<br />
-> _said the little prince,_<br />
-> _“is that somewhere it hides a well..."_<br />
-> -- **Antoine de Saint-Expuéry**, [The Little Prince](https://app.thestorygraph.com/books/97ee2a58-fc20-4b49-a578-4ee9189c1c74)
+<div class="verse">
+
+_"What makes the desert beautiful,"_<br />
+_said the little prince,_<br />
+_“is that somewhere it hides a well..."_<br />
+-- **Antoine de Saint-Expuéry**, [The Little Prince](https://app.thestorygraph.com/books/97ee2a58-fc20-4b49-a578-4ee9189c1c74)<br />
+
+</div>
 
 
 ## 1. Introduction {#1-dot-introduction}

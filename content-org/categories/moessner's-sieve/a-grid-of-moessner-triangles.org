@@ -6,11 +6,11 @@
 #+title: A grid of Moessner triangles
 #+date: 2016-06-29T00:00:00Z
 
-#+begin_blockquote
-/"The trick, William Potter,/\\
-/is not minding that it hurts."/\\
+#+begin_verse
+/"The trick, William Potter,/
+/is not minding that it hurts."/
 -- *Robert Bolt*, Lawrence of Arabia (1962)
-#+end_blockquote
+#+end_verse
 
 ** 1. Introduction
 This is a follow-up post to [[/categories/moessners-sieve/a-characteristic-function-of-moessners-sieve][A characteristic function of Moessner's Sieve]]. The

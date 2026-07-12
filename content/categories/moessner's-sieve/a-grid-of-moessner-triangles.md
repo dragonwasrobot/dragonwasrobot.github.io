@@ -7,11 +7,11 @@ categories = ["Moessner's Sieve"]
 draft = false
 +++
 
-<div class="blockquote">
+<div class="verse">
 
 _"The trick, William Potter,_<br />
 _is not minding that it hurts."_<br />
--- **Robert Bolt**, Lawrence of Arabia (1962)
+-- **Robert Bolt**, Lawrence of Arabia (1962)<br />
 
 </div>
 

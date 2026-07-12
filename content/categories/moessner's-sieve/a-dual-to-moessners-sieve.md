@@ -7,11 +7,11 @@ categories = ["Moessner's Sieve"]
 draft = false
 +++
 
-<div class="blockquote">
+<div class="verse">
 
 _"The poet doesn't invent._<br />
 _He listens."_<br />
--- **Jean Cocteau**
+-- **Jean Cocteau**<br />
 
 </div>
 
