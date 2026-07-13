@@ -167,7 +167,7 @@ task of rebuilding the theory of the system from scratch.
 Transferring Naur's insights to the current state of AI-Assistance, we see that
 while an agent can produce the /text/ of a program with astonishing speed, it
 cannot build, hold, nor transfer the /theory/ of it, as the theory by its very
-nature is tacit knowledge. That theory is precisely what the theory builder
+nature is tacit knowledge. That theory is exactly what the theory builder
 contributes, and what we stand to lose when the discourse flattens to a single
 archetype. Thus, as pointed out by Naur, we face the real risk of having coding
 agents produce codebases that are effectively dead if the human is no longer in
@@ -177,7 +177,7 @@ These risks have also been raised recently by Margaret-Anne Storey in her paper
 [[https://arxiv.org/abs/2603.22106][From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in
 the Age of AI (2026)]], where she coins the terms *Cognitive Debt* and *Intent
 Debt*, as counters to the traditional well-established *Tech Debt*. These two
-concepts capture the debt that accumulates when engineers start losing the
+concepts capture: the debt that accumulates when engineers start losing the
 shared understanding of the system, and the debt that accumulates when the goals
 and constraints of the system stop being captured and maintained.
 
@@ -185,8 +185,8 @@ With papers like Storey's, we can start to see a silver-lining appear, as these
 tools are causing novel introspection to happen in spite of the skewed
 discourse, i.e. what types of tacit knowledge do we actually accumulate when
 building complex systems, and what happens when we offload certain decisions to
-AI-Assistance. Likewise, how these same tools can serve the theory builder is
-also being explored, not by generating code, but using it to externalize the
+AI Agents. Likewise, how these same tools can serve the theory builder is also
+being explored, not by generating code, but using it to externalize the
 reasoning behind it: probing alternative designs, surfacing implicit tradeoffs,
 and making the tacit theory of a system more legible before it is lost.
 
