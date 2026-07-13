@@ -151,11 +151,11 @@ as plain old classes, e.g.
 class Rectangle(val height: Float, val width: Float)
 ```
 
-Instead, we would like to signal to the Kotlin compiler - and other developers -
-that we are defining product types, which should not do much beyond store some
-data. Fortunately, Kotlin introduces the concept of [data class](https://kotlinlang.org/docs/data-classes.html), which does
-exactly this while also automatically deriving reasonable implementations of
-`equals`, `toString`, and `copy`. Defining our product types, `Rectangle`,
+Instead, we would like to signal to the Kotlin compiler - and other software
+engineers - that we are defining product types, which should not do much beyond
+store some data. Fortunately, Kotlin introduces the concept of [data class](https://kotlinlang.org/docs/data-classes.html), which
+does exactly this while also automatically deriving reasonable implementations
+of `equals`, `toString`, and `copy`. Defining our product types, `Rectangle`,
 `Circle`, and `Triangle`, as data classes is now straightforward, as we just
 need to add the `data` keyword before the `class` keyword:
 

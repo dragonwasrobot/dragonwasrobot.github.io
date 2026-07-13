@@ -146,10 +146,10 @@ provides a range of standard functions for manipulating and parsing bytes
 centered around three distinct representations for bytes as decimal, hexadecimal
 and binary values, respectively.
 
-The project was create to aid developers who either want to rapidly prototype a
-parser for a binary format, and would prefer to do this from the comforts of an
-Emacs buffer, or simply want become better acquainted with bytes as a
-fundamental building block for software development and how these can be
+The project was create to aid software engineers who either want to rapidly
+prototype a parser for a binary format, and would prefer to do this from the
+comforts of an Emacs buffer, or simply want become better acquainted with bytes
+as a fundamental building block for software engineering and how these can be
 manipulated and represented.
 
 #### Links
@@ -167,9 +167,9 @@ manipulated and represented.
 The [ex_rerun](https://github.com/dragonwasrobot/ex_rerun) project is an
 [Elixir](https://elixir-lang.org/) library for monitoring your source code and
 running a set of custom `mix` tasks, like `compile` or `test`, whenever source
-files change. The tool is made to be pluggable allowing developers to add their
-own `mix` tasks to be run by the tool, e.g. for compiling frontend code or
-generating API documentation.
+files change. The tool is made to be pluggable allowing software engineers to
+add their own `mix` tasks to be run by the tool, e.g. for compiling frontend
+code or generating API documentation.
 
 The project was created because I was developing a RESTful Elixir backend, in
 [cowboy](https://ninenines.eu/docs/en/cowboy/2.6/guide/), which was bundled with

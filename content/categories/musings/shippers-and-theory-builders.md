@@ -1,8 +1,8 @@
 +++
 title = "Shippers and Theory Builders"
 author = ["Peter Urbak"]
-date = 2026-06-27T00:00:00Z
-tags = ["Software Development"]
+date = 2026-07-10T00:00:00Z
+tags = ["Software Engineering"]
 categories = ["Musings"]
 draft = false
 +++
@@ -83,7 +83,7 @@ might miss key insights that would simplify the proof or open up new conjectures
 or concepts.
 
 This excerpt has been popping up in my mind recently, when looking at the
-current discourse surrounding AI-Assistance in software development, and I
+current discourse surrounding AI-Assistance in software engineering, and I
 believe it captures an unarticulated aspect of this discourse: the clashing of
 archetypes. Given that mathematics and software engineering both involve solving
 hard problems and discovering the underlying model, I thought it worth mimicking
@@ -176,7 +176,7 @@ These risks have also been raised recently by Margaret-Anne Storey in her paper
 [From Technical Debt to Cognitive and Intent Debt: Rethinking Software Health in
 the Age of AI (2026)](https://arxiv.org/abs/2603.22106), where she coins the terms **Cognitive Debt** and **Intent
 Debt**, as counters to the traditional well-established **Tech Debt**. These two
-concepts capture the debt that accumulates when developers start losing the
+concepts capture the debt that accumulates when engineers start losing the
 shared understanding of the system, and the debt that accumulates when the goals
 and constraints of the system stop being captured and maintained.
 
