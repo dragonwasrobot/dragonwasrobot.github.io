@@ -136,13 +136,13 @@ The project was created for two reasons:
 
 <section class="category-group">
 
-## b.el
+## bite.el
 
 #### Description
 
-The [b.el](https://github.com/dragonwasrobot/b.el) project is an Emacs package,
-written in [Emacs Lisp](https://en.wikipedia.org/wiki/Emacs_Lisp), which
-provides a range of standard functions for manipulating and parsing bytes
+The [bite.el](https://github.com/dragonwasrobot/bite.el) project is an Emacs
+package, written in [Emacs Lisp](https://en.wikipedia.org/wiki/Emacs_Lisp),
+which provides a range of standard functions for manipulating and parsing bytes
 centered around three distinct representations for bytes as decimal, hexadecimal
 and binary values, respectively.
 
@@ -154,7 +154,7 @@ manipulated and represented.
 
 #### Links
 
-- [GitHub page](https://github.com/dragonwasrobot/b.el)
+- [GitHub page](https://github.com/dragonwasrobot/bite.el)
 
 </section>
 
