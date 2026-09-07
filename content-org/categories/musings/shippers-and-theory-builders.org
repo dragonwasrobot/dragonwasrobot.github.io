@@ -126,8 +126,8 @@ discovered. Designing a system is considered a more difficult undertaking than
 building one.
 
 To the theory builder, the only things that will survive are the lines we draw
-through a system. The seams between subsystems and the conceptual model are what
-an engineer contributes to the world. Implementations are tolerated as a
+through a system. The contracts between subsystems and the conceptual model are
+what an engineer contributes to the world. Implementations are tolerated as a
 necessary evil since they play a supporting role or rather, as the theory
 builder will reluctantly admit, an essential role in revealing whether those
 lines were drawn in the right place.
@@ -185,10 +185,12 @@ With papers like Storey's, we can start to see a silver-lining appear, as these
 tools are causing novel introspection to happen in spite of the skewed
 discourse, i.e. what types of tacit knowledge do we actually accumulate when
 building complex systems, and what happens when we offload certain decisions to
-AI Agents. Likewise, how these same tools can serve the theory builder is also
-being explored, not by generating code, but using it to externalize the
-reasoning behind it: probing alternative designs, surfacing implicit tradeoffs,
-and making the tacit theory of a system more legible before it is lost.
+AI Agents. Similarly, different approaches to leveraging AI-Assistance in
+externalizing parts of theory building are also being explored: comparing
+alternative designs or probing for implicit tradeoffs during discovery, or
+codifying guiding principles using custom linter rules that uphold application
+boundaries and enforce consistent use of the ubiquitous language during
+implementation and review.
 
 Reflecting on Dijkstra's observation 50 years later, it now looks more like a
 warning than an observation: do we double-down on the skewed view of only
